@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
     [HideInInspector]
     public PlayerBase myBase;
+
+    public float movementSpeed = 10.0f;
+    public float maxHP = 1;
+    public float currentHP = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +20,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        myBase.myRigid.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * myBase.myStats.movementSpeed, Input.GetAxisRaw("Vertical") * myBase.myStats.movementSpeed);
+        
     }
 }

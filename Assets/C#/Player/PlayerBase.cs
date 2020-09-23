@@ -8,10 +8,13 @@ public class PlayerBase : MonoBehaviour
     public Rigidbody2D myRigid;
     [HideInInspector]
     public PlayerMovement myMovement;
+    [HideInInspector]
+    public PlayerStats myStats;
     // Start is called before the first frame update
     void Start()
     {
         myMovement = (PlayerMovement)GetComponent<PlayerMovement>();
+        myStats = (PlayerStats)GetComponent<PlayerStats>();
         myRigid = GetComponent<Rigidbody2D>();
     }
 
