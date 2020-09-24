@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class GeneralMovement : MonoBehaviour
 {
 
@@ -17,6 +18,13 @@ public class GeneralMovement : MonoBehaviour
         myRigid = GetComponent<Rigidbody2D>();
     }
 
+
+    //changes the speed value and updates the current velocity to that value
+    public void changeSpeed(float sp)
+    {
+        speed = sp;
+        myRigid.velocity = myRigid.velocity.normalized * sp;
+    }
 
 
     //Use this function to move with a direction
