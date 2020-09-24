@@ -6,17 +6,21 @@ public class UI_Camera : MonoBehaviour
 {
 
     /* Target which camera follows */
-    public GameObject target = null;
+    public GameObject target;
     /* Offset for targeting mode */
     public Vector2 offset;
 
+    private Camera cam;
     private Vector2 panPosition;
     private float panEndTime = 0.0f;
     private bool isPanning = false;
+    private float zoomSize = 1.0f;
+    private float zoomEndTime = 0.0f;
+    private bool isZooming = false;
 
     private void Start()
     {
-        PanTo(new Vector2(-5, -5), 10);
+        cam = this.GetComponent<Camera>();
     }
 
     void Update()
@@ -42,6 +46,22 @@ public class UI_Camera : MonoBehaviour
             }
         }
 
+        if (isZooming)
+        {
+            if (Time.time >= zoomEndTime)
+            {
+                isZooming = false;
+                SetSize(zoomSize);
+            }
+            else
+            {
+                float delta = Time.deltaTime;
+                float timeRemain = zoomEndTime - Time.time - delta;
+                float speed = (zoomSize - GetSize()) / timeRemain;
+                SetSize(GetSize() + speed * delta);
+            }
+        }
+
     }
 
     /*
@@ -54,11 +74,10 @@ public class UI_Camera : MonoBehaviour
         target = null;
         isPanning = true;
         panPosition = position;
-        panEndTime = seconds;
+        panEndTime = Time.time + seconds;
 
     }
 
-    /* Set camera position */
     public void SetPosition(Vector2 position)
     {
         /* Keep z-value the same */
@@ -74,6 +93,45 @@ public class UI_Camera : MonoBehaviour
     public bool IsPanning()
     {
         return isPanning;
+    }
+
+    public float GetSize()
+    {
+        return cam.orthographicSize;
+    }
+
+    public void SetSize(float amt)
+    {
+        cam.orthographicSize = amt;
+    }
+
+    /* Zoom camera instantly */
+    public void Zoom(float scale)
+    {
+        SetSize(GetSize() / scale);
+    }
+
+    /* Zoom camera over time */
+    public void Zoom(float scale, float seconds)
+    {
+        isZooming = true;
+        zoomSize = GetSize() / scale;
+        zoomEndTime = Time.time + seconds;
+    }
+
+    public void Rotate(float angle)
+    {
+        SetRotation(GetRotation() + angle);
+    }
+
+    public void SetRotation(float angle)
+    {
+        cam.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    public float GetRotation()
+    {
+        return cam.transform.rotation.eulerAngles.z;
     }
 
 }
