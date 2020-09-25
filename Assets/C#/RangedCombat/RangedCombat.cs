@@ -6,22 +6,29 @@ public class RangedCombat : MonoBehaviour
 {
     public GameObject projectilePrefab;
     public float projectileSpeed = 5.0f;
-    private Camera cam;
+    /* Cooldown length in seconds */
+    public float projectileCooldown = 0.3f;
+    /* Time that cooldown should be over */
+    private float projectileCooldownEnd = 0.0f;
 
-    private void Start()
+    public bool CanShoot()
     {
-        /* Assuming one camera */
-        cam = GameObject.FindObjectOfType<Camera>();
+        return Time.time >= projectileCooldownEnd;
     }
 
-    void Update()
+    /* Returns true if projectile was shot */
+    public bool ShootAt(Vector2 position)
     {
-        if(Input.GetMouseButtonDown(0))
+
+        if (CanShoot())
         {
-
-            Vector3 mouseWorldPos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.nearClipPlane));
-            BulletManager.Shoot(projectilePrefab, gameObject, mouseWorldPos, projectileSpeed);
-
+            BulletManager.Shoot(projectilePrefab, gameObject, position, projectileSpeed);
+            projectileCooldownEnd = Time.time + projectileCooldown;
+            return true;
         }
+
+        return false;
+
     }
+
 }

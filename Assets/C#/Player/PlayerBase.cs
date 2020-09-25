@@ -10,17 +10,30 @@ public class PlayerBase : MonoBehaviour
     public PlayerMovement myMovement;
     [HideInInspector]
     public PlayerStats myStats;
-    // Start is called before the first frame update
+    public RangedCombat rangedCombat;
+
+    private Camera cam;
+
     void Start()
     {
-        myMovement = (PlayerMovement)GetComponent<PlayerMovement>();
-        myStats = (PlayerStats)GetComponent<PlayerStats>();
+        myMovement = GetComponent<PlayerMovement>();
+        myStats = GetComponent<PlayerStats>();
         myRigid = GetComponent<Rigidbody2D>();
+        rangedCombat = GetComponent<RangedCombat>();
+
+        /* Assume one camera exists */
+        cam = GameObject.FindObjectOfType<Camera>();
+
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        
+        if (Input.GetMouseButton(0))
+        {
+
+            Vector3 mouseWorldPos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.nearClipPlane));
+            rangedCombat.ShootAt(mouseWorldPos);
+
+        }
     }
 }
