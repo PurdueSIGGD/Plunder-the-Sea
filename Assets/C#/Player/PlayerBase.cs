@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(PlayerStats))]
+[RequireComponent(typeof(RangedCombat))]
 public class PlayerBase : MonoBehaviour
 {
     [HideInInspector]
@@ -10,9 +14,10 @@ public class PlayerBase : MonoBehaviour
     public PlayerMovement myMovement;
     [HideInInspector]
     public PlayerStats myStats;
+    [HideInInspector]
     public RangedCombat rangedCombat;
 
-    private Camera cam;
+    private UI_Camera cam;
 
     void Start()
     {
@@ -22,7 +27,7 @@ public class PlayerBase : MonoBehaviour
         rangedCombat = GetComponent<RangedCombat>();
 
         /* Assume one camera exists */
-        cam = GameObject.FindObjectOfType<Camera>();
+        cam = GameObject.FindObjectOfType<UI_Camera>();
 
     }
 
@@ -31,8 +36,7 @@ public class PlayerBase : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
 
-            Vector3 mouseWorldPos = cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.nearClipPlane));
-            rangedCombat.ShootAt(mouseWorldPos);
+            rangedCombat.ShootAt(cam.GetMousePosition());
 
         }
     }
