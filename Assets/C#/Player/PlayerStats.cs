@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -21,5 +22,15 @@ public class PlayerStats : MonoBehaviour
     void FixedUpdate()
     {
         
+    }
+
+    //deals the player damage (heals if value is negative)
+    void giveDamage(float f)
+    {
+        currentHP -= f;
+        if (currentHP <= 0)
+        {
+            //death method
+        }
     }
 }
