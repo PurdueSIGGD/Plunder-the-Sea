@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour
 {
-
+    [HideInInspector]
+    public EnemyBase myBase;
     // Start is called before the first frame update
     void Start()
     {
-
+        myBase = GetComponent<EnemyBase>();
     }
 
     // Update is called once per frame
@@ -21,11 +22,12 @@ public class EnemyCombat : MonoBehaviour
         if(collider.gameObject.tag == "Player")
         {
             print("player is in range");
-            meleeAttack();
+            StartCoroutine("meleeAttack");
         }
     }
-    void meleeAttack()
+    IEnumerator meleeAttack()
     {
-
+        yield return new WaitForSeconds(myBase.myStats.attackSpeed);
+        print("Enemy Attack");
     }
 }
