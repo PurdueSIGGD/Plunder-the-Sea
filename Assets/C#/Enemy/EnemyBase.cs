@@ -11,6 +11,8 @@ public class EnemyBase : MonoBehaviour
     [HideInInspector]
     public EnemyStats myStats;
     [HideInInspector]
+    public EnemyCombat myCombat;
+    [HideInInspector]
     public GameObject player;
 
     // Start is called before the first frame update
@@ -19,6 +21,7 @@ public class EnemyBase : MonoBehaviour
         myMovement = (EnemyMovement)GetComponent("EnemyMovement");
         myStats = (EnemyStats)GetComponent("EnemyStats");
         myRigid = GetComponent<Rigidbody2D>();
+        myCombat = (EnemyCombat)GetComponent("EnemyCombat");
         player = GameObject.FindWithTag("Player");
     }
 
