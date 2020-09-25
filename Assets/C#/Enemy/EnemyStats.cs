@@ -11,13 +11,25 @@ public class EnemyStats : MonoBehaviour
     public float maxHealth = 1;
     public float damage = 1;
 
-    [HideInInspector]
     public float currentHealth;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        currentHealth = maxHealth;
     }
 
+    public void giveDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
 }
