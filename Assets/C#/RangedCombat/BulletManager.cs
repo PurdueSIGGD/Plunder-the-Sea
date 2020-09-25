@@ -1,19 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class BulletManager : MonoBehaviour
 {
-    float lifeTime = 2;
-    float currentLifeTime = 0;
-    private Rigidbody2D rigidBody;
-
-    private void Start()
-    {
-        rigidBody = GetComponent<Rigidbody2D>();
-    }
+    public float lifeTime = 2;
+    public float currentLifeTime = 0;
+    public float damage = 1.0f;
+    public bool destroyOnCollide = true;
+    private GameObject shooter;
 
     void Update()
     {
@@ -24,9 +22,32 @@ public class BulletManager : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        GameObject collider = collision.gameObject;
+        /* Don't collide with self */
+        if (collider == shooter)
+        {
+            return;
+        }
+
+        EntityStats ent = collider.GetComponent<EntityStats>();
+        if (ent)
+        {
+            ent.TakeDamage(damage);
+        }
+
+        if (destroyOnCollide)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public static BulletManager Shoot(GameObject prefab, GameObject source, Vector2 target, float speed)
     {
         BulletManager bullet = Shoot(prefab, source.transform.position, target, speed);
+        bullet.shooter = source;
         return bullet;
     }
 

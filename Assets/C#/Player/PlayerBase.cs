@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(PlayerStats))]
+[RequireComponent(typeof(EntityStats))]
 [RequireComponent(typeof(RangedCombat))]
 public class PlayerBase : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class PlayerBase : MonoBehaviour
     [HideInInspector]
     public PlayerMovement myMovement;
     [HideInInspector]
-    public PlayerStats myStats;
+    public EntityStats myStats;
     [HideInInspector]
     public RangedCombat rangedCombat;
 
@@ -22,7 +22,7 @@ public class PlayerBase : MonoBehaviour
     void Start()
     {
         myMovement = GetComponent<PlayerMovement>();
-        myStats = GetComponent<PlayerStats>();
+        myStats = GetComponent<EntityStats>();
         myRigid = GetComponent<Rigidbody2D>();
         rangedCombat = GetComponent<RangedCombat>();
 
