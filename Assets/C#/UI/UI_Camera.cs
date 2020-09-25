@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Camera))]
 public class UI_Camera : MonoBehaviour
 {
 
@@ -23,7 +24,7 @@ public class UI_Camera : MonoBehaviour
         cam = this.GetComponent<Camera>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         
         if (target)
@@ -132,6 +133,11 @@ public class UI_Camera : MonoBehaviour
     public float GetRotation()
     {
         return cam.transform.rotation.eulerAngles.z;
+    }
+
+    public Vector2 GetMousePosition()
+    {
+        return cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, cam.nearClipPlane));
     }
 
 }
