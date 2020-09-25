@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -21,5 +23,22 @@ public class PlayerStats : MonoBehaviour
     void FixedUpdate()
     {
         
+    }
+
+    //deals the player damage (heals if value is negative)
+    void giveDamage(float f)
+    {
+        currentHP -= f;
+        if (currentHP <= 0)
+        {
+            Die();
+        }
+    }
+
+    // Reloads the scene
+    void Die()
+    {
+        Scene sc = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(sc.name);
     }
 }
