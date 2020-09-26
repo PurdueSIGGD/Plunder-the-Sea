@@ -21,9 +21,9 @@ public class MeleeCombat : MonoBehaviour
 
         if (CanShoot())
         {
-            BulletManager bullet = BulletManager.Shoot(projectilePrefab, gameObject, position, 0f);
-            bullet.destroyOnCollide = false;
-            bullet.transform.SetParent(this.gameObject.transform);
+            Projectile hitbox = Projectile.Shoot(projectilePrefab, gameObject, position, 0f);
+            hitbox.destroyOnCollide = false;
+            hitbox.transform.SetParent(this.gameObject.transform);
             timeSinceLastHit = Time.time;
             return true;
         }

@@ -4,12 +4,14 @@ using System.Linq.Expressions;
 using UnityEditor;
 using UnityEngine;
 
-public class BulletManager : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     public float lifeTime = 2;
+    [HideInInspector]
     public float currentLifeTime = 0;
     public float damage = 1.0f;
     public bool destroyOnCollide = true;
+    [HideInInspector]
     public GameObject source;
 
     void Update()
@@ -43,17 +45,17 @@ public class BulletManager : MonoBehaviour
         }
     }
 
-    public static BulletManager Shoot(GameObject prefab, GameObject source, Vector2 target, float speed)
+    public static Projectile Shoot(GameObject prefab, GameObject source, Vector2 target, float speed)
     {
-        BulletManager bullet = Shoot(prefab, source.transform.position, target, speed);
+        Projectile bullet = Shoot(prefab, source.transform.position, target, speed);
         bullet.source = source;
         return bullet;
     }
 
-    public static BulletManager Shoot(GameObject prefab, Vector2 startPos, Vector2 target, float speed)
+    public static Projectile Shoot(GameObject prefab, Vector2 startPos, Vector2 target, float speed)
     {
 
-        BulletManager bullet = Instantiate(prefab, startPos, Quaternion.identity).GetComponent<BulletManager>();
+        Projectile bullet = Instantiate(prefab, startPos, Quaternion.identity).GetComponent<Projectile>();
         
         if (!bullet)
         {

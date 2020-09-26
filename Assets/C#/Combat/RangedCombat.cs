@@ -22,7 +22,7 @@ public class RangedCombat : MonoBehaviour
 
         if (CanShoot())
         {
-            BulletManager bullet = BulletManager.Shoot(projectilePrefab, gameObject, position, projectileSpeed);
+            Projectile bullet = Projectile.Shoot(projectilePrefab, gameObject, position, projectileSpeed);
             projectileCooldownEnd = Time.time + projectileCooldown;
             return true;
         }
