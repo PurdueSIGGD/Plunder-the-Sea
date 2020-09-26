@@ -10,11 +10,11 @@ using UnityEngine;
 public class PlayerBase : MonoBehaviour
 {
     [HideInInspector]
-    public Rigidbody2D myRigid;
+    public Rigidbody2D rigidBody;
     [HideInInspector]
-    public PlayerMovement myMovement;
+    public PlayerMovement movement;
     [HideInInspector]
-    public EntityStats myStats;
+    public EntityStats stats;
     [HideInInspector]
     public RangedCombat rangedCombat;
     [HideInInspector]
@@ -24,9 +24,9 @@ public class PlayerBase : MonoBehaviour
 
     void Start()
     {
-        myMovement = GetComponent<PlayerMovement>();
-        myStats = GetComponent<EntityStats>();
-        myRigid = GetComponent<Rigidbody2D>();
+        movement = GetComponent<PlayerMovement>();
+        stats = GetComponent<EntityStats>();
+        rigidBody = GetComponent<Rigidbody2D>();
         rangedCombat = GetComponent<RangedCombat>();
         meleeCombat = GetComponent<MeleeCombat>();
 
@@ -42,7 +42,7 @@ public class PlayerBase : MonoBehaviour
             rangedCombat.ShootAt(cam.GetMousePosition());
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
             meleeCombat.ShootAt(cam.GetMousePosition());
         }

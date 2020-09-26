@@ -18,10 +18,12 @@ public class MeleeCombat : MonoBehaviour
     /* Returns true if projectile was shot */
     public bool ShootAt(Vector2 position)
     {
-        Vector2 projDir = (position - (Vector2)transform.position).normalized;
+
         if (CanShoot())
         {
-            BulletManager bullet = BulletManager.Shoot(projectilePrefab, (Vector2)transform.position + projDir * meleeOffset, position, 0f);
+            BulletManager bullet = BulletManager.Shoot(projectilePrefab, gameObject, position, 0f);
+            bullet.destroyOnCollide = false;
+            bullet.transform.SetParent(this.gameObject.transform);
             timeSinceLastHit = Time.time;
             return true;
         }

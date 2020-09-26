@@ -4,14 +4,13 @@ using System.Linq.Expressions;
 using UnityEditor;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class BulletManager : MonoBehaviour
 {
     public float lifeTime = 2;
     public float currentLifeTime = 0;
     public float damage = 1.0f;
     public bool destroyOnCollide = true;
-    private GameObject shooter;
+    public GameObject source;
 
     void Update()
     {
@@ -24,14 +23,14 @@ public class BulletManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        
         GameObject collider = collision.gameObject;
         /* Don't collide with self */
-        if (collider == shooter)
+        if (collider == source)
         {
             return;
         }
-
+        
         EntityStats ent = collider.GetComponent<EntityStats>();
         if (ent)
         {
@@ -47,7 +46,7 @@ public class BulletManager : MonoBehaviour
     public static BulletManager Shoot(GameObject prefab, GameObject source, Vector2 target, float speed)
     {
         BulletManager bullet = Shoot(prefab, source.transform.position, target, speed);
-        bullet.shooter = source;
+        bullet.source = source;
         return bullet;
     }
 
@@ -62,10 +61,11 @@ public class BulletManager : MonoBehaviour
         }
 
         Vector2 direction = (target - startPos).normalized;
+        Rigidbody2D rigidBody = bullet.GetComponent<Rigidbody2D>();
 
-        if (speed != 0f)
+        if (rigidBody)
         {
-            bullet.GetComponent<Rigidbody2D>().velocity = direction * speed;
+            rigidBody.velocity = direction * speed;
         }
 
         bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, new Vector3(direction.x, direction.y, 0));

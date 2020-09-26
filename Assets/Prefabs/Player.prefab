@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5950980189304417509}
   - component: {fileID: 4086575086261363253}
   - component: {fileID: 5823054045559888124}
+  - component: {fileID: 1992198815919400297}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -141,6 +142,7 @@ MonoBehaviour:
   myMovement: {fileID: 0}
   myStats: {fileID: 0}
   rangedCombat: {fileID: 0}
+  meleeCombat: {fileID: 0}
 --- !u!114 &5950980189304417509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b231c681c1660f94ba8a3a70aa827e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myBase: {fileID: 0}
   movementSpeed: 10
   maxHP: 1
   currentHP: 1
@@ -185,3 +186,19 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8850584598485551201, guid: 665bee2cce4084b5580666db5ec97ad4, type: 3}
   projectileSpeed: 5
   projectileCooldown: 0.3
+--- !u!114 &1992198815919400297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950980189304417506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e48aa9575825c3458c77b4954c89211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 4039954679365618853, guid: 4b86f31b2faabd64ea907b2121b93973, type: 3}
+  projectileCooldown: 0.3
+  timeSinceLastHit: 0
+  meleeOffset: 0
