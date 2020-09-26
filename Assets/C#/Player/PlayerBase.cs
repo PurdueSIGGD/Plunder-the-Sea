@@ -2,25 +2,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(EntityStats))]
+[RequireComponent(typeof(RangedCombat))]
+[RequireComponent(typeof(MeleeCombat))]
 public class PlayerBase : MonoBehaviour
 {
     [HideInInspector]
-    public Rigidbody2D myRigid;
+    public Rigidbody2D rigidBody;
     [HideInInspector]
-    public PlayerMovement myMovement;
+    public PlayerMovement movement;
     [HideInInspector]
-    public PlayerStats myStats;
-    // Start is called before the first frame update
+    public EntityStats stats;
+    [HideInInspector]
+    public RangedCombat rangedCombat;
+    [HideInInspector]
+    public MeleeCombat meleeCombat;
+
+    private UI_Camera cam;
+
     void Start()
     {
-        myMovement = (PlayerMovement)GetComponent<PlayerMovement>();
-        myStats = (PlayerStats)GetComponent<PlayerStats>();
-        myRigid = GetComponent<Rigidbody2D>();
+        movement = GetComponent<PlayerMovement>();
+        stats = GetComponent<EntityStats>();
+        rigidBody = GetComponent<Rigidbody2D>();
+        rangedCombat = GetComponent<RangedCombat>();
+        meleeCombat = GetComponent<MeleeCombat>();
+
+        /* Assume one camera exists */
+        cam = GameObject.FindObjectOfType<UI_Camera>();
+
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        
+        if (Input.GetMouseButton(0))
+        {
+            rangedCombat.ShootAt(cam.GetMousePosition());
+        }
+
+        if (Input.GetKey(KeyCode.E))
+        {
+            meleeCombat.ShootAt(cam.GetMousePosition());
+        }
     }
 }
