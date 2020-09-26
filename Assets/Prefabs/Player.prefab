@@ -125,7 +125,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &5950980189304417508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,9 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884349141ada08e40a38f00fa505b860, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myRigid: {fileID: 0}
-  myMovement: {fileID: 0}
-  myStats: {fileID: 0}
+  rigidBody: {fileID: 0}
+  movement: {fileID: 0}
+  stats: {fileID: 0}
   rangedCombat: {fileID: 0}
   meleeCombat: {fileID: 0}
 --- !u!114 &5950980189304417509
