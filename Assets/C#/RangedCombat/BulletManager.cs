@@ -55,13 +55,19 @@ public class BulletManager : MonoBehaviour
     {
 
         BulletManager bullet = Instantiate(prefab, startPos, Quaternion.identity).GetComponent<BulletManager>();
+        
         if (!bullet)
         {
             return null;
         }
 
         Vector2 direction = (target - startPos).normalized;
-        bullet.GetComponent<Rigidbody2D>().velocity = direction * speed;
+
+        if (speed != 0f)
+        {
+            bullet.GetComponent<Rigidbody2D>().velocity = direction * speed;
+        }
+
         bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, new Vector3(direction.x, direction.y, 0));
 
         return bullet;
