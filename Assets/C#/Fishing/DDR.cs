@@ -26,6 +26,32 @@ public class DDR : MonoBehaviour
         nextTargetTime = Time.time + targetFrequency;
     }
 
+    public int GetScore()
+    {
+        return currentScore;
+    }
+
+    public float GetFrequency()
+    {
+        return targetFrequency;
+    }
+
+    public void SetFrequency(float sec)
+    {
+        nextTargetTime += (sec - targetFrequency);
+        targetFrequency = sec;
+    }
+
+    public float GetTargetSpeed()
+    {
+        return targetSpeed;
+    }
+
+    public void SetTargetSpeed(float speed)
+    {
+        targetSpeed = speed;
+    }
+
     void Update()
     {
 
