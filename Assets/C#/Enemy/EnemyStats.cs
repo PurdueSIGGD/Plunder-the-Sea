@@ -7,9 +7,10 @@ public class EnemyStats : MonoBehaviour
     [HideInInspector]
     public EnemyBase myBase;
 
+    public float attackSpeed = 1;
     public float moveSpeed = 1.0f;
     public float maxHealth = 1;
-    public float damage = 1;
+    public float damage = 1.5f;
 
     public float currentHealth;
 
@@ -18,10 +19,9 @@ public class EnemyStats : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
-
-    public void giveDamage(float damage)
+    public void giveDamage(float dmg)
     {
-        currentHealth -= damage;
+        currentHealth -= dmg;
         if (currentHealth <= 0)
         {
             Die();

@@ -14,20 +14,26 @@ public class EnemyBase : MonoBehaviour
     public EnemyCombat myCombat;
     [HideInInspector]
     public GameObject player;
-
+    [HideInInspector]
+    public IEnumerator mover;
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         myMovement = (EnemyMovement)GetComponent("EnemyMovement");
         myStats = (EnemyStats)GetComponent("EnemyStats");
         myRigid = GetComponent<Rigidbody2D>();
         myCombat = (EnemyCombat)GetComponent("EnemyCombat");
         player = GameObject.FindWithTag("Player");
+        mover = myMovement.move();
+        StartCoroutine(mover);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("space"))
+        {
+            StopCoroutine(mover);
+        }
     }
 }

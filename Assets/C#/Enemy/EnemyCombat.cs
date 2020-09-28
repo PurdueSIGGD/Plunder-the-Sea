@@ -17,17 +17,21 @@ public class EnemyCombat : MonoBehaviour
     {
 
     }
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collider) //Called when something enters the enemy's range
     {
         if(collider.gameObject.tag == "Player")
         {
             print("player is in range");
-            StartCoroutine("meleeAttack");
+            StopCoroutine(myBase.mover);
+            myBase.myRigid.velocity = Vector2.zero;
+            StartCoroutine(meleeAttack());
         }
     }
-    IEnumerator meleeAttack()
+    IEnumerator meleeAttack() //Executes a melee attack
     {
         yield return new WaitForSeconds(myBase.myStats.attackSpeed);
+        //myBase.player.GetComponent<PlayerBase>().myStats.giveDamage(myBase.myStats.damage);
         print("Enemy Attack");
     }
+    
 }

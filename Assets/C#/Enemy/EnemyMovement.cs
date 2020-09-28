@@ -12,13 +12,22 @@ public class EnemyMovement : MonoBehaviour
     void Start()
     {
         myBase = GetComponent<EnemyBase>();
+
         
     }
 
     // Update is called once per frame
     void FixedUpdate()
-    {       
-        myBase.myRigid.velocity = (myBase.player.transform.position - this.transform.position).normalized
-            * myBase.myStats.moveSpeed; //enemy moves towards player
+    {
+        
+    }
+    public IEnumerator move() //moves enemy toward player
+    {
+        while (true)
+        {
+            myBase.myRigid.velocity = (myBase.player.transform.position - this.transform.position).normalized
+                * myBase.myStats.moveSpeed;
+            yield return null;
+        }
     }
 }

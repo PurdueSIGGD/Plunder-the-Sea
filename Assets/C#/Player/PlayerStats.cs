@@ -11,11 +11,12 @@ public class PlayerStats : MonoBehaviour
 
     public float movementSpeed = 10.0f;
     public float maxHP = 1;
-    public float currentHP = 1;
+    public float currentHP;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentHP = maxHP;
         myBase = (PlayerBase)GetComponent<PlayerBase>();
     }
 
@@ -26,9 +27,9 @@ public class PlayerStats : MonoBehaviour
     }
 
     //deals the player damage (heals if value is negative)
-    void giveDamage(float f)
+    public void giveDamage(float dmg)
     {
-        currentHP -= f;
+        currentHP -= dmg;
         if (currentHP <= 0)
         {
             Die();
