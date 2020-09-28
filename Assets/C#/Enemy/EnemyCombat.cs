@@ -22,15 +22,16 @@ public class EnemyCombat : MonoBehaviour
         if(collider.gameObject.tag == "Player")
         {
             print("player is in range");
-            StopCoroutine(myBase.mover);
+            myBase.myMovement.moveing = false;
             myBase.myRigid.velocity = Vector2.zero;
-            StartCoroutine(meleeAttack());
+            StartCoroutine("meleeAttack");
         }
     }
     IEnumerator meleeAttack() //Executes a melee attack
     {
         yield return new WaitForSeconds(myBase.myStats.attackSpeed);
-        //myBase.player.GetComponent<PlayerBase>().myStats.giveDamage(myBase.myStats.damage);
+        myBase.player.GetComponent<PlayerBase>().myStats.giveDamage(myBase.myStats.damage);
+        myBase.myMovement.moveing = true;
         print("Enemy Attack");
     }
     

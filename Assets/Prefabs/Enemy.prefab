@@ -113,7 +113,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5950980189304417506}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -141,6 +141,8 @@ MonoBehaviour:
   myRigid: {fileID: 0}
   myMovement: {fileID: 0}
   myStats: {fileID: 0}
+  myCombat: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &732767531218374810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,8 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
-  player: {fileID: 0}
-  playerArray: []
+  moveing: 0
 --- !u!114 &8025262408722974610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
+  attackSpeed: 1
   moveSpeed: 1
   maxHealth: 1
   damage: 1
@@ -185,6 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3953fd9b44ab4671ad4af10b45b4e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myBase: {fileID: 0}
 --- !u!58 &4736270485073046286
 CircleCollider2D:
   m_ObjectHideFlags: 0

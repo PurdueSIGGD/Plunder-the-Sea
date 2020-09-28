@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
     [HideInInspector]
     public EnemyBase myBase;
     [HideInInspector]
+    public bool moveing;
 
     // Start is called before the first frame update
     void Start()
@@ -19,15 +20,20 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
-    }
-    public IEnumerator move() //moves enemy toward player
-    {
-        while (true)
+        if (moveing)
         {
             myBase.myRigid.velocity = (myBase.player.transform.position - this.transform.position).normalized
                 * myBase.myStats.moveSpeed;
-            yield return null;
         }
     }
+
+    //public IEnumerator move() //moves enemy toward player
+    //{
+        //while (true)
+        //{
+        //    myBase.myRigid.velocity = (myBase.player.transform.position - this.transform.position).normalized
+        //        * myBase.myStats.moveSpeed;
+        //    yield return null;
+        //}
+    //}
 }

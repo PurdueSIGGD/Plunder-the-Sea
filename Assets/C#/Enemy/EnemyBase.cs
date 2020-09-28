@@ -24,8 +24,9 @@ public class EnemyBase : MonoBehaviour
         myRigid = GetComponent<Rigidbody2D>();
         myCombat = (EnemyCombat)GetComponent("EnemyCombat");
         player = GameObject.FindWithTag("Player");
-        mover = myMovement.move();
-        StartCoroutine(mover);
+        myMovement.moveing = true;
+        //mover = myMovement.move();
+        //StartCoroutine(mover);
     }
 
     // Update is called once per frame
@@ -33,7 +34,8 @@ public class EnemyBase : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            StopCoroutine(mover);
+            myMovement.moveing = false;
+            //StopCoroutine(mover);
         }
     }
 }
