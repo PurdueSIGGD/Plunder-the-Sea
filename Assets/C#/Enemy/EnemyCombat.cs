@@ -6,6 +6,7 @@ public class EnemyCombat : MonoBehaviour
 {
     [HideInInspector]
     public EnemyBase myBase;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,13 @@ public class EnemyCombat : MonoBehaviour
     IEnumerator meleeAttack() //Executes a melee attack
     {
         yield return new WaitForSeconds(myBase.myStats.attackSpeed);
-        myBase.player.GetComponent<PlayerBase>().myStats.giveDamage(myBase.myStats.damage);
+        Vector2 distance;
+        distance = myBase.player.transform.position - this.transform.position;
+
+        if (distance.magnitude <= myBase.myStats.range)
+        {
+            myBase.player.GetComponent<PlayerBase>().myStats.giveDamage(myBase.myStats.damage);
+        }
         myBase.myMovement.moveing = true;
         print("Enemy Attack");
     }
