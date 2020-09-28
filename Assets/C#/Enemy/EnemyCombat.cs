@@ -6,6 +6,7 @@ public class EnemyCombat : MonoBehaviour
 {
     [HideInInspector]
     public EnemyBase myBase;
+    public float attackRange = 0.5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,9 +31,16 @@ public class EnemyCombat : MonoBehaviour
     IEnumerator meleeAttack() //Executes a melee attack
     {
         yield return new WaitForSeconds(myBase.myStats.attackSpeed);
-        myBase.player.GetComponent<PlayerBase>().myStats.giveDamage(myBase.myStats.damage);
+        if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
+        {
+            myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage);
+            print("Enemy Attack");
+        }
+        else
+        {
+            print("Enemy missed");
+        }
         myBase.myMovement.moveing = true;
-        print("Enemy Attack");
     }
     
 }

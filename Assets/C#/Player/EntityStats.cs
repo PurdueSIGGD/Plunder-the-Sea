@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class EntityStats : MonoBehaviour
@@ -13,9 +14,10 @@ public class EntityStats : MonoBehaviour
     {
 
         currentHP -= amount;
-        if (currentHP < 0)
+        if (currentHP <= 0)
         {
             currentHP = 0;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
     }
