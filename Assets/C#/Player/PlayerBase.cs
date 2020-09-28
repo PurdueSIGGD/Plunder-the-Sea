@@ -42,7 +42,7 @@ public class PlayerBase : MonoBehaviour
             rangedCombat.ShootAt(cam.GetMousePosition());
         }
 
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             meleeCombat.ShootAt(cam.GetMousePosition());
         }
