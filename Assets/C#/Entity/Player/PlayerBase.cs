@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(EntityStats))]
+[RequireComponent(typeof(PlayerStats))]
 [RequireComponent(typeof(RangedCombat))]
 [RequireComponent(typeof(MeleeCombat))]
 public class PlayerBase : MonoBehaviour
@@ -14,7 +14,7 @@ public class PlayerBase : MonoBehaviour
     [HideInInspector]
     public PlayerMovement movement;
     [HideInInspector]
-    public EntityStats stats;
+    public PlayerStats stats;
     [HideInInspector]
     public RangedCombat rangedCombat;
     [HideInInspector]
@@ -22,10 +22,10 @@ public class PlayerBase : MonoBehaviour
 
     private UI_Camera cam;
 
-    void Start()
+    private void Start()
     {
         movement = GetComponent<PlayerMovement>();
-        stats = GetComponent<EntityStats>();
+        stats = GetComponent<PlayerStats>();
         rigidBody = GetComponent<Rigidbody2D>();
         rangedCombat = GetComponent<RangedCombat>();
         meleeCombat = GetComponent<MeleeCombat>();
@@ -35,7 +35,7 @@ public class PlayerBase : MonoBehaviour
 
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButton(0))
         {
@@ -47,4 +47,13 @@ public class PlayerBase : MonoBehaviour
             meleeCombat.ShootAt(cam.GetMousePosition());
         }
     }
+
+    //PlayerStats calls this when player kills entity
+    public void OnKill (EntityStats victim)
+    {
+
+        rangedCombat.RefreshCooldown();
+
+    }
+
 }

@@ -16,6 +16,11 @@ public class RangedCombat : MonoBehaviour
         return Time.time >= projectileCooldownEnd;
     }
 
+    public void RefreshCooldown()
+    {
+        projectileCooldownEnd = 0.0f;
+    }
+
     /* Returns true if projectile was shot */
     public bool ShootAt(Vector2 position)
     {

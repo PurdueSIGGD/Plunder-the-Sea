@@ -36,12 +36,15 @@ public class Projectile : MonoBehaviour
         EntityStats ent = collider.GetComponent<EntityStats>();
         if (ent)
         {
-            ent.TakeDamage(damage);
-        }
-        EnemyStats enm = collider.GetComponent<EnemyStats>();
-        if (enm)
-        {
-            enm.TakeDamage(damage);
+            //If killed by a source
+            if (ent.TakeDamage(damage) && source)
+            {
+                EntityStats attacker = source.GetComponent<EntityStats>();
+                if (attacker)
+                {
+                    attacker.OnKill(ent);
+                }
+            }
         }
 
         if (destroyOnCollide)

@@ -14,10 +14,9 @@ GameObject:
   - component: {fileID: 5950980189304417511}
   - component: {fileID: 5950980189304417508}
   - component: {fileID: 5950980189304417509}
-  - component: {fileID: 4086575086261363253}
   - component: {fileID: 904819834}
-  - component: {fileID: 904819835}
   - component: {fileID: 904819843}
+  - component: {fileID: 3247792835474656187}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -126,7 +125,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &5950980189304417508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,21 +156,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
---- !u!114 &4086575086261363253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950980189304417506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b231c681c1660f94ba8a3a70aa827e51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 10
-  maxHP: 1
-  currentHP: 1
 --- !u!114 &904819834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,18 +172,11 @@ MonoBehaviour:
   projectileCooldown: 0.3
   timeSinceLastHit: 0
   meleeOffset: 0
---- !u!114 &904819835
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950980189304417506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bced5cd9d11ebce47b664a60130eb689, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  staminaMax: 100
+  stamina: 100
+  staminaCost: 15
+  staminaRechargeRate: 2
+  staminaIndicator: 0
 --- !u!114 &904819843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,3 +192,18 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8850584598485551201, guid: 665bee2cce4084b5580666db5ec97ad4, type: 3}
   projectileSpeed: 5
   projectileCooldown: 0.3
+--- !u!114 &3247792835474656187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950980189304417506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa39cea6a722da4fa2abb86180d4de2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 10
+  maxHP: 1
+  currentHP: 1
