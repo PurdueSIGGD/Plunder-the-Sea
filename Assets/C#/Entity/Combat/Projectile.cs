@@ -38,6 +38,11 @@ public class Projectile : MonoBehaviour
         {
             ent.TakeDamage(damage);
         }
+        EnemyStats enm = collider.GetComponent<EnemyStats>();
+        if (enm)
+        {
+            enm.TakeDamage(damage);
+        }
 
         if (destroyOnCollide)
         {
