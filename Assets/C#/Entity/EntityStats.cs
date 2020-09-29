@@ -13,11 +13,17 @@ public class EntityStats : MonoBehaviour
     {
 
         currentHP -= amount;
-        if (currentHP < 0)
+        if (currentHP <= 0)
         {
             currentHP = 0;
+            Die();
         }
 
+    }
+
+    public virtual void Die()
+    {
+        //Do nothing by default
     }
 
 }
