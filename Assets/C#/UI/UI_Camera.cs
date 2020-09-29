@@ -24,7 +24,7 @@ public class UI_Camera : MonoBehaviour
         cam = this.GetComponent<Camera>();
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
         
         if (target)
