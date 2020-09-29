@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour
         EnemyStats enm = collider.GetComponent<EnemyStats>();
         if (enm)
         {
-            enm.giveDamage(damage);
+            enm.TakeDamage(damage);
         }
 
         if (destroyOnCollide)

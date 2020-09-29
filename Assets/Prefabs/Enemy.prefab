@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
-  moveing: 0
+  moving: 0
 --- !u!114 &8025262408722974610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,12 +169,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09ab1ea068274d69a030af1a1ff03d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myBase: {fileID: 0}
+  movementSpeed: 2
+  maxHP: 1
+  currentHP: 1
   attackSpeed: 1
-  moveSpeed: 1
-  maxHealth: 1
   damage: 1
-  currentHealth: 0
 --- !u!114 &2575890806204432934
 MonoBehaviour:
   m_ObjectHideFlags: 0

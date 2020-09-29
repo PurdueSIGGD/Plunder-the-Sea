@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class EntityStats : MonoBehaviour
@@ -17,9 +16,14 @@ public class EntityStats : MonoBehaviour
         if (currentHP <= 0)
         {
             currentHP = 0;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            Die();
         }
 
+    }
+
+    public virtual void Die()
+    {
+        //Do nothing by default
     }
 
 }

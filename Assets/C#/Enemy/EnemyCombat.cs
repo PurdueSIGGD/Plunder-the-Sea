@@ -7,25 +7,18 @@ public class EnemyCombat : MonoBehaviour
     [HideInInspector]
     public EnemyBase myBase;
     public float attackRange = 0.5f;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         myBase = GetComponent<EnemyBase>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     private void OnTriggerEnter2D(Collider2D collider) //Called when something enters the enemy's range
     {
-        if(collider.gameObject.tag == "Player")
+        if(collider.GetComponent<PlayerBase>())
         {
-            print("player is in range");
-            myBase.myMovement.moveing = false;
+            myBase.myMovement.moving = false;
             myBase.myRigid.velocity = Vector2.zero;
-            StartCoroutine("meleeAttack");
         }
     }
     IEnumerator meleeAttack() //Executes a melee attack
@@ -34,13 +27,8 @@ public class EnemyCombat : MonoBehaviour
         if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
         {
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage);
-            print("Enemy Attack");
         }
-        else
-        {
-            print("Enemy missed");
-        }
-        myBase.myMovement.moveing = true;
+        myBase.myMovement.moving = true;
     }
     
 }
