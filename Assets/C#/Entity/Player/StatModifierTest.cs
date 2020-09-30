@@ -24,6 +24,6 @@ public class StatModifierTest : MonoBehaviour
     // Stat to add stat modifiers
     void Buff()
     {
-
+        pstats.AddModifier("test speed", 10f, 0f, 0f);
     }
 }
