@@ -35,14 +35,14 @@ public class PlayerBase : MonoBehaviour
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (Input.GetMouseButton(0))
         {
             rangedCombat.ShootAt(cam.GetMousePosition());
         }
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButton(1))
         {
             meleeCombat.ShootAt(cam.GetMousePosition());
         }
