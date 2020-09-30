@@ -6,24 +6,16 @@ public class EnemyCombat : MonoBehaviour
 {
     [HideInInspector]
     public EnemyBase myBase;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         myBase = GetComponent<EnemyBase>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     private void OnTriggerEnter2D(Collider2D collider) //Called when something enters the enemy's range
     {
-        if(collider.gameObject.tag == "Player")
+        if(collider.GetComponent<PlayerBase>())
         {
-            print("player is in range");
-            myBase.myMovement.moveing = false;
+            myBase.myMovement.moving = false;
             myBase.myRigid.velocity = Vector2.zero;
             StartCoroutine("meleeAttack");
         }
@@ -41,5 +33,5 @@ public class EnemyCombat : MonoBehaviour
         myBase.myMovement.moveing = true;
         print("Enemy Attack");
     }
-    
+
 }

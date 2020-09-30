@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(EnemyMovement))]
+[RequireComponent(typeof(EnemyCombat))]
+[RequireComponent(typeof(EnemyStats))]
 public class EnemyBase : MonoBehaviour
 {
     [HideInInspector]
@@ -13,7 +17,7 @@ public class EnemyBase : MonoBehaviour
     [HideInInspector]
     public EnemyCombat myCombat;
     [HideInInspector]
-    public GameObject player;
+    public PlayerBase player;
     [HideInInspector]
     public IEnumerator mover;
     // Start is called before the first frame update
@@ -23,19 +27,8 @@ public class EnemyBase : MonoBehaviour
         myStats = (EnemyStats)GetComponent("EnemyStats");
         myRigid = GetComponent<Rigidbody2D>();
         myCombat = (EnemyCombat)GetComponent("EnemyCombat");
-        player = GameObject.FindWithTag("Player");
-        myMovement.moveing = true;
-        //mover = myMovement.move();
-        //StartCoroutine(mover);
+        player = GameObject.FindObjectOfType<PlayerBase>();
+        myMovement.moving = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            myMovement.moveing = false;
-            //StopCoroutine(mover);
-        }
-    }
 }

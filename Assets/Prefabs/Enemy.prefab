@@ -136,8 +136,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5bc4d013c9a1ab46aa2e56a693923a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   myRigid: {fileID: 0}
   myMovement: {fileID: 0}
   myStats: {fileID: 0}
@@ -153,10 +153,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ae46394463d84b82a5a4e4b6a3da656, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   myBase: {fileID: 0}
-  moveing: 0
+  moving: 0
 --- !u!114 &8025262408722974610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,12 +167,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d09ab1ea068274d69a030af1a1ff03d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myBase: {fileID: 0}
+  m_Name:
+  m_EditorClassIdentifier:
+  movementSpeed: 2
+  maxHP: 1
+  currentHP: 1
   attackSpeed: 1
-  moveSpeed: 1
-  maxHealth: 1
   damage: 1
   range: 0.5
   currentHealth: 0
@@ -186,9 +186,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3953fd9b44ab4671ad4af10b45b4e68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   myBase: {fileID: 0}
+  attackRange: 0.5
 --- !u!58 &4736270485073046286
 CircleCollider2D:
   m_ObjectHideFlags: 0
