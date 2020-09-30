@@ -4,12 +4,30 @@ using UnityEngine;
 
 public class EnemyStats : EntityStats
 {
-
+    public Vector3 spawnPoint;
     public float attackSpeed = 1;
     public float damage = 1.5f;
+    public float numberOfTimesToRespawn = 0; // Enemies do not respawn by default.
+
+    private void Start()
+    {
+        spawnPoint = this.transform.position;
+    }
 
     public override void Die()
     {
-        Destroy(gameObject);
+        if(numberOfTimesToRespawn == 0)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            if (numberOfTimesToRespawn != -1) 
+            { 
+                numberOfTimesToRespawn--;
+            }
+            this.transform.position = spawnPoint;
+            currentHP = maxHP;
+        }
     }
 }
