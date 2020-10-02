@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DDR : MonoBehaviour
@@ -12,12 +13,18 @@ public class DDR : MonoBehaviour
     [SerializeField]
     private Text scoreText;
     private List<GameObject>[] arrowTargets = new List<GameObject>[4];
-    private float targetSpeed = 1.0f / 1000.0f;//Distance per frame based on canvas height
+
+    //based on testing, speed at 1f/100f looks fast but is easy, 1f/50f provides some challenge but is doable
+    //1f/30f seems to be the max speed were a player could theoretically win
+    private float targetSpeed = 1.0f / 100.0f;//Distance per frame based on canvas height
     private int perfectScore = 20;//Score granted for "perfect" target hit
     private float perfectDistRatio = 0.25f;//Ratio of target size that counts as perfect
     private int currentScore = 0;
     private float targetFrequency = 0.5f;//Spawn rate of targets
     private float nextTargetTime = 0.0f;//Time when to spawn new target
+
+    private float catchScore = 1000f; //score needed to "catch" the fish
+    private float releaseScore = -100f; //score needed to "release" the fish
 
     void Start()
     {
@@ -94,6 +101,7 @@ public class DDR : MonoBehaviour
 
                 currentScore += score;
 
+
             }
 
             //Move targets
@@ -114,6 +122,18 @@ public class DDR : MonoBehaviour
 
         //Update score text
         scoreText.text = "Score: " + currentScore;
+
+        //logic for ending the scene
+        if (currentScore >= catchScore)
+        {
+            //some way to save that the fishing was a success
+            SceneManager.LoadScene("FishPond");
+        }
+        if (currentScore <= releaseScore)
+        {
+            //some way to save that the fishing was a failure
+            SceneManager.LoadScene("FishPond");
+        }
 
         //Send random target
         if (Time.time >= nextTargetTime)
