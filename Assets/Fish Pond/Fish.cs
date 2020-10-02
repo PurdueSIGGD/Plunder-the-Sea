@@ -61,7 +61,6 @@ public class Fish : MonoBehaviour
             randomPos = -randomPos/2 + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
             StartCoroutine(MoveToRandomPos());
         }
-
         // fill with things to do when fish is caught
         else if(col.gameObject.tag == "Bobber")
         {
