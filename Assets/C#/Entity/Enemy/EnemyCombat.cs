@@ -19,6 +19,7 @@ public class EnemyCombat : MonoBehaviour
         {
             myBase.myMovement.moving = false;
             myBase.myRigid.velocity = Vector2.zero;
+            StartCoroutine("meleeAttack");
         }
     }
     IEnumerator meleeAttack() //Executes a melee attack

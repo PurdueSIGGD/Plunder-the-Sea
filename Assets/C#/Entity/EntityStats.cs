@@ -9,7 +9,8 @@ public class EntityStats : MonoBehaviour
     public float maxHP = 1;
     public float currentHP = 1;
 
-    public void TakeDamage(float amount)
+    //Return true if results in death
+    public bool TakeDamage(float amount)
     {
 
         currentHP -= amount;
@@ -17,11 +18,20 @@ public class EntityStats : MonoBehaviour
         {
             currentHP = 0;
             Die();
+            return true;
         }
+
+        return false;
 
     }
 
     public virtual void Die()
+    {
+        //Do nothing by default
+    }
+
+    //When entity is source of a kill
+    public virtual void OnKill(EntityStats victim)
     {
         //Do nothing by default
     }
