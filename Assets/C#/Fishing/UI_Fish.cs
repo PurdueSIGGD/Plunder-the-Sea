@@ -9,7 +9,7 @@ public class UI_Fish : MonoBehaviour
     public float fishShakeSpeed = 6.0f;
     public float fishShakeAngle = 15.0f;
 
-    private Vector2 fishCenter;
+    public Vector2 fishCenter;
     private Vector2 fishMoveRadii = new Vector2(150, 50);
 
     void Start()

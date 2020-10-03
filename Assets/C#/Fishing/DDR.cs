@@ -14,17 +14,15 @@ public class DDR : MonoBehaviour
     private Text scoreText = null;
     private List<GameObject>[] arrowTargets = new List<GameObject>[4];
 
-    //based on testing, speed at 1f/100f looks fast but is easy, 1f/50f provides some challenge but is doable
-    //1f/30f seems to be the max speed were a player could theoretically win
-    private float targetSpeed = 1.0f / 100.0f;//Distance per frame based on canvas height
+    private float targetSpeed = 1.0f;//Seconds for target to travel entire height
     private int perfectScore = 20;//Score granted for "perfect" target hit
     private float perfectDistRatio = 0.25f;//Ratio of target size that counts as perfect
     private int currentScore = 0;
-    private float targetFrequency = 0.5f;//Spawn rate of targets
+    private float targetFrequency = 0.5f;//Seconds for target to spawn
     private float nextTargetTime = 0.0f;//Time when to spawn new target
 
-    private float catchScore = 1000f; //score needed to "catch" the fish
-    private float releaseScore = -100f; //score needed to "release" the fish
+    private int catchScore = 1000; //score needed to "catch" the fish
+    private int releaseScore = -100; //score needed to "release" the fish
 
     void Start()
     {
@@ -57,6 +55,17 @@ public class DDR : MonoBehaviour
     public void SetTargetSpeed(float speed)
     {
         targetSpeed = speed;
+    }
+
+    public float GetCompletionPercentage()
+    {
+        if (currentScore >= 0) {
+            return (float)currentScore / (float)catchScore;
+        }
+        else
+        {
+            return (float)-currentScore / (float)releaseScore;
+        }
     }
 
     void Update()
@@ -108,7 +117,7 @@ public class DDR : MonoBehaviour
             for (int j = 0; j < arrowTargets[i].Count; j++)
             {
                 GameObject target = arrowTargets[i][j];
-                target.transform.position -= new Vector3(0, canvas.pixelRect.height * targetSpeed, 0);
+                target.transform.position -= new Vector3(0, canvas.pixelRect.height * targetSpeed * Time.deltaTime, 0);
                 if (target.transform.position.y <= 0)
                 {
                     //Target hit bottom, complete miss
@@ -129,7 +138,7 @@ public class DDR : MonoBehaviour
             //some way to save that the fishing was a success
             SceneManager.LoadScene("FishPond");
         }
-        if (currentScore <= releaseScore)
+        else if (currentScore <= releaseScore)
         {
             //some way to save that the fishing was a failure
             SceneManager.LoadScene("FishPond");

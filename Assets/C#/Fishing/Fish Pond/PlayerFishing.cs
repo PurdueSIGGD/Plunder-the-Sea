@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerFishing : MonoBehaviour
@@ -37,6 +38,7 @@ public class PlayerFishing : MonoBehaviour
         if (fish)
         {
             Debug.Log("Fish caught");
+            SceneManager.LoadScene("FishingMinigame");
         }
         else
         {
