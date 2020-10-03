@@ -142,6 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bobberSprite: {fileID: 2763951892429267362, guid: 70646aae0fdb3497d98618cc5872b815, type: 3}
   castingSpd: 2
+  inWater: 0
 --- !u!1 &147218094
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,6 +529,7 @@ GameObject:
   - component: {fileID: 1132799070}
   - component: {fileID: 1132799069}
   - component: {fileID: 1132799068}
+  - component: {fileID: 1132799071}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -600,6 +602,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1132799071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1132799067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a2c45b922463c54981244f04a9150a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  offset: {x: 0, y: 0}
 --- !u!1 &1709209001
 GameObject:
   m_ObjectHideFlags: 0
@@ -762,6 +778,10 @@ PrefabInstance:
     - target: {fileID: 5950980189304417506, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950980189304417511, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: m_BodyType
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 904819835, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}

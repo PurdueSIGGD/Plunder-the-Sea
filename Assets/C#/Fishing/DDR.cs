@@ -9,9 +9,9 @@ public class DDR : MonoBehaviour
 
     private Canvas canvas;
     [SerializeField]
-    private GameObject[] arrowBases;
+    private GameObject[] arrowBases = null;
     [SerializeField]
-    private Text scoreText;
+    private Text scoreText = null;
     private List<GameObject>[] arrowTargets = new List<GameObject>[4];
 
     //based on testing, speed at 1f/100f looks fast but is easy, 1f/50f provides some challenge but is doable

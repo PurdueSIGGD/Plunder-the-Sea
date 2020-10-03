@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerStats))]
 [RequireComponent(typeof(RangedCombat))]
 [RequireComponent(typeof(MeleeCombat))]
+[RequireComponent(typeof(PlayerFishing))]
 public class PlayerBase : MonoBehaviour
 {
     [HideInInspector]
@@ -19,6 +20,8 @@ public class PlayerBase : MonoBehaviour
     public RangedCombat rangedCombat;
     [HideInInspector]
     public MeleeCombat meleeCombat;
+    [HideInInspector]
+    public PlayerFishing fishing;
 
     private UI_Camera cam;
 
@@ -29,6 +32,7 @@ public class PlayerBase : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         rangedCombat = GetComponent<RangedCombat>();
         meleeCombat = GetComponent<MeleeCombat>();
+        fishing = GetComponent<PlayerFishing>();
 
         /* Assume one camera exists */
         cam = GameObject.FindObjectOfType<UI_Camera>();
