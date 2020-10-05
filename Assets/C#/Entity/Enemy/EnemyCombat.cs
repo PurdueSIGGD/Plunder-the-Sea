@@ -24,7 +24,7 @@ public class EnemyCombat : MonoBehaviour
     }
     IEnumerator meleeAttack() //Executes a melee attack
     {
-        yield return new WaitForSeconds(myBase.myStats.attackSpeed);
+        yield return new WaitForSeconds(1/myBase.myStats.attackSpeedInverse);
         if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
         {
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage);

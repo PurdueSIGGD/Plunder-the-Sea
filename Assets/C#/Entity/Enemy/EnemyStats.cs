@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyStats : EntityStats
 {
     public Vector3 spawnPoint;
-    public float attackSpeed = 1;
+    public float attackSpeedInverse = 10;
     public float damage = 1.5f;
     public float numberOfTimesToRespawn = 0; // Enemies do not respawn by default.
 
