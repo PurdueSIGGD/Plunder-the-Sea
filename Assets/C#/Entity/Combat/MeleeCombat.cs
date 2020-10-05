@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MeleeCombat : MonoBehaviour
 {
-    public GameObject projectilePrefab;
     /* Cooldown length in seconds */
     public float projectileCooldown = 0.3f;
     public float timeSinceLastHit;
@@ -36,6 +35,8 @@ public class MeleeCombat : MonoBehaviour
         stamina = GetStamina();
         if (CanShoot())
         {
+            var projectilePrefab = GetComponent<WeaponInventory>().rangeWeapon.projectilePrefab;
+
             Projectile hitbox = Projectile.Shoot(projectilePrefab, gameObject, position, 0f);
             hitbox.destroyOnCollide = false;
             hitbox.transform.SetParent(this.gameObject.transform);
