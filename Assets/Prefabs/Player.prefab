@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 904819834}
   - component: {fileID: 904819843}
   - component: {fileID: 3247792835474656187}
+  - component: {fileID: 8623181666747100050}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -113,7 +114,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5950980189304417506}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -143,6 +144,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   rangedCombat: {fileID: 0}
   meleeCombat: {fileID: 0}
+  fishing: {fileID: 0}
 --- !u!114 &5950980189304417509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,3 +209,18 @@ MonoBehaviour:
   movementSpeed: 10
   maxHP: 1
   currentHP: 1
+--- !u!114 &8623181666747100050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950980189304417506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1451c1c8838a40259608e0788414c5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bobberPrefab: {fileID: 2763951892429267362, guid: 70646aae0fdb3497d98618cc5872b815, type: 3}
+  castingSpeed: 4
+  castingDistance: 7
