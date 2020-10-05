@@ -7,14 +7,15 @@ public class MeleeCombat : MonoBehaviour
     public GameObject projectilePrefab;
     /* Cooldown length in seconds */
     public float projectileCooldown = 0.3f;
-    public float timeSinceLastHit;
+    public float timeSinceLastHit = 0;
     public float meleeOffset;
     public int staminaMax = 100;
-    public int stamina = 100;
+    public float stamina = 100;
     public int staminaCost = 15;
     public float staminaRechargeRate = 2f;
 
     public int staminaIndicator;
+
     public void Update()
     {
         staminaIndicator = GetStamina();
@@ -27,7 +28,7 @@ public class MeleeCombat : MonoBehaviour
     
     public int GetStamina()
     {
-        return Mathf.Min(stamina + (int)((Time.time - timeSinceLastHit) * staminaRechargeRate), staminaMax);
+        return Mathf.Min(stamina + (float)((Time.time - timeSinceLastHit) * staminaRechargeRate), staminaMax);
     }
 
     /* Returns true if projectile was shot */
