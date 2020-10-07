@@ -19,8 +19,8 @@ public class PlayerFishing : MonoBehaviour
     {
         cam = GameObject.FindObjectOfType<UI_Camera>();
         playerStats = FindObjectOfType<PlayerStats>();
-        playerStats.addIOneBat(); //just for testing
-        playerStats.addIZeroBait(); //just for testing
+        playerStats.addBait(0); //just for testing
+        playerStats.addBait(1); //just for testing
     }
 
     private void Update()
@@ -29,10 +29,12 @@ public class PlayerFishing : MonoBehaviour
         if (Input.GetKey(KeyCode.Alpha1))
         {
             selectedBait = 0;
+            Debug.Log("Bait 1 selected");
         }
         if (Input.GetKey(KeyCode.Alpha1))
         {
             selectedBait = 1;
+            Debug.Log("Bait 1 selected");
         }
 
         if (Input.GetButtonDown("Cast Fishing Pole"))//F key
@@ -50,7 +52,7 @@ public class PlayerFishing : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("None of selected bait "+selectedBait.ToString()+" left");
+                    Debug.Log("None of selected bait "+(selectedBait+1).ToString()+" left");
                 }
             }
         }

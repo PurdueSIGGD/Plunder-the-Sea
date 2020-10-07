@@ -27,7 +27,7 @@ public class PlayerStats : EntityStats
     }
 
     //Fishing Methods
-    public Array getBaitArray()
+    public int[] getBaitArray()
     {
         return baitTypes;
     }
