@@ -26,18 +26,14 @@ public class PlayerStats : EntityStats
         pbase.OnKill(victim);
     }
 
-    public int[] getBaitArray()
+    public Array getBaitArray()
     {
         return baitTypes;
     }
 
-    public void addIZeroBait() 
+    public int getBaitAtIndex(int arrayIndex)
     {
-        baitTypes[0] = baitTypes[0] + 1;
-    }
-
-    public void addIOneBat() {
-        baitTypes[1] = baitTypes[1] + 1;
+        return baitTypes[arrayIndex];
     }
 
     public void removeBait(int arrayIndex)
@@ -45,13 +41,10 @@ public class PlayerStats : EntityStats
         baitTypes[arrayIndex] = baitTypes[arrayIndex] - 1;
     }
 
-    //Test method for adding x amount of bait to any index in the array
-    /*
-    public void addBait(int arrayIndex, ) 
+    //Can be used to add bait to any index, and also decrement bait as well
+    public void addBait(int arrayIndex, int baitAmount)
     {
-        
-    } 
+        baitTypes[arrayIndex] = baitTypes[arrayIndex] + baitAmount;
+    }
 
-
-    */
 }
