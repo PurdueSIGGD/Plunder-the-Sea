@@ -26,7 +26,7 @@ public class PlayerStats : EntityStats
         pbase.OnKill(victim);
     }
 
-    public Array getBaitArray()
+    public int[] getBaitArray()
     {
         return baitTypes;
     }
@@ -37,7 +37,7 @@ public class PlayerStats : EntityStats
     }
 
     public void addIOneBat() {
-        baitTypes[0] = baitTypes[0] + 1;
+        baitTypes[1] = baitTypes[1] + 1;
     }
 
     public void removeBait(int arrayIndex)

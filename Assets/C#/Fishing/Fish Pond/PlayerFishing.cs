@@ -11,14 +11,30 @@ public class PlayerFishing : MonoBehaviour
     public float castingDistance = 7.0f;
     private Bobber bobber;
     private UI_Camera cam;
+    private PlayerStats playerStats;
+
+    private int selectedBait;
 
     private void Start()
     {
         cam = GameObject.FindObjectOfType<UI_Camera>();
+        playerStats = FindObjectOfType<PlayerStats>();
+        playerStats.addIOneBat(); //just for testing
+        playerStats.addIZeroBait(); //just for testing
     }
 
     private void Update()
     {
+        //maybe change this to a button to switch at a later date
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            selectedBait = 0;
+        }
+        if (Input.GetKey(KeyCode.Alpha1))
+        {
+            selectedBait = 1;
+        }
+
         if (Input.GetButtonDown("Cast Fishing Pole"))//F key
         {
             if (bobber)
@@ -27,7 +43,15 @@ public class PlayerFishing : MonoBehaviour
             }
             else
             {
-                bobber = Bobber.Create(bobberPrefab, this, cam.GetMousePosition());
+                if (playerStats.getBaitArray()[selectedBait] > 0)
+                {
+                    bobber = Bobber.Create(bobberPrefab, this, cam.GetMousePosition(), selectedBait);
+                    playerStats.removeBait(selectedBait);
+                }
+                else
+                {
+                    Debug.Log("None of selected bait "+selectedBait.ToString()+" left");
+                }
             }
         }
     }

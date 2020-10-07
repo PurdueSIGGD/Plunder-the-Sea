@@ -78,8 +78,10 @@ public class Bobber : MonoBehaviour
 
     }
 
-    public static Bobber Create(GameObject prefab, PlayerFishing source, Vector2 target)
+    public static Bobber Create(GameObject prefab, PlayerFishing source, Vector2 target, int baitType)
     {
+        //baitType changes some conditions, but it is not programmed yet
+        
         Bobber obj = Instantiate(prefab, source.transform.position, Quaternion.identity).GetComponent<Bobber>();
         Rigidbody2D rigid;
 
