@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe20a730f14af7b449abff7a8ad75835, type: 3}
   m_Name: Melee
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  projectilePrefab: {fileID: 4039954679365618853, guid: 4b86f31b2faabd64ea907b2121b93973, type: 3}
+  initialSpeed: 0
+  hpDelta: 0
+  staminaCost: 0
+  lifeTime: 0
+  maxHpDeltaPercentage: 0
+  moveSpeedDeltaPercentage: 0
