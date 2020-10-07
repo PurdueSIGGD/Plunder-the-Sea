@@ -194,6 +194,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5950980189304417506, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
   m_PrefabInstance: {fileID: 29298269}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &181982974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181982973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740539c14cfec744597f0d75f789d3ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meleeWeapon: {fileID: 11400000, guid: 0f0cf8e109136334489816dce5f5d520, type: 2}
+  rangeWeapon: {fileID: 11400000, guid: 4538b90e706b0fd499ed092b5259c033, type: 2}
+  testWeaponSlot: {fileID: 11400000, guid: b7e1eae1c7187b4439c60bd95af38861, type: 2}
 --- !u!1 &994518879
 GameObject:
   m_ObjectHideFlags: 0

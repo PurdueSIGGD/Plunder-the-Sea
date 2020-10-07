@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MeleeCombat : MonoBehaviour
 {
+    PlayerBase pbase;
+
     public GameObject projectilePrefab;
     /* Cooldown length in seconds */
     public float projectileCooldown = 0.3f;
@@ -15,6 +17,11 @@ public class MeleeCombat : MonoBehaviour
     public float staminaRechargeRate = 2f;
 
     public int staminaIndicator;
+
+    private void Start()
+    {
+        pbase = GetComponent<PlayerBase>();
+    }
 
     public void Update()
     {
@@ -34,14 +41,16 @@ public class MeleeCombat : MonoBehaviour
     /* Returns true if projectile was shot */
     public bool ShootAt(Vector2 position)
     {
-        stamina = GetStamina();
+        stamina = pbase.stats.stamina;
         if (CanShoot())
         {
+            var projectilePrefab = GetComponent<WeaponInventory>().meleeWeapon.projectilePrefab;
+
             Projectile hitbox = Projectile.Shoot(projectilePrefab, gameObject, position, 0f);
             hitbox.destroyOnCollide = false;
             hitbox.transform.SetParent(this.gameObject.transform);
             timeSinceLastHit = Time.time;
-            stamina = Mathf.Max(stamina - staminaCost, 0);
+            pbase.stats.UseStamina(staminaCost);
             return true;
         }
         return false;
