@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class MeleeCombat : MonoBehaviour
 {
+    PlayerBase pbase;
+
+    public GameObject projectilePrefab;
     /* Cooldown length in seconds */
     public float projectileCooldown = 0.3f;
-    public float timeSinceLastHit;
+    public float timeSinceLastHit = 0;
     public float meleeOffset;
     public int staminaMax = 100;
-    public int stamina = 100;
+    public float stamina = 100f;
     public int staminaCost = 15;
     public float staminaRechargeRate = 2f;
 
     public int staminaIndicator;
+
+    private void Start()
+    {
+        pbase = GetComponent<PlayerBase>();
+    }
+
     public void Update()
     {
-        staminaIndicator = GetStamina();
+        staminaIndicator = (int)GetStamina();
     }
 
     public bool CanShoot()
@@ -24,15 +33,15 @@ public class MeleeCombat : MonoBehaviour
         return stamina >= staminaCost;
     }
     
-    public int GetStamina()
+    public float GetStamina()
     {
-        return Mathf.Min(stamina + (int)((Time.time - timeSinceLastHit) * staminaRechargeRate), staminaMax);
+        return Mathf.Min(stamina + (float)((Time.time - timeSinceLastHit) * staminaRechargeRate), staminaMax);
     }
 
     /* Returns true if projectile was shot */
     public bool ShootAt(Vector2 position)
     {
-        stamina = GetStamina();
+        stamina = pbase.stats.stamina;
         if (CanShoot())
         {
             var projectilePrefab = GetComponent<WeaponInventory>().rangeWeapon.projectilePrefab;
@@ -41,7 +50,7 @@ public class MeleeCombat : MonoBehaviour
             hitbox.destroyOnCollide = false;
             hitbox.transform.SetParent(this.gameObject.transform);
             timeSinceLastHit = Time.time;
-            stamina = Mathf.Max(stamina - staminaCost, 0);
+            pbase.stats.UseStamina(staminaCost);
             return true;
         }
         return false;

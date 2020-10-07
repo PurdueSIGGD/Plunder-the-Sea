@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EntityStats : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class EntityStats : MonoBehaviour
     public float movementSpeed = 10.0f;
     public float maxHP = 1;
     public float currentHP = 1;
+    public Slider healthbar;
 
     // List of stat modifiers currently applied
     public List<EntityStatModifier> modifiers = new List<EntityStatModifier>();
@@ -17,6 +19,10 @@ public class EntityStats : MonoBehaviour
     {
 
         currentHP -= amount;
+        if (healthbar != null)
+        {
+            healthbar.value = currentHP / maxHP;
+        }
         if (currentHP <= 0)
         {
             currentHP = 0;
