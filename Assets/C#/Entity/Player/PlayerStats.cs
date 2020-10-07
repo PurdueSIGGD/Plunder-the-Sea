@@ -26,11 +26,32 @@ public class PlayerStats : EntityStats
         pbase.OnKill(victim);
     }
 
-    public void addIZeroBait() {
+    public Array getBaitArray()
+    {
+        return baitTypes;
+    }
+
+    public void addIZeroBait() 
+    {
         baitTypes[0] = baitTypes[0] + 1;
     }
 
-    public Array getBaitArray() {
-        return baitTypes;
+    public void addIOneBat() {
+        baitTypes[0] = baitTypes[0] + 1;
     }
+
+    public void removeBait(int arrayIndex)
+    {
+        baitTypes[arrayIndex] = baitTypes[arrayIndex] - 1;
+    }
+
+    //Test method for adding x amount of bait to any index in the array
+    /*
+    public void addBait(int arrayIndex, ) 
+    {
+        
+    } 
+
+
+    */
 }
