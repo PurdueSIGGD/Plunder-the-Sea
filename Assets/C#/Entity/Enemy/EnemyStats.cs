@@ -28,6 +28,7 @@ public class EnemyStats : EntityStats
             }
             this.transform.position = spawnPoint;
             currentHP = maxHP;
+            healthbar.value = 1;
         }
     }
 }
