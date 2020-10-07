@@ -29,7 +29,7 @@ public class Bobber : MonoBehaviour
         if (casting)
         {
             //Bobber has settled
-            if (rigid.velocity.magnitude == 0.0f)
+            if (rigid.velocity.magnitude <= 0.1f)
             {
                 casting = false;
             }
