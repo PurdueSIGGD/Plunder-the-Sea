@@ -44,6 +44,8 @@ public class MeleeCombat : MonoBehaviour
         stamina = pbase.stats.stamina;
         if (CanShoot())
         {
+            var projectilePrefab = GetComponent<WeaponInventory>().rangeWeapon.projectilePrefab;
+
             Projectile hitbox = Projectile.Shoot(projectilePrefab, gameObject, position, 0f);
             hitbox.destroyOnCollide = false;
             hitbox.transform.SetParent(this.gameObject.transform);
