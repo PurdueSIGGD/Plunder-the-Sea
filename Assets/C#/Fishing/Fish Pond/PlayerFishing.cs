@@ -13,7 +13,7 @@ public class PlayerFishing : MonoBehaviour
     private UI_Camera cam;
     private PlayerStats playerStats;
 
-    private int selectedBait;
+    private int selectedBait = 0;
 
     private void Start()
     {
@@ -31,10 +31,10 @@ public class PlayerFishing : MonoBehaviour
             selectedBait = 0;
             Debug.Log("Bait 1 selected");
         }
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.Alpha2))
         {
             selectedBait = 1;
-            Debug.Log("Bait 1 selected");
+            Debug.Log("Bait 2 selected");
         }
 
         if (Input.GetButtonDown("Cast Fishing Pole"))//F key
