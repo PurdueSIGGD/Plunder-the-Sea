@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerStats : EntityStats
 {
+    // Higher Index number means Stronger bait
+    private int[] baitTypes = { 0, 0 };
 
     PlayerBase pbase;
 
@@ -23,4 +26,11 @@ public class PlayerStats : EntityStats
         pbase.OnKill(victim);
     }
 
+    public void addIZeroBait() {
+        baitTypes[0] = baitTypes[0] + 1;
+    }
+
+    public Array getBaitArray() {
+        return baitTypes;
+    }
 }
