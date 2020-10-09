@@ -16,6 +16,11 @@ public class Fish : MonoBehaviour
         RandomPosition();
     }
 
+    public void buffPlayerStats(PlayerStats stats)
+    {
+
+    }
+
     // finds random position for fish
     void RandomPosition()
     {
@@ -27,13 +32,12 @@ public class Fish : MonoBehaviour
     IEnumerator MoveToRandomPos()
     {
         float i = 0.0f;
-        float rate = 1.0f / speed;
         Vector3 currentPos = transform.position;
 
         // moves fish to random location
         while (i < 1.0f)
         {
-            i += Time.deltaTime * rate;
+            i += Time.deltaTime * speed;
             transform.position = Vector3.Lerp(currentPos, randomPos, i);
             yield return null;
         }
@@ -60,11 +64,6 @@ public class Fish : MonoBehaviour
             StopAllCoroutines();
             randomPos = -randomPos/2 + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
             StartCoroutine(MoveToRandomPos());
-        }
-        // fill with things to do when fish is caught
-        else if(col.gameObject.tag == "Bobber")
-        {
-            Destroy(gameObject);
         }
     }
 }

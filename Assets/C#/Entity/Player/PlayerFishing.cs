@@ -5,36 +5,37 @@ using UnityEngine;
 
 public class PlayerFishing : MonoBehaviour
 {
+    public PlayerBase player;
     public GameObject bobberPrefab;
     public float castingSpeed = 4.0f;
     //Maximum distance before line breaks
     public float castingDistance = 7.0f;
     private Bobber bobber;
     private UI_Camera cam;
-    private PlayerStats playerStats;
 
     private int selectedBait = 0;
+    private const int amountOfBaitTypes = 2;
 
     private void Start()
     {
         cam = GameObject.FindObjectOfType<UI_Camera>();
-        playerStats = FindObjectOfType<PlayerStats>();
-        playerStats.addBait(0); //just for testing
-        playerStats.addBait(1); //just for testing
+        player = GetComponent<PlayerBase>();
+        player.stats.addBait(0); //just for testing
+        player.stats.addBait(1); //just for testing
     }
 
     private void Update()
     {
-        //maybe change this to a button to switch at a later date
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetButtonDown("Toggle Bait"))//B key
         {
-            selectedBait = 0;
-            Debug.Log("Bait 1 selected");
+            selectedBait = (selectedBait + 1) % amountOfBaitTypes;
+            Debug.Log("Bait " + selectedBait + " selected");
         }
-        if (Input.GetKey(KeyCode.Alpha2))
+        
+        // NEED TO REMOVE THIS AT SOME POINT!!!
+        if (Input.GetKey(KeyCode.Alpha1))//1 button
         {
-            selectedBait = 1;
-            Debug.Log("Bait 2 selected");
+            player.stats.addBait(0); //just for testing bait
         }
 
         if (Input.GetButtonDown("Cast Fishing Pole"))//F key
@@ -45,10 +46,10 @@ public class PlayerFishing : MonoBehaviour
             }
             else
             {
-                if (playerStats.getBaitArray()[selectedBait] > 0)
+                if (player.stats.getBaitArray()[selectedBait] > 0)
                 {
                     bobber = Bobber.Create(bobberPrefab, this, cam.GetMousePosition(), selectedBait);
-                    playerStats.removeBait(selectedBait);
+                    player.stats.removeBait(selectedBait);
                 }
                 else
                 {

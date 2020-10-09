@@ -51,7 +51,7 @@ public class Bobber : MonoBehaviour
         return true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerStay2D(Collider2D collider)
     {
         
         if (reeling)
@@ -69,6 +69,7 @@ public class Bobber : MonoBehaviour
             if (fish)
             {
                 source.OnReelFinish(fish);
+                fish.buffPlayerStats(source.player.stats);
                 Destroy(fish.gameObject);
                 Destroy(this.gameObject);
                 return;
