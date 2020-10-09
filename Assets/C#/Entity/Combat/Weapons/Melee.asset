@@ -15,7 +15,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4039954679365618853, guid: 4b86f31b2faabd64ea907b2121b93973, type: 3}
   initialSpeed: 0
   hpDelta: 0
-  staminaCost: 0
+  staminaCost: 15
   lifeTime: 0
   maxHpDeltaPercentage: 0
   moveSpeedDeltaPercentage: 0
