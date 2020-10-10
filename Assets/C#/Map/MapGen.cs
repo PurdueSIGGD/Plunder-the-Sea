@@ -64,8 +64,8 @@ public class MapGen : MonoBehaviour
                 RoomData nextRoom = new RoomData(x+dx, y+dy, curr);
                 roomGrid.Add((nextRoom.x, nextRoom.y), nextRoom);
                 roomStack.Push(nextRoom);
-                curr.connectDirs.Add(r);
-                nextRoom.connectDirs.Add((r+2) % 4);
+                curr.connectDirs.Add(rawDir);
+                nextRoom.connectDirs.Add((rawDir+2) % 4);
                 x = nextRoom.x;
                 y = nextRoom.y;
                 curr = nextRoom;
