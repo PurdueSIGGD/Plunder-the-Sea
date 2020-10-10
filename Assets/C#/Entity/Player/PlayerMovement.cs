@@ -7,15 +7,14 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public PlayerBase myBase;
 
-    // Start is called before the first frame update
     void Start()
     {
         myBase = (PlayerBase)GetComponent<PlayerBase>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        myBase.rigidBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * myBase.stats.movementSpeed, Input.GetAxisRaw("Vertical") * myBase.stats.movementSpeed);
+        float speed = myBase.stats.movementSpeed;
+        myBase.rigidBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * speed;
     }
 }

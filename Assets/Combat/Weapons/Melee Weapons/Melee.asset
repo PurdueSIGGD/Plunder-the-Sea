@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Melee
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4039954679365618853, guid: 4b86f31b2faabd64ea907b2121b93973, type: 3}
-  initialSpeed: 0
-  hpDelta: 0
+  projectileSpeed: 0
+  damage: 1
   staminaCost: 15
-  lifeTime: 0
-  maxHpDeltaPercentage: 0
+  lifeTime: 0.2
   moveSpeedDeltaPercentage: 0

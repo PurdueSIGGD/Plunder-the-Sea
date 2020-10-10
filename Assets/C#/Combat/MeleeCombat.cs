@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class MeleeCombat : MonoBehaviour
 {
-    PlayerBase pbase;
 
-    /* Cooldown length in seconds */
-    public float projectileCooldown = 0.3f;
-    public float timeSinceLastHit = 0;
-    public float meleeOffset;
-
-    public int staminaIndicator;
+    private PlayerBase pbase;
+    private WeaponInventory inventory;
 
     private void Start()
     {
         pbase = GetComponent<PlayerBase>();
+        inventory = GetComponent<WeaponInventory>();
     }
 
     public bool CanShoot()
     {
-        return pbase.stats.stamina >= GetComponent<WeaponInventory>().meleeWeapon.staminaCost;
+        return pbase.stats.stamina >= inventory.GetMelee().staminaCost;
     }
 
     /* Returns true if projectile was shot */
@@ -28,13 +24,14 @@ public class MeleeCombat : MonoBehaviour
     {
         if (CanShoot())
         {
-            var projectilePrefab = GetComponent<WeaponInventory>().meleeWeapon.projectilePrefab;
-
-            Projectile hitbox = Projectile.Shoot(projectilePrefab, gameObject, position, 0f);
+            ScriptableWeapon weapon = inventory.GetMelee();
+            Projectile hitbox = Projectile.Shoot(weapon.projectilePrefab, this.gameObject, position, 0f);
+            hitbox.damage = weapon.damage;
+            hitbox.lifeTime = weapon.lifeTime;
             hitbox.destroyOnCollide = false;
             hitbox.transform.SetParent(this.gameObject.transform);
-            timeSinceLastHit = Time.time;
-            pbase.stats.UseStamina(GetComponent<WeaponInventory>().meleeWeapon.staminaCost);
+            pbase.stats.UseStamina(weapon.staminaCost);
+            weapon.OnFire(hitbox);
             return true;
         }
         return false;

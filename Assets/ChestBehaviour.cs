@@ -12,16 +12,16 @@ public class ChestBehaviour : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collider) {
         
-        var weaponInv = collider.GetComponent<WeaponInventory>();
+        WeaponInventory weaponInv = collider.GetComponent<WeaponInventory>();
         if (weaponInv == null || used) {
             return;
         }
 
         if (isMelee) {
-            weaponInv.meleeWeapon = this.weapon;
+            weaponInv.SetMelee(this.weapon);
         } 
         else {
-            weaponInv.rangeWeapon = this.weapon;
+            weaponInv.SetRanged(this.weapon);
         }
 
         used = true;

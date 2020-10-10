@@ -6,11 +6,13 @@ using UnityEngine;
 public class ScriptableWeapon : ScriptableObject
 {
     public GameObject projectilePrefab;
-    public float initialSpeed;
-    public int hpDelta;
+    public float projectileSpeed;
+    public int damage;
     public int staminaCost;
     public float lifeTime;
     
-    public float maxHpDeltaPercentage;
     public float moveSpeedDeltaPercentage;
+
+    public virtual void OnFire(Projectile projectile) { }
+
 }

@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Bullet Normal One
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 8850584598485551201, guid: 665bee2cce4084b5580666db5ec97ad4, type: 3}
-  initialSpeed: 4
-  hpDelta: 0
+  projectileSpeed: 7
+  damage: 1
   staminaCost: 0
-  lifeTime: 0
-  maxHpDeltaPercentage: 0
+  lifeTime: 3
   moveSpeedDeltaPercentage: 0

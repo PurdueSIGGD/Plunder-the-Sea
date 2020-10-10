@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class RangedCombat : MonoBehaviour
 {
-    /* Cooldown length in seconds */
-    public float projectileCooldown = 0.3f;
-    /* Time that cooldown should be over */
-    private float projectileCooldownEnd = 0.0f;
+    public float cooldownLength = 0.3f;
+    private float cooldownEnd = 0.0f;
+    private WeaponInventory inventory;
+
+    private void Start()
+    {
+        inventory = GetComponent<WeaponInventory>();
+    }
 
     public bool CanShoot()
     {
-        return Time.time >= projectileCooldownEnd;
+        return Time.time >= cooldownEnd;
     }
 
     public void RefreshCooldown()
     {
-        projectileCooldownEnd = 0.0f;
+        cooldownEnd = 0.0f;
     }
 
     /* Returns true if projectile was shot */
@@ -24,11 +28,12 @@ public class RangedCombat : MonoBehaviour
     {
         if (CanShoot())
         {
-            var weapon = GetComponent<WeaponInventory>().rangeWeapon;
-            var projectilePrefab = weapon.projectilePrefab;
-            var projectileSpeed = weapon.initialSpeed;
-            Projectile bullet = Projectile.Shoot(projectilePrefab, gameObject, position, projectileSpeed);
-            projectileCooldownEnd = Time.time + projectileCooldown;
+            ScriptableWeapon weapon = inventory.GetRanged();
+            Projectile bullet = Projectile.Shoot(weapon.projectilePrefab, this.gameObject, position, weapon.projectileSpeed);
+            bullet.damage = weapon.damage;
+            bullet.lifeTime = weapon.lifeTime;
+            cooldownEnd = Time.time + cooldownLength;
+            weapon.OnFire(bullet);
             return true;
         }
 

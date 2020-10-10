@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class WeaponInventory : MonoBehaviour
 {
-    public ScriptableWeapon meleeWeapon;
-    public ScriptableWeapon rangeWeapon;
+    [SerializeField]
+    private ScriptableWeapon meleeWeapon;
+    [SerializeField]
+    private ScriptableWeapon rangeWeapon;
 
-    private void Update()
+    public ScriptableWeapon GetMelee()
     {
-        
+        return meleeWeapon;
+    }
+
+    public ScriptableWeapon GetRanged()
+    {
+        return rangeWeapon;
+    }
+
+    public void SetMelee(ScriptableWeapon wep)
+    {
+        meleeWeapon = wep;
+    }
+
+    public void SetRanged(ScriptableWeapon wep)
+    {
+        rangeWeapon = wep;
     }
 
 }
