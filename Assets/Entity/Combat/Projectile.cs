@@ -29,8 +29,9 @@ public class Projectile : MonoBehaviour
     {
         
         GameObject collider = collision.gameObject;
-        /* Don't collide with self */
-        if (collider == source)
+        Projectile proj = collider.GetComponent<Projectile>();
+        /* Don't collide with self OR other projectiles */
+        if (collider == source || proj)
         {
             return;
         }
