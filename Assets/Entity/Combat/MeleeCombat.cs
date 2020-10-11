@@ -26,6 +26,7 @@ public class MeleeCombat : MonoBehaviour
         {
             ScriptableWeapon weapon = inventory.GetMelee();
             Projectile hitbox = Projectile.Shoot(weapon.projectilePrefab, this.gameObject, position, 0f);
+            hitbox.weapon = weapon;
             hitbox.damage = weapon.damage;
             hitbox.lifeTime = weapon.lifeTime;
             hitbox.destroyOnCollide = false;

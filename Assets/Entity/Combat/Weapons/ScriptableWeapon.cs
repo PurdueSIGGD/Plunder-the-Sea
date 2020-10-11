@@ -14,5 +14,11 @@ public class ScriptableWeapon : ScriptableObject
     public float moveSpeedDeltaPercentage;
 
     public virtual void OnFire(Projectile projectile) { }
+    /* Called when projectile dies either by lifetime or hit detection */
+    public virtual void OnEnd(Projectile projectile) { }
+    /* Called every frame weapon is equipped */
+    public virtual void Update() { }
+    public virtual void OnEquip(WeaponInventory inv) { }
+    public virtual void OnUnequip(WeaponInventory inv) { }
 
 }

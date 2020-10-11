@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 5358206491338408865}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.2, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 1.8761259, z: 1}
+  m_LocalScale: {x: 3, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 8161092618706017961}
   m_RootOrder: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2857131133311191126}
   - component: {fileID: 2719860953006305366}
   m_Layer: 0
-  m_Name: Cutlass Projectile
+  m_Name: CutlassAOE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 8161092618706017957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.24482524, y: 0.3736541, z: -0.39736184}
-  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 1670929204730862735}
   m_Father: {fileID: 0}
@@ -132,6 +132,7 @@ MonoBehaviour:
   damage: 1
   destroyOnCollide: 1
   source: {fileID: 0}
+  weapon: {fileID: 0}
 --- !u!61 &2719860953006305366
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -142,10 +143,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.2, y: 0}
+  m_Offset: {x: 0.2, y: 0.0000000055879354}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -156,5 +157,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.29}
+  m_Size: {x: 0.4, y: 0.10081816}
   m_EdgeRadius: 0

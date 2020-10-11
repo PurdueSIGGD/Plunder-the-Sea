@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 181982974, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: meleeWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 8d79c50cb17e1bf4688d7287821b3052, type: 2}
     - target: {fileID: 4784153891293237621, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

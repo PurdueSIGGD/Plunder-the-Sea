@@ -9,6 +9,12 @@ public class WeaponInventory : MonoBehaviour
     [SerializeField]
     private ScriptableWeapon rangeWeapon;
 
+    private void Update()
+    {
+        meleeWeapon.Update();
+        rangeWeapon.Update();
+    }
+
     public ScriptableWeapon GetMelee()
     {
         return meleeWeapon;
@@ -21,12 +27,16 @@ public class WeaponInventory : MonoBehaviour
 
     public void SetMelee(ScriptableWeapon wep)
     {
+        meleeWeapon.OnUnequip(this);
         meleeWeapon = wep;
+        meleeWeapon.OnEquip(this);
     }
 
     public void SetRanged(ScriptableWeapon wep)
     {
+        rangeWeapon.OnUnequip(this);
         rangeWeapon = wep;
+        rangeWeapon.OnEquip(this);
     }
 
 }

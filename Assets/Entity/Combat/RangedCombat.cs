@@ -30,6 +30,7 @@ public class RangedCombat : MonoBehaviour
         {
             ScriptableWeapon weapon = inventory.GetRanged();
             Projectile bullet = Projectile.Shoot(weapon.projectilePrefab, this.gameObject, position, weapon.projectileSpeed);
+            bullet.weapon = weapon;
             bullet.damage = weapon.damage;
             bullet.lifeTime = weapon.lifeTime;
             cooldownEnd = Time.time + cooldownLength;

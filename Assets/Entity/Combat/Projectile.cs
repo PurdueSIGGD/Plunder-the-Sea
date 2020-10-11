@@ -13,13 +13,15 @@ public class Projectile : MonoBehaviour
     public bool destroyOnCollide = true;
     [HideInInspector]
     public GameObject source;
+    [HideInInspector]
+    public ScriptableWeapon weapon;
 
     void Update()
     {
         currentLifeTime += Time.deltaTime;
         if(currentLifeTime >= lifeTime)
         {
-            Destroy(gameObject);
+            Destroy();
         }
     }
 
@@ -49,6 +51,15 @@ public class Projectile : MonoBehaviour
 
         if (destroyOnCollide)
         {
+            Destroy();
+        }
+    }
+
+    public void Destroy()
+    {
+        if (weapon)
+        {
+            weapon.OnEnd(this);
             Destroy(gameObject);
         }
     }
