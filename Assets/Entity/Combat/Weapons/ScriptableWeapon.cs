@@ -10,8 +10,6 @@ public class ScriptableWeapon : ScriptableObject
     public int damage;
     public int staminaCost;
     public float lifeTime;
-    
-    public float moveSpeedDeltaPercentage;
 
     public virtual void OnFire(Projectile projectile) { }
     /* Called when projectile dies either by lifetime or hit detection */

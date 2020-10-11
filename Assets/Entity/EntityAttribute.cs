@@ -33,10 +33,10 @@ public class EntityAttribute
         {
             case ENT_ATTR.MOVESPEED:
                 owner.movementSpeed += value;
-                break;
+                return;
             case ENT_ATTR.MAX_HP:
                 owner.maxHP += value;
-                break;
+                return;
         }
 
         /* Player specific stats */
@@ -46,7 +46,7 @@ public class EntityAttribute
             {
                 case ENT_ATTR.MAX_STAMINA:
                     player.staminaMax += value;
-                    break;
+                    return;
             }
         }
     }
@@ -60,10 +60,10 @@ public class EntityAttribute
         {
             case ENT_ATTR.MOVESPEED:
                 owner.movementSpeed -= value;
-                break;
+                return;
             case ENT_ATTR.MAX_HP:
                 owner.maxHP -= value;
-                break;
+                return;
         }
 
         /* Player specific stats */
@@ -73,7 +73,7 @@ public class EntityAttribute
             {
                 case ENT_ATTR.MAX_STAMINA:
                     player.staminaMax -= value;
-                    break;
+                    return;
             }
         }
     }
