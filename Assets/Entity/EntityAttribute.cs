@@ -15,16 +15,13 @@ public class EntityAttribute
 
     public ENT_ATTR type;
     public float value;
-    public float endTime;
+    public float duration;
 
     public EntityAttribute(ENT_ATTR type, float value, float duration = float.PositiveInfinity)
     {
         this.type = type;
         this.value = value;
-        if (duration != float.PositiveInfinity)
-        {
-            this.endTime = Time.time + duration;
-        }
+        this.duration = duration;
     }
 
     public void OnAdd(EntityStats owner)

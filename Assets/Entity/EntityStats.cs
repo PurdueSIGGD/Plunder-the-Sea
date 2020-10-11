@@ -11,15 +11,25 @@ public class EntityStats : MonoBehaviour
     public float currentHP = 1;
     public Slider healthbar;
 
-    private List<EntityAttribute> attribs = new List<EntityAttribute>();
+    /*
+     * Storing endtime in attribute class does not allow for the same attribute
+     * to be applied to multiple entities. Store in this struct instead.
+     */
+    struct AppliedAttribute
+    {
+        public EntityAttribute attr;
+        public float endTime;
+    };
+
+    private List<AppliedAttribute> attribs = new List<AppliedAttribute>();
 
     private void Update()
     {
-        foreach (EntityAttribute attr in attribs)
+        foreach (AppliedAttribute app in attribs)
         {
-            if (Time.time >= attr.endTime)
+            if (Time.time >= app.endTime)
             {
-                RemoveAttribute(attr);
+                RemoveAttribute(app.attr);
             }
         }
     }
@@ -46,15 +56,29 @@ public class EntityStats : MonoBehaviour
 
     public void AddAttribute(EntityAttribute attr)
     {
-        attribs.Add(attr);
+        AppliedAttribute app;
+        app.attr = attr;
+        if (attr.duration == float.PositiveInfinity)
+        {
+            app.endTime = float.PositiveInfinity;
+        }
+        else
+        {
+            app.endTime = Time.time + attr.duration;
+        }
+        attribs.Add(app);
         attr.OnAdd(this);
     }
 
     public void RemoveAttribute(EntityAttribute attr)
     {
-        if (attribs.Remove(attr))
+        for (int i = 0; i < attribs.Count; i++)
         {
-            attr.OnRemove(this);
+            if (attribs[i].attr == attr)
+            {
+                attribs.RemoveAt(i);
+                attr.OnRemove(this);
+            }
         }
     }
     
