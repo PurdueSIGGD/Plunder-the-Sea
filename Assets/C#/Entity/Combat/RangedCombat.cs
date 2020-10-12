@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,10 +9,14 @@ public class RangedCombat : MonoBehaviour
     public float projectileCooldown = 0.3f;
     /* Time that cooldown should be over */
     private float projectileCooldownEnd = 0.0f;
+    /* Ammo left in the gun */
+    public int ammo = 10;
+    private int ammoMax = 10;
+    private int ammoPerShot = 1;
 
     public bool CanShoot()
     {
-        return Time.time >= projectileCooldownEnd;
+        return Time.time >= projectileCooldownEnd && ammo > 0;
     }
 
     public void RefreshCooldown()
@@ -24,6 +29,8 @@ public class RangedCombat : MonoBehaviour
     {
         if (CanShoot())
         {
+            ammo = ammo - ammoPerShot;
+
             var weapon = GetComponent<WeaponInventory>().rangeWeapon;
             var projectilePrefab = weapon.projectilePrefab;
             var projectileSpeed = weapon.initialSpeed;
@@ -36,4 +43,8 @@ public class RangedCombat : MonoBehaviour
 
     }
 
+    public void addAmmo()
+    {
+        ammo = Math.Min(ammo + 1, ammoMax);
+    }
 }
