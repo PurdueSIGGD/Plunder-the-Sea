@@ -132,11 +132,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5950980189304417496, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.96503717
+      value: 2.83
       objectReference: {fileID: 0}
     - target: {fileID: 5950980189304417496, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.06812763
+      value: 0.76
       objectReference: {fileID: 0}
     - target: {fileID: 5950980189304417496, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -208,7 +208,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meleeWeapon: {fileID: 11400000, guid: 0f0cf8e109136334489816dce5f5d520, type: 2}
   rangeWeapon: {fileID: 11400000, guid: 4538b90e706b0fd499ed092b5259c033, type: 2}
-  testWeaponSlot: {fileID: 11400000, guid: b7e1eae1c7187b4439c60bd95af38861, type: 2}
 --- !u!1 &994518879
 GameObject:
   m_ObjectHideFlags: 0
