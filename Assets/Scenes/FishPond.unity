@@ -443,8 +443,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numFish: 5
   fish:
+  - {fileID: 1290696634750580292, guid: 2ac0da3959810a94e94a3d82a2a8448d, type: 3}
   - {fileID: 1290696634750580292, guid: 4a0f0da45f692441ca5a3abf6b2d1756, type: 3}
-  - {fileID: 5597137107171991507, guid: aa7ae731d54f54ec2b602a7521480412, type: 3}
   - {fileID: 9065068838090454611, guid: 63824d08617bec94da2da8c592f9bc4f, type: 3}
   - {fileID: 155222579010472173, guid: 52c03231120c0b8468ba92ffa9c62de0, type: 3}
   - {fileID: 5669315062709524256, guid: 1057ebe4015bb0e428cd67246fb1fa5e, type: 3}
