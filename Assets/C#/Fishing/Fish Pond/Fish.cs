@@ -10,6 +10,7 @@ public class Fish : MonoBehaviour
     public float minWaitTime;
     public float maxWaitTime;
     private Vector3 randomPos;
+    public int lootLevel;
 
     void Start()
     {
