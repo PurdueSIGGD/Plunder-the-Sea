@@ -511,6 +511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   room: {fileID: 2365682295269584082, guid: 1e932cc103a1d844ba4eb81925a0fd41, type: 3}
   hall: {fileID: 9193578164241022313, guid: 44e452ca93c65234a98a907be4229d40, type: 3}
+  wall: {fileID: 8218544623586571011, guid: 2501cc04b599bd5439eb90b6794b6c27, type: 3}
   truePathLength: 8
 --- !u!4 &1856654795
 Transform:
