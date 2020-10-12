@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8485167538343993492}
   m_Layer: 0
   m_Name: Fish1
-  m_TagString: Undefined
+  m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,6 +118,10 @@ MonoBehaviour:
   randomY: 5
   minWaitTime: 1
   maxWaitTime: 2
+  buffMovementSpeed: 0
+  buffMaxStamina: 0
+  buffMaxHP: 0
+  buffStaminaRechargeRate: 0
   lootLevel: 2
 --- !u!50 &-8485167538343993492
 Rigidbody2D:

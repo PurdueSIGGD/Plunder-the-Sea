@@ -15,6 +15,7 @@ public class Fish : MonoBehaviour
     public float buffMaxHP = 0f;
     public float buffStaminaRechargeRate = 0f;
     public int lootLevel;
+    public GameObject FishingMinigame;
 
     void Start()
     {
