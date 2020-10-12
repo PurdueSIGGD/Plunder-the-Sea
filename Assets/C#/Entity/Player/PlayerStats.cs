@@ -11,6 +11,11 @@ public class PlayerStats : EntityStats
     public int[] baitTypes = { 0, 0 };
 
     PlayerBase pbase;
+    public const float baseMovementSpeed = 10;
+    public const float baseStaminaMax = 100;
+    public const float baseStaminaRechargeRate = 2f;
+    public const float baseMaxHP = 10;
+
     public float staminaMax = 100;
     public float stamina = 100;
     public float staminaRechargeRate = 2f;

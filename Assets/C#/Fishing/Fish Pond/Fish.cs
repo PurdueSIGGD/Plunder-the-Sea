@@ -10,15 +10,22 @@ public class Fish : MonoBehaviour
     public float minWaitTime;
     public float maxWaitTime;
     private Vector3 randomPos;
+    public float buffMovementSpeed = 0f;
+    public float buffMaxStamina = 0f;
+    public float buffMaxHP = 0f;
+    public float buffStaminaRechargeRate = 0f;
 
     void Start()
     {
         RandomPosition();
     }
 
-    public void buffPlayerStats(PlayerStats stats)
+    public void BuffPlayerStats(PlayerStats stats)
     {
-
+        stats.movementSpeed += buffMovementSpeed;
+        stats.maxHP += buffMaxHP;
+        stats.staminaMax += buffMaxStamina;
+        stats.staminaRechargeRate += buffStaminaRechargeRate;
     }
 
     // finds random position for fish

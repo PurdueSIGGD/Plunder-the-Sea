@@ -68,8 +68,8 @@ public class Bobber : MonoBehaviour
             //Fish wrangled!
             if (fish)
             {
+                fish.BuffPlayerStats(source.player.stats);
                 source.OnReelFinish(fish);
-                fish.buffPlayerStats(source.player.stats);
                 Destroy(fish.gameObject);
                 Destroy(this.gameObject);
                 return;
