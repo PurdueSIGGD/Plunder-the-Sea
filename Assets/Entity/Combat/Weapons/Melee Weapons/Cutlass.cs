@@ -16,7 +16,8 @@ public class Cutlass : ScriptableWeapon
             proj.transform.Rotate(0, 0, Time.deltaTime * sweepAngle / proj.lifeTime);
         }
     }
-
+    
+    
     public override void OnFire(Projectile projectile)
     {
         projList.Add(projectile);

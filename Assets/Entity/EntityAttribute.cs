@@ -9,7 +9,7 @@ public enum ENT_ATTR
     MAX_STAMINA,
     TOTAL_STATS
 };
-
+[System.Serializable]
 public class EntityAttribute
 {
 
