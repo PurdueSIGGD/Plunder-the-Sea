@@ -25,6 +25,7 @@ public class PlayerStats : EntityStats
 
     private void Update()
     {
+        StatUpdate();
         staminaBar.value = stamina / staminaMax;
         if(Time.time > timeSinceLastTick + timeBetweenTicks)
         {

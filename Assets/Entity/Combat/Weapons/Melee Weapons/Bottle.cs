@@ -6,27 +6,20 @@ using UnityEngine;
 public class Bottle : ScriptableWeapon
 {
     public float duration;
-    public float equipTimeInstant = 0f;
-
     public EntityAttribute[] entityAttributes;
-    public EntityStats entityStats;
-    public ScriptableWeapon preWeapon;
-    public bool equipped;
+    private EntityStats entityStats;
+    private ScriptableWeapon preWeapon;
+    private float equipTimeInstant = 0f;
 
     public override void Update() 
     {
-        if (equipped) {
-            Debug.Log(preWeapon.name);
-        }
-        if (equipped && Time.time - equipTimeInstant >= duration) {
+        if (Time.time - equipTimeInstant >= duration) {
             entityStats.GetComponent<WeaponInventory>().SetMelee(preWeapon);
         }
     }
 
     public override void OnEquip(WeaponInventory inv) 
     {
-        equipped = true;
-        Debug.Log("Equip");
         equipTimeInstant = Time.time;
         this.entityStats = inv.GetComponent<EntityStats>();
 
@@ -36,9 +29,5 @@ public class Bottle : ScriptableWeapon
         }
         preWeapon = inv.GetMelee();
     }
-    public override void OnUnequip(WeaponInventory inv)
-    {
-        Debug.Log("WTF");
-        equipped = false;
-    }
+
 }

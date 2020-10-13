@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Transactions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,21 +16,24 @@ public class EntityStats : MonoBehaviour
      * Storing endtime in attribute class does not allow for the same attribute
      * to be applied to multiple entities. Store in this struct instead.
      */
-    struct AppliedAttribute
+    private struct AppliedAttribute
     {
         public EntityAttribute attr;
         public float endTime;
     };
 
-    private List<AppliedAttribute> attribs = new List<AppliedAttribute>();
+    private List<AppliedAttribute> attribList = new List<AppliedAttribute>();
 
-    private void Update()
+    /* Extending classes must call this in update function */
+    protected void StatUpdate()
     {
-        foreach (AppliedAttribute app in attribs)
+        for (int i = 0; i < attribList.Count; i++)
         {
+            AppliedAttribute app = attribList[i];
             if (Time.time >= app.endTime)
             {
                 RemoveAttribute(app.attr);
+                i--;//Decrement to account for removed attribute
             }
         }
     }
@@ -66,17 +70,17 @@ public class EntityStats : MonoBehaviour
         {
             app.endTime = Time.time + attr.duration;
         }
-        attribs.Add(app);
+        attribList.Add(app);
         attr.OnAdd(this);
     }
 
     public void RemoveAttribute(EntityAttribute attr)
     {
-        for (int i = 0; i < attribs.Count; i++)
+        for (int i = 0; i < attribList.Count; i++)
         {
-            if (attribs[i].attr == attr)
+            if (attribList[i].attr == attr)
             {
-                attribs.RemoveAt(i);
+                attribList.RemoveAt(i);
                 attr.OnRemove(this);
             }
         }

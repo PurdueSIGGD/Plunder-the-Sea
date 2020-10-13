@@ -28,7 +28,6 @@ public class WeaponInventory : MonoBehaviour
     public void SetMelee(ScriptableWeapon wep)
     {
         meleeWeapon.OnUnequip(this);
-        Debug.Log("equip");
         wep.OnEquip(this);
         // Make sure to set weapon after the equip methods run
         meleeWeapon = wep;

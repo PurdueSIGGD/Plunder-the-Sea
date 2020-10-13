@@ -14,6 +14,11 @@ public class EnemyStats : EntityStats
         spawnPoint = this.transform.position;
     }
 
+    private void Update()
+    {
+        StatUpdate();
+    }
+
     public override void Die()
     {
         if(numberOfTimesToRespawn == 0)
