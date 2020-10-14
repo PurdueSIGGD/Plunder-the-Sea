@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RangedCombat : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class RangedCombat : MonoBehaviour
     public int ammo = 10;
     private int ammoMax = 10;
     private int ammoPerShot = 1;
+    public Slider AmmoBar;
 
     public bool CanShoot()
     {
