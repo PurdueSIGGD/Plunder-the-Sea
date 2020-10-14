@@ -49,11 +49,12 @@ public class RangedCombat : MonoBehaviour
     public void addAmmo()
     {
         ammo = Math.Min(ammo + 1, ammoMax);
+        changeAmmoBar();
     }
 
     public void changeAmmoBar() 
     {
-        ammoBar.value = ammo / ammoMax;
+        ammoBar.value = (float) ammo / (float) ammoMax;
     }
 
 
