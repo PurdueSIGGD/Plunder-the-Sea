@@ -32,7 +32,7 @@ public class RangedCombat : MonoBehaviour
         if (CanShoot())
         {
             ammo = ammo - ammoPerShot;
-            ammoBar.value = ammo / ammoMax;
+            AmmoBar.value = ammo / ammoMax;
 
             var weapon = GetComponent<WeaponInventory>().rangeWeapon;
             var projectilePrefab = weapon.projectilePrefab;
