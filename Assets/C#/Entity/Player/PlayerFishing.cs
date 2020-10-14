@@ -19,7 +19,7 @@ public class PlayerFishing : MonoBehaviour
     private void Start()
     {
         cam = GameObject.FindObjectOfType<UI_Camera>();
-        player = GetComponent<PlayerBase>();
+        player = this.GetComponent<PlayerBase>();
         player.stats.addBait(0); //just for testing
         player.stats.addBait(1); //just for testing
     }
@@ -65,7 +65,7 @@ public class PlayerFishing : MonoBehaviour
         if (fish)
         {
             Debug.Log("Fish caught");
-            SceneManager.LoadScene("FishingMinigame");
+            fish.FishingMinigame.SetActive(true);
         }
         else
         {

@@ -8,7 +8,7 @@ public class Bobber : MonoBehaviour
 
     private bool casting = true;
     private bool reeling = false;
-    private PlayerFishing source;
+    public PlayerFishing source;
     private Rigidbody2D rigid;
 
     private void Start()
@@ -53,7 +53,21 @@ public class Bobber : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collider)
     {
-        
+        OnContact(collider);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        OnContact(collider);
+    }
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        OnContact(collider);
+    }
+
+    private void OnContact(Collider2D collider)
+    {
         if (reeling)
         {
             //Reeling bobber has returned
@@ -68,7 +82,10 @@ public class Bobber : MonoBehaviour
             //Fish wrangled!
             if (fish)
             {
-                fish.BuffPlayerStats(source.player.stats);
+                FishingMinigame fm = fish.FishingMinigame.GetComponent<FishingMinigame>();
+                fm.ddr.fishBeingCaught = fish;
+                fm.ddr.targetPlayerStats = source.player.stats;
+                source.player.movement.enabled = false;
                 source.OnReelFinish(fish);
                 Destroy(fish.gameObject);
                 Destroy(this.gameObject);
@@ -76,7 +93,6 @@ public class Bobber : MonoBehaviour
             }
 
         }
-
     }
 
     public static Bobber Create(GameObject prefab, PlayerFishing source, Vector2 target, int baitType)

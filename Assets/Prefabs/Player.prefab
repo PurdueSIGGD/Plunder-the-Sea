@@ -275,10 +275,6 @@ MonoBehaviour:
   projectileCooldown: 0.3
   timeSinceLastHit: 0
   meleeOffset: 0
-  staminaMax: 100
-  stamina: 100
-  staminaCost: 15
-  staminaRechargeRate: 2
   staminaIndicator: 0
 --- !u!114 &904819843
 MonoBehaviour:
@@ -293,6 +289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileCooldown: 0.3
+  ammo: 10
 --- !u!114 &3247792835474656187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,8 +305,9 @@ MonoBehaviour:
   movementSpeed: 10
   maxHP: 1
   currentHP: 1
-  modifiers: []
   healthbar: {fileID: 7839513570817176972}
+  modifiers: []
+  baitTypes: 0000000000000000
   staminaMax: 100
   stamina: 100
   staminaRechargeRate: 2
@@ -326,6 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1451c1c8838a40259608e0788414c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 5950980189304417508}
   bobberPrefab: {fileID: 2763951892429267362, guid: 70646aae0fdb3497d98618cc5872b815, type: 3}
   castingSpeed: 4
   castingDistance: 7
