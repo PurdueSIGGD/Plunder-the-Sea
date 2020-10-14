@@ -14,7 +14,7 @@ public class RangedCombat : MonoBehaviour
     public int ammo = 10;
     private int ammoMax = 10;
     private int ammoPerShot = 1;
-    public Slider AmmoBar;
+    public Slider ammoBar;
 
     public bool CanShoot()
     {
@@ -32,7 +32,7 @@ public class RangedCombat : MonoBehaviour
         if (CanShoot())
         {
             ammo = ammo - ammoPerShot;
-            AmmoBar.value = ammo / ammoMax;
+            changeAmmoBar();
 
             var weapon = GetComponent<WeaponInventory>().rangeWeapon;
             var projectilePrefab = weapon.projectilePrefab;
@@ -49,6 +49,11 @@ public class RangedCombat : MonoBehaviour
     public void addAmmo()
     {
         ammo = Math.Min(ammo + 1, ammoMax);
+    }
+
+    public void changeAmmoBar() 
+    {
+        ammoBar.value = ammo / ammoMax;
     }
 
 

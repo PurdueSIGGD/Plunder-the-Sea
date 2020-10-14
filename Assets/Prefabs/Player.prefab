@@ -291,7 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileCooldown: 0.3
   ammo: 10
-  AmmoBar: {fileID: 7976882357025991117}
+  ammoBar: {fileID: 7976882357025991117}
 --- !u!114 &3247792835474656187
 MonoBehaviour:
   m_ObjectHideFlags: 0
