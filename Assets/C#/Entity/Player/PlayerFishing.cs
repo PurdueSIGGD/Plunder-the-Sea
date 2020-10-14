@@ -19,9 +19,6 @@ public class PlayerFishing : MonoBehaviour
     private void Start()
     {
         cam = GameObject.FindObjectOfType<UI_Camera>();
-        player = this.GetComponent<PlayerBase>();
-        player.stats.addBait(0); //just for testing
-        player.stats.addBait(1); //just for testing
     }
 
     private void Update()
