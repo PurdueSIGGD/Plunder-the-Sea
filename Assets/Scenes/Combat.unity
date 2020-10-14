@@ -172,7 +172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5950980189304417496, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5950980189304417496, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -343,8 +343,73 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1032837081
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7044077287933541243, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: eee1cee0e8fbf034285299875eda7923, type: 2}
+    - target: {fileID: 7044077287933541243, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: isMelee
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.8048525
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.06611793
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.2206008
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664811252461816296, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_Name
+      value: Chest
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
 --- !u!1001 &1160730311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -382,7 +447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5950980189304417496, guid: 524aa73114dab474eb542277267b8e1d, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5950980189304417496, guid: 524aa73114dab474eb542277267b8e1d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -611,7 +676,7 @@ Transform:
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2065775265
 BoxCollider2D:

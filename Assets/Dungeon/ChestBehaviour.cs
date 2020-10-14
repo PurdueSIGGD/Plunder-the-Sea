@@ -10,13 +10,13 @@ public class ChestBehaviour : MonoBehaviour
 
     private bool used = false;
 
-    public void OnTriggerEnter2D(Collider2D collider) {
-        
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
         WeaponInventory weaponInv = collider.GetComponent<WeaponInventory>();
         if (weaponInv == null || used) {
             return;
         }
-
+        
         if (isMelee) {
             weaponInv.SetMelee(this.weapon);
         } 
