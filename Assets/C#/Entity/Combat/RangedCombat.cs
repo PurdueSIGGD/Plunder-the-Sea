@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RangedCombat : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class RangedCombat : MonoBehaviour
     public int ammo = 10;
     private int ammoMax = 10;
     private int ammoPerShot = 1;
+    public Slider ammoBar;
 
     public bool CanShoot()
     {
@@ -30,6 +32,7 @@ public class RangedCombat : MonoBehaviour
         if (CanShoot())
         {
             ammo = ammo - ammoPerShot;
+            changeAmmoBar();
 
             var weapon = GetComponent<WeaponInventory>().rangeWeapon;
             var projectilePrefab = weapon.projectilePrefab;
@@ -46,5 +49,13 @@ public class RangedCombat : MonoBehaviour
     public void addAmmo()
     {
         ammo = Math.Min(ammo + 1, ammoMax);
+        changeAmmoBar();
     }
+
+    public void changeAmmoBar() 
+    {
+        ammoBar.value = (float) ammo / (float) ammoMax;
+    }
+
+
 }
