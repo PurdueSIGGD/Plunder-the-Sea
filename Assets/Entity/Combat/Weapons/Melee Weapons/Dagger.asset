@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bda4226531e446139687c002bb68241, type: 3}
+  m_Script: {fileID: 11500000, guid: fe20a730f14af7b449abff7a8ad75835, type: 3}
   m_Name: Dagger
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 8161092618706017957, guid: b88e0536b96c34689b04b070a96ecb5a, type: 3}
-  projectileSpeed: 1
-  damage: 1
-  staminaCost: 5
-  lifeTime: 0.1
-  sweepAngle: 90
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 0
+  damage: 0
+  staminaCost: 0
+  lifeTime: 0
+  projSystems: []
+  projectiles: []

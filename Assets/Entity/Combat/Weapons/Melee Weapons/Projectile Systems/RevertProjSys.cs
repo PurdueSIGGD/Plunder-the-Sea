@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Bottle", menuName = "ScriptableObjects/Bottle", order = 1)]
-public class Bottle : ScriptableWeapon
+[CreateAssetMenu(fileName = "RevertProjSys", menuName = "ScriptableObjects/ProjectileSystems/Revert", order = 1)]
+public class RevertProjSys : ProjectileSystem
 {
     public float duration;
     public EntityAttribute[] entityAttributes;
@@ -11,7 +9,7 @@ public class Bottle : ScriptableWeapon
     private ScriptableWeapon preWeapon;
     private float equipTimeInstant = 0f;
 
-    public override void Update() 
+    public override void Run(Projectile projectile) 
     {
         if (Time.time - equipTimeInstant >= duration) {
             entityStats.GetComponent<WeaponInventory>().SetMelee(preWeapon);
@@ -29,5 +27,4 @@ public class Bottle : ScriptableWeapon
         }
         preWeapon = inv.GetMelee();
     }
-
 }

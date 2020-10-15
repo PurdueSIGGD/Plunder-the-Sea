@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe20a730f14af7b449abff7a8ad75835, type: 3}
+  m_Script: {fileID: 11500000, guid: bece02452cd7537419f88197d0f3d451, type: 3}
   m_Name: Cutlass
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
-  projectileSpeed: 0
-  damage: 0
-  staminaCost: 0
-  lifeTime: 0
-  projSystems: []
-  projectiles: []
+  sweepAngle: 0
+  holdTime: 0

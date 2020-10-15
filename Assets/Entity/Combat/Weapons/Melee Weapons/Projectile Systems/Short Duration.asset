@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65902df2aa87274e888e0c57deff7d5, type: 3}
-  m_Name: BigAxe
+  m_Script: {fileID: 11500000, guid: 7d2b82313b7ebe2419f88d7fca87627a, type: 3}
+  m_Name: Short Duration
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 8161092618706017957, guid: 99c2d30043c502f4ab4f30a15c75db20, type: 3}
-  projectileSpeed: 0
-  damage: 1
-  staminaCost: 35
-  lifeTime: 0.5
-  sweepAngle: 180
-  holdTime: 0.2
+  duration: 0
+  entityAttributes: []
