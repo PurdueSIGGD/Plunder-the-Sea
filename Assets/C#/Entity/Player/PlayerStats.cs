@@ -8,9 +8,14 @@ using UnityEngine.UI;
 public class PlayerStats : EntityStats
 {
     // Higher Index number means Stronger bait
-    private int[] baitTypes = { 0, 0 };
+    public int[] baitTypes = { 0, 0 };
 
     PlayerBase pbase;
+    public const float baseMovementSpeed = 10;
+    public const float baseStaminaMax = 100;
+    public const float baseStaminaRechargeRate = 2f;
+    public const float baseMaxHP = 10;
+
     public float staminaMax = 100;
     public float stamina = 100;
     public float staminaRechargeRate = 2f;
@@ -54,27 +59,14 @@ public class PlayerStats : EntityStats
         return baitTypes;
     }
 
-    public int getBaitAtIndex(int arrayIndex)
-    {
-        return baitTypes[arrayIndex];
-    }
-
-    public void addBait(int arrayIndex)
-    {
-        baitTypes[arrayIndex] = baitTypes[arrayIndex] + 1;
-    }
-
-    public void removeBait(int arrayIndex)
-    {
-        baitTypes[arrayIndex] = baitTypes[arrayIndex] - 1;
-    }
-
     //Can be used to add bait to any index, and also decrement bait as well
-    public void addBait(int arrayIndex, int baitAmount)
+    public void addBait(int arrayIndex, int baitAmount = 1)
     {
         baitTypes[arrayIndex] = baitTypes[arrayIndex] + baitAmount;
     }
 
-    
-
+    public void removeBait(int arrayIndex, int baitAmount = 1)
+    {
+        baitTypes[arrayIndex] = baitTypes[arrayIndex] - baitAmount;
+    }
 }
