@@ -320,6 +320,7 @@ MonoBehaviour:
   fishMovementSpeed: 4
   fishShakeSpeed: 6
   fishShakeAngle: 15
+  fishCenter: {x: 0, y: 0}
 --- !u!1 &7448191832672795129
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d883282e5a5fefb49a82dbdb33b08450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ddr: {fileID: 6184665163090144526}
 --- !u!1 &7495763243601085485
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,6 +435,9 @@ MonoBehaviour:
   - {fileID: 7582760743510756012}
   - {fileID: 2689431165004284553}
   scoreText: {fileID: 7560125716321149548}
+  fishBeingCaught: {fileID: 0}
+  targetPlayerStats: {fileID: 0}
+  FishingMinigame: {fileID: 7448191832672795129}
 --- !u!1 &7582760743510756012
 GameObject:
   m_ObjectHideFlags: 0

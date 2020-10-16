@@ -21,8 +21,13 @@ public class DDR : MonoBehaviour
     private float targetFrequency = 0.5f;//Seconds for target to spawn
     private float nextTargetTime = 0.0f;//Time when to spawn new target
 
-    private int catchScore = 1000; //score needed to "catch" the fish
+    private int catchScore = 500; //score needed to "catch" the fish
     private int releaseScore = -100; //score needed to "release" the fish
+
+    public Fish fishBeingCaught;
+    public PlayerStats targetPlayerStats;
+    [SerializeField]
+    private GameObject FishingMinigame;
 
     void Start()
     {
@@ -135,13 +140,12 @@ public class DDR : MonoBehaviour
         //logic for ending the scene
         if (currentScore >= catchScore)
         {
-            //some way to save that the fishing was a success
-            SceneManager.LoadScene("FishPond");
+            fishBeingCaught.BuffPlayerStats(targetPlayerStats);
+            ResetMinigame();
         }
         else if (currentScore <= releaseScore)
         {
-            //some way to save that the fishing was a failure
-            SceneManager.LoadScene("FishPond");
+            ResetMinigame();
         }
 
         //Send random target
@@ -151,6 +155,13 @@ public class DDR : MonoBehaviour
             nextTargetTime = Time.time + targetFrequency;
         }
 
+    }
+
+    private void ResetMinigame()
+    {
+        //TODO: Whatever is needed to reset this minigame for use more than once.
+        FishingMinigame.SetActive(false);
+        targetPlayerStats.GetComponent<PlayerMovement>().enabled = true;
     }
 
     private void SendArrow(int type)
