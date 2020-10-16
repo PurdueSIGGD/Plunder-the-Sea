@@ -28,6 +28,11 @@ public class PlayerStats : EntityStats
     {
         pbase = GetComponent<PlayerBase>();
 
+        if (baitText.Length != baitTypes.Length)
+        {
+            Debug.LogError("Make sure there are an identical number of bait types and text objects in each array in the player prefab");
+        }
+
         baitText[0].color = Color.red;
         for (int i = 0; i < baitTypes.Length; i++)
         {
