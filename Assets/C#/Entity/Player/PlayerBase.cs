@@ -25,6 +25,15 @@ public class PlayerBase : MonoBehaviour
 
     private UI_Camera cam;
 
+    private void Awake()
+    {
+        if(GameObject.FindGameObjectsWithTag("player").Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     private void Start()
     {
         movement = GetComponent<PlayerMovement>();
