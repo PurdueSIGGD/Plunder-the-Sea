@@ -9,6 +9,7 @@ public class PlayerStats : EntityStats
 {
     // Higher Index number means Stronger bait
     public int[] baitTypes = { 0, 0 };
+    public Text[] baitText;
 
     PlayerBase pbase;
     public const float baseMovementSpeed = 10;
@@ -26,6 +27,11 @@ public class PlayerStats : EntityStats
     private void Start()
     {
         pbase = GetComponent<PlayerBase>();
+
+        for (int i = 0; i < baitTypes.Length; i++)
+        {
+            baitText[i].text = "Bait " + (i+1).ToString() + ": " + baitTypes[i].ToString();
+        }
     }
 
     private void Update()
@@ -63,10 +69,12 @@ public class PlayerStats : EntityStats
     public void addBait(int arrayIndex, int baitAmount = 1)
     {
         baitTypes[arrayIndex] = baitTypes[arrayIndex] + baitAmount;
+        baitText[arrayIndex].text = "Bait " + (arrayIndex+1).ToString() + ": " + baitTypes[arrayIndex].ToString();
     }
 
     public void removeBait(int arrayIndex, int baitAmount = 1)
     {
         baitTypes[arrayIndex] = baitTypes[arrayIndex] - baitAmount;
+        baitText[arrayIndex].text = "Bait "+ (arrayIndex + 1).ToString()+": "+baitTypes[arrayIndex].ToString();
     }
 }
