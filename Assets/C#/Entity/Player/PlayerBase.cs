@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
@@ -24,11 +25,21 @@ public class PlayerBase : MonoBehaviour
     public PlayerFishing fishing;
 
     private UI_Camera cam;
+    
+    public void moveHere(Transform newPos)
+    {
+        this.transform.position = newPos.position;
+    }
 
     private void Awake()
     {
-        if(GameObject.FindGameObjectsWithTag("player").Length > 1)
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        if(players.Length > 1)
         {
+            foreach (GameObject player in players)
+            {
+                player.GetComponent<PlayerBase>().moveHere(this.transform);
+            }
             Destroy(this.gameObject);
         }
         DontDestroyOnLoad(this.gameObject);
