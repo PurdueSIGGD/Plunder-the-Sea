@@ -26,13 +26,14 @@ public class PlayerFishing : MonoBehaviour
         if (Input.GetButtonDown("Toggle Bait"))//B key
         {
             selectedBait = (selectedBait + 1) % amountOfBaitTypes;
-            Debug.Log("Bait " + selectedBait + " selected");
+            Debug.Log("Bait " + (selectedBait + 1) + " selected");
+            player.stats.changeRedText(selectedBait);
         }
         
         // NEED TO REMOVE THIS AT SOME POINT!!!
-        if (Input.GetKey(KeyCode.Alpha1))//1 button
+        if (Input.GetKeyDown(KeyCode.Alpha1))//1 button
         {
-            player.stats.addBait(0); //just for testing bait
+            player.stats.addBait(selectedBait); //just for testing bait
         }
 
         if (Input.GetButtonDown("Cast Fishing Pole"))//F key

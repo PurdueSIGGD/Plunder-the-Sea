@@ -9,6 +9,7 @@ public class PlayerStats : EntityStats
 {
     // Higher Index number means Stronger bait
     public int[] baitTypes = { 0, 0 };
+    public Text[] baitText;
 
     PlayerBase pbase;
     public const float baseMovementSpeed = 10;
@@ -26,6 +27,17 @@ public class PlayerStats : EntityStats
     private void Start()
     {
         pbase = GetComponent<PlayerBase>();
+
+        if (baitText.Length != baitTypes.Length)
+        {
+            Debug.LogError("Make sure there are an identical number of bait types and text objects in each array in the player prefab");
+        }
+
+        baitText[0].color = Color.red;
+        for (int i = 0; i < baitTypes.Length; i++)
+        {
+            baitText[i].text = "Bait " + (i+1).ToString() + ": " + baitTypes[i].ToString();
+        }
     }
 
     private void Update()
@@ -59,14 +71,31 @@ public class PlayerStats : EntityStats
         return baitTypes;
     }
 
+    public void changeRedText(int num)
+    {
+        for (int i = 0; i < baitTypes.Length; i++)
+        {
+            if (i == num)
+            {
+                baitText[i].color = Color.red;
+            }
+            else
+            {
+                baitText[i].color = Color.white;
+            }
+        }
+    }
+
     //Can be used to add bait to any index, and also decrement bait as well
     public void addBait(int arrayIndex, int baitAmount = 1)
     {
         baitTypes[arrayIndex] = baitTypes[arrayIndex] + baitAmount;
+        baitText[arrayIndex].text = "Bait " + (arrayIndex+1).ToString() + ": " + baitTypes[arrayIndex].ToString();
     }
 
     public void removeBait(int arrayIndex, int baitAmount = 1)
     {
         baitTypes[arrayIndex] = baitTypes[arrayIndex] - baitAmount;
+        baitText[arrayIndex].text = "Bait "+ (arrayIndex + 1).ToString()+": "+baitTypes[arrayIndex].ToString();
     }
 }

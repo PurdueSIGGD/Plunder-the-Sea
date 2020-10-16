@@ -117,12 +117,13 @@ MonoBehaviour:
   randomX: 4
   randomY: 4
   minWaitTime: 0
-  maxWaitTime: 1
+  maxWaitTime: 2
   buffMovementSpeed: 0
   buffMaxStamina: 0
   buffMaxHP: 0
   buffStaminaRechargeRate: 0
   lootLevel: 3
+  FishingMinigame: {fileID: 0}
 --- !u!50 &-8485167538343993492
 Rigidbody2D:
   serializedVersion: 4
