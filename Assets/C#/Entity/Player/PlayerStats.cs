@@ -28,6 +28,7 @@ public class PlayerStats : EntityStats
     {
         pbase = GetComponent<PlayerBase>();
 
+        baitText[0].color = Color.red;
         for (int i = 0; i < baitTypes.Length; i++)
         {
             baitText[i].text = "Bait " + (i+1).ToString() + ": " + baitTypes[i].ToString();
@@ -63,6 +64,21 @@ public class PlayerStats : EntityStats
     public int[] getBaitArray()
     {
         return baitTypes;
+    }
+
+    public void changeRedText(int num)
+    {
+        for (int i = 0; i < baitTypes.Length; i++)
+        {
+            if (i == num)
+            {
+                baitText[i].color = Color.red;
+            }
+            else
+            {
+                baitText[i].color = Color.white;
+            }
+        }
     }
 
     //Can be used to add bait to any index, and also decrement bait as well

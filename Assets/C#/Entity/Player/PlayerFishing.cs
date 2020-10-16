@@ -27,6 +27,7 @@ public class PlayerFishing : MonoBehaviour
         {
             selectedBait = (selectedBait + 1) % amountOfBaitTypes;
             Debug.Log("Bait " + (selectedBait + 1) + " selected");
+            player.stats.changeRedText(selectedBait);
         }
         
         // NEED TO REMOVE THIS AT SOME POINT!!!
