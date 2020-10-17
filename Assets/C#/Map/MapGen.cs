@@ -227,6 +227,10 @@ public class MapGen : MonoBehaviour
             return true;
         }
         RoomData next = (RoomData)roomGrid[(curr.x+dx, curr.y+dy)];
-        return (curr.rank + 2 * next.branchLength + 1 >= next.rank);
+        if (curr.rank < next.rank)
+        {
+            return (curr.rank + 2 * next.branchLength + 1 >= next.rank);
+        }
+        return (next.rank + 2 * curr.branchLength + 1 >= curr.rank);
     }
 }
