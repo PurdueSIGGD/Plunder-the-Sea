@@ -113,16 +113,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac12a72e163249edb89bdf88522ec4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  randomX: 3
-  randomY: 3
+  speed: 0.5
+  randomX: 1
+  randomY: 1
   minWaitTime: 4
-  maxWaitTime: 6
+  maxWaitTime: 8
   buffMovementSpeed: 0
   buffMaxStamina: 0
   buffMaxHP: 0
   buffStaminaRechargeRate: 0
   lootLevel: 0
+  FishingMinigame: {fileID: 0}
 --- !u!50 &7486588697838117084
 Rigidbody2D:
   serializedVersion: 4
