@@ -14,6 +14,8 @@ public class MapGen : MonoBehaviour
     public GameObject hall;
     public GameObject wall;
     public int truePathLength;
+    public int maxBranchLength;
+    public float branchFactor;
 
     private Hashtable roomGrid;
     private Stack<RoomData> roomStack;
@@ -22,16 +24,31 @@ public class MapGen : MonoBehaviour
     {
         public int x;
         public int y;
+        public int rank;
+        public int branchLength;
         public List<int> nextDirs;
         public bool[] connectDirs;
         public RoomData parent;
 
-        public RoomData(int x, int y, RoomData p)
+        public RoomData(int x, int y, int b, RoomData p)
         {
             this.x = x;
             this.y = y;
-            nextDirs = new List<int>(new int[] {0 ,1, 2, 3});
+            branchLength = b;
+            rank = p.rank + 1;
+            nextDirs = new List<int>(new int[] { 0, 1, 2, 3 });
             parent = p;
+            connectDirs = new bool[4];
+        }
+
+        public RoomData(int x, int y, int b)
+        {
+            this.x = x;
+            this.y = y;
+            branchLength = b;
+            rank = 0;
+            nextDirs = new List<int>(new int[] { 0, 1, 2, 3 });
+            parent = null;
             connectDirs = new bool[4];
         }
     }
@@ -49,7 +66,7 @@ public class MapGen : MonoBehaviour
         int length = 1;
         int x = 0;
         int y = 0;
-        RoomData curr = new RoomData(0, 0, null);
+        RoomData curr = new RoomData(0, 0, 0);
         roomGrid.Add((curr.x, curr.y), curr);
         roomStack.Push(curr);
         while (length < truePathLength)
@@ -62,7 +79,7 @@ public class MapGen : MonoBehaviour
             int dy = dir.Item2;
             if (validNext(x, y, dx, dy))
             {
-                RoomData nextRoom = new RoomData(x+dx, y+dy, curr);
+                RoomData nextRoom = new RoomData(x+dx, y+dy, 0, curr);
                 roomGrid.Add((nextRoom.x, nextRoom.y), nextRoom);
                 roomStack.Push(nextRoom);
                 curr.connectDirs[rawDir] = true;
@@ -74,10 +91,58 @@ public class MapGen : MonoBehaviour
             }
         }
 
+        branch();
+
         while (roomStack.Count > 0)
         {
             buildRoom(roomStack.Pop());
         }
+    }
+
+    public void branch()
+    {
+        RoomData[] temp = roomStack.ToArray();
+        roomStack.Clear();
+        Queue<RoomData> branchQueue = new Queue<RoomData>();
+
+        for (int i = temp.Length-1; i > 0; i--)
+        {
+            branchQueue.Enqueue(temp[i]);
+        }
+        roomStack.Push(temp[0]);
+
+        while (branchQueue.Count > 0)
+        {
+            RoomData curr = branchQueue.Dequeue();
+            roomStack.Push(curr);
+            if (curr.branchLength < maxBranchLength)
+            {
+                for (int i = 0; i < curr.nextDirs.Count; i++)
+                {
+                    (int, int) dirs = toDirection(curr.nextDirs[i]);
+                    if (connectNext(curr, dirs.Item1, dirs.Item2) && UnityEngine.Random.Range(0, 1f) <= branchFactor)
+                    {
+                        //create branch in this direction
+                        RoomData nextRoom;
+                        int nx = curr.x + dirs.Item1;
+                        int ny = curr.y + dirs.Item2;
+                        if (validNext(curr.x, curr.y, dirs.Item1, dirs.Item2))
+                        {
+                            nextRoom = new RoomData(nx, ny, curr.branchLength + 1, curr);
+                            roomGrid.Add((nx, ny), curr);
+                            branchQueue.Enqueue(nextRoom);
+                        }
+                        else
+                        {
+                            nextRoom = (RoomData)roomGrid[(nx, ny)];
+                        }
+                        curr.connectDirs[curr.nextDirs[i]] = true;
+                        nextRoom.connectDirs[(curr.nextDirs[i] + 2) % 4] = true;
+                    }
+                }
+            }
+        }
+
     }
 
     public (int, int) toDirection(int r)
@@ -143,5 +208,15 @@ public class MapGen : MonoBehaviour
     public bool validNext(int x, int y, int dx, int dy)
     {
         return !roomGrid.Contains((x + dx, y + dy));
+    }
+
+    public bool connectNext(RoomData curr, int dx, int dy)
+    {
+        if (validNext(curr.x, curr.y, dx, dy))
+        {
+            return true;
+        }
+        RoomData next = (RoomData)roomGrid[(curr.x+dx, curr.y+dy)];
+        return (curr.rank + 2 * next.branchLength + 1 >= next.rank);
     }
 }
