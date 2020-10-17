@@ -13,6 +13,7 @@ public class MapGen : MonoBehaviour
     public GameObject room;
     public GameObject hall;
     public GameObject wall;
+    public GameObject goal;
     public int truePathLength;
     public int maxBranchLength;
     public float branchFactor;
@@ -93,10 +94,19 @@ public class MapGen : MonoBehaviour
 
         branch();
 
-        while (roomStack.Count > 0)
+        while (roomStack.Count > 1)
         {
             buildRoom(roomStack.Pop());
         }
+
+        //This is a janky implementation of placing a change scene door in the final room
+        //Changes to the generation algorithm could break this and it is not very robust
+        //Handling room spawns and customization will have to be implemented later
+        RoomData lastRoom = roomStack.Pop();
+        buildRoom(lastRoom);
+        int roomScale = ROOMWIDTH + ROOMDIST;
+        Object.Instantiate(goal, new Vector3(lastRoom.x * roomScale + .5f * ROOMWIDTH,
+            lastRoom.y * roomScale + .5f * ROOMWIDTH, 0), Quaternion.identity);
     }
 
     public void branch()
@@ -129,7 +139,7 @@ public class MapGen : MonoBehaviour
                         if (validNext(curr.x, curr.y, dirs.Item1, dirs.Item2))
                         {
                             nextRoom = new RoomData(nx, ny, curr.branchLength + 1, curr);
-                            roomGrid.Add((nx, ny), curr);
+                            roomGrid.Add((nx, ny), nextRoom);
                             branchQueue.Enqueue(nextRoom);
                         }
                         else
