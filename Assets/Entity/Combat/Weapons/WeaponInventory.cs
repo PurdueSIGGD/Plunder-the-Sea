@@ -9,6 +9,18 @@ public class WeaponInventory : MonoBehaviour
     [SerializeField]
     private ScriptableWeapon rangeWeapon;
 
+    private void Start()
+    {
+        if (meleeWeapon)
+        {
+            meleeWeapon.OnEquip(this);
+        }
+        if (rangeWeapon)
+        {
+            rangeWeapon.OnEquip(this);
+        }
+    }
+
     private void Update()
     {
         meleeWeapon.Update();

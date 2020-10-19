@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bece02452cd7537419f88197d0f3d451, type: 3}
-  m_Name: Cutlass
+  m_Name: InstantSwing
   m_EditorClassIdentifier: 
   sweepAngle: 0
   holdTime: 0
