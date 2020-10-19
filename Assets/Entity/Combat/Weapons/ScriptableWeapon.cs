@@ -28,6 +28,16 @@ public class ScriptableWeapon : ScriptableObject
         }
     }
 
+    public bool CanShoot(GameObject gameObject) {
+        foreach (var sys in projSystems) {
+            if (!sys.CanShoot(gameObject)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public void OnFire(Projectile projectile) { 
         projectiles.Add(projectile);
         foreach (var sys in projSystems) 
