@@ -15,5 +15,5 @@ MonoBehaviour:
   duration: 5
   entityAttributes:
   - type: 0
-    value: 40
+    value: 20
     duration: 5
