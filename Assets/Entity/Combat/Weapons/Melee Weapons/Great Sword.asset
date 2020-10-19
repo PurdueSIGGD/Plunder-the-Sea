@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe20a730f14af7b449abff7a8ad75835, type: 3}
   m_Name: Great Sword
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 8161092618706017957, guid: 99c2d30043c502f4ab4f30a15c75db20, type: 3}
+  projectilePrefab: {fileID: 8161092618706017957, guid: 378f56dc18c1b4d41a8ab40d6d4692a9, type: 3}
   projectileSpeed: 0
   damage: 75
   staminaCost: 45
