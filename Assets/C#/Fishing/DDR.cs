@@ -159,7 +159,7 @@ public class DDR : MonoBehaviour
 
     private void ResetMinigame()
     {
-        //TODO: Whatever is needed to reset this minigame for use more than once.
+        currentScore = 0;
         FishingMinigame.SetActive(false);
         targetPlayerStats.GetComponent<PlayerMovement>().enabled = true;
     }
