@@ -122,4 +122,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b3024b513b259a4986170defd3c8472, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newScene: Combat
+  newScene: FishPond

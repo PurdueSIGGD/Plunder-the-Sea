@@ -1063,6 +1063,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChangeSceneDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 1000606575011608497, guid: cf7342cfc2f68484d82edde9458c085b, type: 3}
+      propertyPath: newScene
+      value: Combat
+      objectReference: {fileID: 0}
     - target: {fileID: 1000606575011608500, guid: cf7342cfc2f68484d82edde9458c085b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.347687

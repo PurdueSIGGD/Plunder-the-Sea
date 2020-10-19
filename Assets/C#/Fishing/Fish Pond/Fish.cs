@@ -42,12 +42,17 @@ public class Fish : MonoBehaviour
     {
         float i = 0.0f;
         Vector3 currentPos = transform.position;
+        Vector3 newPos;
+        float angle;
 
         // moves fish to random location
         while (i < 1.0f)
         {
             i += Time.deltaTime * speed;
-            transform.position = Vector3.Lerp(currentPos, randomPos, i);
+            newPos = Vector3.Lerp(currentPos, randomPos, i);
+            angle = Mathf.Atan2(transform.position.y - newPos.y, transform.position.x - newPos.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            transform.position = newPos;
             yield return null;
         }
 
