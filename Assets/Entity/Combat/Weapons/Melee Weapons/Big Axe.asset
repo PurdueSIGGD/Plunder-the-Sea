@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe20a730f14af7b449abff7a8ad75835, type: 3}
   m_Name: Big Axe
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 8161092618706017957, guid: 99c2d30043c502f4ab4f30a15c75db20, type: 3}
   projectileSpeed: 0
-  damage: 0
-  staminaCost: 0
-  lifeTime: 0
-  projSystems: []
-  projectiles: []
+  damage: 1
+  staminaCost: 35
+  lifeTime: 0.5
+  projSystems:
+  - {fileID: 11400000, guid: 851e3c793af878d4180b8bd4acf87264, type: 2}

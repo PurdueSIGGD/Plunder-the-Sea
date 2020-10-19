@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe20a730f14af7b449abff7a8ad75835, type: 3}
   m_Name: Cutlass
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 8161092618706017957, guid: 2145da28acb712349ad1243d40c6f832, type: 3}
   projectileSpeed: 0
-  damage: 0
-  staminaCost: 0
-  lifeTime: 0
-  projSystems: []
-  projectiles: []
+  damage: 1
+  staminaCost: 15
+  lifeTime: 0.2
+  projSystems:
+  - {fileID: 11400000, guid: 7d63f0ab726092940a6a7901b27f65da, type: 2}

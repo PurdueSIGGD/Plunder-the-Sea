@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2b82313b7ebe2419f88d7fca87627a, type: 3}
   m_Name: Short Duration
   m_EditorClassIdentifier: 
-  duration: 0
-  entityAttributes: []
+  duration: 5
+  entityAttributes:
+  - type: 0
+    value: 20
+    duration: 5
