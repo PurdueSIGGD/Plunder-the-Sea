@@ -179,7 +179,7 @@ public class MapGen : MonoBehaviour
                 (float, float) hallLoc = (newRoom.x + .5f * dir.Item1, newRoom.y + .5f * dir.Item2);
                 if (!roomGrid.Contains(hallLoc))
                 {
-                    Debug.Log("Hall: " + hallLoc);
+                    //Debug.Log("Hall: " + hallLoc);
                     roomGrid.Add(hallLoc, 1);
                     Quaternion rot;
                     if (dir.Item1 == 0)
@@ -211,7 +211,7 @@ public class MapGen : MonoBehaviour
                 Object.Instantiate(wall, new Vector3(wallLoc.Item1, wallLoc.Item2, 0), rot);
             }
         }
-        Debug.Log("Room: " + (newRoom.x,newRoom.y));
+        Debug.Log("Room: " + (newRoom.x,newRoom.y) + ", " + (newRoom.rank, newRoom.branchLength));
         Object.Instantiate(room, new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, 0), Quaternion.identity);
     }
 
