@@ -12,10 +12,10 @@ public class ScriptableWeapon : ScriptableObject
     public float lifeTime;
 
     [SerializeField]
-    private ProjectileSystem[] projSystems;
+    private ProjectileSystem[] projSystems = null;
 
     [HideInInspector]
-    private List<Projectile> projectiles;
+    private List<Projectile> projectiles = null;
 
     public void Update() {
         projectiles.RemoveAll((p) => p == null);

@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe20a730f14af7b449abff7a8ad75835, type: 3}
-  m_Name: Swinging Thrust Spear
+  m_Name: Great Sword
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 561815860341853923, guid: 90df6e09508c95146aa0e2f07f14bb0c, type: 3}
+  projectilePrefab: {fileID: 8161092618706017957, guid: 378f56dc18c1b4d41a8ab40d6d4692a9, type: 3}
   projectileSpeed: 0
-  damage: 50
-  staminaCost: 20
-  lifeTime: 1
+  damage: 75
+  staminaCost: 45
+  lifeTime: 0.4
   projSystems:
-  - {fileID: 11400000, guid: 7d63f0ab726092940a6a7901b27f65da, type: 2}
-  - {fileID: 11400000, guid: b2a640121fe696a4c93e1731ed018f0b, type: 2}
+  - {fileID: 11400000, guid: 851e3c793af878d4180b8bd4acf87264, type: 2}

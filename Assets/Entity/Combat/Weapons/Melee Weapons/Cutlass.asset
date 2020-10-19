@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 8161092618706017957, guid: 2145da28acb712349ad1243d40c6f832, type: 3}
   projectileSpeed: 0
-  damage: 1
-  staminaCost: 15
-  lifeTime: 0.2
+  damage: 60
+  staminaCost: 30
+  lifeTime: 0.3
   projSystems:
-  - {fileID: 11400000, guid: 7d63f0ab726092940a6a7901b27f65da, type: 2}
+  - {fileID: 11400000, guid: 50b212ccc40d87d43ac1496ff071b42b, type: 2}

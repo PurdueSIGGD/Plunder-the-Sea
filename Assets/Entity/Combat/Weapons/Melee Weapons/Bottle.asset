@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe20a730f14af7b449abff7a8ad75835, type: 3}
   m_Name: Bottle
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 4039954679365618853, guid: 56aaed83383f6674c9bd368d208af70a, type: 3}
   projectileSpeed: 0
-  damage: 1
-  staminaCost: 10
-  lifeTime: 0.1
+  damage: 100
+  staminaCost: 40
+  lifeTime: 0.2
   projSystems:
   - {fileID: 11400000, guid: 8a7ab16b9fbb10b4ab4b2c7f74137305, type: 2}
