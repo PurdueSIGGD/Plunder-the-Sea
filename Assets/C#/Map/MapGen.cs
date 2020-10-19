@@ -112,18 +112,25 @@ public class MapGen : MonoBehaviour
     public void branch()
     {
         RoomData[] temp = roomStack.ToArray();
-        roomStack.Clear();
-        Queue<RoomData> branchQueue = new Queue<RoomData>();
+        //roomStack.Clear();
+        //Queue<RoomData> branchQueue = new Queue<RoomData>();
+        Stack<RoomData> branchStack = new Stack<RoomData>();
 
-        for (int i = temp.Length-1; i > 0; i--)
+        //for (int i = temp.Length-1; i > 0; i--)
+        //{
+        //    branchQueue.Enqueue(temp[i]);
+        //}
+        RoomData endRoom = roomStack.Pop();
+        while (roomStack.Count > 0)
         {
-            branchQueue.Enqueue(temp[i]);
+            branchStack.Push(roomStack.Pop());
         }
-        roomStack.Push(temp[0]);
+        roomStack.Push(endRoom);
+        //roomStack.Push(temp[0]);
 
-        while (branchQueue.Count > 0)
+        while (branchStack.Count > 0)
         {
-            RoomData curr = branchQueue.Dequeue();
+            RoomData curr = branchStack.Pop();
             roomStack.Push(curr);
             if (curr.branchLength < maxBranchLength)
             {
@@ -140,7 +147,7 @@ public class MapGen : MonoBehaviour
                         {
                             nextRoom = new RoomData(nx, ny, curr.branchLength + 1, curr);
                             roomGrid.Add((nx, ny), nextRoom);
-                            branchQueue.Enqueue(nextRoom);
+                            branchStack.Push(nextRoom);
                         }
                         else
                         {
