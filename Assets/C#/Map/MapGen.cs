@@ -105,8 +105,8 @@ public class MapGen : MonoBehaviour
         RoomData lastRoom = roomStack.Pop();
         buildRoom(lastRoom);
         int roomScale = ROOMWIDTH + ROOMDIST;
-        Object.Instantiate(goal, new Vector3(lastRoom.x * roomScale + .5f * ROOMWIDTH,
-            lastRoom.y * roomScale + .5f * ROOMWIDTH, 0), Quaternion.identity);
+        Object.Instantiate(goal, new Vector3(lastRoom.x * roomScale,
+            lastRoom.y * roomScale, 0), Quaternion.identity);
     }
 
     public void branch()
@@ -197,15 +197,15 @@ public class MapGen : MonoBehaviour
                     {
                         rot = Quaternion.Euler(0, 0, 90);
                     }
-                    Object.Instantiate(hall, new Vector3(hallLoc.Item1 * roomScale + .5f * ROOMWIDTH,
-                        hallLoc.Item2 * roomScale + .5f * ROOMWIDTH, 0), rot);
+                    Object.Instantiate(hall, new Vector3(hallLoc.Item1 * roomScale,
+                        hallLoc.Item2 * roomScale, 0), rot);
                 }
             }
             else
             {
                 //plug opening
-                (float, float) wallLoc = (newRoom.x * roomScale + .5f * ((dir.Item1 + 1) * ROOMWIDTH - dir.Item1),
-                    newRoom.y * roomScale + .5f * ((dir.Item2 + 1) * ROOMWIDTH - dir.Item2));
+                (float, float) wallLoc = (newRoom.x * roomScale + .5f * ((dir.Item1) * ROOMWIDTH - dir.Item1),
+                    newRoom.y * roomScale + .5f * ((dir.Item2) * ROOMWIDTH - dir.Item2));
                 Quaternion rot;
                 if (dir.Item2 == 0)
                 {
@@ -219,7 +219,9 @@ public class MapGen : MonoBehaviour
             }
         }
         Debug.Log("Room: " + (newRoom.x,newRoom.y) + ", " + (newRoom.rank, newRoom.branchLength));
-        Object.Instantiate(rooms[UnityEngine.Random.Range(0, rooms.Length)], new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, 0), Quaternion.identity);
+
+        int randomRotation = UnityEngine.Random.Range(0, 4);
+        Object.Instantiate(rooms[UnityEngine.Random.Range(0, rooms.Length)], new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, 0), Quaternion.Euler(0, 0, randomRotation*90));
     }
 
     public bool validNext(int x, int y, int dx, int dy)
