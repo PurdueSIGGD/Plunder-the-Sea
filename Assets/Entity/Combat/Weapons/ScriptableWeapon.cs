@@ -57,6 +57,7 @@ public class ScriptableWeapon : ScriptableObject
     public void OnEquip(WeaponInventory inv) { 
         foreach (var sys in projSystems) 
         {
+            sys.weapon = this;
             sys.OnEquip(inv);
         }
     }
