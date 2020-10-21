@@ -10,7 +10,7 @@ public class MapGen : MonoBehaviour
 
     public const int ROOMWIDTH = 10;
     public const int ROOMDIST = 6;
-    public GameObject room;
+    public GameObject[] rooms;
     public GameObject hall;
     public GameObject wall;
     public GameObject goal;
@@ -219,7 +219,7 @@ public class MapGen : MonoBehaviour
             }
         }
         Debug.Log("Room: " + (newRoom.x,newRoom.y) + ", " + (newRoom.rank, newRoom.branchLength));
-        Object.Instantiate(room, new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, 0), Quaternion.identity);
+        Object.Instantiate(rooms[UnityEngine.Random.Range(0, rooms.Length)], new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, 0), Quaternion.identity);
     }
 
     public bool validNext(int x, int y, int dx, int dy)
