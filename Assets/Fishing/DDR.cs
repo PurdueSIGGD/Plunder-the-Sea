@@ -27,7 +27,7 @@ public class DDR : MonoBehaviour
     public Fish fishBeingCaught;
     public PlayerStats targetPlayerStats;
     [SerializeField]
-    private GameObject FishingMinigame;
+    private GameObject FishingMinigame = null;
 
     void Start()
     {
