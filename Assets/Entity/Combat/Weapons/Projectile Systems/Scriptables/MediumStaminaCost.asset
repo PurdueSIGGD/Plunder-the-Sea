@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11a140ed12e1ed14e98b82d0ae7adb26, type: 3}
-  m_Name: StaminaProjSys
+  m_Name: MediumStaminaCost
   m_EditorClassIdentifier: 
-  staminaCost: 1
+  staminaCost: 0

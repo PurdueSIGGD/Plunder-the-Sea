@@ -14,4 +14,8 @@ public class CooldownProjSys : ProjectileSystem {
     {
         cooldownEnd = Time.time + cooldownLength;
     }
+    public override void OnEquip(WeaponInventory inv)
+    {
+        cooldownEnd = Time.time;
+    }
 }

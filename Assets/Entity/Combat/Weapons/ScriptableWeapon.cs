@@ -8,7 +8,6 @@ public class ScriptableWeapon : ScriptableObject
     public GameObject projectilePrefab;
     public float projectileSpeed;
     public int damage;
-    public int staminaCost;
     public float lifeTime;
 
     [SerializeField]
@@ -57,7 +56,6 @@ public class ScriptableWeapon : ScriptableObject
     public void OnEquip(WeaponInventory inv) { 
         foreach (var sys in projSystems) 
         {
-            sys.weapon = this;
             sys.OnEquip(inv);
         }
     }
