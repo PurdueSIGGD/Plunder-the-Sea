@@ -224,7 +224,9 @@ public class MapGen : MonoBehaviour
         GameObject g = Object.Instantiate(rooms[UnityEngine.Random.Range(0, rooms.Length)], new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, 0), Quaternion.Euler(0, 0, randomRotation*90));
         if (newRoom.x != 0 || newRoom.y != 0)
         {
-            g.GetComponentInChildren<EnemySpawner>().spawnEnemies();
+            foreach (EnemySpawner ES in g.GetComponentsInChildren<EnemySpawner>()) { 
+                ES.spawnEnemies();
+            }
         }
     }
 

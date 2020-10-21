@@ -361,9 +361,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rooms:
   - {fileID: 2365682295269584082, guid: 1e932cc103a1d844ba4eb81925a0fd41, type: 3}
+  - {fileID: 2365682295269584082, guid: 1e932cc103a1d844ba4eb81925a0fd41, type: 3}
+  - {fileID: 7448281565474574501, guid: 8eb3dcfb600ec00418ad3e9e6e2bc0fe, type: 3}
   - {fileID: 7448281565474574501, guid: 8eb3dcfb600ec00418ad3e9e6e2bc0fe, type: 3}
   - {fileID: 2957268282219117759, guid: 46cd4d611b1e1e04abc6e0770ee1077d, type: 3}
   - {fileID: 8052367512697230351, guid: 6589e6e9fa4237544916095dcb08f2ea, type: 3}
+  - {fileID: 3048475737034582319, guid: b03978cff4345e746af669162f286b96, type: 3}
   hall: {fileID: 9193578164241022313, guid: 44e452ca93c65234a98a907be4229d40, type: 3}
   wall: {fileID: 8218544623586571011, guid: 2501cc04b599bd5439eb90b6794b6c27, type: 3}
   goal: {fileID: 1000606575011608496, guid: cf7342cfc2f68484d82edde9458c085b, type: 3}
