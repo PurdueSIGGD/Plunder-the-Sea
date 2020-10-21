@@ -19,3 +19,5 @@ MonoBehaviour:
   lifeTime: 0.3
   projSystems:
   - {fileID: 11400000, guid: 50b212ccc40d87d43ac1496ff071b42b, type: 2}
+  - {fileID: 11400000, guid: 74d4013fd1e418340a3f65e0157fab28, type: 2}
+  - {fileID: 11400000, guid: 644fca7e2e114ec4fa3974837974c12b, type: 2}

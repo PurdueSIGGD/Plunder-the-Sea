@@ -17,4 +17,6 @@ MonoBehaviour:
   damage: 45
   staminaCost: 35
   lifeTime: 0.3
-  projSystems: []
+  projSystems:
+  - {fileID: 11400000, guid: 74d4013fd1e418340a3f65e0157fab28, type: 2}
+  - {fileID: 11400000, guid: 644fca7e2e114ec4fa3974837974c12b, type: 2}
