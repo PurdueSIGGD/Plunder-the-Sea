@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 public abstract class ProjectileSystem : ScriptableObject
 {
-    public ScriptableWeapon weapon;
 
     public virtual bool CanShoot(GameObject player) => true;
     public virtual void Run(Projectile projectile) {}
