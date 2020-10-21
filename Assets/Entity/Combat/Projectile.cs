@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    // Lifetime <= 0 is infinite
     public float lifeTime = 2;
     [HideInInspector]
     public float currentLifeTime = 0;
@@ -19,7 +20,7 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         currentLifeTime += Time.deltaTime;
-        if(currentLifeTime >= lifeTime)
+        if(lifeTime > 0 && currentLifeTime >= lifeTime)
         {
             Destroy();
         }

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 public abstract class ProjectileSystem : ScriptableObject
 {
+    [HideInInspector]
     public ScriptableWeapon weapon;
 
     public virtual bool CanShoot(GameObject player) => true;
