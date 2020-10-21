@@ -221,7 +221,11 @@ public class MapGen : MonoBehaviour
         Debug.Log("Room: " + (newRoom.x,newRoom.y) + ", " + (newRoom.rank, newRoom.branchLength));
 
         int randomRotation = UnityEngine.Random.Range(0, 4);
-        Object.Instantiate(rooms[UnityEngine.Random.Range(0, rooms.Length)], new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, 0), Quaternion.Euler(0, 0, randomRotation*90));
+        GameObject g = Object.Instantiate(rooms[UnityEngine.Random.Range(0, rooms.Length)], new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, 0), Quaternion.Euler(0, 0, randomRotation*90));
+        if (newRoom.x != 0 || newRoom.y != 0)
+        {
+            g.GetComponentInChildren<EnemySpawner>().spawnEnemies();
+        }
     }
 
     public bool validNext(int x, int y, int dx, int dy)
