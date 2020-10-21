@@ -16,10 +16,12 @@ public class Fish : MonoBehaviour
     public float buffStaminaRechargeRate = 0f;
     public int lootLevel;
     public GameObject FishingMinigame;
+    private const float rotationSpeed = 0.3f;
 
     void Start()
     {
         RandomPosition();
+        transform.eulerAngles = new Vector3(0, 0, Random.Range(-180f, 180f));
     }
 
     public void BuffPlayerStats(PlayerStats stats)
@@ -37,6 +39,33 @@ public class Fish : MonoBehaviour
         StartCoroutine(MoveToRandomPos());
     }
 
+    void IncrementRotation(Vector3 newRotation)
+    {
+        float z = newRotation.z;
+        if(transform.eulerAngles.z > z)
+        {
+            if(transform.eulerAngles.z > z + rotationSpeed)
+            {
+                transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z - rotationSpeed);
+            }
+            else
+            {
+                transform.eulerAngles = newRotation;
+            }
+        }
+        else
+        {
+            if(transform.eulerAngles.z < z - rotationSpeed)
+            {
+                transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + rotationSpeed);
+            }
+            else
+            {
+                transform.eulerAngles = newRotation;
+            }
+        }
+    }
+
     // moves the fish to the random location from the current position
     IEnumerator MoveToRandomPos()
     {
@@ -51,8 +80,8 @@ public class Fish : MonoBehaviour
             i += Time.deltaTime * speed;
             newPos = Vector3.Lerp(currentPos, randomPos, i);
             angle = Mathf.Atan2(transform.position.y - newPos.y, transform.position.x - newPos.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.position = newPos;
+            IncrementRotation(Quaternion.AngleAxis(angle, Vector3.forward).eulerAngles);
+            transform.position += transform.up * Time.deltaTime * speed;
             yield return null;
         }
 
