@@ -8,10 +8,12 @@ public class EnemyStats : EntityStats
     public float attackSpeedInverse = 10;
     public float damage = 1.5f;
     public float numberOfTimesToRespawn = 0; // Enemies do not respawn by default.
+    private RangedCombat PlayerGun;
 
     private void Start()
     {
         spawnPoint = this.transform.position;
+        PlayerGun = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent(typeof(RangedCombat)) as RangedCombat;
     }
 
     private void Update()
@@ -21,6 +23,7 @@ public class EnemyStats : EntityStats
 
     public override void Die()
     {
+        PlayerGun.addAmmo(); //Refill ammo for kill
         if(numberOfTimesToRespawn == 0)
         {
             Destroy(gameObject);

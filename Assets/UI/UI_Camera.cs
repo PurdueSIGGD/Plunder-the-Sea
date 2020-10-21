@@ -22,6 +22,7 @@ public class UI_Camera : MonoBehaviour
     private void Start()
     {
         cam = this.GetComponent<Camera>();
+        target = GameObject.FindGameObjectsWithTag("Player")[0];
     }
 
     void LateUpdate()
