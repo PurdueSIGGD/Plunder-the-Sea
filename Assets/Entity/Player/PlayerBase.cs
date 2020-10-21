@@ -55,7 +55,7 @@ public class PlayerBase : MonoBehaviour
     {
         if (weapon.CanShoot(this.gameObject))
         {
-            Projectile hitbox = Projectile.Shoot(weapon.projectilePrefab, this.gameObject, position, 0f);
+            Projectile hitbox = Projectile.Shoot(weapon.projectilePrefab, this.gameObject, position, weapon.projectileSpeed);
             hitbox.weapon = weapon;
             hitbox.damage = weapon.damage;
             hitbox.lifeTime = weapon.lifeTime;

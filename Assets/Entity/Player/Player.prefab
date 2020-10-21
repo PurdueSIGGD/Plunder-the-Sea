@@ -114,8 +114,6 @@ GameObject:
   - component: {fileID: 5950980189304417511}
   - component: {fileID: 5950980189304417508}
   - component: {fileID: 5950980189304417509}
-  - component: {fileID: 904819834}
-  - component: {fileID: 904819843}
   - component: {fileID: 3247792835474656187}
   - component: {fileID: 8623181666747100050}
   - component: {fileID: 181982974}
@@ -244,8 +242,6 @@ MonoBehaviour:
   rigidBody: {fileID: 0}
   movement: {fileID: 0}
   stats: {fileID: 0}
-  rangedCombat: {fileID: 0}
-  meleeCombat: {fileID: 0}
   fishing: {fileID: 0}
 --- !u!114 &5950980189304417509
 MonoBehaviour:
@@ -260,39 +256,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
---- !u!114 &904819834
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950980189304417506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e48aa9575825c3458c77b4954c89211, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileCooldown: 0.3
-  timeSinceLastHit: 0
-  meleeOffset: 0
-  staminaMax: 100
-  stamina: 100
-  staminaCost: 15
-  staminaRechargeRate: 2
-  staminaIndicator: 0
---- !u!114 &904819843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950980189304417506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42e0200cf492f4c40936ba7ae1ccc078, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileCooldown: 0.3
 --- !u!114 &3247792835474656187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +271,6 @@ MonoBehaviour:
   movementSpeed: 10
   maxHP: 1
   currentHP: 1
-  modifiers: []
   healthbar: {fileID: 7839513570817176972}
   staminaMax: 100
   stamina: 100
@@ -341,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740539c14cfec744597f0d75f789d3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meleeWeapon: {fileID: 11400000, guid: 0f0cf8e109136334489816dce5f5d520, type: 2}
+  meleeWeapon: {fileID: 11400000, guid: bb95e8d715184684dabd602a0b99e460, type: 2}
   rangeWeapon: {fileID: 11400000, guid: 4538b90e706b0fd499ed092b5259c033, type: 2}
 --- !u!1001 &718604717
 PrefabInstance:

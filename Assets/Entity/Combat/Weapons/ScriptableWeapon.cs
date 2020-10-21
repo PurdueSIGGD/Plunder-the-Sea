@@ -8,7 +8,6 @@ public class ScriptableWeapon : ScriptableObject
     public GameObject projectilePrefab;
     public float projectileSpeed;
     public int damage;
-    public int staminaCost;
     public float lifeTime;
 
     [SerializeField]
