@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55a2e94198959e9429ae88366c99eafd, type: 3}
-  m_Name: Melee Systems
+  m_Name: MeleeBaseSystems
   m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
   projSystems: []

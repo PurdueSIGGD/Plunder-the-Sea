@@ -15,10 +15,9 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4039954679365618853, guid: f4050a92747de0f41b4bb0e32e21eebf, type: 3}
   projectileSpeed: 0
   damage: 45
-  staminaCost: 35
   lifeTime: 0.4
   projSystems:
   - {fileID: 11400000, guid: 74d4013fd1e418340a3f65e0157fab28, type: 2}
   - {fileID: 11400000, guid: 644fca7e2e114ec4fa3974837974c12b, type: 2}
-  - {fileID: 11400000, guid: 0481c21bfa745e54383f9128ec7628a3, type: 2}
+  - {fileID: 11400000, guid: d1b4820869f11594382a3a67f54a8b2a, type: 2}
   - {fileID: 11400000, guid: d4816bccda58ccc458c11992a77a4e79, type: 2}
