@@ -10,6 +10,10 @@ public class EntityStats : MonoBehaviour
     public float movementSpeed = 10.0f;
     public float maxHP = 1;
     public float currentHP = 1;
+    //Ratio of damage which armor absorbs
+    public float armorMult = 0.0f;
+    //Constant amount of damage armor absorbs
+    public float armorStatic = 0.0f;
     public Slider healthbar;
 
     /*
@@ -41,8 +45,11 @@ public class EntityStats : MonoBehaviour
     //Return true if results in death
     public bool TakeDamage(float amount)
     {
+
+        float realDmg = Mathf.Max((amount  - armorStatic) * (1 - armorMult), 0);
+
         bool died = false;
-        currentHP -= amount;
+        currentHP -= realDmg;
         if (currentHP <= 0)
         {
             currentHP = 0;
