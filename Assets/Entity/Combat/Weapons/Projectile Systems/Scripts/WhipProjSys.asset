@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 746a303674c477e45bc1843350abc7a0, type: 3}
+  m_Name: WhipProjSys
+  m_EditorClassIdentifier: 
+  weapon: {fileID: 11400000, guid: 515aa72d322054744b94ab1bbbab1186, type: 2}
+  WhipLink: {fileID: 4039954679365618853, guid: c73614ba4b26a3540823e8670ebd06db, type: 3}
+  linkSpeed: 0.03
