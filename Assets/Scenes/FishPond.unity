@@ -138,11 +138,27 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -7
       objectReference: {fileID: 0}
+    - target: {fileID: 832614830952300313, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 832614830952300313, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4784153891293237621, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4784153891293237621, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5887798363249777253, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5887798363249777253, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -199,6 +215,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7839513570761152699, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8726192591546634040, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8726192591546634040, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -619,7 +643,7 @@ MonoBehaviour:
   numFish: 5
   fish:
   - {fileID: 1290696634750580292, guid: 2ac0da3959810a94e94a3d82a2a8448d, type: 3}
-  - {fileID: 1290696634750580292, guid: 4a0f0da45f692441ca5a3abf6b2d1756, type: 3}
+  - {fileID: 1290696634750580292, guid: fbbe3093c07cc9e4483c1972e89bf9c0, type: 3}
   - {fileID: 9065068838090454611, guid: 63824d08617bec94da2da8c592f9bc4f, type: 3}
   - {fileID: 155222579010472173, guid: 52c03231120c0b8468ba92ffa9c62de0, type: 3}
   - {fileID: 5669315062709524256, guid: 1057ebe4015bb0e428cd67246fb1fa5e, type: 3}

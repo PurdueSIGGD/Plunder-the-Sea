@@ -82,10 +82,13 @@ public class Fish : MonoBehaviour
     }
 
     // moves the fish to the random location from the current position
-    IEnumerator MoveRandomly()
+    IEnumerator MoveRandomly(float angle = 0, bool useAngle = false)
     {
         float i = 0.0f;
-        float angle = transform.eulerAngles.z + Random.Range(-90f, 90f);
+        if(!useAngle)
+        {
+            angle = transform.eulerAngles.z + Random.Range(-90f, 90f);
+        }
 
         // moves fish to random location
         while (i < 1.0f)
@@ -113,11 +116,13 @@ public class Fish : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         // if it hits a wall then stop and go the other direction
-        if(col.gameObject.tag == "Pond")
+        if(col.gameObject.CompareTag("Pond"))
         {
+            Vector3 dir = col.contacts[0].point;
+            float angle = Mathf.Atan2(dir.y - transform.position.y, dir.x - transform.position.x) * Mathf.Rad2Deg;
+            Debug.Log(angle);
             StopAllCoroutines();
-            randomPos = -randomPos/2 + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0);
-            StartCoroutine(MoveRandomly());
+            StartCoroutine(MoveRandomly(-angle, true));
         }
     }
 }
