@@ -11,7 +11,7 @@ public class MapGen : MonoBehaviour
     public const int ROOMWIDTH = 10;
     public const int ROOMDIST = 6;
     public GameObject[] rooms;
-    public GameObject hall;
+    public GameObject[] halls;
     public GameObject wall;
     public GameObject goal;
     public int truePathLength;
@@ -191,13 +191,13 @@ public class MapGen : MonoBehaviour
                     Quaternion rot;
                     if (dir.Item1 == 0)
                     {
-                        rot = Quaternion.identity;
+                        rot = Quaternion.Euler(0, 0, 180 * UnityEngine.Random.Range(0, 2));
                     }
                     else
                     {
-                        rot = Quaternion.Euler(0, 0, 90);
+                        rot = Quaternion.Euler(0, 0, 90 + 180 * UnityEngine.Random.Range(0, 2));
                     }
-                    Object.Instantiate(hall, new Vector3(hallLoc.Item1 * roomScale,
+                    Object.Instantiate(halls[UnityEngine.Random.Range(0, halls.Length)], new Vector3(hallLoc.Item1 * roomScale,
                         hallLoc.Item2 * roomScale, 0), rot);
                 }
             }
