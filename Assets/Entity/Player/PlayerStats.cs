@@ -12,6 +12,7 @@ public class PlayerStats : EntityStats
     public Text[] baitText;
 
     PlayerBase pbase;
+    WeaponInventory weaponInv;
     public const float baseMovementSpeed = 10;
     public const float baseStaminaMax = 100;
     public const float baseStaminaRechargeRate = 2f;
@@ -27,6 +28,7 @@ public class PlayerStats : EntityStats
     private void Start()
     {
         pbase = GetComponent<PlayerBase>();
+        weaponInv = GetComponent<WeaponInventory>();
 
         if (baitText.Length != baitTypes.Length)
         {
@@ -63,6 +65,8 @@ public class PlayerStats : EntityStats
 
     public override void OnKill(EntityStats victim)
     {
+        weaponInv.GetRanged().OnKill(victim);
+        weaponInv.GetMelee().OnKill(victim);
         pbase.OnKill(victim);
     }
 

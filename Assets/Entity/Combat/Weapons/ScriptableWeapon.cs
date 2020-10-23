@@ -7,6 +7,8 @@ public class ScriptableWeapon : ScriptableObject
 {
     public GameObject projectilePrefab;
     public float projectileSpeed;
+    public int ammoPerKill = 1;
+    public int maxAmmo = 0;
     public int damage;
     public float lifeTime;
 
@@ -56,6 +58,7 @@ public class ScriptableWeapon : ScriptableObject
     public void OnEquip(WeaponInventory inv) { 
         foreach (var sys in projSystems) 
         {
+            sys.weapon = this;
             sys.OnEquip(inv);
         }
     }
@@ -63,6 +66,14 @@ public class ScriptableWeapon : ScriptableObject
         foreach (var sys in projSystems)
         {
             sys.OnUnequip(inv);
+        }
+    }
+
+    public virtual void OnKill(EntityStats victim)
+    {
+        foreach (var sys in projSystems)
+        {
+            sys.OnKill(victim);
         }
     }
 
