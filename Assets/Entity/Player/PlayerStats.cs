@@ -22,6 +22,7 @@ public class PlayerStats : EntityStats
     public float stamina = 100;
     public float staminaRechargeRate = 2f;
     public Slider staminaBar;
+    public Slider ammoBar;
     private float timeSinceLastTick = 0;
     private float timeBetweenTicks = 0.1f;
 
@@ -49,7 +50,11 @@ public class PlayerStats : EntityStats
         if(Time.time > timeSinceLastTick + timeBetweenTicks)
         {
             timeSinceLastTick = Time.time;
+
             stamina = Mathf.Min(stamina + staminaRechargeRate, staminaMax);
+
+            ScriptableWeapon ranged = weaponInv.GetRanged();
+            ammoBar.value = (float)ranged.ammo / (float)ranged.maxAmmo;
         }
     }
 
