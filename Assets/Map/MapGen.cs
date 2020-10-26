@@ -220,8 +220,10 @@ public class MapGen : MonoBehaviour
         }
         Debug.Log("Room: " + (newRoom.x,newRoom.y) + ", " + (newRoom.rank, newRoom.branchLength));
 
+        //Spawns rooms
         int randomRotation = UnityEngine.Random.Range(0, 4);
         GameObject g = Object.Instantiate(rooms[UnityEngine.Random.Range(0, rooms.Length)], new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, 0), Quaternion.Euler(0, 0, randomRotation*90));
+        //spawns enemies
         if (newRoom.x != 0 || newRoom.y != 0)
         {
             foreach (EnemySpawner ES in g.GetComponentsInChildren<EnemySpawner>()) { 
