@@ -12,6 +12,7 @@ public class ScriptableWeapon : ScriptableObject
     public int ammo = 0;
     public int damage;
     public float lifeTime;
+    public Sprite gunSprite = null;
 
     [SerializeField]
     private ProjectileSystem[] projSystems = null;
