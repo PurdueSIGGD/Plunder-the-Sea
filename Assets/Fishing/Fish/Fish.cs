@@ -95,7 +95,7 @@ public class Fish : MonoBehaviour
         {
             i += Time.deltaTime * (speed / 3);
             IncrementRotation(new Vector3(0, 0, angle));
-            transform.position += transform.up * Time.deltaTime * speed;
+            transform.position += transform.right * Time.deltaTime * speed;
             yield return null;
         }
 
@@ -119,10 +119,9 @@ public class Fish : MonoBehaviour
         if(col.gameObject.CompareTag("Pond"))
         {
             Vector3 dir = col.contacts[0].point;
-            float angle = Mathf.Atan2(dir.y - transform.position.y, dir.x - transform.position.x) * Mathf.Rad2Deg;
-            Debug.Log(angle);
+            float angle = (Mathf.Atan2(dir.y - transform.position.y, dir.x - transform.position.x) * Mathf.Rad2Deg) + 180f;
             StopAllCoroutines();
-            StartCoroutine(MoveRandomly(-angle, true));
+            StartCoroutine(MoveRandomly(2 * angle - (180f + transform.eulerAngles.z) % 360f, true));
         }
     }
 }
