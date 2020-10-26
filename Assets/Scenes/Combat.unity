@@ -338,6 +338,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7869038517754355055, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: rangeWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: cb96887a01827724694d456c7eda9501, type: 2}
     - target: {fileID: 7869038517787870671, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
