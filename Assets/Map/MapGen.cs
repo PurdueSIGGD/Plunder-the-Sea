@@ -72,6 +72,21 @@ public class MapGen : MonoBehaviour
         roomStack.Push(curr);
         while (length < truePathLength)
         {
+            // check if cornered
+            if (curr.nextDirs.Count <= 0)
+            {
+                RoomData deadEnd = curr;
+                roomStack.Pop();
+                roomGrid.Remove((x, y));
+                curr = roomStack.Peek();
+                x = curr.x;
+                y = curr.y;
+                length--;
+                int oldDir = toDirCode(deadEnd.x - x, deadEnd.y - y);
+                curr.connectDirs[oldDir] = false;
+
+                continue;
+            }
             int r = UnityEngine.Random.Range(0, curr.nextDirs.Count);
             int rawDir = curr.nextDirs[r];
             curr.nextDirs.RemoveAt(r);
@@ -173,6 +188,17 @@ public class MapGen : MonoBehaviour
         }
         return (dx, dy);
     }
+    
+    public int toDirCode(int dx, int dy)
+    {
+        int code = 0;
+        if (dx + dy < 0)
+        {
+            code += 2;
+        }
+        code += math.abs(dx);
+        return code;
+    }
 
     public void buildRoom(RoomData newRoom)
     {
@@ -218,7 +244,7 @@ public class MapGen : MonoBehaviour
                 Object.Instantiate(wall, new Vector3(wallLoc.Item1, wallLoc.Item2, 0), rot);
             }
         }
-        Debug.Log("Room: " + (newRoom.x,newRoom.y) + ", " + (newRoom.rank, newRoom.branchLength));
+        //Debug.Log("Room: " + (newRoom.x,newRoom.y) + ", " + (newRoom.rank, newRoom.branchLength));
 
         //Spawns rooms
         int randomRotation = UnityEngine.Random.Range(0, 4);
