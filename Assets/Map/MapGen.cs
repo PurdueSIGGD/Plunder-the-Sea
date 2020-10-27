@@ -152,12 +152,13 @@ public class MapGen : MonoBehaviour
                 for (int i = 0; i < curr.nextDirs.Count; i++)
                 {
                     (int, int) dirs = toDirection(curr.nextDirs[i]);
+                    int nx = curr.x + dirs.Item1;
+                    int ny = curr.y + dirs.Item2;
                     if (connectNext(curr, dirs.Item1, dirs.Item2) && UnityEngine.Random.Range(0, 1f) <= branchFactor)
                     {
                         //create branch in this direction
                         RoomData nextRoom;
-                        int nx = curr.x + dirs.Item1;
-                        int ny = curr.y + dirs.Item2;
+                        
                         if (validNext(curr.x, curr.y, dirs.Item1, dirs.Item2))
                         {
                             nextRoom = new RoomData(nx, ny, curr.branchLength + 1, curr);
@@ -170,6 +171,13 @@ public class MapGen : MonoBehaviour
                         }
                         curr.connectDirs[curr.nextDirs[i]] = true;
                         nextRoom.connectDirs[(curr.nextDirs[i] + 2) % 4] = true;
+                    }
+                    else if (roomGrid.Contains((nx, ny)))
+                    {
+                        //If there is a room in this direction, make sure not to check this hallway spot
+                        //when processing that room
+                        RoomData rejectRoom = (RoomData)roomGrid[(nx, ny)];
+                        rejectRoom.nextDirs.Remove((curr.nextDirs[i] + 2) % 4);
                     }
                 }
             }
