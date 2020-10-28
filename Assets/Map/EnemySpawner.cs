@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject[] enemies;
+    public GameObject[] enemies; //array of enemies that can be spawned, add weighting by duplicating the same enemy multiple times to spawn it more often
+    public float chanceToSpawn;
 
     public void spawnEnemies()
     {
-        //I way trying to make enemy spawning randomized based on chance, but the values was not being stored for some reason
-        //if (UnityEngine.Random.value <= chanceToSpawn) {
+        if (UnityEngine.Random.value <= chanceToSpawn) {
             Instantiate(enemies[UnityEngine.Random.Range(0, enemies.Length)], transform.position, Quaternion.identity);
-        //}
+        }
     }
 }
