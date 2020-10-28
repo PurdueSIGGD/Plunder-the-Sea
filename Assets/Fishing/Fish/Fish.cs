@@ -16,7 +16,7 @@ public class Fish : MonoBehaviour
     public float buffStaminaRechargeRate = 0f;
     public int lootLevel;
     public GameObject FishingMinigame;
-    private const float rotationSpeed = 0.1f;
+    private const float rotationSpeed = 0.2f;
 
     void Start()
     {
