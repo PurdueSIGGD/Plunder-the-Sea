@@ -6,10 +6,11 @@ using UnityEngine;
 public class Bobber : MonoBehaviour
 {
 
-    private bool casting = true;
+    public bool casting = true;
     private bool reeling = false;
     public PlayerFishing source;
     private Rigidbody2D rigid;
+    public int baitType;
 
     private void Start()
     {
@@ -44,7 +45,7 @@ public class Bobber : MonoBehaviour
     {
         if (casting)
         {
-            return false;
+            rigid.velocity = new Vector2(0.0f, 0.0f);
         }
 
         reeling = true;
@@ -108,6 +109,7 @@ public class Bobber : MonoBehaviour
             Vector2 velocity = (target - (Vector2)obj.transform.position).normalized * source.castingSpeed;
             rigid.velocity = velocity;
         }
+        obj.baitType = baitType;
 
         return obj;
 

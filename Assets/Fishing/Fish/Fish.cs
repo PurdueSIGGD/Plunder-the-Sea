@@ -15,6 +15,7 @@ public class Fish : MonoBehaviour
     public float buffMaxHP = 0f;
     public float buffStaminaRechargeRate = 0f;
     public int lootLevel;
+    public int preferredBaitType;
     public GameObject FishingMinigame;
     private const float rotationSpeed = 0.2f;
 
@@ -106,6 +107,27 @@ public class Fish : MonoBehaviour
             RandomPosition();
     }
 
+    IEnumerator MoveToSpecificPos(Vector3 pos)
+    {
+        float i = 0.0f;
+        float angle = Mathf.Atan2(pos.y - transform.position.y, pos.x - transform.position.x) * Mathf.Rad2Deg;
+
+        // moves fish to targeted location
+        while (i < 1.0f)
+        {
+            i += Time.deltaTime * speed;
+            IncrementRotation(new Vector3(0, 0, angle));
+            transform.position += transform.right * Time.deltaTime * speed;
+            yield return null;
+        }
+
+        float randomFloat = Random.Range(0.0f, 1.0f);
+        if (randomFloat < 0.5f)
+            StartCoroutine(WaitBetweenMovements());
+        else
+            RandomPosition();
+    }
+
     // fish waits at position if called then chooses another random location
     IEnumerator WaitBetweenMovements()
     {
@@ -122,6 +144,16 @@ public class Fish : MonoBehaviour
             float angle = (Mathf.Atan2(dir.y - transform.position.y, dir.x - transform.position.x) * Mathf.Rad2Deg) + 180f;
             StopAllCoroutines();
             StartCoroutine(MoveRandomly(2 * angle - (180f + transform.eulerAngles.z) % 360f, true));
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Bobber") && !col.gameObject.GetComponent<Bobber>().casting)
+        {
+            Debug.Log("Bobber detected!" + col.gameObject.transform.position + ", " + transform.position);
+            StopAllCoroutines();
+            StartCoroutine(MoveToSpecificPos(col.gameObject.transform.position));
         }
     }
 }
