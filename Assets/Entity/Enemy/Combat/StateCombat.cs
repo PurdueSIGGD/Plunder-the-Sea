@@ -2,17 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateCombat : MonoBehaviour
+public class StateCombat : EnemyCombat
 {
-    // Start is called before the first frame update
-    void Start()
+    public int prevState;
+    public StateMovement myStateMovement;
+
+    private void Start()
     {
-        
+        myStateMovement = GetComponent<StateMovement>();
+        prevState = GetState();
     }
 
-    // Update is called once per frame
-    void Update()
+    // Get the current state by calling the state of the movement
+    public int GetState()
     {
-        
+        return myStateMovement.GetState();
+    }
+
+    // Return the target time into a variable (similar to StateMovement, but for time-based cooldowns in general)
+    public float SetTarget(float elapsedTime)
+    {
+        return Time.time + elapsedTime;
+    }
+
+    // Return whether the timer has passed the goal time (ideal when used with a return value from SetTarget)
+    public bool OnTarget(float goalTime)
+    {
+        return (Time.time > goalTime);
     }
 }
