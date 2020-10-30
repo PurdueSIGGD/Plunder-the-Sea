@@ -19,6 +19,25 @@ public class UI_Camera : MonoBehaviour
     private float zoomEndTime = 0.0f;
     private bool isZooming = false;
 
+    private void Awake()
+    {
+        GameObject[] cams = GameObject.FindGameObjectsWithTag("MainCamera");
+        if (cams.Length > 1)
+        {
+            foreach (GameObject camera in cams)
+            {
+                camera.GetComponent<UI_Camera>().moveHere(this.transform);
+            }
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void moveHere(Transform newPos)
+    {
+        this.transform.position = newPos.position;
+    }
+
     private void Start()
     {
         cam = this.GetComponent<Camera>();
