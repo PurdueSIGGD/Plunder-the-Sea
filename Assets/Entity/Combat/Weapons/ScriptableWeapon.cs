@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ScriptableWeapon", menuName = "ScriptableObjects/Weapon", order = 1)]
 public class ScriptableWeapon : ScriptableObject
 {
+    public bool isMelee = false;
     public GameObject projectilePrefab;
     public float projectileSpeed;
     public int ammoPerKill = 1;

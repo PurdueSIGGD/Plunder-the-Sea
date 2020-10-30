@@ -55,8 +55,8 @@ public class Projectile : MonoBehaviour
             }
         }
         
-        /* Always destroy if not entity */
-        if (!ent || destroyOnCollide)
+        /* Range proj. always destroy on non-entities */
+        if ((!weapon.isMelee && !ent) || destroyOnCollide)
         {
             Destroy();
         }
