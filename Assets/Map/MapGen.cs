@@ -72,6 +72,21 @@ public class MapGen : MonoBehaviour
         roomStack.Push(curr);
         while (length < truePathLength)
         {
+            // check if cornered
+            if (curr.nextDirs.Count <= 0)
+            {
+                RoomData deadEnd = curr;
+                roomStack.Pop();
+                roomGrid.Remove((x, y));
+                curr = roomStack.Peek();
+                x = curr.x;
+                y = curr.y;
+                length--;
+                int oldDir = toDirCode(deadEnd.x - x, deadEnd.y - y);
+                curr.connectDirs[oldDir] = false;
+
+                continue;
+            }
             int r = UnityEngine.Random.Range(0, curr.nextDirs.Count);
             int rawDir = curr.nextDirs[r];
             curr.nextDirs.RemoveAt(r);
@@ -137,12 +152,13 @@ public class MapGen : MonoBehaviour
                 for (int i = 0; i < curr.nextDirs.Count; i++)
                 {
                     (int, int) dirs = toDirection(curr.nextDirs[i]);
+                    int nx = curr.x + dirs.Item1;
+                    int ny = curr.y + dirs.Item2;
                     if (connectNext(curr, dirs.Item1, dirs.Item2) && UnityEngine.Random.Range(0, 1f) <= branchFactor)
                     {
                         //create branch in this direction
                         RoomData nextRoom;
-                        int nx = curr.x + dirs.Item1;
-                        int ny = curr.y + dirs.Item2;
+                        
                         if (validNext(curr.x, curr.y, dirs.Item1, dirs.Item2))
                         {
                             nextRoom = new RoomData(nx, ny, curr.branchLength + 1, curr);
@@ -155,6 +171,13 @@ public class MapGen : MonoBehaviour
                         }
                         curr.connectDirs[curr.nextDirs[i]] = true;
                         nextRoom.connectDirs[(curr.nextDirs[i] + 2) % 4] = true;
+                    }
+                    else if (roomGrid.Contains((nx, ny)))
+                    {
+                        //If there is a room in this direction, make sure not to check this hallway spot
+                        //when processing that room
+                        RoomData rejectRoom = (RoomData)roomGrid[(nx, ny)];
+                        rejectRoom.nextDirs.Remove((curr.nextDirs[i] + 2) % 4);
                     }
                 }
             }
@@ -172,6 +195,17 @@ public class MapGen : MonoBehaviour
             dy *= -1;
         }
         return (dx, dy);
+    }
+    
+    public int toDirCode(int dx, int dy)
+    {
+        int code = 0;
+        if (dx + dy < 0)
+        {
+            code += 2;
+        }
+        code += math.abs(dx);
+        return code;
     }
 
     public void buildRoom(RoomData newRoom)
@@ -218,10 +252,12 @@ public class MapGen : MonoBehaviour
                 Object.Instantiate(wall, new Vector3(wallLoc.Item1, wallLoc.Item2, 0), rot);
             }
         }
-        Debug.Log("Room: " + (newRoom.x,newRoom.y) + ", " + (newRoom.rank, newRoom.branchLength));
+        //Debug.Log("Room: " + (newRoom.x,newRoom.y) + ", " + (newRoom.rank, newRoom.branchLength));
 
+        //Spawns rooms
         int randomRotation = UnityEngine.Random.Range(0, 4);
         GameObject g = Object.Instantiate(rooms[UnityEngine.Random.Range(0, rooms.Length)], new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, 0), Quaternion.Euler(0, 0, randomRotation*90));
+        //spawns enemies
         if (newRoom.x != 0 || newRoom.y != 0)
         {
             foreach (EnemySpawner ES in g.GetComponentsInChildren<EnemySpawner>()) { 
