@@ -16,10 +16,11 @@ MonoBehaviour:
   projectileSpeed: 7
   ammoPerKill: 1
   maxAmmo: 5
-  ammo: 5
+  ammo: 2
   damage: 60
   lifeTime: 3
   gunSprite: {fileID: 21300000, guid: 8ba58fd8f742f5040adfeddbf1db38c1, type: 3}
   projSystems:
   - {fileID: 11400000, guid: 2e2b49b9c6249c54393f19fc150412de, type: 2}
   - {fileID: 11400000, guid: b01e24e7701c69c4e958c6041846d26b, type: 2}
+  - {fileID: 11400000, guid: 4169e324f2711ba4696cfc94237db0c3, type: 2}

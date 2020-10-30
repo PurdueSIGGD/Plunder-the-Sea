@@ -9,6 +9,7 @@ public class ScriptableWeapon : ScriptableObject
     public float projectileSpeed;
     public int ammoPerKill = 1;
     public int maxAmmo = 0;
+    [HideInInspector]
     public int ammo = 0;
     public int damage;
     public float lifeTime;
