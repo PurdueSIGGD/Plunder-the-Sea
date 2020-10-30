@@ -41,6 +41,14 @@ public class ScriptableWeapon : ScriptableObject
 
         return true;
     }
+    /* Called when projectile hits entity */
+    public void OnHit(Projectile proj, EntityStats victim)
+    {
+        foreach (var sys in projSystems)
+        {
+            sys.OnHit(proj, victim);
+        }
+    }
 
     public void OnFire(Projectile projectile) { 
         projectiles.Add(projectile);

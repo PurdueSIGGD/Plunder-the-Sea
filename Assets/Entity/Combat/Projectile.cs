@@ -13,6 +13,8 @@ public class Projectile : MonoBehaviour
     public float damage = 1.0f;
     public bool destroyOnCollide = true;
     [HideInInspector]
+    public int pierceCount = 0;
+    [HideInInspector]
     public GameObject source;
     [HideInInspector]
     public ScriptableWeapon weapon;
@@ -40,6 +42,8 @@ public class Projectile : MonoBehaviour
         EntityStats ent = collider.GetComponent<EntityStats>();
         if (ent)
         {
+            pierceCount++;
+            weapon.OnHit(this, ent);
             //If killed by a source
             if (ent.TakeDamage(damage) && source)
             {
@@ -50,8 +54,9 @@ public class Projectile : MonoBehaviour
                 }
             }
         }
-
-        if (destroyOnCollide)
+        
+        /* Always destroy if not entity */
+        if (!ent || destroyOnCollide)
         {
             Destroy();
         }

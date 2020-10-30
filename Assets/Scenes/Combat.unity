@@ -341,7 +341,7 @@ PrefabInstance:
     - target: {fileID: 7869038517754355055, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: rangeWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: 461d300c9ac40a348a66eb8061ce73da, type: 2}
+      objectReference: {fileID: 11400000, guid: bc241e4e6fd43fa48a8259ebd11e3ae8, type: 2}
     - target: {fileID: 7869038517787870671, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
