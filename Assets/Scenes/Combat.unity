@@ -324,7 +324,7 @@ PrefabInstance:
     - target: {fileID: 7045101813800168173, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: rangeWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: b2ed2e98e7a508a438c07588d67c4529, type: 2}
+      objectReference: {fileID: 11400000, guid: 614d6a188506383428a029adb50d6ed3, type: 2}
     - target: {fileID: 7869038517754355045, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
