@@ -44,15 +44,8 @@ public class Projectile : MonoBehaviour
         {
             pierceCount++;
             weapon.OnHit(this, ent);
-            //If killed by a source
-            if (ent.TakeDamage(damage) && source)
-            {
-                EntityStats attacker = source.GetComponent<EntityStats>();
-                if (attacker)
-                {
-                    attacker.OnKill(ent);
-                }
-            }
+            EntityStats attacker = source.GetComponent<EntityStats>();
+            ent.TakeDamage(damage, attacker);
         }
         
         /* Range proj. always destroy on non-entities */

@@ -313,6 +313,14 @@ PrefabInstance:
       propertyPath: ammoBar
       value: 
       objectReference: {fileID: 1325165683}
+    - target: {fileID: 3247792835474656187, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: maxHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3247792835474656187, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: currentHP
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5887798363249777253, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
