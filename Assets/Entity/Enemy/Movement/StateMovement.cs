@@ -139,4 +139,10 @@ public class StateMovement : EnemyMovement
     {
         return (Time.time >= targetTime);
     }
+
+    // Get the current state (overridden in subclasses)
+    public virtual int GetState()
+    {
+        return 0;
+    }
 }

@@ -22,10 +22,10 @@ public class ChargeMovement : StateMovement
     // The state of the charging enemy. There are 4 options, which resemble different points in its movement.
     public enum ChargeState
     {
-        isChargingUp,
-        isCharging,
-        isRecharging,
-        ready
+        isChargingUp = 0,
+        isCharging = 1,
+        isRecharging = 2,
+        ready = 3
     }
     public ChargeState chargeState = ChargeState.ready;
 
@@ -97,5 +97,9 @@ public class ChargeMovement : StateMovement
                     break;
             }
         }
+    }
+    public override int GetState()
+    {
+        return (int)this.chargeState;
     }
 }

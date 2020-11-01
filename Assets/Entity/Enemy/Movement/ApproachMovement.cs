@@ -17,9 +17,9 @@ public class ApproachMovement : StateMovement
     // The state for approaching. There are 3 options, which represent different points in movement.
     public enum ApproachState
     {
-        approaching,
-        activating,
-        cooldown
+        approaching = 0,
+        activating = 1,
+        cooldown = 2
     }
     public ApproachState approachState = ApproachState.approaching;
 
@@ -57,5 +57,10 @@ public class ApproachMovement : StateMovement
                     break;
             }
         }
+    }
+
+    public override int GetState()
+    {
+        return (int)this.approachState;
     }
 }
