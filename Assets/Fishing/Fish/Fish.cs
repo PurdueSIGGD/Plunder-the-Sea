@@ -9,7 +9,6 @@ public class Fish : MonoBehaviour
     public float randomY;
     public float minWaitTime;
     public float maxWaitTime;
-    private Vector3 randomPos;
     public float buffMovementSpeed = 0f;
     public float buffMaxStamina = 0f;
     public float buffMaxHP = 0f;
@@ -17,11 +16,11 @@ public class Fish : MonoBehaviour
     public int lootLevel;
     public int preferredBaitType;
     public GameObject FishingMinigame;
-    private const float rotationSpeed = 0.2f;
+    private const float rotationSpeed = 0.25f;
 
     void Start()
     {
-        RandomPosition();
+        StartCoroutine(MoveRandomly());
         transform.eulerAngles = new Vector3(0, 0, Random.Range(0f, 360f));
     }
 
@@ -33,11 +32,19 @@ public class Fish : MonoBehaviour
         stats.staminaRechargeRate += buffStaminaRechargeRate;
     }
 
-    // finds random position for fish
-    void RandomPosition()
+    bool PassedTarget(Vector3 oldPosition, Vector3 targetPos)
     {
-        randomPos = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), 0);
-        StartCoroutine(MoveRandomly());
+        if((oldPosition.x < targetPos.x && transform.position.x > targetPos.x) ||
+            (oldPosition.y < targetPos.y && transform.position.y > targetPos.y) ||
+            (oldPosition.x > targetPos.x && transform.position.x < targetPos.x) ||
+            (oldPosition.y > targetPos.y && transform.position.y < targetPos.y))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     void IncrementRotation(Vector3 newRotation)
@@ -104,20 +111,27 @@ public class Fish : MonoBehaviour
         if (randomFloat < 0.5f)
             StartCoroutine(WaitBetweenMovements());
         else
-            RandomPosition();
+            StartCoroutine(MoveRandomly());
     }
 
     IEnumerator MoveToSpecificPos(Vector3 pos)
     {
         float i = 0.0f;
         float angle = Mathf.Atan2(pos.y - transform.position.y, pos.x - transform.position.x) * Mathf.Rad2Deg;
+        Vector3 oldPosition;
 
         // moves fish to targeted location
         while (i < 1.0f)
         {
             i += Time.deltaTime * speed;
             IncrementRotation(new Vector3(0, 0, angle));
+            oldPosition = transform.position;
             transform.position += transform.right * Time.deltaTime * speed;
+            if(PassedTarget(oldPosition, pos))
+            {
+                Debug.Log("Reached bobber.");
+                StartCoroutine(WaitForever());
+            }
             yield return null;
         }
 
@@ -125,14 +139,21 @@ public class Fish : MonoBehaviour
         if (randomFloat < 0.5f)
             StartCoroutine(WaitBetweenMovements());
         else
-            RandomPosition();
+            StartCoroutine(MoveRandomly());
+    }
+
+    // fish has been "caught" and now waits
+    IEnumerator WaitForever()
+    {
+        yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
+        StartCoroutine(WaitForever());
     }
 
     // fish waits at position if called then chooses another random location
     IEnumerator WaitBetweenMovements()
     {
         yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
-        RandomPosition();
+        StartCoroutine(MoveRandomly());
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -151,7 +172,6 @@ public class Fish : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Bobber") && !col.gameObject.GetComponent<Bobber>().casting)
         {
-            Debug.Log("Bobber detected!" + col.gameObject.transform.position + ", " + transform.position);
             StopAllCoroutines();
             StartCoroutine(MoveToSpecificPos(col.gameObject.transform.position));
         }
