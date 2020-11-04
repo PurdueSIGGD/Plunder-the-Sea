@@ -31,7 +31,7 @@ public class StateMovement : EnemyMovement
         }
     }
 
-    public Queue<MoveAction> moveActions;
+    public LinkedList<MoveAction> moveActions;
 
     // One-liner for distance from the player
     protected float PlayerDistance()
@@ -45,7 +45,7 @@ public class StateMovement : EnemyMovement
         
 
         Hashtable pathMap = new Hashtable();
-        moveActions = new Queue<MoveAction>();
+        moveActions = new LinkedList<MoveAction>();
         Queue<PathAction> frontier = new Queue<PathAction>();
         Vector2 myPos = centerVector(myBase.myRigid.position);
         Vector2 playerPos = centerVector(myBase.player.transform.position);
@@ -53,7 +53,8 @@ public class StateMovement : EnemyMovement
         frontier.Enqueue(new PathAction(new Vector2(myPos.x, myPos.y), null));
         int maxDist = 10;
         ContactFilter2D filter = new ContactFilter2D();
-        filter.layerMask = 1 << 8;
+        filter.SetLayerMask(1 << 8);
+        Debug.Log("Start: " + myPos);
 
         while (frontier.Count > 0)
         {
@@ -63,9 +64,10 @@ public class StateMovement : EnemyMovement
                 //Build path
                 while (curr.parent != null)
                 {
-                    moveActions.Enqueue(new MoveAction(curr.pos-curr.parent.pos, 1));
+                    moveActions.AddFirst(new MoveAction(curr.pos-curr.parent.pos, 1));
                     curr = curr.parent;
                 }
+                moveActions.AddFirst(new MoveAction(2*(playerPos - myPos), 1));
                 break;
             }
             if (Vector2.Distance(curr.pos, playerPos) < maxDist)
@@ -83,13 +85,10 @@ public class StateMovement : EnemyMovement
         {
             //myBase.myRigid.velocity = (myBase.player.transform.position - this.transform.position).normalized
             //    * myBase.myStats.movementSpeed;
-            myBase.myRigid.velocity = moveActions.Peek().dir.normalized * myBase.myStats.movementSpeed;
-            string output = "Path:";
-            while (moveActions.Count > 0)
-            {
-                output += " "+moveActions.Dequeue().dir;
+            Vector2 correction = (myPos - myBase.myRigid.position);
 
-            }
+            myBase.myRigid.velocity = (moveActions.First.Value.dir+correction).normalized * myBase.myStats.movementSpeed;
+            string output = "Path: "+ myBase.myRigid.velocity;
             Debug.Log(output);
         }
         else
@@ -103,10 +102,17 @@ public class StateMovement : EnemyMovement
     {
         RaycastHit2D[] hits = new RaycastHit2D[1];
         Vector2 newPos = parent.pos + dir;
-        if (!map.Contains(newPos) && Physics2D.Raycast(parent.pos, dir, filter, hits, 1.1f) <= 0)
+        if (!map.Contains(newPos))
         {
-            map.Add(newPos, true);
-            front.Enqueue(new PathAction(newPos, parent));
+            if (Physics2D.Raycast(parent.pos, dir, filter, hits, 1.1f) <= 0)
+            {
+                map.Add(newPos, true);
+                front.Enqueue(new PathAction(newPos, parent));
+            }
+            else
+            {
+                Debug.Log("Blocked: "+parent.pos+", "+dir);
+            }
         }
     }
 
