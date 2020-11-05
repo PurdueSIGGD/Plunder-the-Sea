@@ -7,29 +7,7 @@ using UnityEngine;
 // Utility subclass for state-driven enemy movement
 public class StateMovement : EnemyMovement
 {
-    public class MoveAction
-    {
-        public Vector2 dir;
-        public float dist;
-
-        public MoveAction(Vector2 dir, float dist)
-        {
-            this.dir = dir;
-            this.dist = dist;
-        }
-    }
-
-    public class PathAction
-    {
-        public Vector2 pos;
-        public PathAction parent;
-
-        public PathAction(Vector2 pos, PathAction parent)
-        {
-            this.pos = pos;
-            this.parent = parent;
-        }
-    }
+    
 
     public LinkedList<MoveAction> moveActions;
 
@@ -67,7 +45,7 @@ public class StateMovement : EnemyMovement
                     moveActions.AddFirst(new MoveAction(curr.pos-curr.parent.pos, 1));
                     curr = curr.parent;
                 }
-                moveActions.AddFirst(new MoveAction(2*(playerPos - myPos), 1));
+                moveActions.AddLast(new MoveAction(2*((Vector2)myBase.player.transform.position - myBase.myRigid.position), 1));
                 break;
             }
             if (Vector2.Distance(curr.pos, playerPos) < maxDist)
@@ -85,7 +63,7 @@ public class StateMovement : EnemyMovement
         {
             //myBase.myRigid.velocity = (myBase.player.transform.position - this.transform.position).normalized
             //    * myBase.myStats.movementSpeed;
-            Vector2 correction = (myPos - myBase.myRigid.position);
+            Vector2 correction = .5f * (myPos - myBase.myRigid.position);
 
             myBase.myRigid.velocity = (moveActions.First.Value.dir+correction).normalized * myBase.myStats.movementSpeed;
             string output = "Path: "+ myBase.myRigid.velocity;
@@ -150,5 +128,29 @@ public class StateMovement : EnemyMovement
     public virtual int GetState()
     {
         return 0;
+    }
+}
+
+public class MoveAction
+{
+    public Vector2 dir;
+    public float dist;
+
+    public MoveAction(Vector2 dir, float dist)
+    {
+        this.dir = dir;
+        this.dist = dist;
+    }
+}
+
+public class PathAction
+{
+    public Vector2 pos;
+    public PathAction parent;
+
+    public PathAction(Vector2 pos, PathAction parent)
+    {
+        this.pos = pos;
+        this.parent = parent;
     }
 }
