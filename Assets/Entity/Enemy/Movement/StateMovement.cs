@@ -10,6 +10,8 @@ public class StateMovement : EnemyMovement
     
 
     public LinkedList<MoveAction> moveActions;
+    public float pathingRefresh = 10000;
+    public float lastRefresh = -1;
 
     // One-liner for distance from the player
     protected float PlayerDistance()
@@ -20,10 +22,30 @@ public class StateMovement : EnemyMovement
     // Move towards the player
     protected void MoveTowards()
     {
-        
 
+        calcPath();
+
+        if (moving && moveActions.Count > 0)
+        {
+            //myBase.myRigid.velocity = (myBase.player.transform.position - this.transform.position).normalized
+            //    * myBase.myStats.movementSpeed;
+            Vector2 correction = .5f * (centerVector(myBase.myRigid.position) - myBase.myRigid.position);
+
+            myBase.myRigid.velocity = (moveActions.First.Value.dir+correction).normalized * myBase.myStats.movementSpeed;
+            //string output = "Path: "+ myBase.myRigid.velocity;
+            //Debug.Log(output);
+        }
+        else
+        {
+            myBase.myRigid.velocity = Vector2.zero;
+        }
+
+    }
+
+    public void calcPath()
+    {
         Hashtable pathMap = new Hashtable();
-        moveActions = new LinkedList<MoveAction>();
+        LinkedList<MoveAction> moveActionsBuild = new LinkedList<MoveAction>();
         Queue<PathAction> frontier = new Queue<PathAction>();
         Vector2 myPos = centerVector(myBase.myRigid.position);
         Vector2 playerPos = centerVector(myBase.player.transform.position);
@@ -32,20 +54,19 @@ public class StateMovement : EnemyMovement
         int maxDist = 10;
         ContactFilter2D filter = new ContactFilter2D();
         filter.SetLayerMask(1 << 8);
-        Debug.Log("Start: " + myPos);
+        //Debug.Log("Start: " + myPos);
 
         while (frontier.Count > 0)
         {
             PathAction curr = frontier.Dequeue();
-            if (Mathf.Abs(curr.pos.x - playerPos.x) <= .1 && Mathf.Abs(curr.pos.y-playerPos.y) <= .1)
+            if (Mathf.Abs(curr.pos.x - playerPos.x) <= .1 && Mathf.Abs(curr.pos.y - playerPos.y) <= .1)
             {
-                //Build path
                 while (curr.parent != null)
                 {
-                    moveActions.AddFirst(new MoveAction(curr.pos-curr.parent.pos, 1));
+                    moveActionsBuild.AddFirst(new MoveAction(curr.pos - curr.parent.pos, 1));
                     curr = curr.parent;
                 }
-                moveActions.AddLast(new MoveAction(2*((Vector2)myBase.player.transform.position - myBase.myRigid.position), 1));
+                moveActionsBuild.AddLast(new MoveAction(2 * ((Vector2)myBase.player.transform.position - myBase.myRigid.position), 1));
                 break;
             }
             if (Vector2.Distance(curr.pos, playerPos) < maxDist)
@@ -55,24 +76,10 @@ public class StateMovement : EnemyMovement
                 explorePath(Vector2.down, curr, frontier, pathMap, filter);
                 explorePath(Vector2.left, curr, frontier, pathMap, filter);
             }
-            
-            
-        }
 
-        if (moving && moveActions.Count > 0)
-        {
-            //myBase.myRigid.velocity = (myBase.player.transform.position - this.transform.position).normalized
-            //    * myBase.myStats.movementSpeed;
-            Vector2 correction = .5f * (myPos - myBase.myRigid.position);
 
-            myBase.myRigid.velocity = (moveActions.First.Value.dir+correction).normalized * myBase.myStats.movementSpeed;
-            string output = "Path: "+ myBase.myRigid.velocity;
-            Debug.Log(output);
         }
-        else
-        {
-            myBase.myRigid.velocity = Vector2.zero;
-        }
+        moveActions = moveActionsBuild;
 
     }
 
@@ -86,10 +93,6 @@ public class StateMovement : EnemyMovement
             {
                 map.Add(newPos, true);
                 front.Enqueue(new PathAction(newPos, parent));
-            }
-            else
-            {
-                Debug.Log("Blocked: "+parent.pos+", "+dir);
             }
         }
     }
