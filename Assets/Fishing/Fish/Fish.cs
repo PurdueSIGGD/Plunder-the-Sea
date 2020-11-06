@@ -130,7 +130,8 @@ public class Fish : MonoBehaviour
             if(PassedTarget(oldPosition, pos))
             {
                 Debug.Log("Reached bobber.");
-                StartCoroutine(WaitForever());
+                StartCoroutine(WaitForALittle());
+                yield break;
             }
             yield return null;
         }
@@ -143,10 +144,10 @@ public class Fish : MonoBehaviour
     }
 
     // fish has been "caught" and now waits
-    IEnumerator WaitForever()
+    IEnumerator WaitForALittle()
     {
-        yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
-        StartCoroutine(WaitForever());
+        yield return new WaitForSeconds(5);
+        StartCoroutine(MoveRandomly());
     }
 
     // fish waits at position if called then chooses another random location
@@ -166,14 +167,23 @@ public class Fish : MonoBehaviour
             StopAllCoroutines();
             StartCoroutine(MoveRandomly(2 * angle - (180f + transform.eulerAngles.z) % 360f, true));
         }
+        if (col.gameObject.CompareTag("Bobber") && !col.gameObject.GetComponent<Bobber>().casting)
+        {
+            StopAllCoroutines();
+            StartCoroutine(WaitForALittle());
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Bobber") && !col.gameObject.GetComponent<Bobber>().casting)
+        if (col.gameObject.CompareTag("Bobber"))
         {
-            StopAllCoroutines();
-            StartCoroutine(MoveToSpecificPos(col.gameObject.transform.position));
+            Bobber bobber = col.gameObject.GetComponent<Bobber>();
+            if (!bobber.casting && bobber.baitType == preferredBaitType)
+            {
+                StopAllCoroutines();
+                StartCoroutine(MoveToSpecificPos(col.gameObject.transform.position));
+            }
         }
     }
 }
