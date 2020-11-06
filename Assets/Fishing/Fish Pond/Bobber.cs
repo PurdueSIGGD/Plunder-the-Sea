@@ -62,11 +62,6 @@ public class Bobber : MonoBehaviour
         OnContact(collider);
     }
 
-    private void OnTriggerExit2D(Collider2D collider)
-    {
-        OnContact(collider);
-    }
-
     private void OnContact(Collider2D collider)
     {
         if (reeling)
