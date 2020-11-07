@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class StateCombat : EnemyCombat
 {
+    [HideInInspector]
     public int prevState;
+    [HideInInspector]
     public StateMovement myStateMovement;
 
     private void Start()
     {
+        myBase = GetComponent<EnemyBase>();
         myStateMovement = GetComponent<StateMovement>();
         prevState = GetState();
     }
