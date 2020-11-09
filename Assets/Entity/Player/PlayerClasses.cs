@@ -42,6 +42,7 @@ public class PlayerClasses : MonoBehaviour
     {
         stats = GetComponent<PlayerStats>();
         stats.maxHP = baseHp;
+        stats.currentHP = baseHp;
         stats.movementSpeed = baseSpeed;
         stats.armorStatic = baseArmorAddition;
         stats.armorMult = baseArmorDivision;
