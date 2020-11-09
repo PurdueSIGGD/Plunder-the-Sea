@@ -309,6 +309,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: baseHp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: baseSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3247792835474656187, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: ammoBar
       value: 
