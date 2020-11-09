@@ -12,6 +12,7 @@ public class PlayerFishing : MonoBehaviour
     public float castingDistance = 7.0f;
     private Bobber bobber;
     private UI_Camera cam;
+    private bool bobberIsCast = false;
 
     private int selectedBait = 0;
     private const int amountOfBaitTypes = 2;
@@ -23,7 +24,7 @@ public class PlayerFishing : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Toggle Bait"))//B key
+        if (Input.GetButtonDown("Toggle Bait") && !bobberIsCast)//B key
         {
             selectedBait = (selectedBait + 1) % amountOfBaitTypes;
             Debug.Log("Bait " + (selectedBait + 1) + " selected");
@@ -47,6 +48,7 @@ public class PlayerFishing : MonoBehaviour
                 if (player.stats.getBaitArray()[selectedBait] > 0)
                 {
                     bobber = Bobber.Create(bobberPrefab, this, cam.GetMousePosition(), selectedBait);
+                    bobberIsCast = true;
                     player.stats.removeBait(selectedBait);
                 }
                 else
@@ -68,7 +70,9 @@ public class PlayerFishing : MonoBehaviour
         else
         {
             Debug.Log("Bobber returned");
+            player.stats.addBait(selectedBait);
         }
+        bobberIsCast = false;
     }
 
 }
