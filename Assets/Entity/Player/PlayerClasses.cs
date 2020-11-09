@@ -4,16 +4,31 @@ using UnityEngine;
 
 public class PlayerClasses : MonoBehaviour
 {
-    public float attackMultiplier = 1f;
-    public float speedModifier = 0f;
+    //modifies the initial player values or abilities
+    public float baseHp;
+    public float baseSpeed;
+    public float meleeDamage;
+    public float rangedDamage;
+    public WeaponModifiers weaponModifiers;
+    private PlayerStats stats;
 
-    private void Start()
+    public void Awake()
     {
-        GetComponent<PlayerStats>().movementSpeed += speedModifier;
+        stats = GetComponent<PlayerStats>();
+        stats.maxHP = baseHp;
+        stats.movementSpeed = baseSpeed;
+
+        weaponModifiers = new WeaponModifiers();
+        weaponModifiers.meleeDamage = meleeDamage;
+        weaponModifiers.rangedDamage = rangedDamage;
     }
 
-    public struct weaponMods{
-        //code here
+    //modifies and sent to wepaons on attack
+    public struct WeaponModifiers
+    {
+        public float meleeDamage;
+        public float rangedDamage;
     }
+
 
 }
