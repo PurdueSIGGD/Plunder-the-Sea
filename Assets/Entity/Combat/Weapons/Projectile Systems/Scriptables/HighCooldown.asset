@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11a140ed12e1ed14e98b82d0ae7adb26, type: 3}
-  m_Name: MediumStaminaCost
+  m_Script: {fileID: 11500000, guid: 4f847bf178a21d4479503660bfed66d2, type: 3}
+  m_Name: HighCooldown
   m_EditorClassIdentifier: 
-  weapon: {fileID: 11400000, guid: 515aa72d322054744b94ab1bbbab1186, type: 2}
-  staminaCost: 35
+  weapon: {fileID: 11400000, guid: b2ed2e98e7a508a438c07588d67c4529, type: 2}
+  cooldownLength: 0.5

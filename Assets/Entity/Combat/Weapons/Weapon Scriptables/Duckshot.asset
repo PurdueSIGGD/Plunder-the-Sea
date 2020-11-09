@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe20a730f14af7b449abff7a8ad75835, type: 3}
-  m_Name: Bullet Normal One
+  m_Name: Duckshot
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 8850584598485551201, guid: 665bee2cce4084b5580666db5ec97ad4, type: 3}
   projectileSpeed: 7
   ammoPerKill: 1
   maxAmmo: 5
   ammo: 5
-  damage: 50
+  damage: 60
   lifeTime: 3
-  gunSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  gunSprite: {fileID: 21300000, guid: e7d70efc12a6beb4080ea72055da2b9d, type: 3}
   projSystems:
-  - {fileID: 11400000, guid: b01e24e7701c69c4e958c6041846d26b, type: 2}
   - {fileID: 11400000, guid: 2e2b49b9c6249c54393f19fc150412de, type: 2}
+  - {fileID: 11400000, guid: b01e24e7701c69c4e958c6041846d26b, type: 2}
+  - {fileID: 11400000, guid: 3e728e4b624202048b4ede9be699efc5, type: 2}

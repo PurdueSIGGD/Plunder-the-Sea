@@ -23,6 +23,7 @@ public class EntityStats : MonoBehaviour
     private struct AppliedAttribute
     {
         public EntityAttribute attr;
+        public EntityStats source;
         public float endTime;
     };
 
@@ -34,6 +35,7 @@ public class EntityStats : MonoBehaviour
         for (int i = 0; i < attribList.Count; i++)
         {
             AppliedAttribute app = attribList[i];
+            app.attr.Update(this, app.source);
             if (Time.time >= app.endTime)
             {
                 RemoveAttribute(app.attr);
@@ -43,7 +45,7 @@ public class EntityStats : MonoBehaviour
     }
 
     //Return true if results in death
-    public bool TakeDamage(float amount)
+    public bool TakeDamage(float amount, EntityStats source)
     {
 
         float realDmg = Mathf.Max((amount  - armorStatic) * (1 - armorMult), 0);
@@ -54,7 +56,12 @@ public class EntityStats : MonoBehaviour
         {
             currentHP = 0;
             Die();
+            RemoveAllAttributes();
             died = true;
+            if (source)
+            {
+                source.OnKill(this);
+            }
         }
         if (healthbar != null)
         {
@@ -65,10 +72,11 @@ public class EntityStats : MonoBehaviour
 
     }
 
-    public void AddAttribute(EntityAttribute attr)
+    public void AddAttribute(EntityAttribute attr, EntityStats source)
     {
         AppliedAttribute app;
         app.attr = attr;
+        app.source = source;
         if (attr.duration == float.PositiveInfinity)
         {
             app.endTime = float.PositiveInfinity;
@@ -91,6 +99,15 @@ public class EntityStats : MonoBehaviour
                 attr.OnRemove(this);
             }
         }
+    }
+
+    public void RemoveAllAttributes()
+    {
+        for (int i = 0; i < attribList.Count; i++)
+        {
+            attribList[i].attr.OnRemove(this);
+        }
+        attribList.Clear();
     }
     
     public virtual void Die()
