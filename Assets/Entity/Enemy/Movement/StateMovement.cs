@@ -10,8 +10,8 @@ public class StateMovement : EnemyMovement
     
 
     public LinkedList<MoveAction> moveActions;
-    public float pathingRefresh = 10000;
-    public float lastRefresh = -1;
+    public float pathingRefresh = .25f;
+    private float lastRefresh = -Mathf.Infinity;
 
     // One-liner for distance from the player
     protected float PlayerDistance()
@@ -22,8 +22,12 @@ public class StateMovement : EnemyMovement
     // Move towards the player
     protected void MoveTowards()
     {
-
-        calcPath();
+        float nowSecs = Time.time;
+        if (nowSecs - lastRefresh >= pathingRefresh) {
+            lastRefresh = nowSecs;
+            calcPath();
+        }
+        Debug.Log("Now: " + nowSecs + ", ref: "+lastRefresh);
 
         if (moving && moveActions.Count > 0)
         {
@@ -31,13 +35,37 @@ public class StateMovement : EnemyMovement
             //    * myBase.myStats.movementSpeed;
             Vector2 correction = .5f * (centerVector(myBase.myRigid.position) - myBase.myRigid.position);
 
-            myBase.myRigid.velocity = (moveActions.First.Value.dir+correction).normalized * myBase.myStats.movementSpeed;
+            MoveAction currAction = moveActions.First.Value;
+            if (currAction.dist > 0)
+            {
+                //currAction.dist -= Time.deltaTime * myBase.myStats.movementSpeed;
+            }
+            else
+            {
+                moveActions.RemoveFirst();
+                if (moveActions.Count > 0)
+                {
+                    currAction = moveActions.First.Value;
+                }
+            }
+            if (moveActions.Count > 0)
+            {
+                currAction.dist -= Time.deltaTime * myBase.myStats.movementSpeed;
+                myBase.myRigid.velocity = (moveActions.First.Value.dir + correction).normalized * myBase.myStats.movementSpeed;
+            }
             //string output = "Path: "+ myBase.myRigid.velocity;
             //Debug.Log(output);
         }
-        else
+        if (moving && moveActions.Count <= 0)
         {
-            myBase.myRigid.velocity = Vector2.zero;
+            if (Vector3.Distance(myBase.myRigid.position, myBase.player.transform.position) <= 2.5f)
+            {
+                myBase.myRigid.velocity = ((Vector2)myBase.player.transform.position - myBase.myRigid.position).normalized * myBase.myStats.movementSpeed;
+            }
+            else
+            {
+                myBase.myRigid.velocity = Vector2.zero;
+            }
         }
 
     }
@@ -66,7 +94,11 @@ public class StateMovement : EnemyMovement
                     moveActionsBuild.AddFirst(new MoveAction(curr.pos - curr.parent.pos, 1));
                     curr = curr.parent;
                 }
-                moveActionsBuild.AddLast(new MoveAction(2 * ((Vector2)myBase.player.transform.position - myBase.myRigid.position), 1));
+                //MoveAction lastMove = moveActionsBuild.Last.Value;
+                //Vector2 prePos = - lastMove.dir;
+                //Vector2 postPos = (Vector2)myBase.player.transform.position - myPos;
+                //lastMove.dir = 20 * (postPos - prePos);
+                //lastMove.dist = Vector2.Distance(prePos, postPos);
                 break;
             }
             if (Vector2.Distance(curr.pos, playerPos) < maxDist)
