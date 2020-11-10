@@ -99,16 +99,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
-  randomX: 2
-  randomY: 2
+  rotationSpeed: 0.25
+  preferredBaitType: 0
   minWaitTime: 0
   maxWaitTime: 1
+  lootLevel: 1
   buffMovementSpeed: 0
   buffMaxStamina: 20
   buffMaxHP: 0
   buffStaminaRechargeRate: 0
-  lootLevel: 1
-  preferredBaitType: 0
   FishingMinigame: {fileID: 0}
 --- !u!50 &-8485167538343993492
 Rigidbody2D:

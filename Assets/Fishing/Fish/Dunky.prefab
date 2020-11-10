@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -865221556427217019}
   - component: {fileID: -5731511110211377871}
   m_Layer: 0
-  m_Name: Fish3
+  m_Name: Dunky
   m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bc0a0c1cbfefd4d448d8a7751a968403, type: 3}
-  m_Color: {r: 0.3511567, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 2445b4f327f088c4c94aaa8c3c18d932, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,16 +99,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
-  randomX: 6
-  randomY: 6
+  rotationSpeed: 0.3
+  preferredBaitType: 0
   minWaitTime: 4
   maxWaitTime: 8
+  lootLevel: 4
   buffMovementSpeed: 0
   buffMaxStamina: 0
   buffMaxHP: 0
   buffStaminaRechargeRate: 0
-  lootLevel: 4
-  preferredBaitType: 0
   FishingMinigame: {fileID: 0}
 --- !u!50 &6090371748246765999
 Rigidbody2D:
@@ -145,7 +144,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.36, y: 0.18}
+  m_Size: {x: 0.64, y: 0.2}
   m_Direction: 1
 --- !u!58 &-5731511110211377871
 CircleCollider2D:

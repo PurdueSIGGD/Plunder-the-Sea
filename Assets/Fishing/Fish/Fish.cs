@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class Fish : MonoBehaviour
 {
-    public float speed;
-    public float randomX;
-    public float randomY;
-    public float minWaitTime;
-    public float maxWaitTime;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float rotationSpeed = 0.35f;
+    [SerializeField]
+    private int preferredBaitType;
+    [SerializeField]
+    private float minWaitTime;
+    [SerializeField]
+    private float maxWaitTime;
+    public int lootLevel;
     public float buffMovementSpeed = 0f;
     public float buffMaxStamina = 0f;
     public float buffMaxHP = 0f;
     public float buffStaminaRechargeRate = 0f;
-    public int lootLevel;
-    public int preferredBaitType;
     public GameObject FishingMinigame;
-    private const float rotationSpeed = 0.25f;
 
     void Start()
     {
@@ -47,7 +50,7 @@ public class Fish : MonoBehaviour
         }
     }
 
-    void IncrementRotation(Vector3 newRotation)
+    void IncrementRotation(Vector3 newRotation, bool useLocalRotation = true)
     {
         while (true) // This makes the target angle be within 180 degrees of where the fish is facing.
         {
@@ -65,11 +68,16 @@ public class Fish : MonoBehaviour
             }
         }
         float z = newRotation.z;
+        float rotationFactor = rotationSpeed;
+        if (!useLocalRotation)
+        {
+            rotationFactor = 1f;
+        }
         if(transform.eulerAngles.z > z)
         {
-            if(transform.eulerAngles.z > z + (speed * rotationSpeed))
+            if(transform.eulerAngles.z > z + (speed * rotationFactor))
             {
-                transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z - (speed * rotationSpeed));
+                transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z - (speed * rotationFactor));
             }
             else
             {
@@ -78,9 +86,9 @@ public class Fish : MonoBehaviour
         }
         else
         {
-            if(transform.eulerAngles.z < z - (speed * rotationSpeed))
+            if(transform.eulerAngles.z < z - (speed * rotationFactor))
             {
-                transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + (speed * rotationSpeed));
+                transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + (speed * rotationFactor));
             }
             else
             {
@@ -102,7 +110,7 @@ public class Fish : MonoBehaviour
         while (i < 1.0f)
         {
             i += Time.deltaTime * (speed / 3);
-            IncrementRotation(new Vector3(0, 0, angle));
+            IncrementRotation(new Vector3(0, 0, angle), !useAngle);
             transform.position += transform.right * Time.deltaTime * speed;
             yield return null;
         }
