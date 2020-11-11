@@ -62,8 +62,8 @@ public class Projectile : MonoBehaviour
         if (weapon)
         {
             weapon.OnEnd(this);
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 
     public static Projectile Shoot(GameObject prefab, GameObject source, Vector2 target, float speed)
