@@ -13,59 +13,59 @@ public class PlayerClasses : MonoBehaviour
      **/
     
     //used to set the player's class
-    [Header("Classlist stuff (only modify if script is on player)")]
+    [Header("--Classlist stuff (only modify if script is on player)--")]
     public int classNumber = -1;
     public PlayerClasses[] classes;
 
     //modifies the initial player values or abilities
-    [Header("Player stats")]
-    [Range(1, 100)]
+    [Header("--Player stats--")]
+    [Range(1, 64)]
     public float baseHp = 10;
     [Range(0, 32)]
     public float baseSpeed = 6;
     public float baseArmorAddition = 0;
     public float baseArmorDivision = 0;
-    [Range(1, 1024)]
+    [Range(0, 512)]
     public float baseStamina = 100;
     [Range(0, 16)]
     public float baseStaminaRechargeRate = 2;
-    [Range(0, 128)]
+    [Range(0, 16)]
     public float proficiency = 1;
 
     private PlayerStats stats;
 
-    [Header("Starting Weapons (not yet implemented)")]
+    [Header("--Starting Weapons (not yet implemented)--")]
     public ScriptableWeapon sw;
     //this will be implemented after the weapon changes
 
     //modifies weapon stats
-    [Header("Weapon stat modifiers")]
+    [Header("--Weapon stat modifiers--")]
     public float meleeDamageAddition = 0;
-    [Range(0, 16)]
+    [Range(0, 8)]
     public float meleeDamageMultiplier = 1;
     public float rangedDamageAddition = 0;
-    [Range(0, 16)]
+    [Range(0, 8)]
     public float rangedDamageMultiplier = 1;
     public float critChanceAddition = 0;
-    [Range(0, 16)]
+    [Range(0, 8)]
     public float critChanceMultiplier = 1;
     public float meleeAttackSpeedAddition = 0;
-    [Range(0, 16)]
+    [Range(0, 8)]
     public float meleeAttackSpeedMultiplier = 1;
     public float rangedAttackSpeedAddition = 0;
-    [Range(0, 16)]
+    [Range(0, 8)]
     public float rangedAttackSpeedMultiplier = 1;
     public float projectileSpeedAddition = 0;
-    [Range(0, 16)]
+    [Range(0, 8)]
     public float projectileSpeedMultiplier = 1;
     public float accuracyAddition = 0;
-    [Range(0, 16)]
+    [Range(0, 8)]
     public float accuracyMultiplier = 1;
     public float ammoAddition = 0;
-    [Range(0, 16)]
+    [Range(0, 8)]
     public float ammoMultiplier = 1;
 
-    [Header("Use to acess weapon modifiers")]
+    //Use to acess weapon modifiers
     public WeaponModifiers weaponModifiers = new WeaponModifiers();
 
     public void Awake()
@@ -92,6 +92,7 @@ public class PlayerClasses : MonoBehaviour
         stats.armorStatic = baseArmorAddition;
         stats.armorMult = baseArmorDivision;
         stats.staminaMax = baseStamina;
+        stats.stamina = baseStamina;
         stats.staminaRechargeRate = baseStaminaRechargeRate;
         //proficiency is not yet implemented
     }
