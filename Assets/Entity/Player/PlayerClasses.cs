@@ -4,35 +4,65 @@ using UnityEngine;
 
 public class PlayerClasses : MonoBehaviour
 {
+    /**
+     * This script will be added to the player object, but relies on prefab instances of this class added
+     * to the classes array to be able to use stored classes
+     * 
+     * Scripts not on the player (stored in profabs) should just store the numberical values
+     * 
+     **/
+    
+    //used to set the player's class
+    [Header("Classlist stuff (only modify if script is on player)")]
+    public int classNumber = -1;
+    public PlayerClasses[] classes;
+
     //modifies the initial player values or abilities
-    [Header("Player stats/modifiers")]
-    public float baseHp = 100;
+    [Header("Player stats")]
+    [Range(1, 100)]
+    public float baseHp = 10;
+    [Range(0, 32)]
     public float baseSpeed = 6;
     public float baseArmorAddition = 0;
     public float baseArmorDivision = 0;
+    [Range(1, 1024)]
     public float baseStamina = 100;
+    [Range(0, 16)]
     public float baseStaminaRechargeRate = 2;
+    [Range(0, 128)]
     public float proficiency = 1;
 
     private PlayerStats stats;
 
+    [Header("Starting Weapons (not yet implemented)")]
+    public ScriptableWeapon sw;
+    //this will be implemented after the weapon changes
+
     //modifies weapon stats
-    [Header("Weapon stats/modifiers")]
+    [Header("Weapon stat modifiers")]
     public float meleeDamageAddition = 0;
+    [Range(0, 16)]
     public float meleeDamageMultiplier = 1;
     public float rangedDamageAddition = 0;
+    [Range(0, 16)]
     public float rangedDamageMultiplier = 1;
     public float critChanceAddition = 0;
+    [Range(0, 16)]
     public float critChanceMultiplier = 1;
     public float meleeAttackSpeedAddition = 0;
+    [Range(0, 16)]
     public float meleeAttackSpeedMultiplier = 1;
     public float rangedAttackSpeedAddition = 0;
+    [Range(0, 16)]
     public float rangedAttackSpeedMultiplier = 1;
     public float projectileSpeedAddition = 0;
+    [Range(0, 16)]
     public float projectileSpeedMultiplier = 1;
     public float accuracyAddition = 0;
+    [Range(0, 16)]
     public float accuracyMultiplier = 1;
     public float ammoAddition = 0;
+    [Range(0, 16)]
     public float ammoMultiplier = 1;
 
     [Header("Use to acess weapon modifiers")]
@@ -40,7 +70,22 @@ public class PlayerClasses : MonoBehaviour
 
     public void Awake()
     {
-        stats = GetComponent<PlayerStats>();
+        if (classNumber != -1)
+        {
+            //if on a player: set this script's weapon struct and the player's stats based on the selected class (does not modify the variables of this script)
+            stats = GetComponent<PlayerStats>();
+            classes[classNumber].setPlayerStats(stats);
+            classes[classNumber].setWeaponMods(weaponModifiers);
+        }
+        else
+        {
+            //if not a player
+
+        }
+    }
+
+    public void setPlayerStats(PlayerStats stats)
+    {
         stats.maxHP = baseHp;
         stats.currentHP = baseHp;
         stats.movementSpeed = baseSpeed;
@@ -49,7 +94,10 @@ public class PlayerClasses : MonoBehaviour
         stats.staminaMax = baseStamina;
         stats.staminaRechargeRate = baseStaminaRechargeRate;
         //proficiency is not yet implemented
+    }
 
+    public void setWeaponMods(WeaponModifiers weaponModifiers)
+    {
         weaponModifiers.meleeDamageAddition = meleeDamageAddition;
         weaponModifiers.meleeDamageMultiplier = meleeDamageMultiplier;
         weaponModifiers.rangedDamageAddition = rangedDamageAddition;
