@@ -11,6 +11,7 @@ public class StateMovement : EnemyMovement
 
     public LinkedList<MoveAction> moveActions;
     public float pathingRefresh = .25f;
+    public float maxDist = 10;
     private float lastRefresh = -Mathf.Infinity;
 
     // One-liner for distance from the player
@@ -27,7 +28,6 @@ public class StateMovement : EnemyMovement
             lastRefresh = nowSecs;
             calcPath();
         }
-        Debug.Log("Now: " + nowSecs + ", ref: "+lastRefresh);
 
         if (moving && moveActions.Count > 0)
         {
@@ -36,11 +36,7 @@ public class StateMovement : EnemyMovement
             Vector2 correction = .5f * (centerVector(myBase.myRigid.position) - myBase.myRigid.position);
 
             MoveAction currAction = moveActions.First.Value;
-            if (currAction.dist > 0)
-            {
-                //currAction.dist -= Time.deltaTime * myBase.myStats.movementSpeed;
-            }
-            else
+            if (currAction.dist <= 0)
             {
                 moveActions.RemoveFirst();
                 if (moveActions.Count > 0)
@@ -53,8 +49,6 @@ public class StateMovement : EnemyMovement
                 currAction.dist -= Time.deltaTime * myBase.myStats.movementSpeed;
                 myBase.myRigid.velocity = (moveActions.First.Value.dir + correction).normalized * myBase.myStats.movementSpeed;
             }
-            //string output = "Path: "+ myBase.myRigid.velocity;
-            //Debug.Log(output);
         }
         if (moving && moveActions.Count <= 0)
         {
@@ -79,7 +73,6 @@ public class StateMovement : EnemyMovement
         Vector2 playerPos = centerVector(myBase.player.transform.position);
         pathMap.Add(myPos, true);
         frontier.Enqueue(new PathAction(new Vector2(myPos.x, myPos.y), null));
-        int maxDist = 10;
         ContactFilter2D filter = new ContactFilter2D();
         filter.SetLayerMask(1 << 8);
         //Debug.Log("Start: " + myPos);
@@ -94,11 +87,6 @@ public class StateMovement : EnemyMovement
                     moveActionsBuild.AddFirst(new MoveAction(curr.pos - curr.parent.pos, 1));
                     curr = curr.parent;
                 }
-                //MoveAction lastMove = moveActionsBuild.Last.Value;
-                //Vector2 prePos = - lastMove.dir;
-                //Vector2 postPos = (Vector2)myBase.player.transform.position - myPos;
-                //lastMove.dir = 20 * (postPos - prePos);
-                //lastMove.dist = Vector2.Distance(prePos, postPos);
                 break;
             }
             if (Vector2.Distance(curr.pos, playerPos) < maxDist)
