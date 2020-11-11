@@ -50,7 +50,7 @@ public class Fish : MonoBehaviour
         }
     }
 
-    void IncrementRotation(Vector3 newRotation, bool useLocalRotation = true)
+    void IncrementRotation(Vector3 newRotation)
     {
         while (true) // This makes the target angle be within 180 degrees of where the fish is facing.
         {
@@ -68,16 +68,11 @@ public class Fish : MonoBehaviour
             }
         }
         float z = newRotation.z;
-        float rotationFactor = rotationSpeed;
-        if (!useLocalRotation)
-        {
-            rotationFactor = 1f;
-        }
         if(transform.eulerAngles.z > z)
         {
-            if(transform.eulerAngles.z > z + (speed * rotationFactor))
+            if(transform.eulerAngles.z > z + (speed * rotationSpeed))
             {
-                transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z - (speed * rotationFactor));
+                transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z - (speed * rotationSpeed));
             }
             else
             {
@@ -86,9 +81,9 @@ public class Fish : MonoBehaviour
         }
         else
         {
-            if(transform.eulerAngles.z < z - (speed * rotationFactor))
+            if(transform.eulerAngles.z < z - (speed * rotationSpeed))
             {
-                transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + (speed * rotationFactor));
+                transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + (speed * rotationSpeed));
             }
             else
             {
@@ -109,8 +104,8 @@ public class Fish : MonoBehaviour
         // moves fish to random location
         while (i < 1.0f)
         {
-            i += Time.deltaTime * (speed / 3);
-            IncrementRotation(new Vector3(0, 0, angle), !useAngle);
+            i += Time.deltaTime * (speed / 2);
+            IncrementRotation(new Vector3(0, 0, angle));
             transform.position += transform.right * Time.deltaTime * speed;
             yield return null;
         }

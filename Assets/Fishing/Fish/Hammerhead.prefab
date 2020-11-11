@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  rotationSpeed: 0.35
+  rotationSpeed: 0.25
   preferredBaitType: 0
   minWaitTime: 1
   maxWaitTime: 2
@@ -144,7 +144,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.6, y: 0.2}
+  m_Size: {x: 0.5, y: 0.4}
   m_Direction: 1
 --- !u!58 &288724639897624243
 CircleCollider2D:
