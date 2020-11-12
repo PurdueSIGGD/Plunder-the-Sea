@@ -10,8 +10,11 @@ public class PlayerFishing : MonoBehaviour
     public float castingSpeed = 4.0f;
     //Maximum distance before line breaks
     public float castingDistance = 7.0f;
+    public AudioClip castSound;
+    public AudioClip reelSound;
     private Bobber bobber;
     private UI_Camera cam;
+    private AudioSource audioSrc;
     private bool bobberIsCast = false;
 
     private int selectedBait = 0;
@@ -20,6 +23,11 @@ public class PlayerFishing : MonoBehaviour
     private void Start()
     {
         cam = GameObject.FindObjectOfType<UI_Camera>();
+        audioSrc = GetComponent<AudioSource>();
+        if (!audioSrc)
+        {
+            audioSrc = this.gameObject.AddComponent<AudioSource>();
+        }
     }
 
     private void Update()
@@ -41,12 +49,16 @@ public class PlayerFishing : MonoBehaviour
         {
             if (bobber)
             {
+                audioSrc.clip = reelSound;
+                audioSrc.Play();
                 bobber.Reel();
             }
             else
             {
                 if (player.stats.getBaitArray()[selectedBait] > 0)
                 {
+                    audioSrc.clip = castSound;
+                    audioSrc.Play();
                     bobber = Bobber.Create(bobberPrefab, this, cam.GetMousePosition(), selectedBait);
                     bobberIsCast = true;
                     player.stats.removeBait(selectedBait);
