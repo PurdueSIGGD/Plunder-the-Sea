@@ -48,12 +48,16 @@ public class ApproachMovement : StateMovement
                         approachState = ApproachState.cooldown;
                         SetTarget(actCooldownTime);
                     }
+                    // Stop moving
+                    myBase.myRigid.velocity = Vector2.zero;
                     break;
                 case ApproachState.cooldown:
                     if (OnTarget())
                     {
                         approachState = ApproachState.approaching;
                     }
+                    // Stop moving
+                    myBase.myRigid.velocity = Vector2.zero;
                     break;
             }
         }

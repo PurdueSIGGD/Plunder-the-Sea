@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     public float currentLifeTime = 0;
     public float damage = 1.0f;
     public bool destroyOnCollide = true;
+    public bool friendlyFire = false;
     [HideInInspector]
     public GameObject source;
     [HideInInspector]
@@ -33,6 +34,11 @@ public class Projectile : MonoBehaviour
         Projectile proj = collider.GetComponent<Projectile>();
         /* Don't collide with self OR other projectiles */
         if (collider == source || proj)
+        {
+            return;
+        }
+        /* Don't collide enemy projectiles with enemies unless friendlyFire is true */
+        if (source.tag == collider.tag && !friendlyFire)
         {
             return;
         }
