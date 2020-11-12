@@ -5,10 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ScriptableWeapon", menuName = "ScriptableObjects/Weapon", order = 1)]
 public class ScriptableWeapon : ScriptableObject
 {
+    public bool isMelee = false;
     public GameObject projectilePrefab;
     public float projectileSpeed;
+    public int ammoPerKill = 1;
+    public int maxAmmo = 0;
+    [HideInInspector]
+    public int ammo = 0;
     public int damage;
     public float lifeTime;
+    public Sprite gunSprite = null;
 
     [SerializeField]
     private ProjectileSystem[] projSystems = null;
@@ -36,6 +42,14 @@ public class ScriptableWeapon : ScriptableObject
 
         return true;
     }
+    /* Called when projectile hits entity */
+    public void OnHit(Projectile proj, EntityStats victim)
+    {
+        foreach (var sys in projSystems)
+        {
+            sys.OnHit(proj, victim);
+        }
+    }
 
     public void OnFire(Projectile projectile) { 
         projectiles.Add(projectile);
@@ -56,6 +70,7 @@ public class ScriptableWeapon : ScriptableObject
     public void OnEquip(WeaponInventory inv) { 
         foreach (var sys in projSystems) 
         {
+            sys.weapon = this;
             sys.OnEquip(inv);
         }
     }
@@ -63,6 +78,14 @@ public class ScriptableWeapon : ScriptableObject
         foreach (var sys in projSystems)
         {
             sys.OnUnequip(inv);
+        }
+    }
+
+    public virtual void OnKill(EntityStats victim)
+    {
+        foreach (var sys in projSystems)
+        {
+            sys.OnKill(victim);
         }
     }
 

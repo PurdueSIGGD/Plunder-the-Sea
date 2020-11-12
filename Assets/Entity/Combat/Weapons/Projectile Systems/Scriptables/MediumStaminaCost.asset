@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11a140ed12e1ed14e98b82d0ae7adb26, type: 3}
   m_Name: MediumStaminaCost
   m_EditorClassIdentifier: 
-  staminaCost: 0
+  weapon: {fileID: 11400000, guid: 515aa72d322054744b94ab1bbbab1186, type: 2}
+  staminaCost: 35

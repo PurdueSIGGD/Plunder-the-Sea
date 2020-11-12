@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe20a730f14af7b449abff7a8ad75835, type: 3}
   m_Name: Whip
   m_EditorClassIdentifier: 
+  isMelee: 1
   projectilePrefab: {fileID: 4039954679365618853, guid: f4050a92747de0f41b4bb0e32e21eebf, type: 3}
   projectileSpeed: 0
+  ammoPerKill: 1
+  maxAmmo: 0
+  ammo: 0
   damage: 45
   lifeTime: 0.4
+  gunSprite: {fileID: 0}
   projSystems:
   - {fileID: 11400000, guid: 74d4013fd1e418340a3f65e0157fab28, type: 2}
   - {fileID: 11400000, guid: 644fca7e2e114ec4fa3974837974c12b, type: 2}

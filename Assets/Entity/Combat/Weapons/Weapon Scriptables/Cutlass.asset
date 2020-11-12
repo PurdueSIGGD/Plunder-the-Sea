@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe20a730f14af7b449abff7a8ad75835, type: 3}
   m_Name: Cutlass
   m_EditorClassIdentifier: 
+  isMelee: 1
   projectilePrefab: {fileID: 8161092618706017957, guid: 2145da28acb712349ad1243d40c6f832, type: 3}
   projectileSpeed: 0
+  ammoPerKill: 1
+  maxAmmo: 0
+  ammo: 0
   damage: 60
   lifeTime: 0.3
+  gunSprite: {fileID: 0}
   projSystems:
   - {fileID: 11400000, guid: 50b212ccc40d87d43ac1496ff071b42b, type: 2}
   - {fileID: 11400000, guid: 74d4013fd1e418340a3f65e0157fab28, type: 2}

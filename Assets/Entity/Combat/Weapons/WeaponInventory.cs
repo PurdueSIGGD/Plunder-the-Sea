@@ -8,9 +8,16 @@ public class WeaponInventory : MonoBehaviour
     private ScriptableWeapon meleeWeapon;
     [SerializeField]
     private ScriptableWeapon rangeWeapon;
+    private UI_Camera cam;
+    private SpriteRenderer spriteRen;
 
     private void Start()
     {
+        cam = GameObject.FindObjectOfType<UI_Camera>();
+        spriteRen = new GameObject().AddComponent<SpriteRenderer>();
+        spriteRen.transform.localScale = this.transform.localScale * 1.5f;
+        spriteRen.transform.position = this.transform.position;
+        spriteRen.transform.SetParent(this.transform);
         if (meleeWeapon)
         {
             meleeWeapon.OnEquip(this);
@@ -18,6 +25,7 @@ public class WeaponInventory : MonoBehaviour
         if (rangeWeapon)
         {
             rangeWeapon.OnEquip(this);
+            spriteRen.sprite = rangeWeapon.gunSprite;
         }
     }
 
@@ -25,6 +33,11 @@ public class WeaponInventory : MonoBehaviour
     {
         meleeWeapon.Update();
         rangeWeapon.Update();
+    }
+
+    private void LateUpdate()
+    {
+        spriteRen.transform.rotation = Quaternion.FromToRotation(new Vector3(1,1,0), (Vector3)cam.GetMousePosition() - spriteRen.transform.position);
     }
 
     public ScriptableWeapon GetMelee()
@@ -51,6 +64,7 @@ public class WeaponInventory : MonoBehaviour
         wep.OnEquip(this);
         // Make sure to set weapon after the equip methods run
         rangeWeapon = wep;
+        spriteRen.sprite = rangeWeapon.gunSprite;
     }
 
 }
