@@ -114,8 +114,8 @@ GameObject:
   - component: {fileID: 2893220194574478064}
   - component: {fileID: 732767531218374810}
   - component: {fileID: 8025262408722974610}
-  - component: {fileID: 2575890806204432934}
   - component: {fileID: 4736270485073046286}
+  - component: {fileID: 8490608325319923761}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -272,26 +272,13 @@ MonoBehaviour:
   movementSpeed: 2
   maxHP: 1
   currentHP: 1
+  armorMult: 0
+  armorStatic: 0
   healthbar: {fileID: 7839513570301541432}
-  modifiers: []
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 10
   damage: 1
   numberOfTimesToRespawn: 0
---- !u!114 &2575890806204432934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950980189304417506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3953fd9b44ab4671ad4af10b45b4e68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myBase: {fileID: 0}
-  attackRange: 0.5
 --- !u!58 &4736270485073046286
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -308,6 +295,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!114 &8490608325319923761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950980189304417506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6578e6fdbf2cd344083f8d8387ebfa56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myBase: {fileID: 0}
+  attackRange: 0.5
 --- !u!1001 &185663513
 PrefabInstance:
   m_ObjectHideFlags: 0
