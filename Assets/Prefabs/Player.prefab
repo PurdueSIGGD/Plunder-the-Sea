@@ -347,7 +347,7 @@ MonoBehaviour:
   stamina: 100
   staminaRechargeRate: 2
   staminaBar: {fileID: 8726192590555423247}
-  ammoBar: {fileID: 0}
+  ammoBar: {fileID: 832614831945798190}
 --- !u!50 &7045101813800168214
 Rigidbody2D:
   serializedVersion: 4
@@ -871,3 +871,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 522256626616059444, guid: 8069da242dd289f4ab690c63c53f3819, type: 3}
   m_PrefabInstance: {fileID: 7441502160206278159}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &832614831945798190 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7839513570453519393, guid: 8069da242dd289f4ab690c63c53f3819, type: 3}
+  m_PrefabInstance: {fileID: 7441502160206278159}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
