@@ -19,8 +19,8 @@ public class SpinningMovement : StateMovement
     // The state for approaching. There are 3 options, which represent different points in movement.
     public enum SpinningState
     {
-        spinning,
-        dizzy
+        spinning = 0,
+        dizzy = 1
     }
     public SpinningState spinningState = SpinningState.spinning;
 
@@ -60,5 +60,10 @@ public class SpinningMovement : StateMovement
                     break;
             }
         }
+    }
+
+    public override int GetState()
+    {
+        return (int)this.spinningState;
     }
 }

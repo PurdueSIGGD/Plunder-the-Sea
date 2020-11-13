@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour
 {
-    [HideInInspector]
+    //[HideInInspector]
     public EnemyBase myBase;
     public float attackRange = 0.5f;
 
@@ -15,7 +15,7 @@ public class EnemyCombat : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider) //Called when something enters the enemy's range
     {
-        if(collider.GetComponent<PlayerBase>())
+        if (collider.GetComponent<PlayerBase>())
         {
             myBase.myMovement.moving = false;
             myBase.myRigid.velocity = Vector2.zero;
@@ -24,12 +24,12 @@ public class EnemyCombat : MonoBehaviour
     }
     IEnumerator meleeAttack() //Executes a melee attack
     {
-        yield return new WaitForSeconds(1/myBase.myStats.attackSpeedInverse);
+        yield return new WaitForSeconds(1 / myBase.myStats.attackSpeedInverse);
         if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
         {
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
         }
         myBase.myMovement.moving = true;
     }
-    
+
 }

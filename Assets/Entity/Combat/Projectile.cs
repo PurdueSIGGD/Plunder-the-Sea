@@ -43,13 +43,16 @@ public class Projectile : MonoBehaviour
         if (ent)
         {
             pierceCount++;
-            weapon.OnHit(this, ent);
+            if (weapon)
+            {
+                weapon.OnHit(this, ent);
+            }
             EntityStats attacker = source.GetComponent<EntityStats>();
             ent.TakeDamage(damage, attacker);
         }
         
         /* Range proj. always destroy on non-entities */
-        if ((!weapon.isMelee && !ent) || destroyOnCollide)
+        if ((weapon && !weapon.isMelee && !ent) || destroyOnCollide)
         {
             Destroy();
         }
@@ -60,8 +63,8 @@ public class Projectile : MonoBehaviour
         if (weapon)
         {
             weapon.OnEnd(this);
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 
     public static Projectile Shoot(GameObject prefab, GameObject source, Vector2 target, float speed)
