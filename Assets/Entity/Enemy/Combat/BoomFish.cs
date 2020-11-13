@@ -26,14 +26,14 @@ public class BoomFish : StateCombat
 
         if (exploded && OnTarget(explodeTarget))
         {
-            Destroy(gameObject);
+            DestroyImmediate(gameObject);
         }
 
         // Variable to ensure that the state used for comparison doesn't change partway through Update()
         int current = GetState();
 
         // Explodes the frame the boom fish finishes activating
-        if (current == cooldown && prevState == activating)
+        if (!exploded && current == cooldown && prevState == activating)
         {
             Explode();
             exploded = true;
