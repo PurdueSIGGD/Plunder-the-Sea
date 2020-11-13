@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2236832145532137557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2236832145532137556}
+  - component: {fileID: 2236832145532137555}
+  m_Layer: 0
+  m_Name: DefaultSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2236832145532137556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2236832145532137557}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2236832145532137555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2236832145532137557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 922e87d10e4ac3844990fe5771a1d968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 5338947076325555132, guid: 6bfd232b6cc98ab4da3f8b76052d4f59, type: 3}
+  - {fileID: 5338947076325555132, guid: 6bfd232b6cc98ab4da3f8b76052d4f59, type: 3}
+  - {fileID: 5338947076325555132, guid: 6bfd232b6cc98ab4da3f8b76052d4f59, type: 3}
+  - {fileID: 5338947076325555132, guid: 6bfd232b6cc98ab4da3f8b76052d4f59, type: 3}
+  - {fileID: 5338947076325555132, guid: 6bfd232b6cc98ab4da3f8b76052d4f59, type: 3}
+  - {fileID: 8010861710391754302, guid: 9587eb74143e5bf4fb2e9b15b0f265fd, type: 3}
+  - {fileID: 8010861710391754302, guid: 9587eb74143e5bf4fb2e9b15b0f265fd, type: 3}
+  - {fileID: 4091676865972655606, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+  - {fileID: 4091676865972655606, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+  - {fileID: 6599563647011132998, guid: 47c8a4f514214274e9692b0223897e93, type: 3}
+  chanceToSpawn: 1
