@@ -123,6 +123,71 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &260746654
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 474323351449184283, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 474323351449184283, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091676865972655564, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5587755
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091676865972655564, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.509669
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091676865972655564, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091676865972655564, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091676865972655564, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091676865972655564, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091676865972655564, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091676865972655564, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091676865972655564, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091676865972655564, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091676865972655564, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4091676865972655606, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+      propertyPath: m_Name
+      value: Boomfish
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
 --- !u!114 &1325165683 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 832614831945798190, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
@@ -216,7 +281,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1545560703
 MonoBehaviour:
@@ -292,7 +357,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7869038518230414300
 PrefabInstance:

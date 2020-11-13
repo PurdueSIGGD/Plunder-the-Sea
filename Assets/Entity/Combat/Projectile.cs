@@ -12,6 +12,7 @@ public class Projectile : MonoBehaviour
     public float currentLifeTime = 0;
     public float damage = 1.0f;
     public bool destroyOnCollide = true;
+    public bool destroyOnEnv = true;
     public bool friendlyFire = false;
     [HideInInspector]
     public int pierceCount = 0;
@@ -49,15 +50,21 @@ public class Projectile : MonoBehaviour
         if (ent)
         {
             pierceCount++;
-            weapon.OnHit(this, ent);
+            if (weapon)
+            {
+                weapon.OnHit(this, ent);
+            }
             EntityStats attacker = source.GetComponent<EntityStats>();
             ent.TakeDamage(damage, attacker);
         }
         
-        /* Range proj. always destroy on non-entities */
-        if ((!weapon.isMelee && !ent) || destroyOnCollide)
+        /* Range proj. usually destroy on non-entities */
+        if (((!weapon || !weapon.isMelee) && !ent) || destroyOnCollide)
         {
-            Destroy();
+            if (destroyOnEnv)
+            {
+                Destroy();
+            }
         }
     }
 

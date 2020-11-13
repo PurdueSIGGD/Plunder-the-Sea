@@ -9,7 +9,7 @@ public class BoomFish : StateCombat
 
     private bool exploded = false;
     private float explodeTarget = 0.0f;
-    public float lingerTime = 0.1f;
+    public float lingerTime = 0f;
 
     // Const values to make coding easier
     const int cooldown = (int)ApproachMovement.ApproachState.cooldown;
@@ -18,6 +18,12 @@ public class BoomFish : StateCombat
     // Update is called once per frame
     void Update()
     {
+        if (lingerTime == 0f)
+        {
+            lingerTime = explosion.GetComponent<Projectile>().lifeTime;
+        }
+        
+
         if (exploded && OnTarget(explodeTarget))
         {
             Destroy(gameObject);

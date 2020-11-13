@@ -146,8 +146,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 0.1
   currentLifeTime: 0
-  damage: 5
+  damage: 50
   destroyOnCollide: 0
+  destroyOnEnv: 0
   friendlyFire: 1
+  pierceCount: 0
   source: {fileID: 0}
   weapon: {fileID: 0}
