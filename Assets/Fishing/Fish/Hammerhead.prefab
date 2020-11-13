@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1373274281781304316}
   - component: {fileID: 288724639897624243}
   m_Layer: 0
-  m_Name: Fish4
+  m_Name: Hammerhead
   m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bc0a0c1cbfefd4d448d8a7751a968403, type: 3}
-  m_Color: {r: 0.9496708, g: 0, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 78fa6988ab8e31847be8b7157b956223, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -99,16 +99,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  randomX: 2
-  randomY: 2
+  rotationSpeed: 0.25
+  preferredBaitType: 0
   minWaitTime: 1
   maxWaitTime: 2
+  lootLevel: 2
   buffMovementSpeed: 0
   buffMaxStamina: 0
   buffMaxHP: 0
   buffStaminaRechargeRate: 0
-  lootLevel: 2
-  preferredBaitType: 0
   FishingMinigame: {fileID: 0}
 --- !u!50 &3129921333085929233
 Rigidbody2D:
@@ -145,7 +144,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.36, y: 0.18}
+  m_Size: {x: 0.5, y: 0.4}
   m_Direction: 1
 --- !u!58 &288724639897624243
 CircleCollider2D:
