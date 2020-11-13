@@ -6,8 +6,8 @@ public enum ENT_ATTR
 {
     MOVESPEED,
     MAX_HP,
-    MAX_STAMINA,
     ARMOR_STATIC,
+    POISON,
     TOTAL_STATS
 };
 [System.Serializable]
@@ -52,6 +52,16 @@ public class EntityAttribute
                     player.staminaMax += value;
                     return;
             }
+        }
+    }
+
+    public void Update(EntityStats owner, EntityStats source)
+    {
+        switch(type)
+        {
+            case ENT_ATTR.POISON:
+                owner.TakeDamage(value * Time.deltaTime, source);
+                return;
         }
     }
 

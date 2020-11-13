@@ -14,6 +14,8 @@ public class Projectile : MonoBehaviour
     public bool destroyOnCollide = true;
     public bool friendlyFire = false;
     [HideInInspector]
+    public int pierceCount = 0;
+    [HideInInspector]
     public GameObject source;
     [HideInInspector]
     public ScriptableWeapon weapon;
@@ -46,18 +48,14 @@ public class Projectile : MonoBehaviour
         EntityStats ent = collider.GetComponent<EntityStats>();
         if (ent)
         {
-            //If killed by a source
-            if (ent.TakeDamage(damage) && source)
-            {
-                EntityStats attacker = source.GetComponent<EntityStats>();
-                if (attacker)
-                {
-                    attacker.OnKill(ent);
-                }
-            }
+            pierceCount++;
+            weapon.OnHit(this, ent);
+            EntityStats attacker = source.GetComponent<EntityStats>();
+            ent.TakeDamage(damage, attacker);
         }
-
-        if (destroyOnCollide)
+        
+        /* Range proj. always destroy on non-entities */
+        if ((!weapon.isMelee && !ent) || destroyOnCollide)
         {
             Destroy();
         }

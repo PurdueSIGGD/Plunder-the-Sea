@@ -23,7 +23,7 @@ public class RevertProjSys : ProjectileSystem
 
         foreach (var entAttr in entityAttributes)
         {
-            this.entityStats.AddAttribute(entAttr);
+            this.entityStats.AddAttribute(entAttr, entityStats);
         }
         preWeapon = inv.GetMelee();
     }

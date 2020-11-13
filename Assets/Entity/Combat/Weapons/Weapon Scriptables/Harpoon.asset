@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe20a730f14af7b449abff7a8ad75835, type: 3}
+  m_Name: Harpoon
+  m_EditorClassIdentifier: 
+  isMelee: 0
+  projectilePrefab: {fileID: 8850584598485551201, guid: 1e9d53c3f1cd5864e8040f32deb985af, type: 3}
+  projectileSpeed: 6
+  ammoPerKill: 1
+  maxAmmo: 4
+  ammo: 4
+  damage: 0
+  lifeTime: 2
+  gunSprite: {fileID: 21300000, guid: 4f8ff8e8378793a46ac10f2502942870, type: 3}
+  projSystems:
+  - {fileID: 11400000, guid: 2e2b49b9c6249c54393f19fc150412de, type: 2}
+  - {fileID: 11400000, guid: b01e24e7701c69c4e958c6041846d26b, type: 2}
+  - {fileID: 11400000, guid: 280e9a759874e4e4ca3826c1a9309813, type: 2}
