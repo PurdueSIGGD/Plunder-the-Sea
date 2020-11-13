@@ -16,7 +16,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8850584598485551201, guid: 665bee2cce4084b5580666db5ec97ad4, type: 3}
   projectileSpeed: 7
   ammoPerKill: 1
-  maxAmmo: 0
+  maxAmmo: 10
   ammo: 0
   damage: 50
   lifeTime: 3
