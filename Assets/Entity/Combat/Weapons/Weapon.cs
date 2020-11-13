@@ -1,24 +1,54 @@
-﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ScriptableWeapon", menuName = "ScriptableObjects/Weapon", order = 1)]
-public class ScriptableWeapon : ScriptableObject {
-    public bool isMelee = false;
-    public GameObject projectilePrefab;
-    public float projectileSpeed;
-    public int ammoPerKill = 1;
-    public int maxAmmo = 0;
-    [HideInInspector]
-    public int ammo = 0;
-    public int damage;
-    public float lifeTime;
-    public Sprite gunSprite = null;
+public abstract class Weapon {
 
-    [SerializeField]
-    private ProjectileSystem[] projSystems = null;
+    public enum CLASS {
+        // Melee
+        BIG_AXE,
+        BLUNDER_BUSS,
+        BOTTLE,
+        CROSSBOLT,
+        CUTLASS,
+        DAGGER,
+        // Ranged
+        DUALIES,
+        DUCKSHOT,
+        FLINTLOCK,
+        GREAT_SWORD,
+        HARPOON,
+        RAPIER,
+        SPEAR,
+        SQUIDGUN,
+        VOLLEYGUN,
+        WHIP
+    }
 
-    [HideInInspector]
+    public static ProjectileSystem MakeMelee(float staminaCost) 
+        => new CompositeProjSys( 
+            new ProjectileSystem[]{
+                new ParentProjSys(),
+                new DestroyOnCollideProjSys(false),
+                new StaminaProjSys(staminaCost)
+            }
+        );
+    
+    public WeaponBaseStats stats;
+
+    public abstract ProjectileSystem[] ConstructSystems();
+    public abstract CLASS Class();
+
+    public virtual WeaponBaseStats MakeStats() {
+        return new WeaponBaseStats();
+    }
+
+    private ProjectileSystem[] projSystems;
+
+    public Weapon() {
+        this.projSystems = ConstructSystems();
+        this.stats = MakeStats();
+    }
+
     private List<Projectile> projectiles = null;
 
     public void Update() {
@@ -69,7 +99,7 @@ public class ScriptableWeapon : ScriptableObject {
     public void OnEquip(WeaponInventory inv) { 
         foreach (var sys in projSystems) 
         {
-            // sys.weapon = this;
+            sys.weapon = this;
             sys.OnEquip(inv);
         }
     }

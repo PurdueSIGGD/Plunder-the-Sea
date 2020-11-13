@@ -5,26 +5,26 @@ public class AmmoProjSys : ProjectileSystem {
 
     public override bool CanShoot(GameObject player)
     {
-        return weapon.ammo > 0;
+        return weapon.stats.ammo > 0;
     }
     public override void OnFire(Projectile projectile)
     {
-        weapon.ammo--;
-        if (weapon.ammo < 0)
+        weapon.stats.ammo--;
+        if (weapon.stats.ammo < 0)
         {
-            weapon.ammo = 0;
+            weapon.stats.ammo = 0;
         }
     }
     public override void OnKill(EntityStats victim)
     {
-        weapon.ammo += weapon.ammoPerKill;
-        if (weapon.ammo > weapon.maxAmmo)
+        weapon.stats.ammo += weapon.stats.ammoPerKill;
+        if (weapon.stats.ammo > weapon.stats.maxAmmo)
         {
-            weapon.ammo = weapon.maxAmmo;
+            weapon.stats.ammo = weapon.stats.maxAmmo;
         }
     }
     public override void OnEquip(WeaponInventory inv)
     {
-        weapon.ammo = weapon.maxAmmo;
+        weapon.stats.ammo = weapon.stats.maxAmmo;
     }
 }

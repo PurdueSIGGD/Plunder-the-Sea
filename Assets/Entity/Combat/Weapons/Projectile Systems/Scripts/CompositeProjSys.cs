@@ -1,9 +1,13 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "CompositeProjSys", menuName = "ScriptableObjects/ProjectileSystems/Composite", order = 1)]
 public class CompositeProjSys : ProjectileSystem {
 
     public ProjectileSystem[] projSystems;
+
+    public CompositeProjSys(ProjectileSystem[] systems) {
+        this.projSystems = systems;
+    }
+
     public override void Run(Projectile projectile) {
         foreach (var sys in projSystems) {
             sys.Run(projectile);

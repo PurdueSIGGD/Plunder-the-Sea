@@ -5,6 +5,10 @@ public class StaminaProjSys : ProjectileSystem {
     public float staminaCost;
     private PlayerStats stats;
 
+    public StaminaProjSys(float staminaCost) {
+        this.staminaCost = staminaCost;
+    }
+
     public override bool CanShoot(GameObject player) {
         return stats.stamina >= staminaCost;
     }

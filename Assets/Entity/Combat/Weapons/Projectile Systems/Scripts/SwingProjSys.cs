@@ -1,10 +1,14 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SwingProjSys", menuName = "ScriptableObjects/ProjectileSystems/Swing", order = 1)]
 public class SwingProjSys : ProjectileSystem
 {
-    public float sweepAngle;
-    public float holdTime;
+    private float sweepAngle;
+    private float holdTime;
+
+    public SwingProjSys(float sweepAngle, float holdTime) {
+        this.sweepAngle = sweepAngle;
+        this.holdTime = holdTime;
+    }
 
     public override void Run(Projectile projectile)
     {
