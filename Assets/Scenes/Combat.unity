@@ -374,6 +374,34 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: classes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: baseHp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: baseSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: classes.Array.data[0]
+      value: 
+      objectReference: {fileID: 27036039929389160, guid: 00a631c93ad58de4ba768ba7d98cff24, type: 3}
+    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: classNumber
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: classes.Array.data[1]
+      value: 
+      objectReference: {fileID: 5105881099970986696, guid: 4778ff74f6e8aa344897f25c2aa50133, type: 3}
+    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: classes.Array.data[2]
+      value: 
+      objectReference: {fileID: 1895855684310896021, guid: 2427e3585b67cf74487f8dba0f52eaf5, type: 3}
     - target: {fileID: 3247792835474656187, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: ammoBar
       value: 
