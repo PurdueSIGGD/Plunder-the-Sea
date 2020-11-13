@@ -65,6 +65,9 @@ public class PlayerStats : EntityStats
 
     public override void Die()
     {
+        currentHP = maxHP;
+        stamina = staminaMax;
+        //RESTORE AMMO SOMEHOW
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
