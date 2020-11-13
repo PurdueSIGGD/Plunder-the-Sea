@@ -6,6 +6,7 @@ public enum ENT_ATTR
 {
     MOVESPEED,
     MAX_HP,
+    MAX_STAMINA,
     ARMOR_STATIC,
     POISON,
     TOTAL_STATS

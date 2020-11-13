@@ -30,7 +30,7 @@ public class BarrelSquid : StateCombat
                 if (prevState == stationary)
                 {
                     // Just started moving, so add defense
-                    myBase.myStats.AddAttribute(barrelDefense);
+                    myBase.myStats.AddAttribute(barrelDefense, myBase.myStats);
                 }
                 break;
             case stationary:
