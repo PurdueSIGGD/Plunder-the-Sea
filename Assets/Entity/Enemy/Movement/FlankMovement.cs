@@ -19,8 +19,8 @@ public class FlankMovement : StateMovement
     // The state of the flanking enemy. There are 2 options, which resemble different points in its movement.
     public enum FlankState
     {
-        flanking,
-        stationary
+        flanking = 0,
+        stationary = 1
     }
     public FlankState flankState = FlankState.flanking;
 
@@ -74,5 +74,10 @@ public class FlankMovement : StateMovement
                     break;
             }
         }
+    }
+
+    public override int GetState()
+    {
+        return (int)this.flankState;
     }
 }

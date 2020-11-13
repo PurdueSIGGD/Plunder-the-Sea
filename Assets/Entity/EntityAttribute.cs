@@ -7,6 +7,7 @@ public enum ENT_ATTR
     MOVESPEED,
     MAX_HP,
     MAX_STAMINA,
+    ARMOR_STATIC,
     POISON,
     TOTAL_STATS
 };
@@ -37,6 +38,9 @@ public class EntityAttribute
                 return;
             case ENT_ATTR.MAX_HP:
                 owner.maxHP += value;
+                return;
+            case ENT_ATTR.ARMOR_STATIC:
+                owner.armorStatic += value;
                 return;
         }
 
@@ -74,6 +78,9 @@ public class EntityAttribute
                 return;
             case ENT_ATTR.MAX_HP:
                 owner.maxHP -= value;
+                return;
+            case ENT_ATTR.ARMOR_STATIC:
+                owner.armorStatic -= value;
                 return;
         }
 
