@@ -7,7 +7,7 @@ public class NoMovement : StateMovement
     // The state of the no movement enemy. There are 2 options, which resemble different points in its movement.
     public enum MovementState
     {
-        none
+        none = 0
     }
     public MovementState movementState = MovementState.none;
 
@@ -25,5 +25,10 @@ public class NoMovement : StateMovement
                     break;
             }
         }
+    }
+
+    public override int GetState()
+    {
+        return (int)this.movementState;
     }
 }
