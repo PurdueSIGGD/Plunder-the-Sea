@@ -11,6 +11,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public float currentLifeTime = 0;
     public float damage = 1.0f;
+    public bool friendlyFire = false;
     public bool destroyOnCollide = true;
     [HideInInspector]
     public int pierceCount = 0;
@@ -35,6 +36,11 @@ public class Projectile : MonoBehaviour
         Projectile proj = collider.GetComponent<Projectile>();
         /* Don't collide with self OR other projectiles */
         if (collider == source || proj)
+        {
+            return;
+        }
+
+        if (collider.tag == source.tag && !friendlyFire)
         {
             return;
         }
