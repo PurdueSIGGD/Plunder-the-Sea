@@ -19,6 +19,8 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public ScriptableWeapon weapon;
 
+    public Vector2 direction;
+
     void Update()
     {
         currentLifeTime += Time.deltaTime;
@@ -64,14 +66,14 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public static Projectile Shoot(GameObject prefab, GameObject source, Vector2 target, float speed)
+    public static Projectile Shoot(GameObject prefab, GameObject source, Vector2 target)
     {
-        Projectile bullet = Shoot(prefab, source.transform.position, target, speed);
+        Projectile bullet = Shoot(prefab, source.transform.position, target);
         bullet.source = source;
         return bullet;
     }
 
-    public static Projectile Shoot(GameObject prefab, Vector2 startPos, Vector2 target, float speed)
+    public static Projectile Shoot(GameObject prefab, Vector2 startPos, Vector2 target)
     {
 
         Projectile bullet = Instantiate(prefab, startPos, Quaternion.identity).GetComponent<Projectile>();
@@ -82,12 +84,8 @@ public class Projectile : MonoBehaviour
         }
 
         Vector2 direction = (target - startPos).normalized;
-        Rigidbody2D rigidBody = bullet.GetComponent<Rigidbody2D>();
-
-        if (rigidBody)
-        {
-            rigidBody.velocity = direction * speed;
-        }
+        bullet.direction = direction;
+        
 
         bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, new Vector3(direction.x, direction.y, 0));
 

@@ -3,40 +3,30 @@ using UnityEngine;
 
 public abstract class Weapon {
 
-    public enum CLASS {
-        // Melee
-        BIG_AXE,
-        BLUNDER_BUSS,
-        BOTTLE,
-        CROSSBOLT,
-        CUTLASS,
-        DAGGER,
-        // Ranged
-        DUALIES,
-        DUCKSHOT,
-        FLINTLOCK,
-        GREAT_SWORD,
-        HARPOON,
-        RAPIER,
-        SPEAR,
-        SQUIDGUN,
-        VOLLEYGUN,
-        WHIP
-    }
-
-    public static ProjectileSystem MakeMelee(float staminaCost) 
-        => new CompositeProjSys( 
+    public bool isMelee {get; private set;}
+    protected ProjectileSystem MakeMelee(float staminaCost, int ammoPerKill)  {
+        isMelee = true;
+        return new CompositeProjSys( 
             new ProjectileSystem[]{
                 new ParentProjSys(),
                 new DestroyOnCollideProjSys(false),
-                new StaminaProjSys(staminaCost)
+                new StaminaProjSys(staminaCost),
+                new OnKillStatsSys(ammoPerKill)
+            }
+        );
+    }
+
+    protected ProjectileSystem MakeRanged(float cooldown, float projectileSpeed, int maxAmmo) 
+        => new CompositeProjSys( 
+            new ProjectileSystem[]{
+                new AmmoProjSys(maxAmmo),
+                new StaminaProjSys(projectileSpeed)
             }
         );
     
     public WeaponBaseStats stats;
 
     public abstract ProjectileSystem[] ConstructSystems();
-    public abstract CLASS Class();
 
     public virtual WeaponBaseStats MakeStats() {
         return new WeaponBaseStats();

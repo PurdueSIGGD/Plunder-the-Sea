@@ -9,6 +9,10 @@ public class RevertProjSys : ProjectileSystem
     private ScriptableWeapon preWeapon;
     private float equipTimeInstant = 0f;
 
+    public RevertProjSys(float duration) {
+        this.duration = duration;
+    }
+
     public override void Run(Projectile projectile) 
     {
         if (Time.time - equipTimeInstant >= duration) {

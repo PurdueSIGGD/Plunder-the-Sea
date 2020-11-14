@@ -4,6 +4,8 @@ public abstract class ProjectileSystem : ScriptableObject
     [HideInInspector]
     public Weapon weapon;
 
+    public ProjectileSystem inner;
+
     public virtual bool CanShoot(GameObject player) => true;
     public virtual void Run(Projectile projectile) {}
     public virtual void OnEquip(WeaponInventory inv) {}

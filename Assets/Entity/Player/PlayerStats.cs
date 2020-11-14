@@ -23,8 +23,23 @@ public class PlayerStats : EntityStats
     public float staminaRechargeRate = 2f;
     public Slider staminaBar;
     public Slider ammoBar;
+    public int ammo {get; private set;}
+    public int maxAmmo {get; private set;}
     private float timeSinceLastTick = 0;
     private float timeBetweenTicks = 0.1f;
+
+    public void decrementAmmo() {
+        this.ammo = Mathf.Max(ammo - 1, 0);
+    }
+
+    public void replenishAmmo(int amount) {
+        this.ammo = Mathf.Min(this.ammo + amount, maxAmmo);
+    }
+
+    public void resetAmmo(int max) {
+        this.ammo = max;
+        this.maxAmmo = max;
+    }
 
     private void Start()
     {

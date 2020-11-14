@@ -12,6 +12,10 @@ public class BurstfireProjSys : ProjectileSystem {
     private GameObject projTemplate;
     private Vector3 velocity = new Vector3();
 
+    public BurstfireProjSys(int extraShots, float frequency) {
+        this.extraShots = extraShots;
+        this.frequency = frequency;
+    }
     public override void OnFire(Projectile projectile)
     {
         Rigidbody2D origRigid = projectile.GetComponent<Rigidbody2D>();

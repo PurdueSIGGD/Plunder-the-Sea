@@ -7,6 +7,10 @@ public class MultishotProjSys : ProjectileSystem {
     public int extraShots = 1;
     public float angle = 10.0f;
 
+    public MultishotProjSys(int extraShots, float angle) {
+        this.extraShots = extraShots;
+        this.angle = angle;
+    }
     public override void OnFire(Projectile projectile)
     {
         Rigidbody2D origRigid = projectile.GetComponent<Rigidbody2D>();

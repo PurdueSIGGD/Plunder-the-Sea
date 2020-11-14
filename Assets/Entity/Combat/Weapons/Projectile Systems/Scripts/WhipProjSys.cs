@@ -11,6 +11,9 @@ public class WhipProjSys : ProjectileSystem {
     private List<GameObject> links = new List<GameObject>();
     private UI_Camera cam;
 
+    public WhipProjSys(float linkSpeed) {
+        this.linkSpeed = linkSpeed;
+    }
     public override void Run(Projectile proj)
     {
         //If time to add another link
@@ -27,7 +30,7 @@ public class WhipProjSys : ProjectileSystem {
                 linkPos = lastLink.transform.position + distance;
             }
             //Shoot link as stationary projectile
-            Projectile newLink = Projectile.Shoot(WhipLink, linkPos, mousePos, 0);
+            Projectile newLink = Projectile.Shoot(WhipLink, linkPos, mousePos);
             newLink.source = proj.source;
             newLink.transform.SetParent(proj.transform);
             links.Add(newLink.gameObject);

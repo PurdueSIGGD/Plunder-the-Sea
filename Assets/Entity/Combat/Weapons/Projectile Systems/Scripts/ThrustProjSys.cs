@@ -3,7 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TrustProjSys", menuName = "ScriptableObjects/ProjectileSystems/Thrust", order = 1)]
 public class ThrustProjSys : ProjectileSystem
 {
+    public ThrustProjSys() {
 
+    }
     public override void Run(Projectile projectile)
     {
         Vector3 dir = projectile.transform.rotation * Vector3.right;
