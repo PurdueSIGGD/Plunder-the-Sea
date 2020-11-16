@@ -4,19 +4,22 @@ using UnityEngine;
 
 public class Fish : MonoBehaviour
 {
-    public float speed;
-    public float randomX;
-    public float randomY;
-    public float minWaitTime;
-    public float maxWaitTime;
+    [SerializeField]
+    private float speed;
+    [SerializeField]
+    private float rotationSpeed = 0.35f;
+    [SerializeField]
+    private int preferredBaitType;
+    [SerializeField]
+    private float minWaitTime;
+    [SerializeField]
+    private float maxWaitTime;
+    public int lootLevel;
     public float buffMovementSpeed = 0f;
     public float buffMaxStamina = 0f;
     public float buffMaxHP = 0f;
     public float buffStaminaRechargeRate = 0f;
-    public int lootLevel;
-    public int preferredBaitType;
     public GameObject FishingMinigame;
-    private const float rotationSpeed = 0.25f;
 
     void Start()
     {
@@ -101,7 +104,7 @@ public class Fish : MonoBehaviour
         // moves fish to random location
         while (i < 1.0f)
         {
-            i += Time.deltaTime * (speed / 3);
+            i += Time.deltaTime * (speed / 2);
             IncrementRotation(new Vector3(0, 0, angle));
             transform.position += transform.right * Time.deltaTime * speed;
             yield return null;
