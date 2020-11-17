@@ -53,15 +53,16 @@ public class PlayerBase : MonoBehaviour
     private void Update()
     {
         var inv = GetComponent<WeaponInventory>();
+        
 
         if (Input.GetMouseButton(0))
         {
-            ShootAt(cam.GetMousePosition(), inv.GetRanged());
+            ShootAt(cam.GetMousePosition(), inv.GetRanged(), inv.GetWeaponStats(false));
         }
 
         if (Input.GetMouseButtonDown(1))
         {
-            ShootAt(cam.GetMousePosition(), inv.GetMelee());
+            ShootAt(cam.GetMousePosition(), inv.GetMelee(), inv.GetWeaponStats(true));
         }
     }
 
@@ -71,14 +72,15 @@ public class PlayerBase : MonoBehaviour
         
     }
 
-    public bool ShootAt(Vector2 position, ScriptableWeapon weapon)
+    public bool ShootAt(Vector2 position, Weapon weapon, WeaponBaseStats stats)
     {
-        if (weapon.CanShoot(this.gameObject))
+        if (weapon?.CanShoot(this.gameObject) == true)
         {
-            Projectile hitbox = Projectile.Shoot(weapon.projectilePrefab, this.gameObject, position);
+            Debug.Log(weapon.GetType().FullName);
+            Projectile hitbox = Projectile.Shoot(stats.projectilePrefab, this.gameObject, position);
             hitbox.weapon = weapon;
-            hitbox.damage = weapon.damage;
-            hitbox.lifeTime = weapon.lifeTime;
+            hitbox.damage = stats.damage;
+            hitbox.lifeTime = stats.lifeTime;
             weapon.OnFire(hitbox);
             return true;
         }

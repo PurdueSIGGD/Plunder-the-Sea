@@ -24,22 +24,16 @@ public abstract class Weapon {
             }
         );
     
-    public WeaponBaseStats stats;
 
     public abstract ProjectileSystem[] ConstructSystems();
-
-    public virtual WeaponBaseStats MakeStats() {
-        return new WeaponBaseStats();
-    }
 
     private ProjectileSystem[] projSystems;
 
     public Weapon() {
         this.projSystems = ConstructSystems();
-        this.stats = MakeStats();
     }
 
-    private List<Projectile> projectiles = null;
+    private List<Projectile> projectiles = new List<Projectile>();
 
     public void Update() {
         projectiles.RemoveAll((p) => p == null);

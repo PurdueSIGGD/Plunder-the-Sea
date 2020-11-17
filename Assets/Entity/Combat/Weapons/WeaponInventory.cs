@@ -5,12 +5,13 @@ using UnityEngine;
 public class WeaponInventory : MonoBehaviour
 {
     [SerializeField]
-    private ScriptableWeapon meleeWeapon;
+    private Weapon meleeWeapon;
     [SerializeField]
-    private ScriptableWeapon rangeWeapon;
+    private Weapon rangeWeapon;
     private UI_Camera cam;
     private SpriteRenderer spriteRen;
-
+    public GameObject meleeWeaponPrefab {get; private set;}
+    public GameObject rangeWeaponPrefab {get; private set;}
     private void Start()
     {
         cam = GameObject.FindObjectOfType<UI_Camera>();
@@ -18,21 +19,21 @@ public class WeaponInventory : MonoBehaviour
         spriteRen.transform.localScale = this.transform.localScale * 1.5f;
         spriteRen.transform.position = this.transform.position;
         spriteRen.transform.SetParent(this.transform);
-        if (meleeWeapon)
+        if (meleeWeapon != null)
         {
             meleeWeapon.OnEquip(this);
         }
-        if (rangeWeapon)
+        if (rangeWeapon != null)
         {
             rangeWeapon.OnEquip(this);
-            spriteRen.sprite = rangeWeapon.gunSprite;
+            // spriteRen.sprite = rangeWeapon.gunSprite;
         }
     }
 
     private void Update()
     {
-        meleeWeapon.Update();
-        rangeWeapon.Update();
+        meleeWeapon?.Update();
+        rangeWeapon?.Update();
     }
 
     private void LateUpdate()
@@ -40,17 +41,39 @@ public class WeaponInventory : MonoBehaviour
         spriteRen.transform.rotation = Quaternion.FromToRotation(new Vector3(1,1,0), (Vector3)cam.GetMousePosition() - spriteRen.transform.position);
     }
 
-    public ScriptableWeapon GetMelee()
+    public Weapon GetMelee()
     {
         return meleeWeapon;
     }
 
-    public ScriptableWeapon GetRanged()
+    public Weapon GetRanged()
     {
         return rangeWeapon;
     }
+    public void SetWeaponPrefab(GameObject prefab) {
+        var weaponBehaviour = prefab.GetComponent<WeaponBehaviour>();
+        var weapon = WeaponFactory.MakeWeapon(weaponBehaviour.weaponClass);
 
-    public void SetMelee(ScriptableWeapon wep)
+        if (weapon.isMelee) {
+            this.SetMelee(weapon);
+            this.meleeWeaponPrefab = prefab;
+        } 
+        else {
+            this.SetRanged(weapon);
+            this.rangeWeaponPrefab = prefab;
+            rangeWeaponPrefab.transform.SetParent(transform);
+        }
+    }
+
+    public WeaponBaseStats GetWeaponStats(bool melee) {
+        if (melee) {
+            return meleeWeaponPrefab?.GetComponent<WeaponBehaviour>().stats;
+        } else {
+            return rangeWeaponPrefab?.GetComponent<WeaponBehaviour>().stats;
+        }
+    }
+    
+    private void SetMelee(Weapon wep)
     {
         meleeWeapon.OnUnequip(this);
         wep.OnEquip(this);
@@ -58,13 +81,13 @@ public class WeaponInventory : MonoBehaviour
         meleeWeapon = wep;
     }
 
-    public void SetRanged(ScriptableWeapon wep)
+    private void SetRanged(Weapon wep)
     {
-        rangeWeapon.OnUnequip(this);
+        rangeWeapon?.OnUnequip(this);
         wep.OnEquip(this);
         // Make sure to set weapon after the equip methods run
         rangeWeapon = wep;
-        spriteRen.sprite = rangeWeapon.gunSprite;
+        // spriteRen.sprite = rangeWeapon.gunSprite;
     }
 
 }

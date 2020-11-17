@@ -68,8 +68,7 @@ public class PlayerStats : EntityStats
 
             stamina = Mathf.Min(stamina + staminaRechargeRate, staminaMax);
 
-            ScriptableWeapon ranged = weaponInv.GetRanged();
-            ammoBar.value = (float)ranged.ammo / (float)ranged.maxAmmo;
+            ammoBar.value = (float)ammo / (float)maxAmmo;
         }
     }
 
@@ -85,8 +84,8 @@ public class PlayerStats : EntityStats
 
     public override void OnKill(EntityStats victim)
     {
-        weaponInv.GetRanged().OnKill(victim);
-        weaponInv.GetMelee().OnKill(victim);
+        weaponInv?.GetRanged().OnKill(victim);
+        weaponInv?.GetMelee().OnKill(victim);
         pbase.OnKill(victim);
     }
 

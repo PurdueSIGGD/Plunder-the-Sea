@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public GameObject source;
     [HideInInspector]
-    public ScriptableWeapon weapon;
+    public Weapon weapon;
 
     public Vector2 direction;
 
@@ -59,7 +59,7 @@ public class Projectile : MonoBehaviour
 
     public void Destroy()
     {
-        if (weapon)
+        if (weapon != null)
         {
             weapon.OnEnd(this);
             Destroy(gameObject);

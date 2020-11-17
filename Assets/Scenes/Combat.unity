@@ -150,19 +150,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 339991595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b870ee3e3cba4384997ab1427f1ebea7, type: 3}
+  m_Script: {fileID: 11500000, guid: c6c1cd5864089b74fa7d36f1f51c4854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    isMelee: 0
-    projectilePrefab: {fileID: 0}
-    projectileSpeed: 0
-    ammoPerKill: 1
-    maxAmmo: 0
-    ammo: 0
+    projectilePrefab: {fileID: 8161092618706017957, guid: 99c2d30043c502f4ab4f30a15c75db20, type: 3}
     damage: 0
     lifeTime: 0
-    gunSprite: {fileID: 21300000, guid: bcedf0ca504b55c4dbd43373ca2c595e, type: 3}
   weaponClass: 0
 --- !u!212 &339991597
 SpriteRenderer:
