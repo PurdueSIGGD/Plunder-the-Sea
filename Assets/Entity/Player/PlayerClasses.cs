@@ -84,6 +84,13 @@ public class PlayerClasses : MonoBehaviour
         }
     }
 
+    public void changeClass(int i)
+    {
+        classNumber = i;
+        classes[classNumber].setPlayerStats(stats);
+        classes[classNumber].setWeaponMods(weaponModifiers);
+    }
+
     public void setPlayerStats(PlayerStats stats)
     {
         stats.maxHP = baseHp;
