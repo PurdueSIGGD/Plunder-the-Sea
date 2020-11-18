@@ -50,6 +50,7 @@ public class PlayerFishing : MonoBehaviour
             if (bobber)
             {
                 audioSrc.clip = reelSound;
+                audioSrc.loop = true;
                 audioSrc.Play();
                 bobber.Reel();
             }
@@ -74,6 +75,8 @@ public class PlayerFishing : MonoBehaviour
     //Called when bobber returns or catches fish
     public void OnReelFinish(Fish fish)
     {
+        audioSrc.loop = false;
+        audioSrc.Stop();
         if (fish)
         {
             Debug.Log("Fish caught");
