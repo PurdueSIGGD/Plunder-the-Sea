@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6354773494344014187}
   - component: {fileID: 6218319528797385432}
   - component: {fileID: 6940673592277062962}
-  - component: {fileID: 4908816644477294641}
+  - component: {fileID: 8645447822570272361}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &4908816644477294641
+--- !u!114 &8645447822570272361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,15 +141,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6471832775542762957}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c39bddd6b1e172649bd99304f1d55a58, type: 3}
+  m_Script: {fileID: 11500000, guid: 73e235bbd564841448eb10cc8dc9850c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 0.1
   currentLifeTime: 0
   damage: 50
   destroyOnCollide: 0
-  destroyOnEnv: 0
-  friendlyFire: 1
   pierceCount: 0
   source: {fileID: 0}
   weapon: {fileID: 0}
+  friendlyFire: 1
+  reflectMelee: 0
+  reflectRanged: 0
+  collideWithProjectile: 0
+  collideWithWall: 0
+  speed: 0

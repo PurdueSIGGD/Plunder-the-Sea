@@ -8,6 +8,7 @@ TagManager:
   - Pond
   - Bobber
   - Undefined
+  - Wall
   layers:
   - Default
   - TransparentFX

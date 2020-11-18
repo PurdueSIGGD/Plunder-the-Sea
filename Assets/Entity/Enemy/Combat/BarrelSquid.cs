@@ -52,7 +52,7 @@ public class BarrelSquid : StateCombat
 
     void Shoot()
     {
-        Projectile ink = Projectile.Shoot(inkShot, transform.position, myBase.player.transform.position, inkShotSpeed);
+        EnemyProjectile ink = EnemyProjectile.Shoot(inkShot, transform.position, myBase.player.transform.position, inkShotSpeed);
         ink.source = gameObject;
     }
 }

@@ -45,7 +45,7 @@ public class BoomFish : StateCombat
     // Create an explosion projectile, then die at the end of the frame
     void Explode()
     {
-        Projectile boom = Projectile.Shoot(explosion, transform.position, myBase.player.transform.position, 0.0f);
+        EnemyProjectile boom = EnemyProjectile.Shoot(explosion, transform.position, myBase.player.transform.position, 0.0f);
         boom.source = gameObject;
     }
 }
