@@ -34,6 +34,35 @@ public class PlayerClasses : MonoBehaviour
 
     private PlayerStats stats;
 
+    [Header("--Unique modifiers--")]
+    public bool chainLighting = false;
+    [Range(0, 1)]
+    public float chainChance = 0.5f;
+    [Range(1, 8)]
+    public int chainLength = 4;
+
+    [Space(10)]
+
+    public bool lunge = false;
+    [Range(0, 16)]
+    public float meleeLungeDistance = 2;
+    [Range(0, 16)]
+    public float rangedLungeDistance = 4;
+
+    [Space(10)]
+
+    public bool killChain = false;
+    [Range(1, 8)]
+    public int killRequirement = 3;
+    [Range(0, 32)]
+    public float chainTime = 4;
+    [Range(1, 8)]
+    public float attackSpeedBoost = 2;
+    [Range(1, 8)]
+    public float speedBoost = 2;
+    private int kills = 0;
+    private float killCountdown = 0;
+
     [Header("--Starting Weapons (not yet implemented)--")]
     public ScriptableWeapon sw;
     //this will be implemented after the weapon changes
@@ -75,12 +104,36 @@ public class PlayerClasses : MonoBehaviour
             //if on a player: set this script's weapon struct and the player's stats based on the selected class (does not modify the variables of this script)
             stats = GetComponent<PlayerStats>();
             classes[classNumber].setPlayerStats(stats);
+            baseSpeed = classes[classNumber].baseSpeed;
             classes[classNumber].setWeaponMods(weaponModifiers);
         }
         else
         {
             //if not a player
 
+        }
+    }
+
+    private void Update()
+    {
+        if (killChain)
+        {
+            if (killCountdown <= 0)
+            {
+                kills = 0;
+                killCountdown = 0;
+            } else
+            {
+                killCountdown -= Time.deltaTime;
+            }
+            //true if on a kill chain
+            if (kills >= killRequirement)
+            {
+                stats.movementSpeed = baseSpeed * speedBoost;
+            } else
+            {
+                stats.movementSpeed = baseSpeed;
+            }
         }
     }
 
@@ -122,6 +175,29 @@ public class PlayerClasses : MonoBehaviour
         weaponModifiers.accuracyMultiplier = accuracyMultiplier;
         weaponModifiers.ammoAddition = ammoAddition;
         weaponModifiers.ammoMultiplier = ammoMultiplier;
+    }
+
+    //call this when an enemy is killed
+    public void enemyKilled()
+    {
+        if (killChain)
+        {
+            kills++;
+            killCountdown = chainTime;
+        }
+    }
+
+    //gives Struct when called and does checks (call this from weapon when attacking)
+    public WeaponModifiers attackCall()
+    {
+        WeaponModifiers modsToSend = weaponModifiers;
+        //true if on a kill chain
+        if (kills >= killRequirement)
+        {
+            modsToSend.meleeAttackSpeedMultiplier *= attackSpeedBoost;
+        }
+        //return Struct to give info
+        return weaponModifiers;
     }
 
     //modifies and sent to wepaons on attack
