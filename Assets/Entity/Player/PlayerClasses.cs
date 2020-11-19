@@ -106,6 +106,7 @@ public class PlayerClasses : MonoBehaviour
             classes[classNumber].setPlayerStats(stats);
             baseSpeed = classes[classNumber].baseSpeed;
             classes[classNumber].setWeaponMods(weaponModifiers);
+            setSpecialAttributes(classes[classNumber]);
         }
         else
         {
@@ -177,6 +178,22 @@ public class PlayerClasses : MonoBehaviour
         weaponModifiers.ammoMultiplier = ammoMultiplier;
     }
 
+    public void setSpecialAttributes(PlayerClasses pc)
+    {
+        chainLighting = pc.chainLighting;
+        chainChance = pc.chainChance;
+        chainLength = pc.chainLength;
+
+        lunge = pc.lunge;
+        meleeLungeDistance = pc.meleeLungeDistance;
+        rangedLungeDistance = pc.rangedLungeDistance;
+
+        killChain = pc.killChain;
+        killRequirement = pc.killRequirement;
+        attackSpeedBoost = pc.attackSpeedBoost;
+        speedBoost = pc.speedBoost;
+}
+
     //call this when an enemy is killed
     public void enemyKilled()
     {
@@ -187,15 +204,37 @@ public class PlayerClasses : MonoBehaviour
         }
     }
 
-    //gives Struct when called and does checks (call this from weapon when attacking)
-    public WeaponModifiers attackCall()
+    //gives Struct when called and does checks (call this from weapon when attacking). True is melee and False is ranged
+    public WeaponModifiers attackCall(bool b)
     {
         WeaponModifiers modsToSend = weaponModifiers;
-        //true if on a kill chain
-        if (kills >= killRequirement)
+        if (killChain)
         {
-            modsToSend.meleeAttackSpeedMultiplier *= attackSpeedBoost;
+            //true if on a kill chain
+            if (kills >= killRequirement)
+            {
+                modsToSend.meleeAttackSpeedMultiplier *= attackSpeedBoost;
+            }
         }
+        if (chainLighting)
+        {
+            if (Random.Range(0f,1f) <= chainChance)
+            {
+                //spawn chain lighting
+            }
+        }
+        if (lunge)
+        {
+            if (b)
+            {
+                GetComponent<PlayerBase>().rigidBody.AddForce(transform.forward * meleeLungeDistance, ForceMode2D.Impulse);
+            }
+            else
+            {
+                GetComponent<PlayerBase>().rigidBody.AddForce(-transform.forward * rangedLungeDistance, ForceMode2D.Impulse);
+            }
+        }
+
         //return Struct to give info
         return weaponModifiers;
     }
