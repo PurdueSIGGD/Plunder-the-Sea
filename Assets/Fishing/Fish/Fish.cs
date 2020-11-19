@@ -27,12 +27,13 @@ public class Fish : MonoBehaviour
         transform.eulerAngles = new Vector3(0, 0, Random.Range(0f, 360f));
     }
 
-    public void BuffPlayerStats(PlayerStats stats)
+    public void BuffPlayerStats(PlayerBase player)
     {
-        stats.movementSpeed += buffMovementSpeed;
-        stats.maxHP += buffMaxHP;
-        stats.staminaMax += buffMaxStamina;
-        stats.staminaRechargeRate += buffStaminaRechargeRate;
+        player.stats.movementSpeed += buffMovementSpeed;
+        player.stats.maxHP += buffMaxHP;
+        player.stats.staminaMax += buffMaxStamina;
+        player.stats.staminaRechargeRate += buffStaminaRechargeRate;
+        player.fishing.SpawnPopupText("+40 HP");
     }
 
     bool PassedTarget(Vector3 oldPosition, Vector3 targetPos)

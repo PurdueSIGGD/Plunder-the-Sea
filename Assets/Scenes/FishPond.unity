@@ -210,6 +210,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7045101813800168172, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: PopupText
+      value: 
+      objectReference: {fileID: 8301900203683361838, guid: 73f884deff2283c4e98ceda871662cf4, type: 3}
     - target: {fileID: 7839513570761152699, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
