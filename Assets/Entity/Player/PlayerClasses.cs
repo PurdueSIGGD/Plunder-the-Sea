@@ -36,10 +36,15 @@ public class PlayerClasses : MonoBehaviour
 
     [Header("--Unique modifiers--")]
     public bool chainLighting = false;
+    [Range(1, 16)]
+    public float lightingDamage = 4f;
     [Range(0, 1)]
     public float chainChance = 0.5f;
     [Range(1, 8)]
     public int chainLength = 4;
+    [Range(1, 8)]
+    public int chainRadius = 4;
+    public GameObject lightingPrefab;
 
     [Space(10)]
 
@@ -183,6 +188,9 @@ public class PlayerClasses : MonoBehaviour
         chainLighting = pc.chainLighting;
         chainChance = pc.chainChance;
         chainLength = pc.chainLength;
+        lightingDamage = pc.lightingDamage;
+        chainRadius = pc.chainRadius;
+        lightingPrefab = pc.lightingPrefab;
 
         lunge = pc.lunge;
         meleeLungeDistance = pc.meleeLungeDistance;
@@ -190,6 +198,7 @@ public class PlayerClasses : MonoBehaviour
 
         killChain = pc.killChain;
         killRequirement = pc.killRequirement;
+        chainTime = pc.chainTime;
         attackSpeedBoost = pc.attackSpeedBoost;
         speedBoost = pc.speedBoost;
 }
@@ -204,6 +213,48 @@ public class PlayerClasses : MonoBehaviour
         }
     }
 
+    public void enemyHit(EnemyStats current)
+    {
+        if (chainLighting)
+        {
+            //only spawn if chance is high enough
+            if (Random.Range(0f, 1f) <= chainChance)
+            {
+                //create chain lighting
+                EnemyStats next = null;
+                float distance = Mathf.Infinity;
+
+                current.TakeDamage(lightingDamage, stats);
+
+                for (int i = 0; i < chainLength; i++)
+                {
+                    foreach (EnemyStats es in FindObjectsOfType<EnemyStats>())
+                    {
+                        float distPlaceholder = Vector2.Distance(current.transform.position, es.transform.position);
+                        if (distPlaceholder < distance)
+                        {
+                            next = es;
+                            distance = distPlaceholder;
+                        }
+                    }
+                    if (next == null)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        //instantiate lighting and deal damage
+                        GameObject g = Instantiate(lightingPrefab, current.transform.position, Quaternion.identity);
+                        g.GetComponent<LineRenderer>().SetPositions(new Vector3[] { current.transform.position, next.transform.position });
+                        Destroy(g, 0.1f);
+                        next.TakeDamage(lightingDamage, stats);
+                        current = next;
+                    }
+                }
+            }
+        }
+    }
+
     //gives Struct when called and does checks (call this from weapon when attacking). True is melee and False is ranged
     public WeaponModifiers attackCall(bool b)
     {
@@ -214,13 +265,6 @@ public class PlayerClasses : MonoBehaviour
             if (kills >= killRequirement)
             {
                 modsToSend.meleeAttackSpeedMultiplier *= attackSpeedBoost;
-            }
-        }
-        if (chainLighting)
-        {
-            if (Random.Range(0f,1f) <= chainChance)
-            {
-                //spawn chain lighting
             }
         }
         if (lunge)
