@@ -14,16 +14,18 @@ public enum ENT_ATTR
 [System.Serializable]
 public class EntityAttribute
 {
+    
+    public ENT_ATTR type;   // The type of attribute
+    public float value;     // The value of the attribute. What it does depends on the attribute type.
+    public float duration;  // The duration of the attibute, in seconds.
+    public bool stackable;  // Whether the attribute can stack with itself.
 
-    public ENT_ATTR type;
-    public float value;
-    public float duration;
-
-    public EntityAttribute(ENT_ATTR type, float value, float duration = float.PositiveInfinity)
+    public EntityAttribute(ENT_ATTR type, float value, float duration = float.PositiveInfinity, bool stackable = false)
     {
         this.type = type;
         this.value = value;
         this.duration = duration;
+        this.stackable = stackable;
     }
 
     public void OnAdd(EntityStats owner)

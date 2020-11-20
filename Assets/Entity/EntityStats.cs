@@ -85,6 +85,18 @@ public class EntityStats : MonoBehaviour
         {
             app.endTime = Time.time + attr.duration;
         }
+
+        if (!attr.stackable)
+        {
+            for (int i = 0; i < attribList.Count; i++)
+            {
+                if (attribList[i].attr == attr)
+                {
+                    return;
+                }
+            }
+        }
+        
         attribList.Add(app);
         attr.OnAdd(this);
     }
