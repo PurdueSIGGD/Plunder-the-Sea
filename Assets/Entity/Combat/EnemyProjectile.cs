@@ -13,6 +13,10 @@ public class EnemyProjectile : Projectile
     public bool collideWithProjectile = false;
     public bool collideWithWall = true;
 
+    // Attribute that might be inflicted on a hit, and the chance to hit (between 0.0 and 1.0, a lower number is a lower chance)
+    public EntityAttribute attrHit = null;
+    public float attrChance = 0.0f;
+
     // The initial speed of the projectile
     public float speed = 0f;
 
@@ -31,7 +35,7 @@ public class EnemyProjectile : Projectile
         Projectile proj = collider.GetComponent<Projectile>();
         EnemyProjectile eproj = collider.GetComponent<EnemyProjectile>();
 
-        /* Do / Don't collide with source */
+        /* Don't collide with source */
         if (collider == source)
         {
             return;
@@ -76,8 +80,15 @@ public class EnemyProjectile : Projectile
         EntityStats ent = collider.GetComponent<EntityStats>();
         if (ent)
         {
+            // Deal damage
             EntityStats attacker = source.GetComponent<EntityStats>();
             ent.TakeDamage(damage, attacker);
+
+            // Inflict attribut if relevant
+            if ((attrHit != null) && (Random.value <= attrChance))
+            {
+                ent.AddAttribute(attrHit, attacker);
+            }
         }
 
         /* Range proj. always destroy on non-entities */
