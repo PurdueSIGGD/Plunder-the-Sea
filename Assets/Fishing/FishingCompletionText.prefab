@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3946155168317498434}
   - component: {fileID: 1001000091695704721}
   - component: {fileID: 1096471638463780469}
+  - component: {fileID: 7231184579824340755}
   m_Layer: 0
   m_Name: FishingCompletionText
   m_TagString: Untagged
@@ -95,3 +96,17 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
+--- !u!114 &7231184579824340755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8301900203683361838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d7d320a0c03ded44851ab1a25b432ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  driftAmount: 0.02
+  timeout: 1

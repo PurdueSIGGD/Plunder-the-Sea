@@ -15,10 +15,8 @@ public class Fish : MonoBehaviour
     [SerializeField]
     private float maxWaitTime;
     public int lootLevel;
-    public float buffMovementSpeed = 0f;
-    public float buffMaxStamina = 0f;
-    public float buffMaxHP = 0f;
-    public float buffStaminaRechargeRate = 0f;
+    public float[] buffs = {0f, 0f, 0f, 0f};
+    public string[] buffNames = { "Movement Speed", "HP", "Stamina", "Stamina Recharge Rate" };
     public GameObject FishingMinigame;
 
     void Start()
@@ -29,11 +27,19 @@ public class Fish : MonoBehaviour
 
     public void BuffPlayerStats(PlayerBase player)
     {
-        player.stats.movementSpeed += buffMovementSpeed;
-        player.stats.maxHP += buffMaxHP;
-        player.stats.staminaMax += buffMaxStamina;
-        player.stats.staminaRechargeRate += buffStaminaRechargeRate;
-        player.fishing.SpawnPopupText("+40 HP");
+        player.stats.movementSpeed += buffs[0];
+        player.stats.maxHP += buffs[1];
+        player.stats.staminaMax += buffs[2];
+        player.stats.staminaRechargeRate += buffs[3];
+        string text = "";
+        for(int i = 0; i < buffs.Length; i++)
+        {
+            if(buffs[i] > 0f)
+            {
+                text += "+" + buffs[i] + " " + buffNames[i] + "\n";
+            }
+        }
+        player.fishing.SpawnPopupText(text);
     }
 
     bool PassedTarget(Vector3 oldPosition, Vector3 targetPos)
