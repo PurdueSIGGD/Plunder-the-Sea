@@ -21,8 +21,8 @@ public class Jellyfish : StateCombat
     // The target timing for sticking onto the player
     private float stickTarget = 0.0f;
     private float cooldownTarget = 0.0f;
-    public bool isSticking = false;
-    public bool isCooldown = false;
+    private bool isSticking = false;
+    private bool isCooldown = false;
     private Vector3 stickVector = Vector3.zero;
     private EntityStats stickVictim = null;
 

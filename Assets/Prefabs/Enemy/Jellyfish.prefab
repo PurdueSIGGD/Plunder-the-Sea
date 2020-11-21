@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2096883108438966424}
   - component: {fileID: 3745949659714890756}
   - component: {fileID: 8234503953198782560}
-  - component: {fileID: 4325299770871877244}
+  - component: {fileID: -665727340696724966}
   m_Layer: 0
   m_Name: Jellyfish
   m_TagString: Enemy
@@ -204,7 +204,7 @@ MonoBehaviour:
   chargeDuration: 2
   chargeCooldown: 0
   chargeState: 3
---- !u!114 &4325299770871877244
+--- !u!114 &-665727340696724966
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,13 +213,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 2364659476975283176}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e616fd83fc82e74bb6eb4f90c81d2bc, type: 3}
+  m_Script: {fileID: 11500000, guid: f4ac408aa907cbd4a8af3430f6517d15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
   attackRange: 0.5
   prevState: 0
   myStateMovement: {fileID: 0}
+  stickTime: 2.5
+  cooldownTime: 1
+  stickSpeed:
+    type: 0
+    value: 0
+    duration: 0
+    stackable: 0
+    isAdditive: 0
+  stickDamage:
+    type: 0
+    value: 0
+    duration: 0
+    stackable: 0
+    isAdditive: 0
+  isSticking: 0
+  isCooldown: 0
 --- !u!1 &8234503954636331436
 GameObject:
   m_ObjectHideFlags: 0

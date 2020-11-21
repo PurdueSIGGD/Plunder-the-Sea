@@ -262,7 +262,7 @@ MonoBehaviour:
   armorStatic: 0
   healthbar: {fileID: 8379629806533454694}
   spawnPoint: {x: 0, y: 0, z: 0}
-  attackSpeedInverse: 10
+  attackSpeedInverse: 1
   damage: 1
   numberOfTimesToRespawn: 0
 --- !u!58 &6429869294199045200
@@ -295,6 +295,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
   moving: 0
+  pathingRefresh: 0.25
+  maxDist: 10
   chargeDistance: 0.75
   chargeSpeed: 7
   chargeUpTime: 0.18
