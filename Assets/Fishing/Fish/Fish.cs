@@ -15,14 +15,19 @@ public class Fish : MonoBehaviour
     [SerializeField]
     private float maxWaitTime;
     public int lootLevel;
-    public float[] buffs = {0f, 0f, 0f, 0f};
-    public string[] buffNames = { "Movement Speed", "HP", "Stamina", "Stamina Recharge Rate" };
+    public float[] buffs = {0f, 0f, 0f, 0f, 0f, 0f, 0f};
+    public string[] buffNames = { "Movement Speed", "HP", "Stamina", "Stamina Recharge Rate", "Melee Damage",
+        "Ranged Damage", "Armor", };
     public GameObject FishingMinigame;
+
+    public Sprite sprite;
 
     void Start()
     {
         StartCoroutine(MoveRandomly());
         transform.eulerAngles = new Vector3(0, 0, Random.Range(0f, 360f));
+        sprite = this.GetComponent<SpriteRenderer>().sprite;
+        Debug.Log(sprite);
     }
 
     public void BuffPlayerStats(PlayerBase player)
@@ -31,6 +36,7 @@ public class Fish : MonoBehaviour
         player.stats.maxHP += buffs[1];
         player.stats.staminaMax += buffs[2];
         player.stats.staminaRechargeRate += buffs[3];
+        //TODO: Update all stats correctly.
         string text = "";
         for(int i = 0; i < buffs.Length; i++)
         {

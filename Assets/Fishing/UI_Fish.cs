@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_Fish : MonoBehaviour
 {
@@ -19,11 +20,16 @@ public class UI_Fish : MonoBehaviour
 
     }
 
+    public void SetSourceImage(Sprite image)
+    {
+        GetComponent<Image>().sprite = image;
+    }
+
     void Update()
     {
 
         transform.localPosition = new Vector3(fishCenter.x + Mathf.Cos(Time.time * fishMovementSpeed) * fishMoveRadii.x, fishCenter.y + Mathf.Sin(Time.time * fishMovementSpeed) * fishMoveRadii.y, 0);
-        transform.rotation = Quaternion.Euler(0, 0, fishShakeAngle * Mathf.Sin(Time.time * fishShakeSpeed));
+        transform.rotation = Quaternion.Euler(0, 0, fishShakeAngle * Mathf.Sin(Time.time * fishShakeSpeed) - 90);
 
     }
 }
