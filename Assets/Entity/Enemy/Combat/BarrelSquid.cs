@@ -12,7 +12,7 @@ public class BarrelSquid : StateCombat
     EntityAttribute barrelDefense = new EntityAttribute(ENT_ATTR.ARMOR_STATIC, 10);
 
     // Ink Attribute (to inflict on a hit)
-    EntityAttribute inkDebuff = new EntityAttribute(ENT_ATTR.MOVESPEED,-5f,2f);
+    EntityAttribute inkDebuff = new EntityAttribute(ENT_ATTR.ARMOR_STATIC,-1f,2f);
 
     // How long the barrel squid has to wait before firing
     public float firingCooldown = 0.5f;

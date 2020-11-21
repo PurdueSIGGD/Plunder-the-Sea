@@ -102,4 +102,9 @@ public class ChargeMovement : StateMovement
     {
         return (int)this.chargeState;
     }
+
+    public override void SetState(int newState)
+    {
+        this.chargeState = (ChargeState)newState;
+    }
 }

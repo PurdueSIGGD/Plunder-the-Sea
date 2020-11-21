@@ -152,6 +152,12 @@ public class StateMovement : EnemyMovement
     {
         return 0;
     }
+
+    // Set the current state (overridden in subclasses)
+    public virtual void SetState(int newState)
+    {
+        return;
+    }
 }
 
 public class MoveAction

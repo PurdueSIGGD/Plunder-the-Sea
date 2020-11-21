@@ -80,4 +80,9 @@ public class FlankMovement : StateMovement
     {
         return (int)this.flankState;
     }
+
+    public override void SetState(int newState)
+    {
+        this.flankState = (FlankState)newState;
+    }
 }

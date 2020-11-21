@@ -123,6 +123,72 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &1015461690
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2201514445835441669, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2201514445835441669, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364659476975283154, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.0175066
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364659476975283154, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2332724
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364659476975283154, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364659476975283154, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364659476975283154, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364659476975283154, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364659476975283154, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364659476975283154, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364659476975283154, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364659476975283154, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364659476975283154, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2364659476975283176, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+      propertyPath: m_Name
+      value: Jellyfish
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4325299770871877244, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
 --- !u!114 &1325165683 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 832614831945798190, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
@@ -216,7 +282,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1545560703
 MonoBehaviour:
@@ -292,8 +358,43 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2008065768 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2364659476975283176, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+  m_PrefabInstance: {fileID: 1015461690}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2008065769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008065768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4ac408aa907cbd4a8af3430f6517d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myBase: {fileID: 0}
+  attackRange: 0.5
+  prevState: 0
+  myStateMovement: {fileID: 0}
+  stickTime: 2.5
+  cooldownTime: 1
+  stickSpeed:
+    type: 0
+    value: 0
+    duration: 0
+    stackable: 0
+    isAdditive: 0
+  stickDamage:
+    type: 0
+    value: 0
+    duration: 0
+    stackable: 0
+    isAdditive: 0
 --- !u!1001 &7869038518230414300
 PrefabInstance:
   m_ObjectHideFlags: 0

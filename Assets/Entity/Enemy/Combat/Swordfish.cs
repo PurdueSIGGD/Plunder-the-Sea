@@ -18,12 +18,12 @@ public class Swordfish : StateCombat
     // Update is called once per frame
     void Update()
     {
-        // Boot Trout is very simple, so no extra AI
+        // Swordfish is very simple, so no extra AI
         current = GetState();
         prevState = current;
     }
 
-    private void OnTriggerEnter2D(Collider2D collider) //Called when something enters the enemy's range, only activates if charging
+    private void OnTriggerStay2D(Collider2D collider) //Called when something enters the enemy's range, only activates if charging
     {
         if (current == charging && collider.GetComponent<PlayerBase>())
         {

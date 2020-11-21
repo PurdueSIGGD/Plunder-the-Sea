@@ -67,4 +67,9 @@ public class ApproachMovement : StateMovement
     {
         return (int)this.approachState;
     }
+
+    public override void SetState(int newState)
+    {
+        this.approachState = (ApproachState)newState;
+    }
 }

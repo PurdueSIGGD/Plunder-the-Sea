@@ -21,7 +21,7 @@ public class BootTrout : StateCombat
         prevState = current;
     }
 
-    private void OnTriggerEnter2D(Collider2D collider) //Called when something enters the enemy's range, only activates if charging
+    private void OnTriggerStay2D(Collider2D collider) //Called when something enters the enemy's range, only activates if charging
     {
         if (current == charging && collider.GetComponent<PlayerBase>())
         {

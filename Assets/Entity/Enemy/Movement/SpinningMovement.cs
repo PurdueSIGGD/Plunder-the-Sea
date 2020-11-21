@@ -66,4 +66,9 @@ public class SpinningMovement : StateMovement
     {
         return (int)this.spinningState;
     }
+
+    public override void SetState(int newState)
+    {
+        this.spinningState = (SpinningState)newState;
+    }
 }
