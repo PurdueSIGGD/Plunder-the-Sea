@@ -45,6 +45,7 @@ public class PlayerClasses : MonoBehaviour
     [Range(1, 8)]
     public int chainRadius = 4;
     public GameObject lightingPrefab;
+    private bool sendingLighting = false;
 
     [Space(10)]
 
@@ -213,10 +214,13 @@ public class PlayerClasses : MonoBehaviour
         }
     }
 
+    //call this when an enemy is hit/damaged
     public void enemyHit(EnemyStats current)
     {
-        if (chainLighting)
+        if (chainLighting && !sendingLighting)
         {
+            sendingLighting = true; //stops lighting damage from spawning lighting infinitely
+
             //only spawn if chance is high enough
             if (Random.Range(0f, 1f) <= chainChance)
             {
@@ -252,6 +256,7 @@ public class PlayerClasses : MonoBehaviour
                     }
                 }
             }
+            sendingLighting = false;
         }
     }
 
