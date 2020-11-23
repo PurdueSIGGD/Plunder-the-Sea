@@ -321,6 +321,7 @@ MonoBehaviour:
   fishShakeSpeed: 6
   fishShakeAngle: 15
   fishCenter: {x: 0, y: 0}
+  fishImage: {fileID: 2171297183139885962}
 --- !u!1 &7448191832672795129
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d883282e5a5fefb49a82dbdb33b08450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fish: {fileID: 0}
+  fish: {fileID: 4930487564625735079}
   ddr: {fileID: 6184665163090144526}
 --- !u!1 &7495763243601085485
 GameObject:
