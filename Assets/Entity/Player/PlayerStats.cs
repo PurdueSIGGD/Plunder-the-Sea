@@ -33,6 +33,7 @@ public class PlayerStats : EntityStats
     }
 
     public void replenishAmmo(int amount) {
+
         this.ammo = Mathf.Min(this.ammo + amount, maxAmmo);
     }
 

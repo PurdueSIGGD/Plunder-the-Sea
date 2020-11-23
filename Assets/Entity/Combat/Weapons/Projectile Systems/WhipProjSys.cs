@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WhipProjSys", menuName = "ScriptableObjects/ProjectileSystems/Whip", order = 1)]
 public class WhipProjSys : ProjectileSystem {
 
-    [SerializeField]
     private GameObject WhipLink = null;
     //Link creation frequency in seconds
     public float linkSpeed = 0.05f;

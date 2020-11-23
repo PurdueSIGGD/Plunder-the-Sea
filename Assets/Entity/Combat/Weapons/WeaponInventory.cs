@@ -5,35 +5,52 @@ using UnityEngine;
 public class WeaponInventory : MonoBehaviour
 {
     [SerializeField]
-    private Weapon meleeWeapon;
+    private WeaponFactory.CLASS meleeWeaponClass;
+    public WeaponFactory.CLASS getMeleeWeaponClass(){ 
+        return this.meleeWeaponClass;
+    }
     [SerializeField]
-    private Weapon rangeWeapon;
+    private WeaponFactory.CLASS rangedWeaponClass;
+    private Weapon meleeWeapon;
+    private Weapon rangedWeapon;
     private UI_Camera cam;
     private SpriteRenderer spriteRen;
-    public GameObject meleeWeaponPrefab {get; private set;}
-    public GameObject rangeWeaponPrefab {get; private set;}
+
+    [SerializeField]
+    private IntWeaponClassTable damageTable; 
+    [SerializeField]
+    private FloatWeaponClassTable projectileLifeTimesTable; 
+    [SerializeField]
+    private SpritesWeaponClassTable rangedWeaponSpritesTable; 
+    [SerializeField]
+    private PrefabWeaponClassTable projectilePrefabTable; 
+
+    [SerializeField]
+    private GameObject bulletTemplate;
     private void Start()
     {
         cam = GameObject.FindObjectOfType<UI_Camera>();
+
         spriteRen = new GameObject().AddComponent<SpriteRenderer>();
         spriteRen.transform.localScale = this.transform.localScale * 1.5f;
         spriteRen.transform.position = this.transform.position;
         spriteRen.transform.SetParent(this.transform);
-        if (meleeWeapon != null)
-        {
-            meleeWeapon.OnEquip(this);
-        }
-        if (rangeWeapon != null)
-        {
-            rangeWeapon.OnEquip(this);
-            // spriteRen.sprite = rangeWeapon.gunSprite;
-        }
-    }
 
+        SetWeapon(this.meleeWeaponClass);
+        SetWeapon(this.rangedWeaponClass);
+
+        meleeWeapon?.OnEquip(this);
+        rangedWeapon?.OnEquip(this);
+   }
+
+    public void OnKill(EntityStats victim) {
+        this.rangedWeapon?.OnKill(victim);
+        this.meleeWeapon?.OnKill(victim);
+    }
     private void Update()
     {
         meleeWeapon?.Update();
-        rangeWeapon?.Update();
+        rangedWeapon?.Update();
     }
 
     private void LateUpdate()
@@ -48,34 +65,12 @@ public class WeaponInventory : MonoBehaviour
 
     public Weapon GetRanged()
     {
-        return rangeWeapon;
+        return rangedWeapon;
     }
-    public void SetWeaponPrefab(GameObject prefab) {
-        var weaponBehaviour = prefab.GetComponent<WeaponBehaviour>();
-        var weapon = WeaponFactory.MakeWeapon(weaponBehaviour.weaponClass);
-
-        if (weapon.isMelee) {
-            this.SetMelee(weapon);
-            this.meleeWeaponPrefab = prefab;
-        } 
-        else {
-            this.SetRanged(weapon);
-            this.rangeWeaponPrefab = prefab;
-            rangeWeaponPrefab.transform.SetParent(transform);
-        }
-    }
-
-    public WeaponBaseStats GetWeaponStats(bool melee) {
-        if (melee) {
-            return meleeWeaponPrefab?.GetComponent<WeaponBehaviour>().stats;
-        } else {
-            return rangeWeaponPrefab?.GetComponent<WeaponBehaviour>().stats;
-        }
-    }
-    
+   
     private void SetMelee(Weapon wep)
     {
-        meleeWeapon.OnUnequip(this);
+        meleeWeapon?.OnUnequip(this);
         wep.OnEquip(this);
         // Make sure to set weapon after the equip methods run
         meleeWeapon = wep;
@@ -83,11 +78,55 @@ public class WeaponInventory : MonoBehaviour
 
     private void SetRanged(Weapon wep)
     {
-        rangeWeapon?.OnUnequip(this);
+        rangedWeapon?.OnUnequip(this);
         wep.OnEquip(this);
         // Make sure to set weapon after the equip methods run
-        rangeWeapon = wep;
-        // spriteRen.sprite = rangeWeapon.gunSprite;
+        rangedWeapon = wep;
+        spriteRen.sprite = rangedWeaponSpritesTable.get(this.rangedWeaponClass);
+    }
+    public void SetWeapon(WeaponFactory.CLASS weaponClass) {
+        var weapon = WeaponFactory.MakeWeapon(weaponClass);
+
+        if (weapon.isMelee){ 
+            this.meleeWeaponClass = weaponClass;
+            SetMelee(weapon);
+        } else {
+            this.rangedWeaponClass = weaponClass;
+            SetRanged(weapon);
+        }
+    }
+    public ProjectileStats constructProjectileStats(Weapon weapon, WeaponFactory.CLASS weaponClass) {
+        var pStats = new ProjectileStats(){
+            prefab = bulletTemplate, damage = damageTable.get(weaponClass), lifeTime = 5f
+            };
+        if (weapon.isMelee) {
+            pStats.prefab = projectilePrefabTable.get(weaponClass);
+        }
+        pStats.lifeTime = projectileLifeTimesTable.get(weaponClass);
+
+        return pStats;
+    }
+    public bool ShootAt(Vector2 position, bool isMelee)
+    {
+        var weaponClass = isMelee ? this.meleeWeaponClass : this.rangedWeaponClass;
+        var weapon = isMelee ? this.meleeWeapon : this.rangedWeapon;
+        var stats = constructProjectileStats(weapon, weaponClass);
+        if (weapon?.CanShoot(this.gameObject) == true)
+        {
+            Projectile hitbox = Projectile.Shoot(stats.prefab, this.gameObject, position);
+            hitbox.weapon = weapon;
+            hitbox.damage = stats.damage;
+            hitbox.lifeTime = stats.lifeTime;
+        
+            if (!isMelee) {
+                var direction = (position - (Vector2)transform.position).normalized;
+                hitbox.GetComponent<Rigidbody2D>().velocity = 
+                    direction * weapon.projectileSpeed;
+            } 
+            weapon.OnFire(hitbox);
+            return true;
+        }
+        return false;
     }
 
-}
+} 

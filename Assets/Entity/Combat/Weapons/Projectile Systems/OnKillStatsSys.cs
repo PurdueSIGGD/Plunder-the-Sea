@@ -11,7 +11,13 @@ public class OnKillStatsSys : ProjectileSystem {
     public override void OnKill(EntityStats victim)
     {
         this.stats.replenishAmmo(this.ammoPerKill);
-    }   
+    }
+
+    public override void OnEquip(WeaponInventory inv)
+    {
+
+        this.stats = inv.GetComponent<PlayerBase>().stats;
+    }
 
     
 }

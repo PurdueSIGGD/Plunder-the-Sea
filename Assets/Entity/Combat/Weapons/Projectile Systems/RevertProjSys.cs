@@ -6,7 +6,7 @@ public class RevertProjSys : ProjectileSystem
     public float duration;
     public EntityAttribute[] entityAttributes;
     private EntityStats entityStats;
-    private GameObject preWeapon;
+    private WeaponFactory.CLASS preClassWeapon;
     private float equipTimeInstant = 0f;
 
     public RevertProjSys(float duration) {
@@ -16,7 +16,7 @@ public class RevertProjSys : ProjectileSystem
     public override void Run(Projectile projectile) 
     {
         if (Time.time - equipTimeInstant >= duration) {
-            entityStats.GetComponent<WeaponInventory>().SetWeaponPrefab(preWeapon);
+            entityStats.GetComponent<WeaponInventory>().SetWeapon(preClassWeapon);
         }
     }
 
@@ -29,6 +29,6 @@ public class RevertProjSys : ProjectileSystem
         {
             this.entityStats.AddAttribute(entAttr, entityStats);
         }
-        preWeapon = inv.meleeWeaponPrefab;
+        preClassWeapon = inv.getMeleeWeaponClass();
     }
 }

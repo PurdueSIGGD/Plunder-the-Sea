@@ -57,33 +57,22 @@ public class PlayerBase : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            ShootAt(cam.GetMousePosition(), inv.GetRanged(), inv.GetWeaponStats(false));
+            inv.ShootAt(cam.GetMousePosition(), false);
         }
 
         if (Input.GetMouseButtonDown(1))
         {
-            ShootAt(cam.GetMousePosition(), inv.GetMelee(), inv.GetWeaponStats(true));
+            inv.ShootAt(cam.GetMousePosition(), true);
         }
     }
 
+    
     //PlayerStats calls this when player kills entity
     public void OnKill (EntityStats victim) 
     {
-        
+        GetComponent<WeaponInventory>().OnKill(victim);
+           
     }
 
-    public bool ShootAt(Vector2 position, Weapon weapon, WeaponBaseStats stats)
-    {
-        if (weapon?.CanShoot(this.gameObject) == true)
-        {
-            Debug.Log(weapon.GetType().FullName);
-            Projectile hitbox = Projectile.Shoot(stats.projectilePrefab, this.gameObject, position);
-            hitbox.weapon = weapon;
-            hitbox.damage = stats.damage;
-            hitbox.lifeTime = stats.lifeTime;
-            weapon.OnFire(hitbox);
-            return true;
-        }
-        return false;
-    }
+   
 }

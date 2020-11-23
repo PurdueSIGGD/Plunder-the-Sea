@@ -3,6 +3,7 @@ using UnityEngine;
 
 public abstract class Weapon {
 
+    public float projectileSpeed = 0f;
     public bool isMelee {get; private set;}
     protected ProjectileSystem MakeMelee(float staminaCost, int ammoPerKill)  {
         isMelee = true;
@@ -16,14 +17,15 @@ public abstract class Weapon {
         );
     }
 
-    protected ProjectileSystem MakeRanged(float cooldown, float projectileSpeed, int maxAmmo) 
-        => new CompositeProjSys( 
+    protected ProjectileSystem MakeRanged(float cooldown, float projectileSpeed, int maxAmmo) {
+        this.projectileSpeed = projectileSpeed;
+        return new CompositeProjSys( 
             new ProjectileSystem[]{
                 new AmmoProjSys(maxAmmo),
-                new StaminaProjSys(projectileSpeed)
+                new StaminaProjSys(cooldown)
             }
         );
-    
+    }
 
     public abstract ProjectileSystem[] ConstructSystems();
 

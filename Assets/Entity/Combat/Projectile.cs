@@ -49,9 +49,9 @@ public class Projectile : MonoBehaviour
             EntityStats attacker = source.GetComponent<EntityStats>();
             ent.TakeDamage(damage, attacker);
         }
-        
+
         /* Range proj. always destroy on non-entities */
-        if ((!weapon.isMelee && !ent) || destroyOnCollide)
+        if ((!(weapon?.isMelee == true) && !ent) || destroyOnCollide)
         {
             Destroy();
         }

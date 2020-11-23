@@ -17,7 +17,7 @@ public class ChestBehaviour : MonoBehaviour
             return;
         }
 
-        weaponInv.SetWeaponPrefab(weaponPrefab);
+        // weaponInv.SetWeaponPrefab(weaponPrefab);
         
 
         used = true;

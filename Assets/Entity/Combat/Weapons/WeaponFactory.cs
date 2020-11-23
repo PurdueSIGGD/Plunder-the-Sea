@@ -23,7 +23,7 @@ public static class WeaponFactory {
         DAGGER,
         // Ranged
         DUALIES, DUCKSHOT, FLINTLOCK, GREAT_SWORD, 
-        HARPOON, RAPIER, SPEAR, SQUIDGUN, VOLLEYGUN, WHIP
+        HARPOON, SPEAR, SQUIDGUN, VOLLEYGUN, WHIP
     }
     public static Weapon MakeWeapon(WeaponFactory.CLASS weaponClass) {
         return makeMethods[weaponClass]();

@@ -50,4 +50,11 @@ public class CompositeProjSys : ProjectileSystem {
             sys.OnUnequip(inv);
         }
     }
+    public override void OnKill(EntityStats victim)
+    {
+        foreach (var sys in projSystems)
+        {
+            sys.OnKill(victim);
+        }
+    }
 }
