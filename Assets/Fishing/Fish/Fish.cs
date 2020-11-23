@@ -27,7 +27,6 @@ public class Fish : MonoBehaviour
         StartCoroutine(MoveRandomly());
         transform.eulerAngles = new Vector3(0, 0, Random.Range(0f, 360f));
         sprite = this.GetComponent<SpriteRenderer>().sprite;
-        Debug.Log(sprite);
     }
 
     public void BuffPlayerStats(PlayerBase player)
@@ -36,7 +35,6 @@ public class Fish : MonoBehaviour
         player.stats.maxHP += buffs[1];
         player.stats.staminaMax += buffs[2];
         player.stats.staminaRechargeRate += buffs[3];
-        //TODO: Update all stats correctly.
         string text = "";
         for(int i = 0; i < buffs.Length; i++)
         {
@@ -145,7 +143,6 @@ public class Fish : MonoBehaviour
             transform.position += transform.right * Time.deltaTime * speed;
             if(PassedTarget(oldPosition, pos))
             {
-                Debug.Log("Reached bobber.");
                 StartCoroutine(WaitForALittle());
                 yield break;
             }
