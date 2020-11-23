@@ -104,10 +104,22 @@ MonoBehaviour:
   minWaitTime: 0
   maxWaitTime: 2
   lootLevel: 3
-  buffMovementSpeed: 0
-  buffMaxStamina: 0
-  buffMaxHP: 0
-  buffStaminaRechargeRate: 0
+  buffs:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 10
+  buffNames:
+  - Movement Speed
+  - HP
+  - Stamina
+  - Stamina Recharge Rate
+  - Melee Damage
+  - Ranged Damage
+  - Armor
   FishingMinigame: {fileID: 0}
 --- !u!50 &-8485167538343993492
 Rigidbody2D:

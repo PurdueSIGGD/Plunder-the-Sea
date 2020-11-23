@@ -448,6 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1451c1c8838a40259608e0788414c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PopupText: {fileID: 8301900203683361838, guid: 73f884deff2283c4e98ceda871662cf4, type: 3}
   player: {fileID: 7045101813800168215}
   bobberPrefab: {fileID: 2763951892429267362, guid: 70646aae0fdb3497d98618cc5872b815, type: 3}
   castingSpeed: 4

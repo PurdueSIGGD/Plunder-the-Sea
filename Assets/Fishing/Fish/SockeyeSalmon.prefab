@@ -104,6 +104,16 @@ MonoBehaviour:
   minWaitTime: 0
   maxWaitTime: 1
   lootLevel: 1
+  buffs:
+  - 0
+  - 20
+  - 0
+  - 0
+  buffNames:
+  - Movement Speed
+  - Stamina
+  - HP
+  - Stamina Recharge Rate
   buffMovementSpeed: 0
   buffMaxStamina: 20
   buffMaxHP: 0
