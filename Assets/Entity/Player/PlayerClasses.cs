@@ -31,6 +31,7 @@ public class PlayerClasses : MonoBehaviour
     public float baseStaminaRechargeRate = 2;
     [Range(0, 16)]
     public float proficiency = 1;
+    public Sprite classSprite;
 
     private PlayerStats stats;
 
@@ -70,7 +71,8 @@ public class PlayerClasses : MonoBehaviour
     private float killCountdown = 0;
 
     [Header("--Starting Weapons (not yet implemented)--")]
-    public ScriptableWeapon sw;
+    public ScriptableWeapon meleeWeapon;
+    public ScriptableWeapon rangedWeapon;
     //this will be implemented after the weapon changes
 
     //modifies weapon stats
@@ -113,6 +115,19 @@ public class PlayerClasses : MonoBehaviour
             baseSpeed = classes[classNumber].baseSpeed;
             classes[classNumber].setWeaponMods(weaponModifiers);
             setSpecialAttributes(classes[classNumber]);
+            if (classSprite != null)
+            {
+                GetComponent<SpriteRenderer>().sprite = classSprite;
+            }
+            WeaponInventory inventory = GetComponent<WeaponInventory>();
+            if (meleeWeapon != null)
+            {
+                inventory.SetMelee(meleeWeapon);
+            }
+            if (meleeWeapon != null)
+            {
+                inventory.SetRanged(rangedWeapon);
+            }
         }
         else
         {
@@ -148,7 +163,22 @@ public class PlayerClasses : MonoBehaviour
     {
         classNumber = i;
         classes[classNumber].setPlayerStats(stats);
+        baseSpeed = classes[classNumber].baseSpeed;
         classes[classNumber].setWeaponMods(weaponModifiers);
+        setSpecialAttributes(classes[classNumber]);
+        if (classSprite != null)
+        {
+            GetComponent<SpriteRenderer>().sprite = classSprite;
+        }
+        WeaponInventory inventory = GetComponent<WeaponInventory>();
+        if (meleeWeapon != null)
+        {
+            inventory.SetMelee(meleeWeapon);
+        }
+        if (meleeWeapon != null)
+        {
+            inventory.SetRanged(rangedWeapon);
+        }
     }
 
     public void setPlayerStats(PlayerStats stats)
