@@ -12,7 +12,9 @@ public class StateMovement : EnemyMovement
     public LinkedList<MoveAction> moveActions;
     public float pathingRefresh = .25f;
     public float maxDist = 10;
+    public float targetProximity = 0;
     private float lastRefresh = -Mathf.Infinity;
+    private int actionLock = 0;
 
     // One-liner for distance from the player
     protected float PlayerDistance()
@@ -24,9 +26,12 @@ public class StateMovement : EnemyMovement
     protected void MoveTowards()
     {
         float nowSecs = Time.time;
-        if (nowSecs - lastRefresh >= pathingRefresh) {
+        if (nowSecs - lastRefresh >= pathingRefresh && actionLock <= 0) {
             lastRefresh = nowSecs;
-            calcPath();
+            if (calcPath())
+            {
+                actionLock = 1;
+            }
         }
 
         if (moving && moveActions.Count > 0)
@@ -39,6 +44,7 @@ public class StateMovement : EnemyMovement
             if (currAction.dist <= 0)
             {
                 moveActions.RemoveFirst();
+                actionLock--;
                 if (moveActions.Count > 0)
                 {
                     currAction = moveActions.First.Value;
@@ -64,7 +70,7 @@ public class StateMovement : EnemyMovement
 
     }
 
-    public void calcPath()
+    public bool calcPath()
     {
         Hashtable pathMap = new Hashtable();
         LinkedList<MoveAction> moveActionsBuild = new LinkedList<MoveAction>();
@@ -83,7 +89,7 @@ public class StateMovement : EnemyMovement
         while (frontier.Count() > 0)
         {
             PathAction curr = frontier.Pop();
-            if (Mathf.Abs(curr.pos.x - playerPos.x) <= 1.1 && Mathf.Abs(curr.pos.y - playerPos.y) <= 1.1)
+            if (Mathf.Abs(curr.pos.x - playerPos.x) <= targetProximity+.1 && Mathf.Abs(curr.pos.y - playerPos.y) <= targetProximity+.1)
             {
                 while (curr.parent != null)
                 {
@@ -113,7 +119,11 @@ public class StateMovement : EnemyMovement
 
         }
         moveActions = moveActionsBuild;
-
+        if (moveActionsBuild.Count > 0)
+        {
+            return true;
+        }
+        return false;
     }
 
     private void explorePath(Vector2 dir, Vector2 target, PathAction parent, PriorityQueue front, Hashtable map, ContactFilter2D filter)
