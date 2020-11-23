@@ -314,6 +314,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
   moving: 0
+  moveTypes: 0000000001000000
+  pathingRefresh: 0.25
+  maxDist: 10
   minDistance: 3
   maxDistance: 5
   movingTime: 2

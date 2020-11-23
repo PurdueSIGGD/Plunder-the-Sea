@@ -7,8 +7,8 @@ using UnityEngine;
 // Utility subclass for state-driven enemy movement
 public class StateMovement : EnemyMovement
 {
-    
 
+    public MoveSets.MoveTypes[] moveTypes = { MoveSets.MoveTypes.Rook, MoveSets.MoveTypes.Bishop };
     public LinkedList<MoveAction> moveActions;
     public float pathingRefresh = .25f;
     public float maxDist = 10;
@@ -83,7 +83,7 @@ public class StateMovement : EnemyMovement
         while (frontier.Count() > 0)
         {
             PathAction curr = frontier.Pop();
-            if (Mathf.Abs(curr.pos.x - playerPos.x) <= .1 && Mathf.Abs(curr.pos.y - playerPos.y) <= .1)
+            if (Mathf.Abs(curr.pos.x - playerPos.x) <= 1.1 && Mathf.Abs(curr.pos.y - playerPos.y) <= 1.1)
             {
                 while (curr.parent != null)
                 {
@@ -95,15 +95,19 @@ public class StateMovement : EnemyMovement
             }
             if (Vector2.Distance(curr.pos, playerPos) < maxDist)
             {
-                explorePath(Vector2.right + Vector2.up, playerPos, curr, frontier, pathMap, filter);
-                explorePath(Vector2.right + Vector2.down, playerPos, curr, frontier, pathMap, filter);
-                explorePath(Vector2.left + Vector2.up, playerPos, curr, frontier, pathMap, filter);
-                explorePath(Vector2.left + Vector2.down, playerPos, curr, frontier, pathMap, filter);
+                foreach (Vector2 direction in MoveSets.getDirections(moveTypes))
+                {
+                    explorePath(direction, playerPos, curr, frontier, pathMap, filter);
+                }
+                //explorePath(Vector2.right + Vector2.up, playerPos, curr, frontier, pathMap, filter);
+                //explorePath(Vector2.right + Vector2.down, playerPos, curr, frontier, pathMap, filter);
+                //explorePath(Vector2.left + Vector2.up, playerPos, curr, frontier, pathMap, filter);
+                //explorePath(Vector2.left + Vector2.down, playerPos, curr, frontier, pathMap, filter);
 
-                explorePath(Vector2.up, playerPos, curr, frontier, pathMap, filter);
-                explorePath(Vector2.right, playerPos, curr, frontier, pathMap, filter);
-                explorePath(Vector2.down, playerPos, curr, frontier, pathMap, filter);
-                explorePath(Vector2.left, playerPos, curr, frontier, pathMap, filter);
+                //explorePath(Vector2.up, playerPos, curr, frontier, pathMap, filter);
+                //explorePath(Vector2.right, playerPos, curr, frontier, pathMap, filter);
+                //explorePath(Vector2.down, playerPos, curr, frontier, pathMap, filter);
+                //explorePath(Vector2.left, playerPos, curr, frontier, pathMap, filter);
             }
 
 

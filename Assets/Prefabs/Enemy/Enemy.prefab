@@ -309,7 +309,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
   moving: 0
+  moveTypes: 0000000001000000
   pathingRefresh: 0.25
+  maxDist: 10
   approachDistance: 0.5
   actChargeUpTime: 1
   actCooldownTime: 1
