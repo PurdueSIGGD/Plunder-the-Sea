@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public int pierceCount = 0;
     //[HideInInspector]
-    public GameObject source;
+    public GameObject source = null;
     [HideInInspector]
     public ScriptableWeapon weapon;
 

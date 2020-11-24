@@ -12,4 +12,10 @@ public class EnemyCombat : MonoBehaviour
     {
         myBase = GetComponent<EnemyBase>();
     }
+
+    // Called right before the enemy dies.
+    public virtual void OnDeath()
+    {
+        // Do nothing by default
+    }
 }

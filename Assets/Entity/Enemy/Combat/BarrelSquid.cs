@@ -56,7 +56,7 @@ public class BarrelSquid : StateCombat
     void Shoot()
     {
         EnemyProjectile ink = EnemyProjectile.Shoot(inkShot, transform.position, myBase.player.transform.position, inkShotSpeed);
-        ink.source = gameObject;
+        ink.SetSource(gameObject);
         ink.attrChance = 1f;
         ink.attrHit = inkDebuff;
     }

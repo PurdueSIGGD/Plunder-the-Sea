@@ -20,13 +20,25 @@ public class EnemyProjectile : Projectile
     // The initial speed of the projectile
     public float speed = 0f;
 
+    // Source's tag (in case the source dies)
+    private string sourceTag;
+
+
     void Update()
     {
+        // Operate the projectile
         currentLifeTime += Time.deltaTime;
         if (lifeTime > 0 && currentLifeTime >= lifeTime)
         {
             Destroy();
         }
+    }
+
+    // Used to set the source (and other backup tags in case the source vanishes)
+    public void SetSource(GameObject s)
+    {
+        this.source = s;
+        this.sourceTag = s.tag;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -54,10 +66,11 @@ public class EnemyProjectile : Projectile
         }
 
         /* Do / Don't collide with things w/ the same tag as source */
-        if (collider.tag == source.tag && !friendlyFire)
+        if (collider.tag == sourceTag && !friendlyFire)
         {
             return;
         }
+
 
         /* Don't collide with other projectiles shot by the same source */
         if (proj && (proj.source == source))
@@ -81,7 +94,7 @@ public class EnemyProjectile : Projectile
         if (ent)
         {
             // Deal damage
-            EntityStats attacker = source.GetComponent<EntityStats>();
+            EntityStats attacker = (source)? source.GetComponent<EntityStats>() : null;
             ent.TakeDamage(damage, attacker);
 
             // Inflict attribut if relevant

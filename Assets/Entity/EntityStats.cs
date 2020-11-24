@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class EntityStats : MonoBehaviour
 {
-
     public float movementSpeed = 10.0f;
     public float maxHP = 1;
     public float currentHP = 1;

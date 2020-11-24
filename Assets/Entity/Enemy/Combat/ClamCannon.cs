@@ -48,7 +48,7 @@ public class ClamCannon : StateCombat
         if(OnTarget(shootTarget) && myStateMovement.PlayerDistance() < shootDistance)
         {
             EnemyProjectile pearl = EnemyProjectile.Shoot(pearlShot, transform.position, transform.position + playerAngle, pearlShotSpeed);
-            pearl.source = gameObject;
+            pearl.SetSource(gameObject);
             shootTarget = SetTarget(shootCooldown);
         }
     }
