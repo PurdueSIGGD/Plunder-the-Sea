@@ -80,7 +80,8 @@ public class Bobber : MonoBehaviour
             {
                 FishingMinigame fm = fish.FishingMinigame.GetComponent<FishingMinigame>();
                 fm.ddr.fishBeingCaught = fish;
-                fm.ddr.targetPlayerStats = source.player.stats;
+                fm.ddr.targetPlayer = source.player;
+                fm.fish.SetSourceImage(fish.sprite);
                 source.player.movement.enabled = false;
                 source.OnReelFinish(fish);
                 Destroy(fish.gameObject);

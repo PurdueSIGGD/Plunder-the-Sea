@@ -25,7 +25,7 @@ public class DDR : MonoBehaviour
     private int releaseScore = -100; //score needed to "release" the fish
 
     public Fish fishBeingCaught;
-    public PlayerStats targetPlayerStats;
+    public PlayerBase targetPlayer;
     [SerializeField]
     private GameObject FishingMinigame = null;
 
@@ -140,7 +140,7 @@ public class DDR : MonoBehaviour
         //logic for ending the scene
         if (currentScore >= catchScore)
         {
-            fishBeingCaught.BuffPlayerStats(targetPlayerStats);
+            fishBeingCaught.BuffPlayerStats(targetPlayer);
             ResetMinigame();
         }
         else if (currentScore <= releaseScore)
@@ -161,7 +161,7 @@ public class DDR : MonoBehaviour
     {
         currentScore = 0;
         FishingMinigame.SetActive(false);
-        targetPlayerStats.GetComponent<PlayerMovement>().enabled = true;
+        targetPlayer.movement.enabled = true;
     }
 
     private void SendArrow(int type)

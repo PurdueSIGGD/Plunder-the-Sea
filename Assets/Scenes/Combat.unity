@@ -374,42 +374,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
-      propertyPath: classes.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
-      propertyPath: baseHp
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
-      propertyPath: baseSpeed
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
-      propertyPath: classes.Array.data[0]
-      value: 
-      objectReference: {fileID: 27036039929389160, guid: 00a631c93ad58de4ba768ba7d98cff24, type: 3}
-    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
-      propertyPath: classNumber
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
-      propertyPath: classes.Array.data[1]
-      value: 
-      objectReference: {fileID: 6431719841850786631, guid: a6465b199a500d64499db76a719b55db, type: 3}
-    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
-      propertyPath: classes.Array.data[2]
-      value: 
-      objectReference: {fileID: 1753090725421514560, guid: 338f49703fb34534bba14d8922080f80, type: 3}
-    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
-      propertyPath: classes.Array.data[3]
-      value: 
-      objectReference: {fileID: 2013675371743382852, guid: 834f3f0c0000d844ca0338209d57c961, type: 3}
-    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
-      propertyPath: classes.Array.data[4]
-      value: 
-      objectReference: {fileID: 2013675371743382852, guid: 834f3f0c0000d844ca0338209d57c961, type: 3}
     - target: {fileID: 3247792835474656187, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: ammoBar
       value: 
