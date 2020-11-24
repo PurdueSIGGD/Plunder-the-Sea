@@ -137,7 +137,7 @@ public class EnemyProjectile : Projectile
         {
             rigidBody.velocity = direction * speed;
         }
-        source = proj.source;
+        SetSource(proj.source);
     }
 
     public static new EnemyProjectile Shoot(GameObject prefab, GameObject source, Vector2 target, float speed)
