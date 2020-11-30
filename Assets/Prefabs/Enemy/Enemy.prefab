@@ -112,10 +112,10 @@ GameObject:
   - component: {fileID: 5950980189304417510}
   - component: {fileID: 5950980189304417511}
   - component: {fileID: 2893220194574478064}
+  - component: {fileID: 732767531218374810}
   - component: {fileID: 8025262408722974610}
-  - component: {fileID: 2575890806204432934}
   - component: {fileID: 4736270485073046286}
-  - component: {fileID: 3228448193868164446}
+  - component: {fileID: 8490608325319923761}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -243,6 +243,20 @@ MonoBehaviour:
   myStats: {fileID: 0}
   myCombat: {fileID: 0}
   player: {fileID: 0}
+--- !u!114 &732767531218374810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5950980189304417506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae46394463d84b82a5a4e4b6a3da656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myBase: {fileID: 0}
+  moving: 0
 --- !u!114 &8025262408722974610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,20 +279,6 @@ MonoBehaviour:
   attackSpeedInverse: 10
   damage: 1
   numberOfTimesToRespawn: 0
---- !u!114 &2575890806204432934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5950980189304417506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3953fd9b44ab4671ad4af10b45b4e68, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myBase: {fileID: 0}
-  attackRange: 0.5
 --- !u!58 &4736270485073046286
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -295,7 +295,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
---- !u!114 &3228448193868164446
+--- !u!114 &8490608325319923761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -304,16 +304,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5950980189304417506}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05494563a16e054ab5202b936063458, type: 3}
+  m_Script: {fileID: 11500000, guid: 6578e6fdbf2cd344083f8d8387ebfa56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
-  moving: 0
-  pathingRefresh: 0.25
-  approachDistance: 0.5
-  actChargeUpTime: 1
-  actCooldownTime: 1
-  approachState: 0
+  attackRange: 0.5
 --- !u!1001 &185663513
 PrefabInstance:
   m_ObjectHideFlags: 0

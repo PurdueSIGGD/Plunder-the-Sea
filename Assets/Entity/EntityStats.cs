@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class EntityStats : MonoBehaviour
 {
-
     public float movementSpeed = 10.0f;
     public float maxHP = 1;
     public float currentHP = 1;
@@ -85,6 +84,18 @@ public class EntityStats : MonoBehaviour
         {
             app.endTime = Time.time + attr.duration;
         }
+
+        if (!attr.stackable)
+        {
+            for (int i = 0; i < attribList.Count; i++)
+            {
+                if (attribList[i].attr == attr)
+                {
+                    return;
+                }
+            }
+        }
+        
         attribList.Add(app);
         attr.OnAdd(this);
     }
