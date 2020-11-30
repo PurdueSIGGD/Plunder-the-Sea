@@ -19,9 +19,17 @@ public class EnemyStats : EntityStats
         StatUpdate();
     }
 
+    public void damageReturnCall()
+    {
+        FindObjectOfType<PlayerClasses>().enemyHit(this);
+    }
+
     public override void Die()
     {
-        if(numberOfTimesToRespawn == 0)
+        //death call to player
+        FindObjectOfType<PlayerClasses>().enemyKilled();
+
+        if (numberOfTimesToRespawn == 0)
         {
             Destroy(gameObject);
         }
