@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class PlayerFishing : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject PopupText;
+
     public PlayerBase player;
     public GameObject bobberPrefab;
     public float castingSpeed = 4.0f;
@@ -88,6 +91,14 @@ public class PlayerFishing : MonoBehaviour
             player.stats.addBait(selectedBait);
         }
         bobberIsCast = false;
+    }
+
+    public void SpawnPopupText(string text)
+    {
+        GameObject textObject = Instantiate(PopupText, transform.position, Quaternion.identity);
+        textObject.transform.position = new Vector3(textObject.transform.position.x, textObject.transform.position.y + 0.3f, 0);
+        TextMesh textMesh = textObject.GetComponent<TextMesh>();
+        textMesh.text = text;
     }
 
 }

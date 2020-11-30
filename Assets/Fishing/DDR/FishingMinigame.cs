@@ -9,7 +9,7 @@ public class FishingMinigame : MonoBehaviour
 {
 
     private Canvas canvas;
-    private UI_Fish fish;
+    public UI_Fish fish;
     public DDR ddr;
 
     private float originalFishY;

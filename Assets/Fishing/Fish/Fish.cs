@@ -15,24 +15,35 @@ public class Fish : MonoBehaviour
     [SerializeField]
     private float maxWaitTime;
     public int lootLevel;
-    public float buffMovementSpeed = 0f;
-    public float buffMaxStamina = 0f;
-    public float buffMaxHP = 0f;
-    public float buffStaminaRechargeRate = 0f;
+    public float[] buffs = {0f, 0f, 0f, 0f, 0f, 0f, 0f};
+    public string[] buffNames = { "Movement Speed", "HP", "Stamina", "Stamina Recharge Rate", "Melee Damage",
+        "Ranged Damage", "Armor", };
     public GameObject FishingMinigame;
+
+    public Sprite sprite;
 
     void Start()
     {
         StartCoroutine(MoveRandomly());
         transform.eulerAngles = new Vector3(0, 0, Random.Range(0f, 360f));
+        sprite = this.GetComponent<SpriteRenderer>().sprite;
     }
 
-    public void BuffPlayerStats(PlayerStats stats)
+    public void BuffPlayerStats(PlayerBase player)
     {
-        stats.movementSpeed += buffMovementSpeed;
-        stats.maxHP += buffMaxHP;
-        stats.staminaMax += buffMaxStamina;
-        stats.staminaRechargeRate += buffStaminaRechargeRate;
+        player.stats.movementSpeed += buffs[0];
+        player.stats.maxHP += buffs[1];
+        player.stats.staminaMax += buffs[2];
+        player.stats.staminaRechargeRate += buffs[3];
+        string text = "";
+        for(int i = 0; i < buffs.Length; i++)
+        {
+            if(buffs[i] > 0f)
+            {
+                text += "+" + buffs[i] + " " + buffNames[i] + "\n";
+            }
+        }
+        player.fishing.SpawnPopupText(text);
     }
 
     bool PassedTarget(Vector3 oldPosition, Vector3 targetPos)
@@ -132,7 +143,6 @@ public class Fish : MonoBehaviour
             transform.position += transform.right * Time.deltaTime * speed;
             if(PassedTarget(oldPosition, pos))
             {
-                Debug.Log("Reached bobber.");
                 StartCoroutine(WaitForALittle());
                 yield break;
             }

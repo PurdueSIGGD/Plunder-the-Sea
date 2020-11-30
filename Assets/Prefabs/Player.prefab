@@ -448,6 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1451c1c8838a40259608e0788414c5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PopupText: {fileID: 8301900203683361838, guid: 73f884deff2283c4e98ceda871662cf4, type: 3}
   player: {fileID: 7045101813800168215}
   bobberPrefab: {fileID: 2763951892429267362, guid: 70646aae0fdb3497d98618cc5872b815, type: 3}
   castingSpeed: 4
@@ -515,6 +516,9 @@ MonoBehaviour:
   - {fileID: 6431719841850786631, guid: a6465b199a500d64499db76a719b55db, type: 3}
   - {fileID: 1753090725421514560, guid: 338f49703fb34534bba14d8922080f80, type: 3}
   - {fileID: 2013675371743382852, guid: 834f3f0c0000d844ca0338209d57c961, type: 3}
+  - {fileID: 3397976319809124363, guid: 61caf5b83222f744688a2d83e97807cf, type: 3}
+  - {fileID: 438445870270989449, guid: 31faffd63d7cc0c49986d89ee62bcf3f, type: 3}
+  - {fileID: 4244506687537655845, guid: 77d28748061e2344cbf7407507a6ee10, type: 3}
   baseHp: 10
   baseSpeed: 6
   baseArmorAddition: 0
@@ -522,6 +526,17 @@ MonoBehaviour:
   baseStamina: 100
   baseStaminaRechargeRate: 2
   proficiency: 1
+  chainLighting: 0
+  chainChance: 0.5
+  chainLength: 4
+  lunge: 0
+  meleeLungeDistance: 2
+  rangedLungeDistance: 4
+  killChain: 0
+  killRequirement: 3
+  chainTime: 4
+  attackSpeedBoost: 2
+  speedBoost: 2
   sw: {fileID: 0}
   meleeDamageAddition: 0
   meleeDamageMultiplier: 1
