@@ -15,7 +15,7 @@ public class StateMovement : EnemyMovement
     private float lastRefresh = -Mathf.Infinity;
 
     // One-liner for distance from the player
-    protected float PlayerDistance()
+    public float PlayerDistance()
     {
         return Vector2.Distance(myBase.player.transform.position, myBase.transform.position);
     }
@@ -175,6 +175,12 @@ public class StateMovement : EnemyMovement
     public virtual int GetState()
     {
         return 0;
+    }
+
+    // Set the current state (overridden in subclasses)
+    public virtual void SetState(int newState)
+    {
+        return;
     }
 }
 

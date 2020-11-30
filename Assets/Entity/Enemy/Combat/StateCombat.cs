@@ -22,6 +22,12 @@ public class StateCombat : EnemyCombat
         return myStateMovement.GetState();
     }
 
+    // Set the current state by setting the state of the movement
+    public void SetState(int newState)
+    {
+        myStateMovement.SetState(newState);
+    }
+
     // Return the target time into a variable (similar to StateMovement, but for time-based cooldowns in general)
     public float SetTarget(float elapsedTime)
     {
