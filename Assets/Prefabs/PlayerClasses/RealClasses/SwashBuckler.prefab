@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2280138078177715567
+--- !u!1 &4680100573532103329
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3885438423194813587}
-  - component: {fileID: 6431719841850786631}
+  - component: {fileID: 7691156972234212189}
+  - component: {fileID: 438445870270989449}
   m_Layer: 0
-  m_Name: Brawler
+  m_Name: SwashBuckler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3885438423194813587
+--- !u!4 &7691156972234212189
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2280138078177715567}
+  m_GameObject: {fileID: 4680100573532103329}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,13 +31,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6431719841850786631
+--- !u!114 &438445870270989449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2280138078177715567}
+  m_GameObject: {fileID: 4680100573532103329}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2b2458fe8bdaca468457c10375cb4c4, type: 3}
@@ -45,12 +45,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classNumber: -1
   classes: []
-  baseHp: 12
-  baseSpeed: 2
-  baseArmorAddition: 1
-  baseArmorDivision: 0.5
+  baseHp: 10
+  baseSpeed: 4
+  baseArmorAddition: 0
+  baseArmorDivision: 0
   baseStamina: 200
-  baseStaminaRechargeRate: 4
+  baseStaminaRechargeRate: 3
   proficiency: 1
   chainLighting: 0
   lightingDamage: 4
@@ -58,7 +58,7 @@ MonoBehaviour:
   chainLength: 4
   chainRadius: 4
   lightingPrefab: {fileID: 0}
-  lunge: 0
+  lunge: 1
   meleeLungeDistance: 2
   rangedLungeDistance: 4
   killChain: 0
@@ -67,16 +67,16 @@ MonoBehaviour:
   attackSpeedBoost: 2
   speedBoost: 2
   sw: {fileID: 0}
-  meleeDamageAddition: 2
-  meleeDamageMultiplier: 1.5
+  meleeDamageAddition: 0
+  meleeDamageMultiplier: 1
   rangedDamageAddition: 0
-  rangedDamageMultiplier: 0.5
+  rangedDamageMultiplier: 1
   critChanceAddition: 0
   critChanceMultiplier: 1
   meleeAttackSpeedAddition: 0
   meleeAttackSpeedMultiplier: 1
   rangedAttackSpeedAddition: 0
-  rangedAttackSpeedMultiplier: 0.5
+  rangedAttackSpeedMultiplier: 1
   projectileSpeedAddition: 0
   projectileSpeedMultiplier: 1
   accuracyAddition: 0
