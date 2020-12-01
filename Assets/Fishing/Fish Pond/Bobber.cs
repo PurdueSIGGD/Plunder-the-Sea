@@ -83,6 +83,7 @@ public class Bobber : MonoBehaviour
                 fm.ddr.targetPlayer = source.player;
                 fm.fish.SetSourceImage(fish.sprite);
                 source.player.movement.enabled = false;
+                source.player.rigidBody.velocity = new Vector3(0, 0, 0);
                 source.OnReelFinish(fish);
                 Destroy(fish.gameObject);
                 Destroy(this.gameObject);

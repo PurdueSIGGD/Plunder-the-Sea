@@ -13,23 +13,9 @@ public class EnemyCombat : MonoBehaviour
         myBase = GetComponent<EnemyBase>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collider) //Called when something enters the enemy's range
+    // Called right before the enemy dies.
+    public virtual void OnDeath()
     {
-        if (collider.GetComponent<PlayerBase>())
-        {
-            myBase.myMovement.moving = false;
-            myBase.myRigid.velocity = Vector2.zero;
-            StartCoroutine("meleeAttack");
-        }
+        // Do nothing by default
     }
-    IEnumerator meleeAttack() //Executes a melee attack
-    {
-        yield return new WaitForSeconds(1 / myBase.myStats.attackSpeedInverse);
-        if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
-        {
-            myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
-        }
-        myBase.myMovement.moving = true;
-    }
-
 }

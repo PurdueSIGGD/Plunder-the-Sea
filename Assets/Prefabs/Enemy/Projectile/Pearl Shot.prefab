@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6059500687515898438
+--- !u!1 &8419220994995289636
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6950699066810479931}
-  - component: {fileID: 6194572133521909472}
-  - component: {fileID: 6596879489433439571}
-  - component: {fileID: 7896221370322905785}
-  - component: {fileID: -7377238901562944439}
+  - component: {fileID: 4662748298586233177}
+  - component: {fileID: 8446278652390394498}
+  - component: {fileID: 8884596938269729073}
+  - component: {fileID: 5572567535265203931}
+  - component: {fileID: 4133872797448370219}
   m_Layer: 0
-  m_Name: Ink Shot
+  m_Name: Pearl Shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6950699066810479931
+--- !u!4 &4662748298586233177
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6059500687515898438}
+  m_GameObject: {fileID: 8419220994995289636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5723777, y: 0.9789547, z: 0}
+  m_LocalPosition: {x: 3.05521, y: 1.5392591, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6194572133521909472
+--- !u!212 &8446278652390394498
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6059500687515898438}
+  m_GameObject: {fileID: 8419220994995289636}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.27946386, g: 0, b: 0.5754717, a: 1}
+  m_Color: {r: 0.91144687, g: 0.80566037, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,14 +85,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &6596879489433439571
+--- !u!50 &8884596938269729073
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6059500687515898438}
+  m_GameObject: {fileID: 8419220994995289636}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -106,13 +106,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &7896221370322905785
+--- !u!61 &5572567535265203931
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6059500687515898438}
+  m_GameObject: {fileID: 8419220994995289636}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -132,29 +132,29 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &-7377238901562944439
+--- !u!114 &4133872797448370219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6059500687515898438}
+  m_GameObject: {fileID: 8419220994995289636}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73e235bbd564841448eb10cc8dc9850c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 3
+  lifeTime: 4
   currentLifeTime: 0
-  damage: 1
+  damage: 3
   destroyOnCollide: 1
   pierceCount: 0
   source: {fileID: 0}
   weapon: {fileID: 0}
   friendlyFire: 0
-  reflectMelee: 0
+  reflectMelee: 1
   reflectRanged: 0
-  collideWithProjectile: 0
+  collideWithProjectile: 1
   collideWithWall: 1
   attrHit:
     type: 0

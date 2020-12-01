@@ -8,22 +8,27 @@ public enum ENT_ATTR
     MAX_HP,
     MAX_STAMINA,
     ARMOR_STATIC,
+    ARMOR_MULT,
     POISON,
     TOTAL_STATS
 };
 [System.Serializable]
 public class EntityAttribute
 {
+    
+    public ENT_ATTR type;   // The type of attribute
+    public float value;     // The value of the attribute. What it does depends on the attribute type.
+    public float duration;  // The duration of the attibute, in seconds.
+    public bool stackable;  // Whether the attribute can stack with itself.
+    public bool isAdditive; // true: The attribute is additive. false: the attribute is multiplicative.
 
-    public ENT_ATTR type;
-    public float value;
-    public float duration;
-
-    public EntityAttribute(ENT_ATTR type, float value, float duration = float.PositiveInfinity)
+    public EntityAttribute(ENT_ATTR type, float value, float duration = float.PositiveInfinity, bool stackable = false, bool isAdditive = true)
     {
         this.type = type;
         this.value = value;
         this.duration = duration;
+        this.stackable = stackable;
+        this.isAdditive = isAdditive;
     }
 
     public void OnAdd(EntityStats owner)
@@ -34,13 +39,44 @@ public class EntityAttribute
         switch(type)
         {
             case ENT_ATTR.MOVESPEED:
-                owner.movementSpeed += value;
+                if (isAdditive)
+                {
+                    owner.movementSpeed += value;
+                } else
+                {
+                    owner.movementSpeed *= value;
+                }
+                
                 return;
             case ENT_ATTR.MAX_HP:
-                owner.maxHP += value;
+                if (isAdditive)
+                {
+                    owner.maxHP += value;
+                }
+                else
+                {
+                    owner.maxHP *= value;
+                }
                 return;
             case ENT_ATTR.ARMOR_STATIC:
-                owner.armorStatic += value;
+                if (isAdditive)
+                {
+                    owner.armorStatic += value;
+                }
+                else
+                {
+                    owner.armorStatic *= value;
+                }
+                return;
+            case ENT_ATTR.ARMOR_MULT:
+                if (isAdditive)
+                {
+                    owner.armorMult += value;
+                }
+                else
+                {
+                    owner.armorMult *= value;
+                }
                 return;
         }
 
@@ -50,7 +86,14 @@ public class EntityAttribute
             switch(type)
             {
                 case ENT_ATTR.MAX_STAMINA:
-                    player.staminaMax += value;
+                    if (isAdditive)
+                    {
+                        player.staminaMax += value;
+                    }
+                    else
+                    {
+                        player.staminaMax *= value;
+                    }
                     return;
             }
         }
@@ -74,13 +117,45 @@ public class EntityAttribute
         switch (type)
         {
             case ENT_ATTR.MOVESPEED:
-                owner.movementSpeed -= value;
+                if (isAdditive)
+                {
+                    owner.movementSpeed -= value;
+                }
+                else
+                {
+                    owner.movementSpeed /= value;
+                }
+
                 return;
             case ENT_ATTR.MAX_HP:
-                owner.maxHP -= value;
+                if (isAdditive)
+                {
+                    owner.maxHP -= value;
+                }
+                else
+                {
+                    owner.maxHP /= value;
+                }
                 return;
             case ENT_ATTR.ARMOR_STATIC:
-                owner.armorStatic -= value;
+                if (isAdditive)
+                {
+                    owner.armorStatic -= value;
+                }
+                else
+                {
+                    owner.armorStatic /= value;
+                }
+                return;
+            case ENT_ATTR.ARMOR_MULT:
+                if (isAdditive)
+                {
+                    owner.armorMult -= value;
+                }
+                else
+                {
+                    owner.armorMult /= value;
+                }
                 return;
         }
 
@@ -90,7 +165,14 @@ public class EntityAttribute
             switch (type)
             {
                 case ENT_ATTR.MAX_STAMINA:
-                    player.staminaMax -= value;
+                    if (isAdditive)
+                    {
+                        player.staminaMax -= value;
+                    }
+                    else
+                    {
+                        player.staminaMax /= value;
+                    }
                     return;
             }
         }

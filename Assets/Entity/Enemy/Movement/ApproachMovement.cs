@@ -48,12 +48,16 @@ public class ApproachMovement : StateMovement
                         approachState = ApproachState.cooldown;
                         SetTarget(actCooldownTime);
                     }
+                    // Stop moving
+                    myBase.myRigid.velocity = Vector2.zero;
                     break;
                 case ApproachState.cooldown:
                     if (OnTarget())
                     {
                         approachState = ApproachState.approaching;
                     }
+                    // Stop moving
+                    myBase.myRigid.velocity = Vector2.zero;
                     break;
             }
         }
@@ -62,5 +66,10 @@ public class ApproachMovement : StateMovement
     public override int GetState()
     {
         return (int)this.approachState;
+    }
+
+    public override void SetState(int newState)
+    {
+        this.approachState = (ApproachState)newState;
     }
 }

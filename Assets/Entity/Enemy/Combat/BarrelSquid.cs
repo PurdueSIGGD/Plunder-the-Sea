@@ -11,6 +11,9 @@ public class BarrelSquid : StateCombat
     // Barrel Attribute modifier
     EntityAttribute barrelDefense = new EntityAttribute(ENT_ATTR.ARMOR_STATIC, 10);
 
+    // Ink Attribute (to inflict on a hit)
+    EntityAttribute inkDebuff = new EntityAttribute(ENT_ATTR.ARMOR_STATIC,-1f,2f);
+
     // How long the barrel squid has to wait before firing
     public float firingCooldown = 0.5f;
     private float firingTracker = 0;
@@ -52,7 +55,9 @@ public class BarrelSquid : StateCombat
 
     void Shoot()
     {
-        Projectile ink = Projectile.Shoot(inkShot, transform.position, myBase.player.transform.position, inkShotSpeed);
-        ink.source = gameObject;
+        EnemyProjectile ink = EnemyProjectile.Shoot(inkShot, transform.position, myBase.player.transform.position, inkShotSpeed);
+        ink.SetSource(gameObject);
+        ink.attrChance = 1f;
+        ink.attrHit = inkDebuff;
     }
 }
