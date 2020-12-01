@@ -46,7 +46,10 @@ public class EntityStats : MonoBehaviour
 
     public void damageReturnCall()
     {
-        //does nothing by default
+        if (GetComponent<EnemyStats>())
+        {
+            GetComponent<EnemyStats>().enemyDamageReturnCall();
+        }
     }
 
     //Return true if results in death

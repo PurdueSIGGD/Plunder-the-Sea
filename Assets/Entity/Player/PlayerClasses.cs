@@ -247,6 +247,8 @@ public class PlayerClasses : MonoBehaviour
     //call this when an enemy is hit/damaged
     public void enemyHit(EnemyStats current)
     {
+        Debug.Log("Enemy got hit");
+
         if (chainLighting && !sendingLighting)
         {
             sendingLighting = true; //stops lighting damage from spawning lighting infinitely
@@ -254,9 +256,11 @@ public class PlayerClasses : MonoBehaviour
             //only spawn if chance is high enough
             if (Random.Range(0f, 1f) <= chainChance)
             {
+                Debug.Log("Lighting should spawn");
+                
                 //create chain lighting
                 EnemyStats next = null;
-                float distance = Mathf.Infinity;
+                float distance = chainRadius;
 
                 current.TakeDamage(lightingDamage, stats);
 
@@ -264,11 +268,14 @@ public class PlayerClasses : MonoBehaviour
                 {
                     foreach (EnemyStats es in FindObjectsOfType<EnemyStats>())
                     {
-                        float distPlaceholder = Vector2.Distance(current.transform.position, es.transform.position);
-                        if (distPlaceholder < distance)
+                        if (current != es)
                         {
-                            next = es;
-                            distance = distPlaceholder;
+                            float distPlaceholder = Vector2.Distance(current.transform.position, es.transform.position);
+                            if (distPlaceholder < distance)
+                            {
+                                next = es;
+                                distance = distPlaceholder;
+                            }
                         }
                     }
                     if (next == null)
@@ -280,7 +287,7 @@ public class PlayerClasses : MonoBehaviour
                         //instantiate lighting and deal damage
                         GameObject g = Instantiate(lightingPrefab, current.transform.position, Quaternion.identity);
                         g.GetComponent<LineRenderer>().SetPositions(new Vector3[] { current.transform.position, next.transform.position });
-                        Destroy(g, 0.1f);
+                        Destroy(g, 0.5f);
                         next.TakeDamage(lightingDamage, stats);
                         current = next;
                     }

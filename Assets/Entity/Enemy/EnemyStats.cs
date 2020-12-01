@@ -19,7 +19,7 @@ public class EnemyStats : EntityStats
         StatUpdate();
     }
 
-    public void damageReturnCall()
+    public void enemyDamageReturnCall()
     {
         FindObjectOfType<PlayerClasses>().enemyHit(this);
     }
