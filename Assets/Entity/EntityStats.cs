@@ -43,9 +43,19 @@ public class EntityStats : MonoBehaviour
         }
     }
 
+    public void damageReturnCall()
+    {
+        if (GetComponent<EnemyStats>())
+        {
+            GetComponent<EnemyStats>().enemyDamageReturnCall();
+        }
+    }
+
     //Return true if results in death
     public bool TakeDamage(float amount, EntityStats source)
     {
+        //player damage call
+        damageReturnCall();
 
         float realDmg = Mathf.Max((amount  - armorStatic) * (1 - armorMult), 0);
 
