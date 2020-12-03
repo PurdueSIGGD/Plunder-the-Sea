@@ -15,6 +15,6 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         float speed = myBase.stats.movementSpeed;
-        myBase.rigidBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * speed;
+        myBase.rigidBody.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * speed;
     }
 }

@@ -21,8 +21,16 @@ public class EnemyStats : EntityStats
         StatUpdate();
     }
 
+    public void enemyDamageReturnCall()
+    {
+        FindObjectOfType<PlayerClasses>().enemyHit(this);
+    }
+
     public override void Die()
     {
+        //death call to player
+        FindObjectOfType<PlayerClasses>().enemyKilled();
+
         myBase.myCombat.OnDeath();
         if(numberOfTimesToRespawn == 0)
         {
