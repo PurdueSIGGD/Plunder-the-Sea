@@ -157,7 +157,7 @@ MonoBehaviour:
   collideWithProjectile: 0
   collideWithWall: 1
   attrHit:
-    name: fire_5
+    name: Dragon's Fire
     type: 5
     value: 1
     duration: 5
