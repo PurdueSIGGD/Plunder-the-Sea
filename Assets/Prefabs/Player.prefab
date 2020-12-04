@@ -453,6 +453,8 @@ MonoBehaviour:
   bobberPrefab: {fileID: 2763951892429267362, guid: 70646aae0fdb3497d98618cc5872b815, type: 3}
   castingSpeed: 4
   castingDistance: 7
+  castSound: {fileID: 8300000, guid: 245abcbdaf2751045b746e62bfbbdd4c, type: 3}
+  reelSound: {fileID: 8300000, guid: f0e865632dc494d4b88bf4e94f0bdbb2, type: 3}
 --- !u!114 &7045101813800168173
 MonoBehaviour:
   m_ObjectHideFlags: 0
