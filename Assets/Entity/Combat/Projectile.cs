@@ -19,6 +19,12 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public ScriptableWeapon weapon;
 
+    // The initial speed of the projectile
+    public float speed = 0f;
+
+    // Source's tag (in case the source dies)
+    public string sourceTag;
+
     void Update()
     {
         currentLifeTime += Time.deltaTime;
@@ -42,6 +48,12 @@ public class Projectile : MonoBehaviour
         EntityStats ent = collider.GetComponent<EntityStats>();
         if (ent)
         {
+            // If the collision is with something that uniquely reacts to projectiles
+            EnemyCombat ec = GetComponent<EnemyCombat>();
+            if (ec)
+            {
+                if (ec.OnProjectileHit(this)) return;
+            }
             pierceCount++;
             if (weapon)
             {
@@ -67,18 +79,71 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
+    // Modifies the trajectory of the bullet to aim towards the source, and modifies this projectile's source (or away from the parameter's source)
+    public void Reflect(Projectile proj)
+    {
+        Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
+        Vector2 direction;
+
+        if (source)
+        {
+            // Deflects straight back at the source if it exists
+            direction = (source.transform.position - transform.position).normalized;
+        }
+        else
+        {
+            // Otherwise, deflects away from the projectile's source
+            direction = (transform.position - proj.source.transform.position).normalized;
+        }
+
+        if (rigidBody)
+        {
+            rigidBody.velocity = direction * speed;
+        }
+        SetSource(proj.source);
+    }
+
+    // Used to set the source (and other backup tags in case the source vanishes)
+    public void SetSource(GameObject s)
+    {
+        this.source = s;
+        this.sourceTag = s.tag;
+    }
+
+    public void Reflect(GameObject deflector)
+    {
+        Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
+        Vector2 direction;
+
+        if (source)
+        {
+            // Deflects straight back at the source if it exists
+            direction = (source.transform.position - transform.position).normalized;
+        }
+        else
+        {
+            // Otherwise, deflects away from the target
+            direction = (transform.position - deflector.transform.position).normalized;
+        }
+
+        if (rigidBody)
+        {
+            rigidBody.velocity = direction * speed;
+        }
+        SetSource(deflector);
+    }
+
     public static Projectile Shoot(GameObject prefab, GameObject source, Vector2 target, float speed)
     {
         Projectile bullet = Shoot(prefab, source.transform.position, target, speed);
-        bullet.source = source;
+        bullet.SetSource(source);
         return bullet;
     }
 
     public static Projectile Shoot(GameObject prefab, Vector2 startPos, Vector2 target, float speed)
     {
-
         Projectile bullet = Instantiate(prefab, startPos, Quaternion.identity).GetComponent<Projectile>();
-        
+
         if (!bullet)
         {
             return null;
@@ -91,6 +156,7 @@ public class Projectile : MonoBehaviour
         {
             rigidBody.velocity = direction * speed;
         }
+        bullet.speed = speed;
 
         bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, new Vector3(direction.x, direction.y, 0));
 

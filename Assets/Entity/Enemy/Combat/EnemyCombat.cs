@@ -18,4 +18,10 @@ public class EnemyCombat : MonoBehaviour
     {
         // Do nothing by default
     }
+
+    // Called when a projectile hits the enemy. Return true if this should stop the collision.
+    public virtual bool OnProjectileHit(Projectile hit)
+    {
+        return false;
+    }
 }

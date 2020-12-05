@@ -17,11 +17,7 @@ public class EnemyProjectile : Projectile
     public EntityAttribute attrHit = null;
     public float attrChance = 0.0f;
 
-    // The initial speed of the projectile
-    public float speed = 0f;
-
-    // Source's tag (in case the source dies)
-    private string sourceTag;
+    
 
 
     void Update()
@@ -34,12 +30,7 @@ public class EnemyProjectile : Projectile
         }
     }
 
-    // Used to set the source (and other backup tags in case the source vanishes)
-    public void SetSource(GameObject s)
-    {
-        this.source = s;
-        this.sourceTag = s.tag;
-    }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -93,6 +84,13 @@ public class EnemyProjectile : Projectile
         EntityStats ent = collider.GetComponent<EntityStats>();
         if (ent)
         {
+            // If the collision is with something that uniquely reacts to projectiles
+            EnemyCombat ec = GetComponent<EnemyCombat>();
+            if (ec)
+            {
+                if (ec.OnProjectileHit(this)) return;
+            }
+
             // Deal damage
             EntityStats attacker = (source)? source.GetComponent<EntityStats>() : null;
             ent.TakeDamage(damage, attacker);
@@ -117,33 +115,12 @@ public class EnemyProjectile : Projectile
         Destroy(gameObject);
     }
 
-    // Modifies the trajectory of the bullet to aim towards the source, and modifies this projectile's source (or away from the parameter's source)
-    public void Reflect(Projectile proj)
-    {
-        Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
-        Vector2 direction;
-
-        if (source)
-        {
-            // Deflects straight back at the source if it exists
-            direction = (source.transform.position - transform.position).normalized;
-        } else
-        {
-            // Otherwise, deflects away from the projectile's source
-            direction = (transform.position - proj.source.transform.position).normalized;
-        }
-
-        if (rigidBody)
-        {
-            rigidBody.velocity = direction * speed;
-        }
-        SetSource(proj.source);
-    }
+    
 
     public static new EnemyProjectile Shoot(GameObject prefab, GameObject source, Vector2 target, float speed)
     {
         EnemyProjectile bullet = Shoot(prefab, source.transform.position, target, speed);
-        bullet.source = source;
+        bullet.SetSource(source);
         return bullet;
     }
 

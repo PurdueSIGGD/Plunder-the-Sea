@@ -19,6 +19,7 @@ public class DragonFish : StateCombat
 
     // The number of fire particles created when killed.
     public int deathCount = 8;
+    public float deathLinger = 5;
     
     // The current state
     private int current = 0;
@@ -38,25 +39,32 @@ public class DragonFish : StateCombat
         if (OnTarget(fireTarget) && myStateMovement.PlayerDistance() < fireDistance)
         {
             fireTarget = SetTarget(fireCooldown);
-            PlaceFire(fireSpread);
+            PlaceFire(fireSpread, 0);
         }
+    }
+
+    public override bool OnProjectileHit(Projectile hit)
+    {
+        hit.Reflect(gameObject);
+        return true;
     }
 
     public override void OnDeath()
     {
         for (int i = 0; i < deathCount; i++)
         {
-            PlaceFire(deathSpread);
+            PlaceFire(deathSpread, deathLinger);
         }
     }
 
     // Places a fire with a spread within distance.
-    void PlaceFire(float distance)
+    void PlaceFire(float distance, float overrideTime)
     {
         Vector3 spreadVector = new Vector3(Random.Range(-distance, distance), Random.Range(-distance, distance), 0);
 
         EnemyProjectile flame = EnemyProjectile.Shoot(fireProjectile, transform.position + spreadVector, transform.position + spreadVector, 0.0f);
         flame.SetSource(gameObject);
+        if (overrideTime > 0) flame.lifeTime = overrideTime;
     }
 
     private void OnTriggerStay2D(Collider2D collider) //Called when something enters the enemy's range
