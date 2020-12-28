@@ -101,7 +101,7 @@ public class StateMovement : EnemyMovement
             }
             if (Vector2.Distance(curr.pos, playerPos) < maxDist)
             {
-                foreach (Vector2 direction in MoveSets.getDirections(moveTypes))
+                foreach (MoveAction direction in MoveSets.getDirections(moveTypes))
                 {
                     explorePath(direction, playerPos, curr, frontier, pathMap, filter);
                 }
@@ -117,17 +117,16 @@ public class StateMovement : EnemyMovement
         return false;
     }
 
-    private void explorePath(Vector2 dir, Vector2 target, PathAction parent, PriorityQueue front, Hashtable map, ContactFilter2D filter)
+    private void explorePath(MoveAction move, Vector2 target, PathAction parent, PriorityQueue front, Hashtable map, ContactFilter2D filter)
     {
         RaycastHit2D[] hits = new RaycastHit2D[1];
-        Vector2 newPos = parent.pos + dir;
+        Vector2 newPos = parent.pos + move.dir.normalized * move.dist;
         //Debug.Log(parent.pos + " -> " + newPos);
         if (!map.Contains(newPos))
         {
-            if (Physics2D.Raycast(parent.pos, dir, filter, hits, dir.magnitude+.1f) <= 0)
+            if (Physics2D.Raycast(parent.pos, move.dir, filter, hits, move.dist+.1f) <= 0)
             {
-                MoveAction newMove = new MoveAction(dir, dir.magnitude);
-                PathAction newAct = new PathAction(newPos, parent, newMove, target);
+                PathAction newAct = new PathAction(newPos, parent, move, target);
                 map.Add(newPos, newAct);
                 front.Push(newAct);
             }
@@ -135,14 +134,14 @@ public class StateMovement : EnemyMovement
         else
         {
             //check if should update value in frontier
-            if (Physics2D.Raycast(parent.pos, dir, filter, hits, dir.magnitude+.1f) <= 0)
+            if (Physics2D.Raycast(parent.pos, move.dir, filter, hits, move.dist+.1f) <= 0)
             {
                 PathAction oldAct = (PathAction)map[newPos];
-                if (parent.dist + dir.magnitude < oldAct.dist)
+                if (parent.dist + move.dist < oldAct.dist)
                 {
-                    oldAct.move = new MoveAction(dir, dir.magnitude);
+                    oldAct.move = move;
                     oldAct.parent = parent;
-                    front.Update(oldAct, parent.dist + dir.magnitude);
+                    front.Update(oldAct, parent.dist + move.dist);
                 }
             }
         }

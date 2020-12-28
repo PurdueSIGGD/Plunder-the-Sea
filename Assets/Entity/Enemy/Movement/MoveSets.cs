@@ -11,9 +11,15 @@ public class MoveSets
         Bishop
     }
 
-    public static Vector2[] getDirections(MoveTypes[] types)
+    public enum CheckTypes
     {
-        List<Vector2> ret = new List<Vector2>();
+        Ray,
+        Point
+    }
+
+    public static MoveAction[] getDirections(MoveTypes[] types)
+    {
+        List<MoveAction> ret = new List<MoveAction>();
         foreach (MoveTypes type in types)
         {
             ret.AddRange(getDirections(type));
@@ -22,28 +28,30 @@ public class MoveSets
         return ret.ToArray();
     }
 
-    public static Vector2[] getDirections(MoveTypes type)
+    public static MoveAction[] getDirections(MoveTypes type)
     {
+        //MoveAction move = new MoveAction(Vector2.up, 1);
         switch (type)
         {
             case MoveTypes.Rook:
-                return new Vector2[]
+                return new MoveAction[]
                 {
-                    Vector2.up,
-                    Vector2.down,
-                    Vector2.left,
-                    Vector2.right
+                    new MoveAction(Vector2.up, 1),
+                    new MoveAction(Vector2.down, 1),
+                    new MoveAction(Vector2.left, 1),
+                    new MoveAction(Vector2.right, 1)
                 };
             case MoveTypes.Bishop:
-                return new Vector2[]
+                float dist = Mathf.Sqrt(2);
+                return new MoveAction[]
                 {
-                    Vector2.left+Vector2.up,
-                    Vector2.left+Vector2.down,
-                    Vector2.right+Vector2.up,
-                    Vector2.right+Vector2.down
+                    new MoveAction(Vector2.left+Vector2.up, dist),
+                    new MoveAction(Vector2.left+Vector2.down, dist),
+                    new MoveAction(Vector2.right+Vector2.up, dist),
+                    new MoveAction(Vector2.right+Vector2.down, dist)
                 };
             default:
-                return new Vector2[] { };
+                return new MoveAction[] { };
         }
     }
 }
