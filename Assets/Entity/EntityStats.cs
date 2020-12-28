@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class EntityStats : MonoBehaviour
 {
-
     public float movementSpeed = 10.0f;
     public float maxHP = 1;
     public float currentHP = 1;
@@ -44,9 +43,19 @@ public class EntityStats : MonoBehaviour
         }
     }
 
+    public void damageReturnCall()
+    {
+        if (GetComponent<EnemyStats>())
+        {
+            GetComponent<EnemyStats>().enemyDamageReturnCall();
+        }
+    }
+
     //Return true if results in death
     public bool TakeDamage(float amount, EntityStats source)
     {
+        //player damage call
+        damageReturnCall();
 
         float realDmg = Mathf.Max((amount  - armorStatic) * (1 - armorMult), 0);
 
@@ -85,6 +94,18 @@ public class EntityStats : MonoBehaviour
         {
             app.endTime = Time.time + attr.duration;
         }
+
+        if (!attr.stackable)
+        {
+            for (int i = 0; i < attribList.Count; i++)
+            {
+                if (attribList[i].attr == attr)
+                {
+                    return;
+                }
+            }
+        }
+        
         attribList.Add(app);
         attr.OnAdd(this);
     }

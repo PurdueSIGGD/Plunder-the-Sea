@@ -46,12 +46,26 @@ MonoBehaviour:
   classNumber: -1
   classes: []
   baseHp: 12
-  baseSpeed: 3
+  baseSpeed: 2
   baseArmorAddition: 1
   baseArmorDivision: 0.5
   baseStamina: 50
   baseStaminaRechargeRate: 1
   proficiency: 1
+  chainLighting: 0
+  lightingDamage: 4
+  chainChance: 0.5
+  chainLength: 4
+  chainRadius: 4
+  lightingPrefab: {fileID: 0}
+  lunge: 0
+  meleeLungeDistance: 2
+  rangedLungeDistance: 4
+  killChain: 0
+  killRequirement: 3
+  chainTime: 4
+  attackSpeedBoost: 2
+  speedBoost: 2
   sw: {fileID: 0}
   meleeDamageAddition: 0
   meleeDamageMultiplier: 0.5

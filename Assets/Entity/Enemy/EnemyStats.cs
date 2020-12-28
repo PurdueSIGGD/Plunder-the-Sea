@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyStats : EntityStats
 {
+    EnemyBase myBase;
     public Vector3 spawnPoint;
     public float attackSpeedInverse = 10;
     public float damage = 1.5f;
@@ -12,6 +13,7 @@ public class EnemyStats : EntityStats
     private void Start()
     {
         spawnPoint = this.transform.position;
+        myBase = GetComponent<EnemyBase>();
     }
 
     private void Update()
@@ -19,8 +21,17 @@ public class EnemyStats : EntityStats
         StatUpdate();
     }
 
+    public void enemyDamageReturnCall()
+    {
+        FindObjectOfType<PlayerClasses>().enemyHit(this);
+    }
+
     public override void Die()
     {
+        //death call to player
+        FindObjectOfType<PlayerClasses>().enemyKilled();
+
+        myBase.myCombat.OnDeath();
         if(numberOfTimesToRespawn == 0)
         {
             Destroy(gameObject);
