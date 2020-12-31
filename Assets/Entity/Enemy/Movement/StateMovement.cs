@@ -94,7 +94,7 @@ public class StateMovement : EnemyMovement
             {
                 while (curr.parent != null)
                 {
-                    Debug.Log(curr.pos + " dir: "+curr.move.dir+ " dist: " + curr.dist);
+                    //Debug.Log(curr.pos + " dir: "+curr.move.dir+ " dist: " + curr.dist);
                     moveActionsBuild.AddFirst(curr.move.copy());
                     curr = curr.parent;
                 }

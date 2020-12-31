@@ -9,7 +9,8 @@ public class MoveSets
     {
         Rook,
         Bishop,
-        Knight
+        Knight,
+        BishopTp
     }
 
     public enum CheckTypes
@@ -84,17 +85,30 @@ public class MoveSets
                     new MoveAction(Vector2.right+Vector2.down, dist)
                 };
             case MoveTypes.Knight:
-                dist = Mathf.Sqrt(13);
+                dist = Mathf.Sqrt(5);
                 return new MoveAction[]
                 {
-                    new MoveAction(3*Vector2.left+2*Vector2.up, dist, CheckTypes.Point),
-                    new MoveAction(3*Vector2.left+2*Vector2.down, dist, CheckTypes.Point),
-                    new MoveAction(3*Vector2.right+2*Vector2.up, dist, CheckTypes.Point),
-                    new MoveAction(3*Vector2.right+2*Vector2.down, dist, CheckTypes.Point),
-                    new MoveAction(2*Vector2.left+3*Vector2.up, dist, CheckTypes.Point),
-                    new MoveAction(2*Vector2.left+3*Vector2.down, dist, CheckTypes.Point),
-                    new MoveAction(2*Vector2.right+3*Vector2.up, dist, CheckTypes.Point),
-                    new MoveAction(2*Vector2.right+3*Vector2.down, dist, CheckTypes.Point)
+                    new MoveAction(Vector2.left+2*Vector2.up, dist, CheckTypes.Point),
+                    new MoveAction(Vector2.left+2*Vector2.down, dist, CheckTypes.Point),
+                    new MoveAction(Vector2.right+2*Vector2.up, dist, CheckTypes.Point),
+                    new MoveAction(Vector2.right+2*Vector2.down, dist, CheckTypes.Point),
+                    new MoveAction(2*Vector2.left+Vector2.up, dist, CheckTypes.Point),
+                    new MoveAction(2*Vector2.left+Vector2.down, dist, CheckTypes.Point),
+                    new MoveAction(2*Vector2.right+Vector2.up, dist, CheckTypes.Point),
+                    new MoveAction(2*Vector2.right+Vector2.down, dist, CheckTypes.Point)
+                };
+            case MoveTypes.BishopTp:
+                dist = Mathf.Sqrt(2);
+                return new MoveAction[]
+                {
+                    //new MoveAction(Vector2.left+Vector2.up, dist, CheckTypes.Point),
+                    //new MoveAction(Vector2.left+Vector2.down, dist, CheckTypes.Point),
+                    //new MoveAction(Vector2.right+Vector2.up, dist, CheckTypes.Point),
+                    //new MoveAction(Vector2.right+Vector2.down, dist, CheckTypes.Point)
+                    new MoveAction(Vector2.up, 1, CheckTypes.Point),
+                    new MoveAction(Vector2.down, 1, CheckTypes.Point),
+                    new MoveAction(Vector2.left, 1, CheckTypes.Point),
+                    new MoveAction(Vector2.right, 1, CheckTypes.Point)
                 };
             default:
                 return new MoveAction[] { };
