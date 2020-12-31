@@ -17,6 +17,13 @@ public class MoveSets
         Point
     }
 
+    public static bool checkMove(CheckTypes type, Vector2 start, MoveAction move, ContactFilter2D filter)
+    {
+        RaycastHit2D[] hits = new RaycastHit2D[1];
+
+        return Physics2D.Raycast(start, move.dir, filter, hits, move.dist + .1f) <= 0;
+    }
+
     public static MoveAction[] getDirections(MoveTypes[] types)
     {
         List<MoveAction> ret = new List<MoveAction>();

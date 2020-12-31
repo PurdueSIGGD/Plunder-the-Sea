@@ -124,7 +124,7 @@ public class StateMovement : EnemyMovement
         //Debug.Log(parent.pos + " -> " + newPos);
         if (!map.Contains(newPos))
         {
-            if (Physics2D.Raycast(parent.pos, move.dir, filter, hits, move.dist+.1f) <= 0)
+            if (MoveSets.checkMove(move.type, parent.pos, move, filter))
             {
                 PathAction newAct = new PathAction(newPos, parent, move, target);
                 map.Add(newPos, newAct);
@@ -134,7 +134,7 @@ public class StateMovement : EnemyMovement
         else
         {
             //check if should update value in frontier
-            if (Physics2D.Raycast(parent.pos, move.dir, filter, hits, move.dist+.1f) <= 0)
+            if (MoveSets.checkMove(move.type, parent.pos, move, filter)/*Physics2D.Raycast(parent.pos, move.dir, filter, hits, move.dist+.1f) <= 0*/)
             {
                 PathAction oldAct = (PathAction)map[newPos];
                 if (parent.dist + move.dist < oldAct.dist)
@@ -194,11 +194,20 @@ public class MoveAction
 {
     public Vector2 dir;
     public float dist;
+    public MoveSets.CheckTypes type;
 
     public MoveAction(Vector2 dir, float dist)
     {
         this.dir = dir;
         this.dist = dist;
+        this.type = MoveSets.CheckTypes.Ray;
+    }
+
+    public MoveAction(Vector2 dir, float dist, MoveSets.CheckTypes type)
+    {
+        this.dir = dir;
+        this.dist = dist;
+        this.type = type;
     }
 }
 
