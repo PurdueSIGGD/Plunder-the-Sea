@@ -53,7 +53,7 @@ public class StateMovement : EnemyMovement
             if (moveActions.Count > 0)
             {
                 currAction.dist -= Time.deltaTime * myBase.myStats.movementSpeed;
-                myBase.myRigid.velocity = (moveActions.First.Value.dir + correction).normalized * myBase.myStats.movementSpeed;
+                MoveSets.executeMove(currAction, myBase, correction);
             }
         }
         if (moving && ((moveActions != null && moveActions.Count <= 0) || moveActions == null))
@@ -85,6 +85,7 @@ public class StateMovement : EnemyMovement
         ContactFilter2D filter = new ContactFilter2D();
         filter.SetLayerMask(1 << 8);
         //Debug.Log("Start: " + myPos);
+        MoveAction[] nextMoves = MoveSets.getDirections(moveTypes);
 
         while (frontier.Count() > 0)
         {
@@ -93,15 +94,15 @@ public class StateMovement : EnemyMovement
             {
                 while (curr.parent != null)
                 {
-                    //Debug.Log(curr.pos + " dir: "+curr.move.dir+ " dist: " + curr.dist);
-                    moveActionsBuild.AddFirst(curr.move);
+                    Debug.Log(curr.pos + " dir: "+curr.move.dir+ " dist: " + curr.dist);
+                    moveActionsBuild.AddFirst(curr.move.copy());
                     curr = curr.parent;
                 }
                 break;
             }
             if (Vector2.Distance(curr.pos, playerPos) < maxDist)
             {
-                foreach (MoveAction direction in MoveSets.getDirections(moveTypes))
+                foreach (MoveAction direction in nextMoves)
                 {
                     explorePath(direction, playerPos, curr, frontier, pathMap, filter);
                 }
@@ -194,12 +195,14 @@ public class MoveAction
 {
     public Vector2 dir;
     public float dist;
+    public float maxDist;
     public MoveSets.CheckTypes type;
 
     public MoveAction(Vector2 dir, float dist)
     {
         this.dir = dir;
         this.dist = dist;
+        this.maxDist = dist;
         this.type = MoveSets.CheckTypes.Ray;
     }
 
@@ -207,7 +210,13 @@ public class MoveAction
     {
         this.dir = dir;
         this.dist = dist;
+        this.maxDist = dist;
         this.type = type;
+    }
+
+    public MoveAction copy()
+    {
+        return new MoveAction(dir, dist, type);
     }
 }
 
