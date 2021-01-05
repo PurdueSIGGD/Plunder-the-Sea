@@ -8,13 +8,13 @@ public class SpinningMovement : StateMovement
     public float spinTime = 2f;
 
     // the speed that the enemy rotates
-    public float spinSpeed = 30f;
+    public float spinSpeed = 1f;
 
     // amount of time enemy stays dizzy after spinning toward player
     public float dizzyTime = 2f;
 
     // how long an action has been going
-    private float time = 0f;
+    public float time = 0f;
 
     // The state for approaching. There are 3 options, which represent different points in movement.
     public enum SpinningState
@@ -35,6 +35,7 @@ public class SpinningMovement : StateMovement
                     if (spinTime > time)
                     {
                         time += Time.deltaTime;
+
                         // moves toward player while spinning
                         MoveTowards();
                     }
