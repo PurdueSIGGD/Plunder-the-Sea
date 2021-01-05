@@ -45,7 +45,8 @@ public class MoveSets
                 return Physics2D.Raycast(start, move.dir, filter, hits, move.dist + .1f) <= 0;
             case CheckTypes.Point:
                 Collider2D[] cols = new Collider2D[1];
-                return Physics2D.OverlapCircle(start + move.dir.normalized * move.dist, 0, filter, cols) <= 0;
+                return (Physics2D.OverlapCircle(start + move.dir.normalized * move.dist, 0, filter, cols) <= 0
+                    && Physics2D.OverlapCircle(start + move.dir.normalized * move.dist, 0) != null);
         }
         return false;
     }
@@ -101,14 +102,14 @@ public class MoveSets
                 dist = Mathf.Sqrt(2);
                 return new MoveAction[]
                 {
-                    //new MoveAction(Vector2.left+Vector2.up, dist, CheckTypes.Point),
-                    //new MoveAction(Vector2.left+Vector2.down, dist, CheckTypes.Point),
-                    //new MoveAction(Vector2.right+Vector2.up, dist, CheckTypes.Point),
-                    //new MoveAction(Vector2.right+Vector2.down, dist, CheckTypes.Point)
-                    new MoveAction(Vector2.up, 1, CheckTypes.Point),
-                    new MoveAction(Vector2.down, 1, CheckTypes.Point),
-                    new MoveAction(Vector2.left, 1, CheckTypes.Point),
-                    new MoveAction(Vector2.right, 1, CheckTypes.Point)
+                    new MoveAction(Vector2.left+Vector2.up, dist, CheckTypes.Point),
+                    new MoveAction(Vector2.left+Vector2.down, dist, CheckTypes.Point),
+                    new MoveAction(Vector2.right+Vector2.up, dist, CheckTypes.Point),
+                    new MoveAction(Vector2.right+Vector2.down, dist, CheckTypes.Point)
+                    //new MoveAction(Vector2.up, 1, CheckTypes.Point),
+                    //new MoveAction(Vector2.down, 1, CheckTypes.Point),
+                    //new MoveAction(Vector2.left, 1, CheckTypes.Point),
+                    //new MoveAction(Vector2.right, 1, CheckTypes.Point)
                 };
             default:
                 return new MoveAction[] { };
