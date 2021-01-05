@@ -44,7 +44,13 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
-        
+
+        /* Don't collide with the floor */
+        if (collider.layer == LayerMask.NameToLayer("Ground"))
+        {
+            return;
+        }
+
         EntityStats ent = collider.GetComponent<EntityStats>();
         if (ent)
         {

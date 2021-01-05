@@ -44,6 +44,12 @@ public class EnemyProjectile : Projectile
             return;
         }
 
+        /* Don't collide with the floor */
+        if (collider.layer == LayerMask.NameToLayer("Ground"))
+        {
+            return;
+        }
+
         /* Do / Don't collide with other projectiles */
         if (!collideWithProjectile && (proj || eproj))
         {

@@ -121,7 +121,7 @@ public class StateMovement : EnemyMovement
     private void explorePath(MoveAction move, Vector2 target, PathAction parent, PriorityQueue front, Hashtable map, ContactFilter2D filter)
     {
         RaycastHit2D[] hits = new RaycastHit2D[1];
-        Vector2 newPos = parent.pos + move.dir.normalized * move.dist;
+        Vector2 newPos = centerVector(parent.pos + move.dir.normalized * move.dist);
         //Debug.Log(parent.pos + " -> " + newPos);
         if (!map.Contains(newPos))
         {
