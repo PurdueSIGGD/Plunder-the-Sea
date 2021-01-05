@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WeaponInventory : MonoBehaviour
 {
+    public AudioClip equipSound;
+    private AudioSource audioSrc;
     [SerializeField]
     private ScriptableWeapon meleeWeapon;
     [SerializeField]
@@ -14,6 +16,11 @@ public class WeaponInventory : MonoBehaviour
     private void Start()
     {
         cam = GameObject.FindObjectOfType<UI_Camera>();
+        audioSrc = GetComponent<AudioSource>();
+        if (audioSrc == null)
+        {
+            audioSrc = gameObject.AddComponent<AudioSource>();
+        }
         spriteRen = new GameObject().AddComponent<SpriteRenderer>();
         spriteRen.transform.localScale = this.transform.localScale * 1.5f;
         spriteRen.transform.position = this.transform.position;
@@ -52,6 +59,11 @@ public class WeaponInventory : MonoBehaviour
 
     public void SetMelee(ScriptableWeapon wep)
     {
+        if (equipSound)
+        {
+            audioSrc.clip = equipSound;
+            audioSrc.Play();
+        }
         meleeWeapon.OnUnequip(this);
         wep.OnEquip(this);
         // Make sure to set weapon after the equip methods run
@@ -60,6 +72,11 @@ public class WeaponInventory : MonoBehaviour
 
     public void SetRanged(ScriptableWeapon wep)
     {
+        if (equipSound)
+        {
+            audioSrc.clip = equipSound;
+            audioSrc.Play();
+        }
         rangeWeapon.OnUnequip(this);
         wep.OnEquip(this);
         // Make sure to set weapon after the equip methods run
