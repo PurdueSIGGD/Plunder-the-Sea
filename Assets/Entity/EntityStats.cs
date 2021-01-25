@@ -99,7 +99,8 @@ public class EntityStats : MonoBehaviour
         {
             for (int i = 0; i < attribList.Count; i++)
             {
-                if (attribList[i].attr == attr)
+                string temp = attribList[i].attr.name;
+                if (temp != "" && temp == attr.name)
                 {
                     return;
                 }

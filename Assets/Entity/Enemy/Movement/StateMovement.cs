@@ -7,12 +7,14 @@ using UnityEngine;
 // Utility subclass for state-driven enemy movement
 public class StateMovement : EnemyMovement
 {
-    
 
+    public MoveSets.MoveTypes[] moveTypes = { MoveSets.MoveTypes.Rook, MoveSets.MoveTypes.Bishop };
     public LinkedList<MoveAction> moveActions;
     public float pathingRefresh = .25f;
     public float maxDist = 10;
+    public float targetProximity = 0;
     private float lastRefresh = -Mathf.Infinity;
+    private int actionLock = 0;
 
     // One-liner for distance from the player
     public float PlayerDistance()
@@ -24,12 +26,15 @@ public class StateMovement : EnemyMovement
     protected void MoveTowards()
     {
         float nowSecs = Time.time;
-        if (nowSecs - lastRefresh >= pathingRefresh) {
+        if (nowSecs - lastRefresh >= pathingRefresh && actionLock <= 0) {
             lastRefresh = nowSecs;
-            calcPath();
+            if (calcPath())
+            {
+                actionLock = 1;
+            }
         }
-
-        if (moving && moveActions.Count > 0)
+        //Debug.Log(moveActions.Count);
+        if (moving && moveActions != null && moveActions.Count > 0)
         {
             //myBase.myRigid.velocity = (myBase.player.transform.position - this.transform.position).normalized
             //    * myBase.myStats.movementSpeed;
@@ -39,6 +44,7 @@ public class StateMovement : EnemyMovement
             if (currAction.dist <= 0)
             {
                 moveActions.RemoveFirst();
+                actionLock--;
                 if (moveActions.Count > 0)
                 {
                     currAction = moveActions.First.Value;
@@ -47,10 +53,10 @@ public class StateMovement : EnemyMovement
             if (moveActions.Count > 0)
             {
                 currAction.dist -= Time.deltaTime * myBase.myStats.movementSpeed;
-                myBase.myRigid.velocity = (moveActions.First.Value.dir + correction).normalized * myBase.myStats.movementSpeed;
+                MoveSets.executeMove(currAction, myBase, correction);
             }
         }
-        if (moving && moveActions.Count <= 0)
+        if (moving && ((moveActions != null && moveActions.Count <= 0) || moveActions == null))
         {
             if (Vector3.Distance(myBase.myRigid.position, myBase.player.transform.position) <= 2.5f)
             {
@@ -64,7 +70,7 @@ public class StateMovement : EnemyMovement
 
     }
 
-    public void calcPath()
+    public bool calcPath()
     {
         Hashtable pathMap = new Hashtable();
         LinkedList<MoveAction> moveActionsBuild = new LinkedList<MoveAction>();
@@ -72,56 +78,56 @@ public class StateMovement : EnemyMovement
         PriorityQueue frontier = new PriorityQueue();
         Vector2 myPos = centerVector(myBase.myRigid.position);
         Vector2 playerPos = centerVector(myBase.player.transform.position);
-        PathAction startAct = new PathAction(new Vector2(myPos.x, myPos.y), null);
+        PathAction startAct = new PathAction(new Vector2(myPos.x, myPos.y), null, new MoveAction(Vector2.zero, 0));
         pathMap.Add(myPos, startAct);
         //frontier.Enqueue(startAct);
         frontier.Push(startAct);
         ContactFilter2D filter = new ContactFilter2D();
         filter.SetLayerMask(1 << 8);
         //Debug.Log("Start: " + myPos);
+        MoveAction[] nextMoves = MoveSets.getDirections(moveTypes);
 
         while (frontier.Count() > 0)
         {
             PathAction curr = frontier.Pop();
-            if (Mathf.Abs(curr.pos.x - playerPos.x) <= .1 && Mathf.Abs(curr.pos.y - playerPos.y) <= .1)
+            if (Mathf.Abs(curr.pos.x - playerPos.x) <= targetProximity+.1 && Mathf.Abs(curr.pos.y - playerPos.y) <= targetProximity+.1)
             {
                 while (curr.parent != null)
                 {
-                    //Debug.Log(curr.pos + " value: "+curr.getValue() + " dist: " + curr.dist);
-                    moveActionsBuild.AddFirst(new MoveAction(curr.pos - curr.parent.pos, (curr.pos - curr.parent.pos).magnitude));
+                    //Debug.Log(curr.pos + " dir: "+curr.move.dir+ " dist: " + curr.dist);
+                    moveActionsBuild.AddFirst(curr.move.copy());
                     curr = curr.parent;
                 }
                 break;
             }
             if (Vector2.Distance(curr.pos, playerPos) < maxDist)
             {
-                explorePath(Vector2.right + Vector2.up, playerPos, curr, frontier, pathMap, filter);
-                explorePath(Vector2.right + Vector2.down, playerPos, curr, frontier, pathMap, filter);
-                explorePath(Vector2.left + Vector2.up, playerPos, curr, frontier, pathMap, filter);
-                explorePath(Vector2.left + Vector2.down, playerPos, curr, frontier, pathMap, filter);
-
-                explorePath(Vector2.up, playerPos, curr, frontier, pathMap, filter);
-                explorePath(Vector2.right, playerPos, curr, frontier, pathMap, filter);
-                explorePath(Vector2.down, playerPos, curr, frontier, pathMap, filter);
-                explorePath(Vector2.left, playerPos, curr, frontier, pathMap, filter);
+                foreach (MoveAction direction in nextMoves)
+                {
+                    explorePath(direction, playerPos, curr, frontier, pathMap, filter);
+                }
             }
 
 
         }
         moveActions = moveActionsBuild;
-
+        if (moveActionsBuild.Count > 0)
+        {
+            return true;
+        }
+        return false;
     }
 
-    private void explorePath(Vector2 dir, Vector2 target, PathAction parent, PriorityQueue front, Hashtable map, ContactFilter2D filter)
+    private void explorePath(MoveAction move, Vector2 target, PathAction parent, PriorityQueue front, Hashtable map, ContactFilter2D filter)
     {
         RaycastHit2D[] hits = new RaycastHit2D[1];
-        Vector2 newPos = parent.pos + dir;
+        Vector2 newPos = centerVector(parent.pos + move.dir.normalized * move.dist);
         //Debug.Log(parent.pos + " -> " + newPos);
         if (!map.Contains(newPos))
         {
-            if (Physics2D.Raycast(parent.pos, dir, filter, hits, dir.magnitude+.1f) <= 0)
+            if (MoveSets.checkMove(move.type, parent.pos, move, filter))
             {
-                PathAction newAct = new PathAction(newPos, parent, target);
+                PathAction newAct = new PathAction(newPos, parent, move, target);
                 map.Add(newPos, newAct);
                 front.Push(newAct);
             }
@@ -129,13 +135,14 @@ public class StateMovement : EnemyMovement
         else
         {
             //check if should update value in frontier
-            if (Physics2D.Raycast(parent.pos, dir, filter, hits, dir.magnitude+.1f) <= 0)
+            if (MoveSets.checkMove(move.type, parent.pos, move, filter)/*Physics2D.Raycast(parent.pos, move.dir, filter, hits, move.dist+.1f) <= 0*/)
             {
                 PathAction oldAct = (PathAction)map[newPos];
-                if (parent.dist + dir.magnitude < oldAct.dist)
+                if (parent.dist + move.dist < oldAct.dist)
                 {
+                    oldAct.move = move;
                     oldAct.parent = parent;
-                    front.Update(oldAct, parent.dist + dir.magnitude);
+                    front.Update(oldAct, parent.dist + move.dist);
                 }
             }
         }
@@ -188,11 +195,28 @@ public class MoveAction
 {
     public Vector2 dir;
     public float dist;
+    public float maxDist;
+    public MoveSets.CheckTypes type;
 
     public MoveAction(Vector2 dir, float dist)
     {
         this.dir = dir;
         this.dist = dist;
+        this.maxDist = dist;
+        this.type = MoveSets.CheckTypes.Ray;
+    }
+
+    public MoveAction(Vector2 dir, float dist, MoveSets.CheckTypes type)
+    {
+        this.dir = dir;
+        this.dist = dist;
+        this.maxDist = dist;
+        this.type = type;
+    }
+
+    public MoveAction copy()
+    {
+        return new MoveAction(dir, dist, type);
     }
 }
 
@@ -307,38 +331,30 @@ public class PathAction
 {
     public Vector2 pos;
     public PathAction parent;
+    public MoveAction move;
     public float dist = 0;
     public float heuristic = 0;
 
-    public PathAction(Vector2 pos, PathAction parent, Vector2 target, float nextDist)
+    public PathAction(Vector2 pos, PathAction parent, MoveAction move, Vector2 target)
     {
         this.pos = pos;
         this.parent = parent;
+        this.move = move;
         if (parent != null)
         {
-            dist = parent.dist + nextDist;
+            dist = parent.dist + move.dist;
         }
         heuristic = Vector2.Distance(pos, target);
     }
 
-    public PathAction(Vector2 pos, PathAction parent, Vector2 target)
+    public PathAction(Vector2 pos, PathAction parent, MoveAction move)
     {
         this.pos = pos;
         this.parent = parent;
+        this.move = move;
         if (parent != null)
         {
-            dist = parent.dist + Vector2.Distance(parent.pos, pos);
-        }
-        heuristic = Vector2.Distance(pos, target);
-    }
-
-    public PathAction(Vector2 pos, PathAction parent)
-    {
-        this.pos = pos;
-        this.parent = parent;
-        if (parent != null)
-        {
-            dist = parent.dist + Vector2.Distance(parent.pos, pos);
+            dist = parent.dist + move.dist;
         }
     }
 

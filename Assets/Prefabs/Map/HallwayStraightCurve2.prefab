@@ -195,6 +195,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8055285880565440105}
     m_Modifications:
+    - target: {fileID: -807983395573867254, guid: e19430dea858f6a4783780ef9436ae48, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -807983395573867254, guid: e19430dea858f6a4783780ef9436ae48, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -807983395573867254, guid: e19430dea858f6a4783780ef9436ae48, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -807983395573867254, guid: e19430dea858f6a4783780ef9436ae48, type: 3}
+      propertyPath: m_Size.y
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3489946523444064500, guid: e19430dea858f6a4783780ef9436ae48, type: 3}
       propertyPath: m_Name
       value: Floor (1)
@@ -647,6 +663,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8055285880565440105}
     m_Modifications:
+    - target: {fileID: -807983395573867254, guid: e19430dea858f6a4783780ef9436ae48, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -807983395573867254, guid: e19430dea858f6a4783780ef9436ae48, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -807983395573867254, guid: e19430dea858f6a4783780ef9436ae48, type: 3}
+      propertyPath: m_Size.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -807983395573867254, guid: e19430dea858f6a4783780ef9436ae48, type: 3}
+      propertyPath: m_Size.y
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3489946523444064500, guid: e19430dea858f6a4783780ef9436ae48, type: 3}
       propertyPath: m_Name
       value: Floor

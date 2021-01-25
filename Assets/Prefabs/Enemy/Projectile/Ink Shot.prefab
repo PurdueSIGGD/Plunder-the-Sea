@@ -157,10 +157,11 @@ MonoBehaviour:
   collideWithProjectile: 0
   collideWithWall: 1
   attrHit:
-    type: 0
-    value: 0
-    duration: 0
+    name: Mighty Ink
+    type: 3
+    value: -5
+    duration: 5
     stackable: 0
-    isAdditive: 0
+    isAdditive: 1
   attrChance: 0
   speed: 0

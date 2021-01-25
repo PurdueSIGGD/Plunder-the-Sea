@@ -58,6 +58,15 @@ public class Jellyfish : StateCombat
         prevState = current;
     }
 
+    // Called right before the enemy dies.
+    public override void OnDeath()
+    {
+        if (isSticking)
+        {
+            unstick(stickVictim);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collider) //Called when something enters the enemy's range, only activates if charging
     {
         if (current == charging && collider.GetComponent<PlayerBase>())
