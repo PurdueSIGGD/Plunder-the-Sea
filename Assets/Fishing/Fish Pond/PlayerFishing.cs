@@ -88,7 +88,8 @@ public class PlayerFishing : MonoBehaviour
         else
         {
             Debug.Log("Bobber returned");
-            player.stats.addBait(selectedBait);
+            //This adds bait back once the bobber is returned, we can decide to have this or not
+            //player.stats.addBait(selectedBait);
         }
         bobberIsCast = false;
     }
