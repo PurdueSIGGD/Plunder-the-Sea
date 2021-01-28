@@ -21,7 +21,7 @@ public class PlayerFishing : MonoBehaviour
     private bool bobberIsCast = false;
 
     private int selectedBait = 0;
-    private const int amountOfBaitTypes = 2;
+    private const int amountOfBaitTypes = 4;
 
     private void Start()
     {
@@ -88,7 +88,8 @@ public class PlayerFishing : MonoBehaviour
         else
         {
             Debug.Log("Bobber returned");
-            player.stats.addBait(selectedBait);
+            //This adds bait back once the bobber is returned, we can decide to have this or not
+            //player.stats.addBait(selectedBait);
         }
         bobberIsCast = false;
     }
