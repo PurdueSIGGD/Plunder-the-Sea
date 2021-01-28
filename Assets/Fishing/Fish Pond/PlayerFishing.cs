@@ -21,7 +21,7 @@ public class PlayerFishing : MonoBehaviour
     private bool bobberIsCast = false;
 
     private int selectedBait = 0;
-    private const int amountOfBaitTypes = 2;
+    private const int amountOfBaitTypes = 4;
 
     private void Start()
     {

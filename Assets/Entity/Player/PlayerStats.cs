@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class PlayerStats : EntityStats
 {
     // Higher Index number means Stronger bait
-    public int[] baitTypes = { 0, 0 };
+    public int[] baitTypes = { 0, 0, 0, 0 };
     public Text[] baitText;
 
     PlayerBase pbase;
@@ -67,7 +67,6 @@ public class PlayerStats : EntityStats
     {
         currentHP = maxHP;
         stamina = staminaMax;
-        //RESTORE AMMO SOMEHOW
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -111,4 +110,5 @@ public class PlayerStats : EntityStats
         baitTypes[arrayIndex] = baitTypes[arrayIndex] - baitAmount;
         baitText[arrayIndex].text = "Bait "+ (arrayIndex + 1).ToString()+": "+baitTypes[arrayIndex].ToString();
     }
+
 }
