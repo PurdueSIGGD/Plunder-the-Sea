@@ -9,6 +9,7 @@ public class EnemyStats : EntityStats
     public float attackSpeedInverse = 10;
     public float damage = 1.5f;
     public float numberOfTimesToRespawn = 0; // Enemies do not respawn by default.
+    public int[] dropTable = { 0, 1, 2, 3 };
 
     private void Start()
     {
@@ -29,7 +30,17 @@ public class EnemyStats : EntityStats
     public override void Die()
     {
         //death call to player
-        FindObjectOfType<PlayerClasses>().enemyKilled();
+        PlayerClasses pClass = FindObjectOfType<PlayerClasses>();
+        pClass.enemyKilled();
+
+        //Randomly select a bait or nothing from dropTable and give to player
+        PlayerStats pStats = pClass.GetComponentInParent<PlayerStats>();
+        int dropIndex = Random.Range(-1, dropTable.Length);
+        if (dropIndex >= 0)
+        {
+            pStats.baitTypes[dropIndex] += 1;
+        }
+        
 
         myBase.myCombat.OnDeath();
         if(numberOfTimesToRespawn == 0)
