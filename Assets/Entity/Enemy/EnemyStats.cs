@@ -38,7 +38,7 @@ public class EnemyStats : EntityStats
         int dropIndex = Random.Range(-1, dropTable.Length);
         if (dropIndex >= 0)
         {
-            pStats.baitTypes[dropIndex] += 1;
+            pStats.addBait(dropIndex);
         }
         
 
