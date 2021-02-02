@@ -4,6 +4,11 @@ using UnityEngine;
 public class CooldownProjSys : ProjectileSystem {
     public float cooldownLength = 0.3f;
     private float cooldownEnd = 0.0f;
+    protected override void OnEquip(WeaponInventory inv)
+    {
+        this.cooldownLength = this.tables.coolDown.get(this.weaponClass).Value;
+        cooldownEnd = Time.time;
+    }
 
     public override bool CanShoot(GameObject player)
     {
@@ -14,8 +19,10 @@ public class CooldownProjSys : ProjectileSystem {
     {
         cooldownEnd = Time.time + cooldownLength;
     }
-    public override void OnEquip(WeaponInventory inv)
-    {
-        cooldownEnd = Time.time;
-    }
+
+    // only weapons with the "cool down" stat can use this system
+    static CooldownProjSys() =>
+        WeaponFactory.BindSystem(
+            (c, t) => (t.coolDown.get(c).HasValue) ? new CooldownProjSys() : null
+        );
 }

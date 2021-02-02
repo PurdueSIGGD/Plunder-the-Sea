@@ -5,17 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "BurstfireProjSys", menuName = "ScriptableObjects/ProjectileSystems/Burstfire", order = 1)]
 public class BurstfireProjSys : ProjectileSystem {
 
-    public int extraShots = 3;
-    public float frequency = 0.05f;
+    private int extraShots = 3;
+    private float frequency = 0.05f;
+
     private int shotsNeeded = 0;
     private float nextShotTime = 0;
     private GameObject projTemplate;
     private Vector3 velocity = new Vector3();
 
-    public BurstfireProjSys(int extraShots, float frequency) {
-        this.extraShots = extraShots;
-        this.frequency = frequency;
+    protected override void OnEquip(WeaponInventory inv)
+    {
+        this.extraShots = this.tables.burstFireExtraShots.get(this.weaponClass).Value;
+        this.frequency = this.tables.burstFireFrequency.get(this.weaponClass).Value;
     }
+
     public override void OnFire(Projectile projectile)
     {
         Rigidbody2D origRigid = projectile.GetComponent<Rigidbody2D>();
@@ -45,4 +48,11 @@ public class BurstfireProjSys : ProjectileSystem {
         }
     }
 
+    // only weapons with the burstfire stats can use this system
+    static BurstfireProjSys() =>
+        WeaponFactory.BindSystem(
+            (c, t) => 
+                (t.burstFireExtraShots.get(c).HasValue && t.burstFireFrequency.get(c).HasValue) 
+                ? new BurstfireProjSys() : null
+        );
 }

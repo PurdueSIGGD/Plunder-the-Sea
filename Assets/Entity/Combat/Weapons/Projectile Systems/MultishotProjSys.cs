@@ -7,10 +7,11 @@ public class MultishotProjSys : ProjectileSystem {
     public int extraShots = 1;
     public float angle = 10.0f;
 
-    public MultishotProjSys(int extraShots, float angle) {
-        this.extraShots = extraShots;
-        this.angle = angle;
+    protected override void OnEquip(WeaponInventory inv) {
+        this.extraShots = this.tables.multiShotExtraShots.get(this.weaponClass).Value;
+        this.angle = this.tables.multiShotAngle.get(this.weaponClass).Value;
     }
+
     public override void OnFire(Projectile projectile)
     {
         Rigidbody2D origRigid = projectile.GetComponent<Rigidbody2D>();
@@ -25,4 +26,12 @@ public class MultishotProjSys : ProjectileSystem {
             newRigid.velocity = rotation * origVel;
         }
     }
+
+    // only weapons with the multishot stats can use this system
+    static MultishotProjSys() =>
+        WeaponFactory.BindSystem(
+            (c, t) => 
+                (t.multiShotExtraShots.get(c).HasValue && t.multiShotAngle.get(c).HasValue) 
+                ? new MultishotProjSys() : null
+        );
 }

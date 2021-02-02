@@ -13,4 +13,13 @@ public class DestroyOnCollideProjSys : ProjectileSystem {
     {
         projectile.destroyOnCollide = destroyOnCollide;
     }
+
+    // only melee weapons can use this system
+    static DestroyOnCollideProjSys() =>
+        WeaponFactory.BindSystem(
+            (c, t) => 
+                (t.tagWeapon.get(c) == WeaponFactory.TAG.MELEE) ? 
+                new DestroyOnCollideProjSys(false) : null
+        );
+
 }

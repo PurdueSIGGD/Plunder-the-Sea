@@ -38,10 +38,10 @@ public class CompositeProjSys : ProjectileSystem {
         }
     }
 
-    public override void OnEquip(WeaponInventory inv) { 
+    protected override void OnEquip(WeaponInventory inv) { 
         foreach (var sys in projSystems) 
         {
-            sys.OnEquip(inv);
+            sys.OnEquip(inv, this.tables, this.weaponClass);
         }
     }
     public override void OnUnequip(WeaponInventory inv) { 

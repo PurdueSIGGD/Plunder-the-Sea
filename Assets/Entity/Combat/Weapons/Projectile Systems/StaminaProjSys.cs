@@ -4,9 +4,10 @@ using UnityEngine;
 public class StaminaProjSys : ProjectileSystem {
     public float staminaCost;
     private PlayerStats stats;
-
-    public StaminaProjSys(float staminaCost) {
-        this.staminaCost = staminaCost;
+    protected override void OnEquip(WeaponInventory inv)
+    {
+        this.staminaCost = this.tables.staminaCost.get(this.weaponClass).Value;
+        stats = inv.GetComponent<PlayerBase>().stats;
     }
 
     public override bool CanShoot(GameObject player) {
@@ -18,8 +19,9 @@ public class StaminaProjSys : ProjectileSystem {
         stats.UseStamina(staminaCost);
     }
 
-    public override void OnEquip(WeaponInventory inv)
-    {
-        stats = inv.GetComponent<PlayerBase>().stats;
-    }
+    // only weapons with the "staminaCost" stat can use this system
+    static StaminaProjSys() =>
+        WeaponFactory.BindSystem(
+            (c, t) => (t.staminaCost.get(c).HasValue) ? new StaminaProjSys() : null
+        );
 }

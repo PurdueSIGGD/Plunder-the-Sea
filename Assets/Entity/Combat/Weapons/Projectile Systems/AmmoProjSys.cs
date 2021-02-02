@@ -6,8 +6,11 @@ public class AmmoProjSys : ProjectileSystem {
     private int maxAmmo;
     public PlayerStats stats;
 
-    public AmmoProjSys(int maxAmmo) {
-        this.maxAmmo = maxAmmo;
+    protected override void OnEquip(WeaponInventory inv)
+    {
+        this.maxAmmo = this.tables.maxAmmo.get(weaponClass).Value;
+        this.stats = inv.GetComponent<PlayerBase>().stats;
+        this.stats.resetAmmo(this.maxAmmo);
     }
 
     public override bool CanShoot(GameObject player)
@@ -19,9 +22,9 @@ public class AmmoProjSys : ProjectileSystem {
         this.stats.decrementAmmo();
     }
 
-    public override void OnEquip(WeaponInventory inv)
-    {
-        this.stats = inv.GetComponent<PlayerBase>().stats;
-        this.stats.resetAmmo(this.maxAmmo);
-    }
+    // only weapons with the "max ammo" stat can use this system
+    static AmmoProjSys() =>
+        WeaponFactory.BindSystem(
+            (c, t) => (t.maxAmmo.get(c).HasValue) ? new AmmoProjSys() : null
+        );
 }

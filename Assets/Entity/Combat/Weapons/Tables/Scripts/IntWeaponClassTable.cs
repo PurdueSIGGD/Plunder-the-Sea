@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "IntWeaponClassTable", menuName = "ScriptableObjects/Table/IntWeaponClass", order = 1)]
 public class IntWeaponClassTable : ScriptableObject
@@ -13,8 +13,15 @@ public class IntWeaponClassTable : ScriptableObject
     }
     public Pair[] classIntPairs;
 
-    public int get(WeaponFactory.CLASS weaponClass) {
-        return System.Array.Find(classIntPairs, (p) => p.weaponClass == weaponClass).integer;
+    public int? get(WeaponFactory.CLASS weaponClass) {
+        return System.Array.Find(classIntPairs, (p) => p.weaponClass == weaponClass)?.integer;
+    }
+
+    [ContextMenu("generate defaults")]
+    private void generateDefaults() {
+        this.classIntPairs = 
+            (System.Enum.GetValues(typeof(WeaponFactory.CLASS)) as WeaponFactory.CLASS[])
+            .Select((c) => new Pair(){weaponClass = c, integer = 0}).ToArray();
     }
 } 
 

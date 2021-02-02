@@ -9,19 +9,10 @@ public class RevertProjSys : ProjectileSystem
     private WeaponFactory.CLASS preClassWeapon;
     private float equipTimeInstant = 0f;
 
-    public RevertProjSys(float duration) {
-        this.duration = duration;
-    }
-
-    public override void Run(Projectile projectile) 
+    protected override void OnEquip(WeaponInventory inv) 
     {
-        if (Time.time - equipTimeInstant >= duration) {
-            entityStats.GetComponent<WeaponInventory>().SetWeapon(preClassWeapon);
-        }
-    }
+        this.duration = this.tables.revertTime.get(this.weaponClass).Value;
 
-    public override void OnEquip(WeaponInventory inv) 
-    {
         equipTimeInstant = Time.time;
         this.entityStats = inv.GetComponent<EntityStats>();
 
@@ -31,4 +22,19 @@ public class RevertProjSys : ProjectileSystem
         }
         preClassWeapon = inv.getMeleeWeaponClass();
     }
+
+
+    public override void Run(Projectile projectile) 
+    {
+        if (Time.time - equipTimeInstant >= duration) {
+            entityStats.GetComponent<WeaponInventory>().SetWeapon(preClassWeapon);
+        }
+    }
+
+    
+    // only weapons with the "revert time" stat can use this system
+    static RevertProjSys() =>
+        WeaponFactory.BindSystem(
+            (c, t) => (t.revertTime.get(c).HasValue) ? new RevertProjSys() : null
+        );
 }

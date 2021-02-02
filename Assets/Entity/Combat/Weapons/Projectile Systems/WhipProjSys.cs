@@ -9,9 +9,12 @@ public class WhipProjSys : ProjectileSystem {
     private List<GameObject> links = new List<GameObject>();
     private UI_Camera cam;
 
-    public WhipProjSys(float linkSpeed) {
-        this.linkSpeed = linkSpeed;
+    protected override void OnEquip(WeaponInventory inv)
+    {
+        this.linkSpeed = this.tables.whipLinkSpeed.get(this.weaponClass).Value;
+        this.cam = GameObject.FindObjectOfType<UI_Camera>();
     }
+
     public override void Run(Projectile proj)
     {
         //If time to add another link
@@ -35,10 +38,6 @@ public class WhipProjSys : ProjectileSystem {
         }
     }
 
-    public override void OnEquip(WeaponInventory inv)
-    {
-        cam = GameObject.FindObjectOfType<UI_Camera>();
-    }
 
     public override void OnEnd(Projectile projectile)
     {
@@ -49,4 +48,8 @@ public class WhipProjSys : ProjectileSystem {
         links.Clear();
     }
 
+    static WhipProjSys() =>
+        WeaponFactory.BindSystem(
+            (c, t) => (t.whipLinkSpeed.get(c).HasValue) ? new WhipProjSys() : null
+        );
 }

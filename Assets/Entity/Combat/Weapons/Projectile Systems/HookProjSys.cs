@@ -64,4 +64,9 @@ public class HookProjSys : ProjectileSystem {
         }
     }
 
+    // only a select few weapons can use this system
+    static HookProjSys() =>
+        WeaponFactory.BindSystem(
+            (c, t) => (c == WeaponFactory.CLASS.HARPOON) ? new HookProjSys() : null
+        );
 }

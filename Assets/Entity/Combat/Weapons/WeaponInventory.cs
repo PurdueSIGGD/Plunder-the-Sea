@@ -11,8 +11,8 @@ public class WeaponInventory : MonoBehaviour
     }
     [SerializeField]
     private WeaponFactory.CLASS rangedWeaponClass;
-    private Weapon meleeWeapon;
-    private Weapon rangedWeapon;
+    private WeaponSystem meleeSystem;
+    private WeaponSystem rangedSystem;
     private UI_Camera cam;
     private SpriteRenderer spriteRen;
 
@@ -27,6 +27,8 @@ public class WeaponInventory : MonoBehaviour
 
     [SerializeField]
     private GameObject bulletTemplate;
+    [SerializeField]
+    private WeaponTables tables;
     private void Start()
     {
         cam = GameObject.FindObjectOfType<UI_Camera>();
@@ -38,19 +40,16 @@ public class WeaponInventory : MonoBehaviour
 
         SetWeapon(this.meleeWeaponClass);
         SetWeapon(this.rangedWeaponClass);
-
-        meleeWeapon?.OnEquip(this);
-        rangedWeapon?.OnEquip(this);
    }
 
     public void OnKill(EntityStats victim) {
-        this.rangedWeapon?.OnKill(victim);
-        this.meleeWeapon?.OnKill(victim);
+        this.meleeSystem?.OnKill(victim);
+        this.rangedSystem?.OnKill(victim);
     }
     private void Update()
     {
-        meleeWeapon?.Update();
-        rangedWeapon?.Update();
+        meleeSystem?.Update();
+        rangedSystem?.Update();
     }
 
     private void LateUpdate()
@@ -58,36 +57,27 @@ public class WeaponInventory : MonoBehaviour
         spriteRen.transform.rotation = Quaternion.FromToRotation(new Vector3(1,1,0), (Vector3)cam.GetMousePosition() - spriteRen.transform.position);
     }
 
-    public Weapon GetMelee()
+    private void SetMelee(WeaponSystem wep)
     {
-        return meleeWeapon;
+        meleeSystem?.OnUnequip(this);
+        wep.OnEquip(this, tables, meleeWeaponClass);
+        // Make sure to set weapon after the equip methods run
+        meleeSystem = wep;
     }
 
-    public Weapon GetRanged()
+    private void SetRanged(WeaponSystem wep)
     {
-        return rangedWeapon;
-    }
-   
-    private void SetMelee(Weapon wep)
-    {
-        meleeWeapon?.OnUnequip(this);
-        wep.OnEquip(this);
+        rangedSystem?.OnUnequip(this);
+        wep.OnEquip(this, tables, rangedWeaponClass);
         // Make sure to set weapon after the equip methods run
-        meleeWeapon = wep;
-    }
-
-    private void SetRanged(Weapon wep)
-    {
-        rangedWeapon?.OnUnequip(this);
-        wep.OnEquip(this);
-        // Make sure to set weapon after the equip methods run
-        rangedWeapon = wep;
+        rangedSystem = wep;
         spriteRen.sprite = rangedWeaponSpritesTable.get(this.rangedWeaponClass);
     }
-    public void SetWeapon(WeaponFactory.CLASS weaponClass) {
-        var weapon = WeaponFactory.MakeWeapon(weaponClass);
 
-        if (weapon.isMelee){ 
+    public void SetWeapon(WeaponFactory.CLASS weaponClass) {
+        var weapon = new WeaponSystem(weaponClass, this.tables);
+
+        if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE){ 
             this.meleeWeaponClass = weaponClass;
             SetMelee(weapon);
         } else {
@@ -95,35 +85,37 @@ public class WeaponInventory : MonoBehaviour
             SetRanged(weapon);
         }
     }
-    public ProjectileStats constructProjectileStats(Weapon weapon, WeaponFactory.CLASS weaponClass) {
+    public ProjectileStats constructProjectileStats(WeaponFactory.CLASS weaponClass) {
         var pStats = new ProjectileStats(){
-            prefab = bulletTemplate, damage = damageTable.get(weaponClass), lifeTime = 5f
+            prefab = bulletTemplate, damage = damageTable.get(weaponClass).Value, lifeTime = 5f
             };
-        if (weapon.isMelee) {
+        if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE) {
             pStats.prefab = projectilePrefabTable.get(weaponClass);
         }
-        pStats.lifeTime = projectileLifeTimesTable.get(weaponClass);
+        pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
 
         return pStats;
     }
     public bool ShootAt(Vector2 position, bool isMelee)
     {
         var weaponClass = isMelee ? this.meleeWeaponClass : this.rangedWeaponClass;
-        var weapon = isMelee ? this.meleeWeapon : this.rangedWeapon;
-        var stats = constructProjectileStats(weapon, weaponClass);
-        if (weapon?.CanShoot(this.gameObject) == true)
+        var weaponSystem = isMelee ? this.meleeSystem : this.rangedSystem;
+        var stats = constructProjectileStats(weaponClass);
+        if (weaponSystem?.CanShoot(this.gameObject) == true)
         {
             Projectile hitbox = Projectile.Shoot(stats.prefab, this.gameObject, position);
-            hitbox.weapon = weapon;
+            hitbox.weaponSystem = weaponSystem;
+            hitbox.weaponClass = weaponClass;
             hitbox.damage = stats.damage;
+            hitbox.tables = this.tables;
             hitbox.lifeTime = stats.lifeTime;
         
             if (!isMelee) {
                 var direction = (position - (Vector2)transform.position).normalized;
                 hitbox.GetComponent<Rigidbody2D>().velocity = 
-                    direction * weapon.projectileSpeed;
+                    direction * tables.projectileSpeed.get(weaponClass).GetValueOrDefault(0f);
             } 
-            weapon.OnFire(hitbox);
+            weaponSystem.OnFire(hitbox);
             return true;
         }
         return false;

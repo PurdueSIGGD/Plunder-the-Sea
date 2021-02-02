@@ -85,8 +85,8 @@ public class PlayerStats : EntityStats
 
     public override void OnKill(EntityStats victim)
     {
-        weaponInv?.GetRanged().OnKill(victim);
-        weaponInv?.GetMelee().OnKill(victim);
+
+        weaponInv?.OnKill(victim);
         pbase.OnKill(victim);
     }
 

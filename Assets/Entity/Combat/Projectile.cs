@@ -17,7 +17,11 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public GameObject source;
     [HideInInspector]
-    public Weapon weapon;
+    public WeaponSystem weaponSystem;
+
+    public WeaponTables tables;
+    [HideInInspector]
+    public WeaponFactory.CLASS weaponClass;
 
     public Vector2 direction;
 
@@ -45,13 +49,14 @@ public class Projectile : MonoBehaviour
         if (ent)
         {
             pierceCount++;
-            weapon.OnHit(this, ent);
+            weaponSystem.OnHit(this, ent);
             EntityStats attacker = source.GetComponent<EntityStats>();
             ent.TakeDamage(damage, attacker);
         }
 
         /* Range proj. always destroy on non-entities */
-        if ((!(weapon?.isMelee == true) && !ent) || destroyOnCollide)
+        var weaponIsMelee = tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE;
+        if ((!(weaponIsMelee) && !ent) || destroyOnCollide)
         {
             Destroy();
         }
@@ -59,9 +64,9 @@ public class Projectile : MonoBehaviour
 
     public void Destroy()
     {
-        if (weapon != null)
+        if (weaponSystem != null)
         {
-            weapon.OnEnd(this);
+            weaponSystem.OnEnd(this);
             Destroy(gameObject);
         }
     }
