@@ -123,6 +123,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &325492991
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7044077287933541243, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: weaponPrefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.94316304
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.20022132
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.2206008
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7606551040412730807, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7664811252461816296, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
+      propertyPath: m_Name
+      value: Chest
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
 --- !u!114 &1325165683 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 832614831945798190, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
@@ -429,11 +490,39 @@ PrefabInstance:
     - target: {fileID: 7045101813800168173, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: rangeWeapon
       value: 
-      objectReference: {fileID: 11400000, guid: b2ed2e98e7a508a438c07588d67c4529, type: 2}
+      objectReference: {fileID: 11400000, guid: 614d6a188506383428a029adb50d6ed3, type: 2}
     - target: {fileID: 7045101813800168173, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
-      propertyPath: equipSound
+      propertyPath: damageTable
       value: 
-      objectReference: {fileID: 8300000, guid: 1563a6275dc09d64a84a8e30df2cd8c4, type: 3}
+      objectReference: {fileID: 11400000, guid: 27bd03c58ebebe442baa032491ef57cb, type: 2}
+    - target: {fileID: 7045101813800168173, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: projectileLifeTimesTable
+      value: 
+      objectReference: {fileID: 11400000, guid: 0be363965d01fe74081335877502ab96, type: 2}
+    - target: {fileID: 7045101813800168173, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: rangedWeaponSpritesTable
+      value: 
+      objectReference: {fileID: 11400000, guid: 7a62c654ea2c06d4f9877824a4d7780c, type: 2}
+    - target: {fileID: 7045101813800168173, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: projectilePrefabTable
+      value: 
+      objectReference: {fileID: 11400000, guid: 296673b8e7e2ad244b8dbd0bdb2d3ac0, type: 2}
+    - target: {fileID: 7045101813800168173, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: rangedWeaponClass
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045101813800168173, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: bulletTemplate
+      value: 
+      objectReference: {fileID: 8850584598485551201, guid: 665bee2cce4084b5580666db5ec97ad4, type: 3}
+    - target: {fileID: 7045101813800168173, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: meleeWeaponClass
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7045101813800168173, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: tables
+      value: 
+      objectReference: {fileID: 11400000, guid: f23b07f02af71b44fa4d0988487b7ea5, type: 2}
     - target: {fileID: 7869038517754355045, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
