@@ -426,6 +426,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6993066267186363360, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7045101813800168173, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: rangeWeapon
       value: 
