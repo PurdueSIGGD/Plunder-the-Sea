@@ -75,11 +75,12 @@ public class EnemyProjectile : Projectile
             return;
         }
 
+        var weaponIsMelee = tables.tagWeapon.get(proj.weaponClass) == WeaponFactory.TAG.MELEE;
         /* Deflect with weapons if applicable, which will abort the rest of the collision */
-        if (proj && !eproj && proj.weapon)
+        if (proj && !eproj)
         {
             // If it collides with a weapon projectile that would deflect it
-            if ((proj.weapon.isMelee && reflectMelee) || (!proj.weapon.isMelee && reflectRanged))
+            if ((weaponIsMelee && reflectMelee) || (!weaponIsMelee && reflectRanged))
             {
                 Reflect(proj);
                 return;
