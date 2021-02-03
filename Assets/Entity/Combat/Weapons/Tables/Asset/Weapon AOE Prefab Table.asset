@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7e4792f554ff64bb73595303ae4c1d, type: 3}
+  m_Name: Weapon AOE Prefab Table
+  m_EditorClassIdentifier: 
+  classPrefabPairs:
+  - weaponClass: 0
+    prefab: {fileID: 8161092618706017957, guid: 99c2d30043c502f4ab4f30a15c75db20, type: 3}
+  - weaponClass: 2
+    prefab: {fileID: 4039954679365618853, guid: 56aaed83383f6674c9bd368d208af70a, type: 3}
+  - weaponClass: 4
+    prefab: {fileID: 8161092618706017957, guid: 2145da28acb712349ad1243d40c6f832, type: 3}
+  - weaponClass: 5
+    prefab: {fileID: 8161092618706017957, guid: b88e0536b96c34689b04b070a96ecb5a, type: 3}
+  - weaponClass: 9
+    prefab: {fileID: 8161092618706017957, guid: 378f56dc18c1b4d41a8ab40d6d4692a9, type: 3}
+  - weaponClass: 11
+    prefab: {fileID: 561815860341853923, guid: 90df6e09508c95146aa0e2f07f14bb0c, type: 3}
+  - weaponClass: 14
+    prefab: {fileID: 4039954679365618853, guid: f4050a92747de0f41b4bb0e32e21eebf, type: 3}

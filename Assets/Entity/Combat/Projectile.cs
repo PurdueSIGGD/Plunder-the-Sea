@@ -17,7 +17,13 @@ public class Projectile : MonoBehaviour
     //[HideInInspector]
     public GameObject source = null;
     [HideInInspector]
-    public ScriptableWeapon weapon;
+    public WeaponSystem weaponSystem;
+
+    public WeaponTables tables;
+    [HideInInspector]
+    public WeaponFactory.CLASS weaponClass;
+
+    public Vector2 direction;
 
     // The initial speed of the projectile
     public float speed = 0f;
@@ -61,16 +67,14 @@ public class Projectile : MonoBehaviour
                 if (ec.OnProjectileHit(this)) return;
             }
             pierceCount++;
-            if (weapon)
-            {
-                weapon.OnHit(this, ent);
-            }
+            weaponSystem.OnHit(this, ent);
             EntityStats attacker = source.GetComponent<EntityStats>();
             ent.TakeDamage(damage, attacker);
         }
-        
+
         /* Range proj. always destroy on non-entities */
-        if ((weapon && !weapon.isMelee && !ent) || destroyOnCollide)
+        var weaponIsMelee = tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE;
+        if ((!(weaponIsMelee) && !ent) || destroyOnCollide)
         {
             Destroy();
         }
@@ -78,9 +82,9 @@ public class Projectile : MonoBehaviour
 
     public void Destroy()
     {
-        if (weapon)
+        if (weaponSystem != null)
         {
-            weapon.OnEnd(this);
+            weaponSystem.OnEnd(this);
         }
         Destroy(gameObject);
     }
@@ -139,14 +143,14 @@ public class Projectile : MonoBehaviour
         SetSource(deflector);
     }
 
-    public static Projectile Shoot(GameObject prefab, GameObject source, Vector2 target, float speed)
+    public static Projectile Shoot(GameObject prefab, GameObject source, Vector2 target)
     {
-        Projectile bullet = Shoot(prefab, source.transform.position, target, speed);
+        Projectile bullet = Shoot(prefab, source.transform.position, target);
         bullet.SetSource(source);
         return bullet;
     }
 
-    public static Projectile Shoot(GameObject prefab, Vector2 startPos, Vector2 target, float speed)
+    public static Projectile Shoot(GameObject prefab, Vector2 startPos, Vector2 target)
     {
         Projectile bullet = Instantiate(prefab, startPos, Quaternion.identity).GetComponent<Projectile>();
 
@@ -158,11 +162,11 @@ public class Projectile : MonoBehaviour
         Vector2 direction = (target - startPos).normalized;
         Rigidbody2D rigidBody = bullet.GetComponent<Rigidbody2D>();
 
-        if (rigidBody)
-        {
-            rigidBody.velocity = direction * speed;
-        }
-        bullet.speed = speed;
+        // if (rigidBody)
+        // {
+        //     rigidBody.velocity = direction * speed;
+        // }
+        // bullet.speed = speed;
 
         bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, new Vector3(direction.x, direction.y, 0));
 

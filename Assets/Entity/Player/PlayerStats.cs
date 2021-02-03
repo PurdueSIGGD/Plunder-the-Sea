@@ -23,8 +23,24 @@ public class PlayerStats : EntityStats
     public float staminaRechargeRate = 2f;
     public Slider staminaBar;
     public Slider ammoBar;
+    public int ammo {get; private set;}
+    public int maxAmmo {get; private set;}
     private float timeSinceLastTick = 0;
     private float timeBetweenTicks = 0.1f;
+
+    public void decrementAmmo() {
+        this.ammo = Mathf.Max(ammo - 1, 0);
+    }
+
+    public void replenishAmmo(int amount) {
+
+        this.ammo = Mathf.Min(this.ammo + amount, maxAmmo);
+    }
+
+    public void resetAmmo(int max) {
+        this.ammo = max;
+        this.maxAmmo = max;
+    }
 
     private void Start()
     {
@@ -53,8 +69,7 @@ public class PlayerStats : EntityStats
 
             stamina = Mathf.Min(stamina + staminaRechargeRate, staminaMax);
 
-            ScriptableWeapon ranged = weaponInv.GetRanged();
-            ammoBar.value = (float)ranged.ammo / (float)ranged.maxAmmo;
+            ammoBar.value = (float)ammo / (float)maxAmmo;
         }
     }
 
@@ -72,8 +87,8 @@ public class PlayerStats : EntityStats
 
     public override void OnKill(EntityStats victim)
     {
-        weaponInv.GetRanged().OnKill(victim);
-        weaponInv.GetMelee().OnKill(victim);
+
+        weaponInv?.OnKill(victim);
         pbase.OnKill(victim);
     }
 
