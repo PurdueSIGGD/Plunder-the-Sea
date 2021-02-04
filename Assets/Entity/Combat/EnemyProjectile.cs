@@ -6,20 +6,6 @@ using UnityEngine;
 
 public class EnemyProjectile : Projectile
 {
-    // Stats describing the projectile (that wouldn't be as relevant for player projectiles)
-    public bool friendlyFire = false;
-    public bool reflectMelee = false;
-    public bool reflectRanged = false;
-    public bool collideWithProjectile = false;
-    public bool collideWithWall = true;
-
-    // Attribute that might be inflicted on a hit, and the chance to hit (between 0.0 and 1.0, a lower number is a lower chance)
-    public EntityAttribute attrHit = null;
-    public float attrChance = 0.0f;
-
-    
-
-
     void Update()
     {
         // Operate the projectile

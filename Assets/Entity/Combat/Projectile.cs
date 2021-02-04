@@ -11,7 +11,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public float currentLifeTime = 0;
     public float damage = 1.0f;
-    public bool destroyOnCollide = true;
+    
     [HideInInspector]
     public int pierceCount = 0;
     //[HideInInspector]
@@ -24,6 +24,19 @@ public class Projectile : MonoBehaviour
     public WeaponFactory.CLASS weaponClass;
 
     public Vector2 direction;
+
+    // Additional variables to describe how the projectile acts in certain cases
+    public bool destroyOnCollide = true;        // The projectile destroys itself when colliding
+    public bool destroyOnNonEntity = false;     // The projectile will auto-destroy when colliding with non-entities
+    public bool friendlyFire = false;           // The projectile damages those with the same tag
+    public bool reflectMelee = false;           // The projectile is reflected by melee attacks
+    public bool reflectRanged = false;          // The projectile is reflected by non-melee attacks
+    public bool collideWithProjectile = false;  // This projectile collides with other projectiles
+    public bool collideWithWall = true;         // This projectile collides with walls
+
+    // Attribute that might be inflicted on a hit, and the chance to hit (between 0.0 and 1.0, a lower number is a lower chance)
+    public EntityAttribute attrHit = null;
+    public float attrChance = 0.0f;
 
     // The initial speed of the projectile
     public float speed = 0f;
@@ -45,8 +58,8 @@ public class Projectile : MonoBehaviour
         
         GameObject collider = collision.gameObject;
         Projectile proj = collider.GetComponent<Projectile>();
-        /* Don't collide with self OR other projectiles */
-        if (collider == source || proj)
+        /* Don't collide with source */
+        if (collider == source)
         {
             return;
         }
@@ -55,6 +68,53 @@ public class Projectile : MonoBehaviour
         if (collider.layer == LayerMask.NameToLayer("Ground"))
         {
             return;
+        }
+
+        /* Do / Don't collide with other projectiles */
+        if (!collideWithProjectile && (proj))
+        {
+            return;
+        }
+
+        /* Do / Don't collide with walls */
+        if (!collideWithWall && collider.tag == "Wall")
+        {
+            return;
+        }
+
+        /* Do / Don't collide with things w/ the same tag as source */
+        if (collider.tag == sourceTag && !friendlyFire)
+        {
+            return;
+        }
+
+        /* Don't collide with other projectiles shot by the same source */
+        if (proj && (proj.source == source))
+        {
+            return;
+        }
+
+        /* Deflect with weapons if applicable, which will abort the rest of the collision */
+        if (proj)
+        {
+            if (proj.tables)
+            {
+                var weaponIsMelee = proj.tables.tagWeapon.get(proj.weaponClass) == WeaponFactory.TAG.MELEE;
+
+                // If it collides with a weapon projectile that would deflect it
+                if ((weaponIsMelee && reflectMelee) || (!weaponIsMelee && reflectRanged))
+                {
+                    Reflect(proj);
+                    return;
+                }
+            }
+
+
+            if (reflectRanged)
+            {
+                Reflect(proj);
+                return;
+            }
         }
 
         EntityStats ent = collider.GetComponent<EntityStats>();
@@ -67,14 +127,25 @@ public class Projectile : MonoBehaviour
                 if (ec.OnProjectileHit(this)) return;
             }
             pierceCount++;
-            weaponSystem.OnHit(this, ent);
-            EntityStats attacker = source.GetComponent<EntityStats>();
+            if (weaponSystem != null)
+            {
+                weaponSystem.OnHit(this, ent);
+            }
+
+            // Deal damage
+            EntityStats attacker = (source) ? source.GetComponent<EntityStats>() : null;
             ent.TakeDamage(damage, attacker);
+
+            // Inflict attribute if relevant
+            if ((attrHit != null) && (Random.value <= attrChance))
+            {
+                ent.AddAttribute(attrHit, attacker);
+            }
         }
 
         /* Range proj. always destroy on non-entities */
-        var weaponIsMelee = tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE;
-        if ((!(weaponIsMelee) && !ent) || destroyOnCollide)
+        //var weaponIsMelee = tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE;
+        if ((destroyOnNonEntity && !ent) || destroyOnCollide)
         {
             Destroy();
         }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6194572133521909472}
   - component: {fileID: 6596879489433439571}
   - component: {fileID: 7896221370322905785}
-  - component: {fileID: -7377238901562944439}
+  - component: {fileID: -8797092220601173193}
   m_Layer: 0
   m_Name: Ink Shot
   m_TagString: Untagged
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &-7377238901562944439
+--- !u!114 &-8797092220601173193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,16 +141,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6059500687515898438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73e235bbd564841448eb10cc8dc9850c, type: 3}
+  m_Script: {fileID: 11500000, guid: c39bddd6b1e172649bd99304f1d55a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 3
+  lifeTime: 2
   currentLifeTime: 0
   damage: 1
-  destroyOnCollide: 1
   pierceCount: 0
   source: {fileID: 0}
-  weapon: {fileID: 0}
+  tables: {fileID: 0}
+  weaponClass: 0
+  direction: {x: 0, y: 0}
+  destroyOnCollide: 1
+  destroyOnNonEntity: 0
   friendlyFire: 0
   reflectMelee: 0
   reflectRanged: 0
@@ -163,5 +166,6 @@ MonoBehaviour:
     duration: 5
     stackable: 0
     isAdditive: 1
-  attrChance: 0
-  speed: 0
+  attrChance: 1
+  speed: 5
+  sourceTag: 
