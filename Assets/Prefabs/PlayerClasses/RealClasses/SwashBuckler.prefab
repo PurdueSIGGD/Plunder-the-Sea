@@ -52,6 +52,7 @@ MonoBehaviour:
   baseStamina: 200
   baseStaminaRechargeRate: 3
   proficiency: 1
+  classSprite: {fileID: 0}
   chainLighting: 0
   lightingDamage: 4
   chainChance: 0.5
@@ -59,14 +60,17 @@ MonoBehaviour:
   chainRadius: 4
   lightingPrefab: {fileID: 0}
   lunge: 1
-  meleeLungeDistance: 2
-  rangedLungeDistance: 4
+  meleeLungeDistance: 4
+  rangedLungeDistance: 8
+  lungeOneDirectionCooldown: 0.25
+  lungeBackDirectionCooldown: 0.1
   killChain: 0
   killRequirement: 3
   chainTime: 4
   attackSpeedBoost: 2
   speedBoost: 2
-  sw: {fileID: 0}
+  meleeWeapon: {fileID: 0}
+  rangedWeapon: {fileID: 0}
   meleeDamageAddition: 0
   meleeDamageMultiplier: 1
   rangedDamageAddition: 0
