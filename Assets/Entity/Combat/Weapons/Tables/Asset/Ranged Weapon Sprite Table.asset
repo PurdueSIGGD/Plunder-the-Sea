@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43e56f28ee73e2942b31f725f8fa5cf3, type: 3}
+  m_Name: Ranged Weapon Sprite Table
+  m_EditorClassIdentifier: 
+  classSpritePairs:
+  - weaponClass: 1
+    sprite: {fileID: 21300000, guid: f5bdb2c48295dc9429a8ca26a40622c8, type: 3}
+  - weaponClass: 3
+    sprite: {fileID: 21300000, guid: 34171933b497afe4cb651ce5f5bb6f87, type: 3}
+  - weaponClass: 6
+    sprite: {fileID: 21300000, guid: 8ba58fd8f742f5040adfeddbf1db38c1, type: 3}
+  - weaponClass: 7
+    sprite: {fileID: 21300000, guid: e7d70efc12a6beb4080ea72055da2b9d, type: 3}
+  - weaponClass: 8
+    sprite: {fileID: 21300000, guid: 5af77147c4dc8214ebe856156e57ebd0, type: 3}
+  - weaponClass: 10
+    sprite: {fileID: 21300000, guid: 4f8ff8e8378793a46ac10f2502942870, type: 3}
+  - weaponClass: 12
+    sprite: {fileID: 21300000, guid: 1360c39857f030e4885f3eed765dc965, type: 3}
+  - weaponClass: 13
+    sprite: {fileID: 21300000, guid: f3624047748bdc145a6869c1bfb4c67b, type: 3}

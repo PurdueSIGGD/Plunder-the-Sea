@@ -19,7 +19,14 @@ public class StateMovement : EnemyMovement
     // One-liner for distance from the player
     public float PlayerDistance()
     {
-        return Vector2.Distance(myBase.player.transform.position, myBase.transform.position);
+        if (myBase != null)
+        {
+            return Vector2.Distance(myBase.player.transform.position, myBase.transform.position);
+        }
+        else
+        {
+            return -1;
+        }
     }
 
     // Move towards the player

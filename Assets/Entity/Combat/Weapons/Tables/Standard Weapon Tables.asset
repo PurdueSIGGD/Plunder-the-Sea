@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dcf9b6dde6ea714dbb9779924792567, type: 3}
+  m_Name: Standard Weapon Tables
+  m_EditorClassIdentifier: 
+  ammoPerKill: {fileID: 11400000, guid: 23c076d2f853a8942b68b98b4684b600, type: 2}
+  coolDown: {fileID: 11400000, guid: 0c9201542e29dc04b9096bd0983f5156, type: 2}
+  damage: {fileID: 11400000, guid: 27bd03c58ebebe442baa032491ef57cb, type: 2}
+  maxAmmo: {fileID: 11400000, guid: 4bd1e203b9317c24098d6fd946519cb5, type: 2}
+  projectileLifeTime: {fileID: 11400000, guid: 0be363965d01fe74081335877502ab96, type: 2}
+  projectileSpeed: {fileID: 11400000, guid: dc2e5936c58f8ba42a188e38d2eb254d, type: 2}
+  staminaCost: {fileID: 11400000, guid: 973d3f355e81370409db38f84c95f07f, type: 2}
+  tagWeapon: {fileID: 11400000, guid: 265db63f17d181248ab1ac074c8ebc99, type: 2}
+  multiShotExtraShots: {fileID: 11400000, guid: 10697420589169543a9e6f6b20d96a66, type: 2}
+  multiShotAngle: {fileID: 11400000, guid: 33012455d200b6c4791b77d94c33a535, type: 2}
+  burstFireExtraShots: {fileID: 11400000, guid: f37d4d1914ae18a45991814acf8bd7a6, type: 2}
+  burstFireFrequency: {fileID: 11400000, guid: e34d69df3419ba342a07e150db0cba8c, type: 2}
+  swingAngle: {fileID: 11400000, guid: 25bfd9316a43b1a489473c106924c0ef, type: 2}
+  swingHold: {fileID: 11400000, guid: 40a86e2d0f872814898f6182cee8b21d, type: 2}
+  pierce: {fileID: 11400000, guid: 1d59799c53d3e4e48814e988708564ad, type: 2}
+  revertTime: {fileID: 11400000, guid: de1c9a3695c52c04d9fb98ba2a8b5e49, type: 2}
+  whipLinkSpeed: {fileID: 11400000, guid: c9abcec0de745d04c98f75bdc9572ef6, type: 2}

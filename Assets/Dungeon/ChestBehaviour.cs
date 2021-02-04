@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ChestBehaviour : MonoBehaviour
 {
-    public ScriptableWeapon weapon;
 
-    public bool isMelee;
+    public GameObject weaponPrefab;
+
 
     private bool used = false;
 
@@ -16,13 +16,9 @@ public class ChestBehaviour : MonoBehaviour
         if (weaponInv == null || used) {
             return;
         }
+
+        // weaponInv.SetWeaponPrefab(weaponPrefab);
         
-        if (isMelee) {
-            weaponInv.SetMelee(this.weapon);
-        } 
-        else {
-            weaponInv.SetRanged(this.weapon);
-        }
 
         used = true;
 
