@@ -76,8 +76,8 @@ public class PlayerClasses : MonoBehaviour
     private float killCountdown = 0;
 
     [Header("--Starting Weapons (not yet implemented)--")]
-    public ScriptableWeapon meleeWeapon;
-    public ScriptableWeapon rangedWeapon;
+    public WeaponFactory.CLASS melee;
+    public WeaponFactory.CLASS ranged;
     //this will be implemented after the weapon changes
 
     //modifies weapon stats
@@ -125,15 +125,9 @@ public class PlayerClasses : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = classSprite;
             }
             WeaponInventory inventory = GetComponent<WeaponInventory>();
-            if (meleeWeapon != null)
-            {
-                inventory.SetMelee(meleeWeapon);
-            }
-            if (meleeWeapon != null)
-            {
-                inventory.SetRanged(rangedWeapon);
-            }
-            rigid = GetComponent<Rigidbody2D>();
+            
+            inventory.SetWeapon(melee);
+            inventory.SetWeapon(ranged);
         }
         else
         {
@@ -214,14 +208,8 @@ public class PlayerClasses : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = classSprite;
         }
         WeaponInventory inventory = GetComponent<WeaponInventory>();
-        if (meleeWeapon != null)
-        {
-            inventory.SetMelee(meleeWeapon);
-        }
-        if (meleeWeapon != null)
-        {
-            inventory.SetRanged(rangedWeapon);
-        }
+        inventory.SetWeapon(melee);
+        inventory.SetWeapon(ranged);
     }
 
     public void setPlayerStats(PlayerStats stats)

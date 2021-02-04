@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc888ce5304a61045a1476a7403c8b44, type: 3}
+  m_Name: Max Ammo Table
+  m_EditorClassIdentifier: 
+  classIntPairs:
+  - weaponClass: 1
+    integer: 5
+  - weaponClass: 3
+    integer: 5
+  - weaponClass: 6
+    integer: 5
+  - weaponClass: 7
+    integer: 5
+  - weaponClass: 8
+    integer: 5
+  - weaponClass: 10
+    integer: 4
+  - weaponClass: 12
+    integer: 5
+  - weaponClass: 13
+    integer: 5

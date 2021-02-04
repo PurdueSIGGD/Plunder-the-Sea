@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3cd4c41291815b459fadf9c4af32689, type: 3}
+  m_Name: Tag Weapon Table
+  m_EditorClassIdentifier: 
+  pairs:
+  - name: 0
+    tag: 0
+  - name: 1
+    tag: 1
+  - name: 2
+    tag: 0
+  - name: 3
+    tag: 1
+  - name: 4
+    tag: 0
+  - name: 5
+    tag: 0
+  - name: 6
+    tag: 1
+  - name: 7
+    tag: 1
+  - name: 8
+    tag: 1
+  - name: 9
+    tag: 0
+  - name: 10
+    tag: 1
+  - name: 11
+    tag: 0
+  - name: 12
+    tag: 1
+  - name: 13
+    tag: 1
+  - name: 14
+    tag: 0
