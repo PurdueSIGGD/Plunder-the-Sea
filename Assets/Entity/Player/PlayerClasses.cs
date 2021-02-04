@@ -125,6 +125,8 @@ public class PlayerClasses : MonoBehaviour
                 GetComponent<SpriteRenderer>().sprite = classSprite;
             }
             WeaponInventory inventory = GetComponent<WeaponInventory>();
+
+            rigid = GetComponent<Rigidbody2D>();
             
             inventory.SetWeapon(melee);
             inventory.SetWeapon(ranged);

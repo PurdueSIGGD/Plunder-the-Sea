@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classNumber: -1
   classes: []
-  baseHp: 10
+  baseHp: 12
   baseSpeed: 4
   baseArmorAddition: 0
   baseArmorDivision: 0
@@ -69,8 +69,8 @@ MonoBehaviour:
   chainTime: 4
   attackSpeedBoost: 2
   speedBoost: 2
-  meleeWeapon: {fileID: 0}
-  rangedWeapon: {fileID: 0}
+  melee: 0
+  ranged: 0
   meleeDamageAddition: 0
   meleeDamageMultiplier: 1
   rangedDamageAddition: 0
