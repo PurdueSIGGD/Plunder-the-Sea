@@ -46,7 +46,7 @@ MonoBehaviour:
   classNumber: -1
   classes: []
   baseHp: 12
-  baseSpeed: 4
+  baseSpeed: 8
   baseArmorAddition: 0
   baseArmorDivision: 0
   baseStamina: 200

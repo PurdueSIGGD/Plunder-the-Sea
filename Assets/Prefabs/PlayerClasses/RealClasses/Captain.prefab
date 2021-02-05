@@ -45,8 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classNumber: -1
   classes: []
-  baseHp: 8
-  baseSpeed: 6
+  baseHp: 1
+  baseSpeed: 8
   baseArmorAddition: 0
   baseArmorDivision: 0
   baseStamina: 100
