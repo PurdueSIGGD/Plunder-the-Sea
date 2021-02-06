@@ -12,6 +12,7 @@ public class EnemyStats : EntityStats
     public int[] dropTable = { -1, 0, 1, 2, 3 };
     public float[] dropOdds = { 1, 1, 1, 1, 1 };
     public float dropRange;
+    private bool dead = false;
 
     private void Start()
     {
@@ -37,6 +38,13 @@ public class EnemyStats : EntityStats
 
     public override void Die()
     {
+        //only die once
+        if (dead)
+        {
+            return;
+        }
+        dead = true;
+
         //death call to player
         PlayerClasses pClass = FindObjectOfType<PlayerClasses>();
         pClass.enemyKilled();
