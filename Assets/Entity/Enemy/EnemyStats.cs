@@ -9,13 +9,20 @@ public class EnemyStats : EntityStats
     public float attackSpeedInverse = 10;
     public float damage = 1.5f;
     public float numberOfTimesToRespawn = 0; // Enemies do not respawn by default.
-    public int[,] dropTable = { { -1,0,1,2,3 },
-                                 {  1,1,1,1,1 } };
+    public int[] dropTable = { -1, 0, 1, 2, 3 };
+    public float[] dropOdds = { 1, 1, 1, 1, 1 };
+    public float dropRange;
 
     private void Start()
     {
         spawnPoint = this.transform.position;
         myBase = GetComponent<EnemyBase>();
+
+        dropRange = 0;
+        for (int i = 0; i < dropOdds.Length; i++)
+        {
+            dropRange += dropOdds[i];
+        }
     }
 
     private void Update()
@@ -34,12 +41,22 @@ public class EnemyStats : EntityStats
         PlayerClasses pClass = FindObjectOfType<PlayerClasses>();
         pClass.enemyKilled();
 
-        //Randomly select a bait or nothing from dropTable and give to player
+        //Randomly select a bait from dropTable based on dropOdds and give to player
         PlayerStats pStats = pClass.GetComponentInParent<PlayerStats>();
-        int dropIndex = Random.Range(0, dropTable[0].Length);
-        if (dropTable[0,dropIndex] >= 0)
+        float dropValue = Random.Range(0, dropRange);
+        int dropIndex = 0;
+        if (dropValue > 0)
         {
-            pStats.addBait(dropTable[0,dropIndex]);
+            dropIndex = -1;
+            while (dropValue > 0)
+            {
+                dropIndex++;
+                dropValue -= dropOdds[dropIndex];
+            }
+        }
+        if (dropTable[dropIndex] >= 0)
+        {
+            pStats.addBait(dropTable[dropIndex]);
         }
         
 
