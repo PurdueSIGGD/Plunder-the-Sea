@@ -50,6 +50,10 @@ public class EntityStats : MonoBehaviour
             GetComponent<EnemyStats>().enemyDamageReturnCall();
         }
     }
+    public void ReplenishHealth(float amount) {
+        this.currentHP = Mathf.Min(this.currentHP + amount, this.maxHP);
+        updateHealthBar();
+    }
 
     //Return true if results in death
     public bool TakeDamage(float amount, EntityStats source)
@@ -72,13 +76,16 @@ public class EntityStats : MonoBehaviour
                 source.OnKill(this);
             }
         }
+        updateHealthBar();
+
+        return died;
+    }
+
+    private void updateHealthBar() {
         if (healthbar != null)
         {
             healthbar.value = currentHP / maxHP;
         }
-
-        return died;
-
     }
 
     public void AddAttribute(EntityAttribute attr, EntityStats source)
