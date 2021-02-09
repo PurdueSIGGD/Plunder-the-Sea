@@ -167,5 +167,5 @@ MonoBehaviour:
     stackable: 0
     isAdditive: 1
   attrChance: 1
-  speed: 5
+  speed: 7
   sourceTag: 

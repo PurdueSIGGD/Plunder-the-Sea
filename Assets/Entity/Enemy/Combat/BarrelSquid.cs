@@ -20,7 +20,6 @@ public class BarrelSquid : StateCombat
 
     // Ink Shot projectile and speed
     public GameObject inkShot;
-    public float inkShotSpeed = 7.0f;
 
     // Update is called once per frame
     void Update()

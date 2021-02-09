@@ -17,7 +17,6 @@ public class ClamCannon : StateCombat
 
     // Pearl Shot projectile and speed
     public GameObject pearlShot;
-    public float pearlShotSpeed = 5.0f;
 
     void Start()
     {
@@ -47,8 +46,7 @@ public class ClamCannon : StateCombat
         // Shoot if off cooldown and within distance
         if(OnTarget(shootTarget) && myStateMovement.PlayerDistance() < shootDistance)
         {
-            EnemyProjectile pearl = EnemyProjectile.Shoot(pearlShot, transform.position, transform.position + playerAngle, pearlShotSpeed);
-            pearl.SetSource(gameObject);
+            Shoot(pearlShot, transform.position, transform.position + playerAngle);
             shootTarget = SetTarget(shootCooldown);
         }
     }

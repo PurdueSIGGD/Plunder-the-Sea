@@ -62,8 +62,7 @@ public class DragonFish : StateCombat
     {
         Vector3 spreadVector = new Vector3(Random.Range(-distance, distance), Random.Range(-distance, distance), 0);
 
-        EnemyProjectile flame = EnemyProjectile.Shoot(fireProjectile, transform.position + spreadVector, transform.position + spreadVector, 0.0f);
-        flame.SetSource(gameObject);
+        Projectile flame = Shoot(fireProjectile, transform.position + spreadVector, transform.position + spreadVector);
         if (overrideTime > 0) flame.lifeTime = overrideTime;
     }
 
