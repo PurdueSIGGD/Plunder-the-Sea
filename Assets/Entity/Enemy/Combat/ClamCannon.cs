@@ -36,7 +36,7 @@ public class ClamCannon : StateCombat
         if (OnTarget(searchTarget))
         {
             //Update the player angle if the player isn't behind a wall
-            if (!Physics2D.Linecast(transform.position, myBase.player.transform.position, mask))
+            if (myBase.player != null && !Physics2D.Linecast(transform.position, myBase.player.transform.position, mask))
             {
                 playerAngle = myBase.player.transform.position - transform.position;
             }
