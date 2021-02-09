@@ -15,7 +15,7 @@ public class ClamCannon : StateCombat
     public float shootCooldown = 1f;
     public float shootDistance = 8f;
 
-    // Pearl Shot projectile and speed
+    // Pearl Shot projectile
     public GameObject pearlShot;
 
     void Start()

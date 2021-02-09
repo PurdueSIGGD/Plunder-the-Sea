@@ -98,20 +98,7 @@ public class Projectile : MonoBehaviour
         /* Deflect with weapons if applicable, which will abort the rest of the collision */
         if (proj)
         {
-            if (proj.tables)
-            {
-                var weaponIsMelee = proj.tables.tagWeapon.get(proj.weaponClass) == WeaponFactory.TAG.MELEE;
-
-                // If it collides with a weapon projectile that would deflect it
-                if ((weaponIsMelee && reflectMelee) || (!weaponIsMelee && reflectRanged))
-                {
-                    Reflect(proj);
-                    return;
-                }
-            }
-
-
-            if (reflectRanged)
+            if ((projectileType() == 1 && reflectMelee) || (projectileType() != 1 && reflectRanged))
             {
                 Reflect(proj);
                 return;
@@ -122,7 +109,7 @@ public class Projectile : MonoBehaviour
         if (ent)
         {
             // If the collision is with something that uniquely reacts to projectiles
-            EnemyCombat ec = GetComponent<EnemyCombat>();
+            EnemyCombat ec = collider.GetComponent<EnemyCombat>();
             if (ec)
             {
                 if (ec.OnProjectileHit(this)) return;
@@ -185,13 +172,7 @@ public class Projectile : MonoBehaviour
         SetSource(proj.source);
     }
 
-    // Used to set the source (and other backup tags in case the source vanishes)
-    public void SetSource(GameObject s)
-    {
-        this.source = s;
-        this.sourceTag = s.tag;
-    }
-
+    // Reflection that doesn't require another projectile (ideal for enemies that can reflect)
     public void Reflect(GameObject deflector)
     {
         Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
@@ -201,6 +182,7 @@ public class Projectile : MonoBehaviour
         {
             // Deflects straight back at the source if it exists
             direction = (source.transform.position - transform.position).normalized;
+            Debug.DrawLine(transform.position, transform.position + new Vector3(direction.x,direction.y,0f));
         }
         else
         {
@@ -210,9 +192,31 @@ public class Projectile : MonoBehaviour
 
         if (rigidBody)
         {
-            rigidBody.velocity = direction * speed;
+            rigidBody.velocity = direction * rigidBody.velocity.magnitude;
         }
         SetSource(deflector);
+    }
+
+    // Function to describe the weapon that this projectile originates from
+    // 0 = enemy projectile
+    // 1 = melee player weapon
+    // 2 = ranged player weapon
+    public int projectileType()
+    {
+        if (tables)
+        {
+            return (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE) ? 1 : 2;
+        } else
+        {
+            return 0;
+        }
+    }
+
+    // Used to set the source (and other backup tags in case the source vanishes)
+    public void SetSource(GameObject s)
+    {
+        this.source = s;
+        this.sourceTag = s.tag;
     }
 
     public static Projectile Shoot(GameObject prefab, GameObject source, Vector2 target)

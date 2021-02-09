@@ -18,7 +18,7 @@ public class BarrelSquid : StateCombat
     public float firingCooldown = 0.5f;
     private float firingTracker = 0;
 
-    // Ink Shot projectile and speed
+    // Ink Shot projectile
     public GameObject inkShot;
 
     // Update is called once per frame

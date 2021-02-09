@@ -43,12 +43,6 @@ public class DragonFish : StateCombat
         }
     }
 
-    public override bool OnProjectileHit(Projectile hit)
-    {
-        hit.Reflect(gameObject);
-        return true;
-    }
-
     public override void OnDeath()
     {
         for (int i = 0; i < deathCount; i++)
