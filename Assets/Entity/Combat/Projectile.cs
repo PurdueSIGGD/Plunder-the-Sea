@@ -19,6 +19,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public WeaponSystem weaponSystem;
 
+    [HideInInspector]
     public WeaponTables tables;
     [HideInInspector]
     public WeaponFactory.CLASS weaponClass;
@@ -231,13 +232,6 @@ public class Projectile : MonoBehaviour
         }
 
         Vector2 direction = (target - startPos).normalized;
-        Rigidbody2D rigidBody = bullet.GetComponent<Rigidbody2D>();
-
-        // if (rigidBody)
-        // {
-        //     rigidBody.velocity = direction * speed;
-        // }
-        // bullet.speed = speed;
 
         bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, new Vector3(direction.x, direction.y, 0));
 

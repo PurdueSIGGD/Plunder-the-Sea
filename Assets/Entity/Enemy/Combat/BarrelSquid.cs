@@ -45,22 +45,11 @@ public class BarrelSquid : StateCombat
                 // Try to shoot if possible and the cooldown allows
                 if (OnTarget(firingTracker))
                 {
-                    Shoot();
+                    Shoot(inkShot);
                     firingTracker = SetTarget(firingCooldown);
                 } 
                 break;
         }
         prevState = current;
-    }
-
-    void Shoot()
-    {
-        Projectile ink = Projectile.Shoot(inkShot, transform.position, myBase.player.transform.position);
-        ink.SetSource(gameObject);
-        ink.attrChance = 1f;
-        ink.attrHit = inkDebuff;
-
-        Vector2 direction = (myBase.player.transform.position - transform.position).normalized;
-        ink.GetComponent<Rigidbody2D>().velocity = direction * ink.speed;
     }
 }
