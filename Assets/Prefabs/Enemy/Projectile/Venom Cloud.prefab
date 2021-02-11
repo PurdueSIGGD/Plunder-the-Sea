@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2817801368616632141}
   - component: {fileID: 2981821739990127870}
   - component: {fileID: 2267666193016582932}
-  - component: {fileID: 635195862884552783}
+  - component: {fileID: 7715260175935198236}
   m_Layer: 0
   m_Name: Venom Cloud
   m_TagString: Untagged
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &635195862884552783
+--- !u!114 &7715260175935198236
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,18 +141,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 2808827960982064107}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73e235bbd564841448eb10cc8dc9850c, type: 3}
+  m_Script: {fileID: 11500000, guid: c39bddd6b1e172649bd99304f1d55a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 3
+  lifeTime: 2
   currentLifeTime: 0
-  damage: 0
-  destroyOnCollide: 0
+  damage: 1
   pierceCount: 0
   source: {fileID: 0}
-  weapon: {fileID: 0}
-  speed: 0
-  sourceTag: 
+  tables: {fileID: 0}
+  weaponClass: 0
+  direction: {x: 0, y: 0}
+  destroyOnCollide: 1
+  destroyOnNonEntity: 0
   friendlyFire: 0
   reflectMelee: 0
   reflectRanged: 0
@@ -161,8 +162,10 @@ MonoBehaviour:
   attrHit:
     name: Venom
     type: 5
-    value: 0.5
-    duration: 3
+    value: 1.5
+    duration: 1
     stackable: 0
     isAdditive: 0
   attrChance: 1
+  speed: 0
+  sourceTag: 

@@ -49,7 +49,7 @@ public class MineLobster : StateCombat
     {
         Vector3 spreadVector = new Vector3(Random.Range(-distance, distance), Random.Range(-distance, distance), 0);
 
-        Instantiate(venomMine, transform.position + spreadVector, Quaternion.identity).GetComponent<EnemyProjectile>();
+        Instantiate(venomMine, transform.position + spreadVector, Quaternion.identity).GetComponent<Projectile>();
     }
 
     private void OnTriggerStay2D(Collider2D collider) //Called when something enters the enemy's range

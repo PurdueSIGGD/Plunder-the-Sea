@@ -55,7 +55,6 @@ public class VenomMine : StateCombat
     // Create an venomCloud projectile, then die at the end of the frame
     void Explode()
     {
-        EnemyProjectile boom = EnemyProjectile.Shoot(venomCloud, transform.position, myBase.player.transform.position, 0.0f);
-        boom.SetSource(gameObject);
+        Shoot(venomCloud);
     }
 }

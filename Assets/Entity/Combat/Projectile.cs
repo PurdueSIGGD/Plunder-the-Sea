@@ -24,6 +24,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public WeaponFactory.CLASS weaponClass;
 
+    [HideInInspector]
     public Vector2 direction;
 
     // Additional variables to describe how the projectile acts in certain cases
