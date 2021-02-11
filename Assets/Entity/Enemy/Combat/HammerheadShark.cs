@@ -36,6 +36,18 @@ public class HammerheadShark : StateCombat
 
         }
     }
+
+    public override bool OnProjectileHit(Projectile hit)
+    {
+        // Reflect projectiles while spinning
+        if (current == spinning)
+        {
+            hit.Reflect(gameObject);
+            return true;
+        }
+        return false;
+    }
+
     void meleeAttack() //Executes a melee attack
     {
         if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
