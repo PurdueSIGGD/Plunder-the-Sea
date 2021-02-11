@@ -16,6 +16,7 @@ public class PlayerClasses : MonoBehaviour
     [Header("--Classlist stuff (only modify if script is on player)--")]
     public int classNumber = -1;
     public PlayerClasses[] classes;
+    private Rigidbody2D rigid;
 
     //modifies the initial player values or abilities
     [Header("--Player stats--")]
@@ -52,9 +53,13 @@ public class PlayerClasses : MonoBehaviour
 
     public bool lunge = false;
     [Range(0, 16)]
-    public float meleeLungeDistance = 2;
+    public float meleeLungeDistance = 4;
     [Range(0, 16)]
-    public float rangedLungeDistance = 4;
+    public float rangedLungeDistance = 8;
+    public float lungeOneDirectionCooldown = 0.25f;
+    public float lungeBackDirectionCooldown = 0.1f;
+    private float lungeCooldownTimer = 0;
+    private bool lastLungeMelee = true;
 
     [Space(10)]
 
@@ -121,6 +126,8 @@ public class PlayerClasses : MonoBehaviour
             }
             WeaponInventory inventory = GetComponent<WeaponInventory>();
 
+            rigid = GetComponent<Rigidbody2D>();
+            
             inventory.SetWeapon(melee);
             inventory.SetWeapon(ranged);
         }
@@ -133,6 +140,43 @@ public class PlayerClasses : MonoBehaviour
 
     private void Update()
     {
+        lungeCooldownTimer += Time.deltaTime;
+        if (lungeCooldownTimer > lungeOneDirectionCooldown)
+        {
+            lungeCooldownTimer = lungeOneDirectionCooldown;
+        }
+        
+        if (lunge)
+        {
+            if (Input.GetButtonDown("Fire2") && ((lastLungeMelee == false && lungeCooldownTimer >= lungeBackDirectionCooldown) || (lastLungeMelee == true && lungeCooldownTimer >= lungeOneDirectionCooldown)))
+            {
+                //forward lunge
+
+                //get looking direction
+                Vector3 lookDirection = Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, 0);
+
+                rigid.AddForce(lookDirection.normalized * meleeLungeDistance * 2, ForceMode2D.Impulse);
+                lastLungeMelee = true;
+                lungeCooldownTimer = 0;
+                Debug.Log("Lunge foreward");
+            } 
+            else
+            {
+                if (Input.GetButtonDown("Fire1") && ((lastLungeMelee == true && lungeCooldownTimer >= lungeBackDirectionCooldown) || (lastLungeMelee == false && lungeCooldownTimer >= lungeOneDirectionCooldown)))
+                {
+                    //backward lunge
+
+                    //get looking direction
+                    Vector3 lookDirection = Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, 0);
+
+                    rigid.AddForce(-lookDirection.normalized * meleeLungeDistance * 2, ForceMode2D.Impulse);
+                    lastLungeMelee = false;
+                    lungeCooldownTimer = 0;
+                    Debug.Log("Lunge backward");
+                }
+            }
+        }
+        
         if (killChain)
         {
             if (killCountdown <= 0)
