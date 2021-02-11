@@ -9,7 +9,7 @@ public class AmmoProjSys : ProjectileSystem {
     protected override void OnEquip(WeaponInventory inv)
     {
         this.maxAmmo = this.tables.maxAmmo.get(weaponClass).Value;
-        this.stats = inv.GetComponent<PlayerBase>().stats;
+        this.stats = inv.GetComponent<PlayerStats>();
         this.stats.resetAmmo(this.maxAmmo);
     }
 

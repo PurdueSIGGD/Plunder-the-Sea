@@ -49,12 +49,10 @@ public class WeaponInventory : MonoBehaviour
         spriteRen.transform.position = this.transform.position;
         spriteRen.transform.SetParent(this.transform);
 
-        GetComponent<PlayerClasses>().getMods(weaponMods);
-
-        if (weaponMods.meleeDamageMultiplier == 0)
-        {
-            print("Not set");
-        }
+        PlayerClasses PC = GetComponent<PlayerClasses>();
+        PC.getMods(weaponMods);
+        meleeWeaponClass = PC.melee;
+        rangedWeaponClass = PC.ranged;
 
         SetWeapon(this.meleeWeaponClass);
         SetWeapon(this.rangedWeaponClass);

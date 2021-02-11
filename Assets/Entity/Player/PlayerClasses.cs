@@ -75,30 +75,27 @@ public class PlayerClasses : MonoBehaviour
     private int kills = 0;
     private float killCountdown = 0;
 
-    [Header("--Starting Weapons (not yet implemented)--")]
+    [Header("--Starting Weapons--")]
     public WeaponFactory.CLASS melee;
     public WeaponFactory.CLASS ranged;
-    //this will be implemented after the weapon changes
 
     //modifies weapon stats
     [Header("--Weapon stat modifiers--")]
-    public float meleeDamageAddition = 0;           //implemented
+    public float meleeDamageAddition = 0;
     [Range(0, 8)]
-    public float meleeDamageMultiplier = 1;         //implemented
-    public float rangedDamageAddition = 0;          //implemented
+    public float meleeDamageMultiplier = 1;
+    public float rangedDamageAddition = 0;
     [Range(0, 8)]
-    public float rangedDamageMultiplier = 1;        //implemented
-    public float meleeSizeAddition = 0;     //NOT IMPLEMENTED --------------
+    public float rangedDamageMultiplier = 1;
+    public float meleeSizeAddition = 0;
     [Range(0, 8)]
-    public float meleeSizeMultiplier = 1;   //NOT IMPLEMENTED --------------
-    public float rangedSpeedAddition = 0;           //implemented
+    public float meleeSizeMultiplier = 1;
+    public float rangedSpeedAddition = 0;
     [Range(0, 8)]
-    public float rangedSpeedMultiplier = 1;         //implemented
-    public float projectileLifetimeAddition = 0;    //implemented
+    public float rangedSpeedMultiplier = 1;
+    public float projectileLifetimeAddition = 0;
     [Range(0, 8)]
-    public float projectileLifetimeMultiplier = 1;  //implemented
-    [Range(0, 16)]
-    public int maxAmmo = 6;                         //implemented
+    public float projectileLifetimeMultiplier = 1;
 
     //Use to acess weapon modifiers
     public WeaponModifiers weaponModifiers = new WeaponModifiers();
@@ -222,15 +219,12 @@ public class PlayerClasses : MonoBehaviour
         stats.staminaMax = baseStamina;
         stats.stamina = baseStamina;
         stats.staminaRechargeRate = baseStaminaRechargeRate;
-        stats.resetAmmo(maxAmmo);
     }
 
     public void setWeaponMods(WeaponModifiers weaponModifiers)
     {
         weaponModifiers.meleeDamageAddition = meleeDamageAddition;
         weaponModifiers.meleeDamageMultiplier = meleeDamageMultiplier;
-        print(meleeDamageMultiplier);
-        print(weaponModifiers.meleeDamageMultiplier);
         weaponModifiers.rangedDamageAddition = rangedDamageAddition;
         weaponModifiers.rangedDamageMultiplier = rangedDamageMultiplier;
         weaponModifiers.meleeSizeAddition = meleeSizeAddition;
@@ -243,6 +237,9 @@ public class PlayerClasses : MonoBehaviour
 
     public void setSpecialAttributes(PlayerClasses pc)
     {
+        melee = pc.melee;
+        ranged = pc.ranged;
+        
         chainLighting = pc.chainLighting;
         chainChance = pc.chainChance;
         chainLength = pc.chainLength;
@@ -329,8 +326,6 @@ public class PlayerClasses : MonoBehaviour
     {
         weaponMods.meleeDamageAddition = weaponModifiers.meleeDamageAddition;
         weaponMods.meleeDamageMultiplier = weaponModifiers.meleeDamageMultiplier;
-        print(weaponModifiers.meleeDamageMultiplier);
-        print(weaponMods.meleeDamageMultiplier);
         weaponMods.rangedDamageAddition = weaponModifiers.rangedDamageAddition;
         weaponMods.rangedDamageMultiplier = weaponModifiers.rangedDamageMultiplier;
         weaponMods.meleeSizeAddition = weaponModifiers.meleeSizeAddition;

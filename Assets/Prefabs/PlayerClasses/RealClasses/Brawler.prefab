@@ -69,8 +69,8 @@ MonoBehaviour:
   chainTime: 4
   attackSizeBoost: 2
   speedBoost: 2
-  melee: 0
-  ranged: 0
+  melee: 2
+  ranged: 10
   meleeDamageAddition: 2
   meleeDamageMultiplier: 1.5
   rangedDamageAddition: 0
@@ -81,4 +81,3 @@ MonoBehaviour:
   rangedSpeedMultiplier: 0.5
   projectileLifetimeAddition: 0
   projectileLifetimeMultiplier: 0.5
-  maxAmmo: 6

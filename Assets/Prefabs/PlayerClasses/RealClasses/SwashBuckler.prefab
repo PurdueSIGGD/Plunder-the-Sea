@@ -67,18 +67,17 @@ MonoBehaviour:
   killChain: 0
   killRequirement: 3
   chainTime: 4
-  attackSpeedBoost: 2
+  attackSizeBoost: 2
   speedBoost: 2
-  melee: 0
-  ranged: 0
+  melee: 4
+  ranged: 7
   meleeDamageAddition: 0
   meleeDamageMultiplier: 1
   rangedDamageAddition: 0
   rangedDamageMultiplier: 1
-  meleeAttackSpeedAddition: 0
-  meleeAttackSpeedMultiplier: 1
+  meleeSizeAddition: 0
+  meleeSizeMultiplier: 1
   rangedSpeedAddition: 0
   rangedSpeedMultiplier: 1
   projectileLifetimeAddition: 0
   projectileLifetimeMultiplier: 1
-  maxAmmo: 8
