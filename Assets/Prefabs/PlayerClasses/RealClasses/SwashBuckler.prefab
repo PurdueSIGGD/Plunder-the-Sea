@@ -75,15 +75,10 @@ MonoBehaviour:
   meleeDamageMultiplier: 1
   rangedDamageAddition: 0
   rangedDamageMultiplier: 1
-  critChanceAddition: 0
-  critChanceMultiplier: 1
   meleeAttackSpeedAddition: 0
   meleeAttackSpeedMultiplier: 1
-  rangedAttackSpeedAddition: 0
-  rangedAttackSpeedMultiplier: 1
-  projectileSpeedAddition: 0
-  projectileSpeedMultiplier: 1
-  accuracyAddition: 0
-  accuracyMultiplier: 1
-  ammoAddition: 0
-  ammoMultiplier: 1
+  rangedSpeedAddition: 0
+  rangedSpeedMultiplier: 1
+  projectileLifetimeAddition: 0
+  projectileLifetimeMultiplier: 1
+  maxAmmo: 8

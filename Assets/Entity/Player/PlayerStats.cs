@@ -40,6 +40,8 @@ public class PlayerStats : EntityStats
     public void resetAmmo(int max) {
         this.ammo = max;
         this.maxAmmo = max;
+        ammoBar.maxValue = max;
+        ammoBar.value = max;
     }
 
     private void Start()

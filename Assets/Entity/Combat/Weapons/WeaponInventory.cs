@@ -31,6 +31,10 @@ public class WeaponInventory : MonoBehaviour
     private GameObject bulletTemplate;
     [SerializeField]
     private WeaponTables tables;
+
+    //stores player weapon modifiers
+    private PlayerClasses.WeaponModifiers weaponMods = new PlayerClasses.WeaponModifiers();
+
     private void Start()
     {
         cam = GameObject.FindObjectOfType<UI_Camera>();
@@ -44,6 +48,13 @@ public class WeaponInventory : MonoBehaviour
         spriteRen.transform.localScale = this.transform.localScale * 1.5f;
         spriteRen.transform.position = this.transform.position;
         spriteRen.transform.SetParent(this.transform);
+
+        GetComponent<PlayerClasses>().getMods(weaponMods);
+
+        if (weaponMods.meleeDamageMultiplier == 0)
+        {
+            print("Not set");
+        }
 
         SetWeapon(this.meleeWeaponClass);
         SetWeapon(this.rangedWeaponClass);
@@ -97,13 +108,23 @@ public class WeaponInventory : MonoBehaviour
         }
     }
     public ProjectileStats constructProjectileStats(WeaponFactory.CLASS weaponClass) {
-        var pStats = new ProjectileStats(){
-            prefab = bulletTemplate, damage = damageTable.get(weaponClass).Value, lifeTime = 5f
+
+        //sets up assuming a ranged weapon
+        var pStats = new ProjectileStats() {
+            prefab = bulletTemplate, damage = (int)((damageTable.get(weaponClass).Value + weaponMods.rangedDamageAddition) * weaponMods.rangedDamageMultiplier),
+            lifeTime = (weaponMods.projectileLifetimeAddition + projectileLifeTimesTable.get(weaponClass).Value) * weaponMods.projectileLifetimeMultiplier
             };
+
         if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE) {
+            //corrects if melee
+            pStats.damage = (int)((damageTable.get(weaponClass).Value + weaponMods.meleeDamageAddition) * weaponMods.meleeDamageMultiplier);
+            pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
+
             pStats.prefab = projectilePrefabTable.get(weaponClass);
+            pStats.prefab.transform.localScale = Vector3.one * (1 + weaponMods.meleeSizeAddition) * weaponMods.meleeSizeMultiplier;
         }
-        pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
+
+        //pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
 
         return pStats;
     }
@@ -123,8 +144,8 @@ public class WeaponInventory : MonoBehaviour
         
             if (!isMelee) {
                 var direction = (position - (Vector2)transform.position).normalized;
-                hitbox.GetComponent<Rigidbody2D>().velocity = 
-                    direction * tables.projectileSpeed.get(weaponClass).GetValueOrDefault(0f);
+                hitbox.GetComponent<Rigidbody2D>().velocity =
+                    direction * (tables.projectileSpeed.get(weaponClass).GetValueOrDefault(0f) + weaponMods.rangedSpeedAddition) * weaponMods.rangedSpeedMultiplier;
             } 
             weaponSystem.OnFire(hitbox);
             return true;
