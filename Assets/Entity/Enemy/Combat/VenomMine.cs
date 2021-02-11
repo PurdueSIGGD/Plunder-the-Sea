@@ -31,7 +31,7 @@ public class VenomMine : StateCombat
 
         if (exploded && OnTarget(explodeTarget))
         {
-            DestroyImmediate(gameObject);
+            myBase.myStats.Die();
         }
 
         if (durationTarget == 0.0f)
@@ -50,6 +50,15 @@ public class VenomMine : StateCombat
             explodeTarget = SetTarget(lingerTime);
         }
         prevState = current;
+    }
+
+    public override void OnDeath()
+    {
+        if (!exploded)
+        {
+            Explode();
+            exploded = true;
+        }
     }
 
     // Create an venomCloud projectile, then die at the end of the frame

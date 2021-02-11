@@ -11,6 +11,8 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public float currentLifeTime = 0;
     public float damage = 1.0f;
+
+    public ProjectileModifier mod = null;
     
     [HideInInspector]
     public int pierceCount = 0;
@@ -46,12 +48,20 @@ public class Projectile : MonoBehaviour
     // Source's tag (in case the source dies)
     public string sourceTag;
 
+    void Start()
+    {
+        mod?.ProjectileStart();
+    }
+
     void Update()
     {
         currentLifeTime += Time.deltaTime;
         if(lifeTime > 0 && currentLifeTime >= lifeTime)
         {
             Destroy();
+        } else
+        {
+            mod?.ProjectileUpdate();
         }
     }
 
@@ -146,6 +156,7 @@ public class Projectile : MonoBehaviour
         {
             weaponSystem.OnEnd(this);
         }
+        mod?.ProjectileEnd();
         Destroy(gameObject);
     }
 

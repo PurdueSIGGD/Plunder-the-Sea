@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2981821739990127870}
   - component: {fileID: 2267666193016582932}
   - component: {fileID: 7715260175935198236}
+  - component: {fileID: -2190907129564129649}
   m_Layer: 0
   m_Name: Venom Cloud
   m_TagString: Untagged
@@ -146,26 +147,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 2
   currentLifeTime: 0
-  damage: 1
+  damage: 0
+  mod: {fileID: -2190907129564129649}
   pierceCount: 0
   source: {fileID: 0}
   tables: {fileID: 0}
   weaponClass: 0
   direction: {x: 0, y: 0}
-  destroyOnCollide: 1
+  destroyOnCollide: 0
   destroyOnNonEntity: 0
   friendlyFire: 0
   reflectMelee: 0
   reflectRanged: 0
-  collideWithProjectile: 0
+  collideWithProjectile: 1
   collideWithWall: 0
   attrHit:
     name: Venom
     type: 5
     value: 1.5
-    duration: 1
+    duration: 3
     stackable: 0
     isAdditive: 0
   attrChance: 1
   speed: 0
   sourceTag: 
+--- !u!114 &-2190907129564129649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2808827960982064107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2c7012274b1d743896b67f8e8cb13d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSize: 0.5
+  endSize: 1.5
+  timeToMax: 2
