@@ -49,8 +49,8 @@ MonoBehaviour:
   baseSpeed: 8
   baseArmorAddition: 0
   baseArmorDivision: 0
-  baseStamina: 50
-  baseStaminaRechargeRate: 10
+  baseStamina: 32
+  baseStaminaRechargeRate: 4
   proficiency: 1
   classSprite: {fileID: 0}
   chainLighting: 0
