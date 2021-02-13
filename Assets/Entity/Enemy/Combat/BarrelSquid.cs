@@ -18,9 +18,8 @@ public class BarrelSquid : StateCombat
     public float firingCooldown = 0.5f;
     private float firingTracker = 0;
 
-    // Ink Shot projectile and speed
+    // Ink Shot projectile
     public GameObject inkShot;
-    public float inkShotSpeed = 7.0f;
 
     // Update is called once per frame
     void Update()
@@ -45,19 +44,11 @@ public class BarrelSquid : StateCombat
                 // Try to shoot if possible and the cooldown allows
                 if (OnTarget(firingTracker))
                 {
-                    Shoot();
+                    Shoot(inkShot);
                     firingTracker = SetTarget(firingCooldown);
                 } 
                 break;
         }
         prevState = current;
-    }
-
-    void Shoot()
-    {
-        EnemyProjectile ink = EnemyProjectile.Shoot(inkShot, transform.position, myBase.player.transform.position, inkShotSpeed);
-        ink.SetSource(gameObject);
-        ink.attrChance = 1f;
-        ink.attrHit = inkDebuff;
     }
 }

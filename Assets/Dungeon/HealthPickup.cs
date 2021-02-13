@@ -16,13 +16,13 @@ public class HealthPickup : MonoBehaviour
         }
 
         //If player is at full health
-        if (player.currentHP == player.maxHP)
+        if (player.currentHP >= player.maxHP)
         {
             return; //Player at full health
         }
 
         //Update player health
-        player.currentHP = Math.Min(player.currentHP + health, player.maxHP);
+        player.ReplenishHealth(health);
 
         //Destory health pickup
         GameObject.Destroy(transform.gameObject);

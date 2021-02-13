@@ -11,6 +11,8 @@ public class PlayerStats : EntityStats
     public int[] baitTypes = { 0, 0, 0, 0 };
     public Text[] baitText;
 
+    public GameObject healthPickupGameObj;
+
     PlayerBase pbase;
     WeaponInventory weaponInv;
     public const float baseMovementSpeed = 10;
@@ -23,6 +25,8 @@ public class PlayerStats : EntityStats
     public float staminaRechargeRate = 2f;
     public Slider staminaBar;
     public Slider ammoBar;
+    public float killRegen; // goes zero to one
+    public Slider killRegenBar;
     public int ammo {get; private set;}
     public int maxAmmo {get; private set;}
     private float timeSinceLastTick = 0;
@@ -41,6 +45,23 @@ public class PlayerStats : EntityStats
         this.maxAmmo = max;
         this.ammo = max;
     }
+
+    public void increaseKillRegen(float amount) {
+        this.killRegen = Mathf.Min(this.killRegen + amount, 1f);
+        if (killRegen == 1f) {
+            useKillRegen();
+        }
+    }
+
+    public void useKillRegen() {
+        this.killRegen = 0f;
+
+        var pickupObj = Instantiate(healthPickupGameObj);
+        pickupObj.GetComponent<HealthPickup>().health = this.maxHP * 0.25f;
+
+        pickupObj.transform.position = transform.position;
+    }
+
 
     private void Start()
     {
@@ -63,6 +84,7 @@ public class PlayerStats : EntityStats
     {
         StatUpdate();
         staminaBar.value = stamina / staminaMax;
+        killRegenBar.value = killRegen;
         if(Time.time > timeSinceLastTick + timeBetweenTicks)
         {
             timeSinceLastTick = Time.time;
@@ -72,6 +94,7 @@ public class PlayerStats : EntityStats
             ammoBar.value = (float)ammo / (float)maxAmmo;
         }
     }
+
 
     public void UseStamina(float staminaCost)
     {
@@ -87,9 +110,9 @@ public class PlayerStats : EntityStats
 
     public override void OnKill(EntityStats victim)
     {
-
         weaponInv?.OnKill(victim);
         pbase.OnKill(victim);
+        increaseKillRegen(0.6f);
     }
 
     //Fishing Methods

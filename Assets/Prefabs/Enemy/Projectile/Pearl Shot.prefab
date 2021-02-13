@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8446278652390394498}
   - component: {fileID: 8884596938269729073}
   - component: {fileID: 5572567535265203931}
-  - component: {fileID: 4133872797448370219}
+  - component: {fileID: 7331743829407554155}
   m_Layer: 0
   m_Name: Pearl Shot
   m_TagString: Untagged
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &4133872797448370219
+--- !u!114 &7331743829407554155
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,26 +141,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 8419220994995289636}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73e235bbd564841448eb10cc8dc9850c, type: 3}
+  m_Script: {fileID: 11500000, guid: c39bddd6b1e172649bd99304f1d55a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 4
   currentLifeTime: 0
   damage: 3
-  destroyOnCollide: 1
   pierceCount: 0
   source: {fileID: 0}
-  weapon: {fileID: 0}
+  tables: {fileID: 0}
+  weaponClass: 0
+  direction: {x: 0, y: 0}
+  destroyOnCollide: 1
+  destroyOnNonEntity: 0
   friendlyFire: 0
   reflectMelee: 1
   reflectRanged: 0
   collideWithProjectile: 1
   collideWithWall: 1
   attrHit:
+    name: 
     type: 0
     value: 0
     duration: 0
     stackable: 0
     isAdditive: 0
   attrChance: 0
-  speed: 0
+  speed: 5
+  sourceTag: 

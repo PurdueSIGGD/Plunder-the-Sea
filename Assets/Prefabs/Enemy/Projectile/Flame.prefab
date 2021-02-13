@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 575406786300672813}
   - component: {fileID: 686545045266501790}
   - component: {fileID: 4584321808926668660}
-  - component: {fileID: 2897570771063018543}
+  - component: {fileID: -2934739514475415464}
   m_Layer: 0
   m_Name: Flame
   m_TagString: Untagged
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &2897570771063018543
+--- !u!114 &-2934739514475415464
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,16 +141,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 440332554722693003}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73e235bbd564841448eb10cc8dc9850c, type: 3}
+  m_Script: {fileID: 11500000, guid: c39bddd6b1e172649bd99304f1d55a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 1.25
   currentLifeTime: 0
   damage: 0
-  destroyOnCollide: 1
   pierceCount: 0
   source: {fileID: 0}
-  weapon: {fileID: 0}
+  tables: {fileID: 0}
+  weaponClass: 0
+  direction: {x: 0, y: 0}
+  destroyOnCollide: 1
+  destroyOnNonEntity: 0
   friendlyFire: 0
   reflectMelee: 0
   reflectRanged: 0
@@ -165,3 +168,4 @@ MonoBehaviour:
     isAdditive: 0
   attrChance: 1
   speed: 0
+  sourceTag: 

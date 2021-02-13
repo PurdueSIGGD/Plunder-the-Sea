@@ -43,12 +43,6 @@ public class DragonFish : StateCombat
         }
     }
 
-    public override bool OnProjectileHit(Projectile hit)
-    {
-        hit.Reflect(gameObject);
-        return true;
-    }
-
     public override void OnDeath()
     {
         for (int i = 0; i < deathCount; i++)
@@ -62,8 +56,7 @@ public class DragonFish : StateCombat
     {
         Vector3 spreadVector = new Vector3(Random.Range(-distance, distance), Random.Range(-distance, distance), 0);
 
-        EnemyProjectile flame = EnemyProjectile.Shoot(fireProjectile, transform.position + spreadVector, transform.position + spreadVector, 0.0f);
-        flame.SetSource(gameObject);
+        Projectile flame = Shoot(fireProjectile, transform.position + spreadVector, transform.position + spreadVector);
         if (overrideTime > 0) flame.lifeTime = overrideTime;
     }
 
