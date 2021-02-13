@@ -7,12 +7,12 @@ public class WeaponInventory : MonoBehaviour
     public AudioClip equipSound;
     private AudioSource audioSrc;
     [SerializeField]
-    private WeaponFactory.CLASS meleeWeaponClass;
+    public WeaponFactory.CLASS meleeWeaponClass;
     public WeaponFactory.CLASS getMeleeWeaponClass(){ 
         return this.meleeWeaponClass;
     }
     [SerializeField]
-    private WeaponFactory.CLASS rangedWeaponClass;
+    public WeaponFactory.CLASS rangedWeaponClass;
     private WeaponSystem meleeSystem;
     private WeaponSystem rangedSystem;
     private UI_Camera cam;
@@ -87,7 +87,24 @@ public class WeaponInventory : MonoBehaviour
         wep.OnEquip(this, tables, rangedWeaponClass);
         // Make sure to set weapon after the equip methods run
         rangedSystem = wep;
-        spriteRen.sprite = rangedWeaponSpritesTable.get(this.rangedWeaponClass);
+
+        //TESTING
+        if (spriteRen != null)
+        {
+            if (rangedWeaponSpritesTable.get(this.rangedWeaponClass))
+            {
+                spriteRen.sprite = rangedWeaponSpritesTable.get(this.rangedWeaponClass);
+            }
+            else
+            {
+                Debug.Log("Sprite not set");
+            }
+        }
+        else
+        {
+            Debug.Log("Renderer not made");
+        }
+        //spriteRen.sprite = rangedWeaponSpritesTable.get(this.rangedWeaponClass);
     }
 
     public void SetWeapon(WeaponFactory.CLASS weaponClass) {

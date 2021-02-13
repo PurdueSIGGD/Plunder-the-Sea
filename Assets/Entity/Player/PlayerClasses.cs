@@ -118,8 +118,8 @@ public class PlayerClasses : MonoBehaviour
 
             rigid = GetComponent<Rigidbody2D>();
             
-            inventory.SetWeapon(melee);
-            inventory.SetWeapon(ranged);
+            inventory.meleeWeaponClass = melee;
+            inventory.rangedWeaponClass = ranged;
         }
         else
         {

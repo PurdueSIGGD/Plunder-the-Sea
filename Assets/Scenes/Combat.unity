@@ -471,6 +471,10 @@ PrefabInstance:
       propertyPath: ranged
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1216624810783500037, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: classNumber
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3247792835474656187, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: ammoBar
       value: 

@@ -75,8 +75,8 @@ MonoBehaviour:
   meleeDamageMultiplier: 1
   rangedDamageAddition: 0
   rangedDamageMultiplier: 1
-  meleeSizeAddition: 0
-  meleeSizeMultiplier: 1
+  meleeSizeAddition: 0.5
+  meleeSizeMultiplier: 1.5
   rangedSpeedAddition: 0
   rangedSpeedMultiplier: 1
   projectileLifetimeAddition: 0

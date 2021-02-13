@@ -70,7 +70,7 @@ MonoBehaviour:
   attackSizeBoost: 2
   speedBoost: 2
   melee: 11
-  ranged: 14
+  ranged: 10
   meleeDamageAddition: 0
   meleeDamageMultiplier: 1
   rangedDamageAddition: 0
