@@ -9,6 +9,9 @@ public class PlayerInventory : MonoBehaviour
     // Higher Index number means Stronger bait
     public int[] baitTypes = { 0, 0, 0, 0 };
     public Text[] baitText;
+    public WeaponInventory weapInv;
+    public Image meleeSlot;
+    public Image rangeSlot;
 
     private void Start()
     {
@@ -22,6 +25,17 @@ public class PlayerInventory : MonoBehaviour
         {
             baitText[i].text = "Bait " + (i + 1).ToString() + ": " + baitTypes[i].ToString();
         }
+
+        weapInv = GetComponentInParent<WeaponInventory>();
+        updateWeaponDisplay();
+    }
+
+    public void updateWeaponDisplay()
+    {
+        meleeSlot.sprite = weapInv.getWeaponImage(true);
+        Debug.Log(weapInv.getMeleeWeaponClass());
+        rangeSlot.sprite = weapInv.getWeaponImage(false);
+
     }
 
     //Fishing Methods

@@ -107,6 +107,15 @@ public class WeaponInventory : MonoBehaviour
 
         return pStats;
     }
+    public Sprite getWeaponImage(bool isMelee)
+    {
+        if (isMelee)
+        {
+            GameObject prefab = projectilePrefabTable.get(this.meleeWeaponClass);
+            return prefab.GetComponentInChildren<SpriteRenderer>().sprite;
+        }
+        return rangedWeaponSpritesTable.get(this.rangedWeaponClass);
+    }
     public bool ShootAt(Vector2 position, bool isMelee)
     {
         var weaponClass = isMelee ? this.meleeWeaponClass : this.rangedWeaponClass;
