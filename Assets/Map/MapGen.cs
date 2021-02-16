@@ -14,6 +14,9 @@ public class MapGen : MonoBehaviour
     public GameObject[] halls;
     public GameObject wall;
     public GameObject goal;
+    public Sprite[] floors;
+    public Sprite[] walls;
+    private Sprite chosenFloor;
     public int truePathLength;
     public int maxBranchLength;
     public float branchFactor;
@@ -58,6 +61,7 @@ public class MapGen : MonoBehaviour
     {
         roomGrid = new Hashtable();
         roomStack = new Stack<RoomData>();
+        chosenFloor = floors[UnityEngine.Random.Range(0, floors.Length)];
         generate();
     }
 
@@ -208,6 +212,19 @@ public class MapGen : MonoBehaviour
         return code;
     }
 
+    public Sprite getWall()
+    {
+        float wallNum = UnityEngine.Random.Range(0, walls.Length * 2);
+        if (wallNum < walls.Length)
+        {
+            return walls[0];
+        } 
+        else
+        {
+            return walls[(int) (wallNum / 2)];
+        }
+    }
+
     public void buildRoom(RoomData newRoom)
     {
         int roomScale = ROOMWIDTH + ROOMDIST;
@@ -231,8 +248,19 @@ public class MapGen : MonoBehaviour
                     {
                         rot = Quaternion.Euler(0, 0, 90 + 180 * UnityEngine.Random.Range(0, 2));
                     }
-                    Object.Instantiate(halls[UnityEngine.Random.Range(0, halls.Length)], new Vector3(hallLoc.Item1 * roomScale,
+                    GameObject g2 = Instantiate(halls[UnityEngine.Random.Range(0, halls.Length)], new Vector3(hallLoc.Item1 * roomScale,
                         hallLoc.Item2 * roomScale, 0), rot);
+                    foreach (SpriteRenderer SR in g2.GetComponentsInChildren<SpriteRenderer>())
+                    {
+                        if (SR.name.Contains("Wall"))
+                        {
+                            SR.sprite = getWall();
+                        }
+                        else
+                        {
+                            SR.sprite = chosenFloor;
+                        }
+                    }
                 }
             }
             else
@@ -249,18 +277,30 @@ public class MapGen : MonoBehaviour
                 {
                     rot = Quaternion.Euler(0, 0, 90);
                 }
-                Object.Instantiate(wall, new Vector3(wallLoc.Item1, wallLoc.Item2, 0), rot);
+                GameObject g = Instantiate(wall, new Vector3(wallLoc.Item1, wallLoc.Item2, 0), rot);
+                g.GetComponent<SpriteRenderer>().sprite = getWall();
             }
         }
         //Debug.Log("Room: " + (newRoom.x,newRoom.y) + ", " + (newRoom.rank, newRoom.branchLength));
 
         //Spawns rooms
         int randomRotation = UnityEngine.Random.Range(0, 4);
-        GameObject g = Object.Instantiate(rooms[UnityEngine.Random.Range(0, rooms.Length)], new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, 0), Quaternion.Euler(0, 0, randomRotation*90));
+        GameObject g3 = Object.Instantiate(rooms[UnityEngine.Random.Range(0, rooms.Length)], new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, 0), Quaternion.Euler(0, 0, randomRotation*90));
+        foreach (SpriteRenderer SR in g3.GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (SR.name.Contains("Wall"))
+            {
+                SR.sprite = getWall();
+            }
+            else
+            {
+                SR.sprite = chosenFloor;
+            }
+        }
         //spawns enemies
         if (newRoom.x != 0 || newRoom.y != 0)
         {
-            foreach (EnemySpawner ES in g.GetComponentsInChildren<EnemySpawner>()) { 
+            foreach (EnemySpawner ES in g3.GetComponentsInChildren<EnemySpawner>()) { 
                 ES.spawnEnemies();
             }
         }
