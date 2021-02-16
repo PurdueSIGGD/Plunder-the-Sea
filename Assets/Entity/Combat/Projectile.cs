@@ -48,8 +48,12 @@ public class Projectile : MonoBehaviour
     // Source's tag (in case the source dies)
     public string sourceTag;
 
-    void Start()
+    void Awake()
     {
+        if (!mod)
+        {
+            mod = GetComponent<ProjectileModifier>();
+        }
         mod?.ProjectileStart();
     }
 
@@ -67,7 +71,6 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
         GameObject collider = collision.gameObject;
         Projectile proj = collider.GetComponent<Projectile>();
         /* Don't collide with source */

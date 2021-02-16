@@ -10,32 +10,31 @@ public class SizeChange : ProjectileModifier
     public float endSize = 1.5f;        // The maximum size multiplier (multiples of the projectile's base size)
     public float timeToMax = 2.0f;      // The time to elapse between the projectile going from the minimum to the maximum
 
-    private float startTime;        // The starting time, in seconds
-    private float sizeSlope;        // The slope of the size change, calculated by using rise over run (tm)
+    private float startTime = 0.0f;        // The starting time, in seconds
     private Vector3 baseScale;      // The recorded base scale of the projectile
 
     public override void ProjectileStart()
     {
         // Initialize variables
-        startTime = Time.time;
         baseScale = gameObject.transform.localScale;
-        sizeSlope = (endSize - startSize) / (timeToMax);
 
-        gameObject.transform.localScale = baseScale *= startSize;
+        Resize(startSize);
     }
 
     public override void ProjectileUpdate()
     {
-        if (Time.time > startTime+timeToMax)
+        if (startTime == 0.0f)
         {
-            gameObject.transform.localScale = baseScale * endSize;
-        } else if (Time.time < startTime)
-        {
-            gameObject.transform.localScale = baseScale * startSize;
-        } else
-        {
-            float diffTime = Time.time - startTime;
-            gameObject.transform.localScale = baseScale * (startSize + sizeSlope * diffTime);
+            startTime = Time.time;
         }
+
+        float diffTime = Time.time - startTime;
+        Resize(Mathf.Lerp(startSize, endSize, diffTime / timeToMax));
+    }
+
+    void Resize(float sizeMult)
+    {
+        gameObject.transform.localScale = baseScale * sizeMult;
+        gameObject.transform.localScale.Set(gameObject.transform.localScale.x, gameObject.transform.localScale.y, baseScale.z);
     }
 }
