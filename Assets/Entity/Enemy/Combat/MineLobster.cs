@@ -6,7 +6,7 @@ public class MineLobster : StateCombat
 {
     // Enemy to be used as venom mines
     public GameObject venomMine;
-    // Projectile to be used as venom clouds
+    // Projectile to be used as venom cloud on death
     public GameObject venomCloudProjectile;
 
     // Number of seconds between mine
@@ -15,12 +15,8 @@ public class MineLobster : StateCombat
     // Distance from the player that the mine lobster drops venom mines
     public float mineDistance = 3f;
 
-    // The spread distance that mines (or the death venom cloud) can be
+    // The spread distance that mines can be
     public float mineSpread = 0.2f;
-    public float deathSpread = 0.4f;
-
-    // The number of venom clouds created on death.
-    public int deathCount = 4;
 
     // The current state
     private int current = 0;
@@ -50,6 +46,12 @@ public class MineLobster : StateCombat
         Vector3 spreadVector = new Vector3(Random.Range(-distance, distance), Random.Range(-distance, distance), 0);
 
         Instantiate(venomMine, transform.position + spreadVector, Quaternion.identity).GetComponent<Projectile>();
+    }
+
+    // Places some mines on death.
+    public override void OnDeath()
+    {
+        Shoot(venomCloudProjectile);
     }
 
     private void OnTriggerStay2D(Collider2D collider) //Called when something enters the enemy's range
