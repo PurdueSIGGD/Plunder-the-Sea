@@ -13,30 +13,39 @@ public class SpeedChange : ProjectileModifier
     private float startTime = 0.0f;        // The starting time, in seconds
     private float baseSpeed = 0.0f;         // The base speed to base speed changes on
     private Rigidbody2D rb;                 // The rigid body to change the speed of
+    private Projectile p;                   // The parent projectile
 
     public override void ProjectileStart()
     {
         // Initialize variables
         rb = GetComponent<Rigidbody2D>();
-        baseSpeed = GetComponent<Projectile>().speed;
+        p = GetComponent<Projectile>();
+        baseSpeed = p.speed;
 
-        AlterSpeed(startSpeed);
+        if (enabled)
+        {
+            AlterSpeed(startSpeed);
+        }
     }
 
     public override void ProjectileUpdate()
     {
-        if (startTime == 0.0f)
+        if (enabled)
         {
-            startTime = Time.time;
-        }
+            if (startTime == 0.0f)
+            {
+                startTime = Time.time;
+            }
 
-        float diffTime = Time.time - startTime;
-        AlterSpeed(Mathf.Lerp(startSpeed, endSpeed, diffTime / timeToMax));
+            float diffTime = Time.time - startTime;
+            AlterSpeed(Mathf.Lerp(startSpeed, endSpeed, diffTime / timeToMax));
+        }
     }
 
     void AlterSpeed(float newSpeed)
     {
         Vector3 angle = rb.velocity.normalized;
         rb.velocity = angle * newSpeed * baseSpeed;
+        p.speed = newSpeed;
     }
 }

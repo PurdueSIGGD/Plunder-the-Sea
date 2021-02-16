@@ -11,6 +11,8 @@ public class SweepMovement : StateMovement
     // Ideally large enough to make wide turns, but small enough to not run into walls.
     public float sweepDistance = 8.0f;
 
+    private static LayerMask mask;
+
     // Very simple state
     public enum SweepState
     {
@@ -22,15 +24,23 @@ public class SweepMovement : StateMovement
     // The current angle
     private Vector3 moveAngle = Vector3.zero;
 
+    private void Start()
+    {
+        myBase = GetComponent<EnemyBase>();
+        mask = LayerMask.GetMask("Wall");
+    }
+
     // Update is called once per frame
     void Update()
     {
+        
+
         if (moving)
         {
             switch (sweepState)
             {
                 case SweepState.normal:
-                    if (PlayerDistance() <= sweepDistance)
+                    if (PlayerDistance() <= sweepDistance && !Physics2D.Linecast(transform.position, myBase.player.transform.position, mask))
                     {
                         // Change state and initialize going the correct angle if close enough
                         sweepState = SweepState.isSweeping;
@@ -40,16 +50,18 @@ public class SweepMovement : StateMovement
                     break;
 
                 case SweepState.isSweeping:
-                    if (PlayerDistance() > sweepDistance)
+                    if (PlayerDistance() > sweepDistance || Physics2D.Linecast(transform.position, myBase.player.transform.position, mask))
                     {
                         sweepState = SweepState.normal;
                     }
                     // Move in the direction of moveAngle, then try to make the angle go more towards the player
                     myBase.myRigid.velocity = moveAngle * myBase.myStats.movementSpeed;
 
-                    moveAngle = Vector3.RotateTowards(moveAngle, PlayerAngle(), angleChange * Time.deltaTime, 0.0f);
-                    moveAngle.Normalize();
-
+                    if (PlayerAngle() != Vector3.zero)
+                    {
+                        moveAngle = Vector3.RotateTowards(moveAngle, PlayerAngle(), angleChange * Time.deltaTime, 0.0f);
+                        moveAngle.Normalize();
+                    }
                     break;
             }
         }

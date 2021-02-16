@@ -18,18 +18,25 @@ public class SizeChange : ProjectileModifier
         // Initialize variables
         baseScale = gameObject.transform.localScale;
 
-        Resize(startSize);
+        if (enabled)
+        {
+            Resize(startSize);
+        }
     }
 
     public override void ProjectileUpdate()
     {
-        if (startTime == 0.0f)
+        if (enabled)
         {
-            startTime = Time.time;
-        }
+            if (startTime == 0.0f)
+            {
+                startTime = Time.time;
+            }
 
-        float diffTime = Time.time - startTime;
-        Resize(Mathf.Lerp(startSize, endSize, diffTime / timeToMax));
+            float diffTime = Time.time - startTime;
+            Resize(Mathf.Lerp(startSize, endSize, diffTime / timeToMax));
+        }
+        
     }
 
     void Resize(float sizeMult)

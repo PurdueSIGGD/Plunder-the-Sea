@@ -50,9 +50,11 @@ public class Projectile : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("hello");
         mods = GetComponents<ProjectileModifier>();
+    }
 
+    private void Start()
+    {
         if (mods.Length > 0)
         {
             foreach (ProjectileModifier mod in mods)
@@ -60,7 +62,6 @@ public class Projectile : MonoBehaviour
                 mod?.ProjectileStart();
             }
         }
-        
     }
 
     void Update()
@@ -122,9 +123,9 @@ public class Projectile : MonoBehaviour
         }
 
         /* Deflect with weapons if applicable, which will abort the rest of the collision */
-        if (proj)
+        if (proj && proj.tag != sourceTag)
         {
-            if ((projectileType() == 1 && reflectMelee) || (projectileType() != 1 && reflectRanged))
+            if ((proj.ProjectileType() == 1 && reflectMelee) || (proj.ProjectileType() != 1 && reflectRanged))
             {
                 Reflect(proj);
                 return;
@@ -185,25 +186,35 @@ public class Projectile : MonoBehaviour
     // Modifies the trajectory of the bullet to aim towards the source, and modifies this projectile's source (or away from the parameter's source)
     public void Reflect(Projectile proj)
     {
-        Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
-        Vector2 direction;
+        //Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
+        //Vector2 direction;
 
-        if (source)
-        {
-            // Deflects straight back at the source if it exists
-            direction = (source.transform.position - transform.position).normalized;
-        }
-        else
-        {
-            // Otherwise, deflects away from the projectile's source
-            direction = (transform.position - proj.source.transform.position).normalized;
-        }
+        //if (source)
+        //{
+        //    // Deflects straight back at the source if it exists
+        //    direction = (source.transform.position - transform.position).normalized;
+        //}
+        //else
+        //{
+        //    // Otherwise, deflects away from the projectile's source
+        //    direction = (transform.position - proj.source.transform.position).normalized;
+        //}
 
-        if (rigidBody)
-        {
-            rigidBody.velocity = direction * speed;
-        }
-        SetSource(proj.source);
+        //foreach (ProjectileModifier mod in mods)
+        //{
+        //    if (mod is Homing)
+        //    {
+        //        mod.enabled = false;
+        //    }
+        //}
+
+        //if (rigidBody)
+        //{
+        //    rigidBody.velocity = direction * speed;
+        //}
+        //SetSource(proj.source);
+
+        Reflect(proj.source);
     }
 
     // Reflection that doesn't require another projectile (ideal for enemies that can reflect)
@@ -216,12 +227,20 @@ public class Projectile : MonoBehaviour
         {
             // Deflects straight back at the source if it exists
             direction = (source.transform.position - transform.position).normalized;
-            Debug.DrawLine(transform.position, transform.position + new Vector3(direction.x,direction.y,0f));
         }
         else
         {
             // Otherwise, deflects away from the target
             direction = (transform.position - deflector.transform.position).normalized;
+        }
+
+        foreach (ProjectileModifier mod in mods)
+        {
+            if (mod is Homing)
+            {
+                ((Homing)mod).moveAngle = direction;
+                ((Homing)mod).target = source;
+            }
         }
 
         if (rigidBody)
@@ -235,7 +254,7 @@ public class Projectile : MonoBehaviour
     // 0 = enemy projectile
     // 1 = melee player weapon
     // 2 = ranged player weapon
-    public int projectileType()
+    public int ProjectileType()
     {
         if (tables)
         {

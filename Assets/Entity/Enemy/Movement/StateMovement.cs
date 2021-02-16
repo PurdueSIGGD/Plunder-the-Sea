@@ -34,7 +34,7 @@ public class StateMovement : EnemyMovement
     {
         if (myBase != null && myBase.player != null)
         {
-            return (myBase.player.transform.position - this.transform.position).normalized;
+            return (myBase.player.transform.position - transform.position).normalized;
         }
         else
         {
