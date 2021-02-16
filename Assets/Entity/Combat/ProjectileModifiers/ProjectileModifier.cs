@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ProjectileModifier : MonoBehaviour
 {
+
     // A script that can be attached to a projectile to give it modified behavior, which will work on all instances of that projectile
     public virtual void ProjectileStart()
     {

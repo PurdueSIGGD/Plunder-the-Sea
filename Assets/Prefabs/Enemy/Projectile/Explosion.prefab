@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6218319528797385432}
   - component: {fileID: 6940673592277062962}
   - component: {fileID: 2078709113391161028}
-  - component: {fileID: -7711334248591666656}
+  - component: {fileID: -4025637819014591233}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -148,7 +148,7 @@ MonoBehaviour:
   lifeTime: 0.1
   currentLifeTime: 0
   damage: 50
-  mod: {fileID: 0}
+  mods: []
   pierceCount: 0
   source: {fileID: 0}
   tables: {fileID: 0}
@@ -171,7 +171,7 @@ MonoBehaviour:
   attrChance: 0
   speed: 0
   sourceTag: 
---- !u!114 &-7711334248591666656
+--- !u!114 &-4025637819014591233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

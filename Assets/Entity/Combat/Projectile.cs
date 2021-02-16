@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     public float currentLifeTime = 0;
     public float damage = 1.0f;
 
-    public ProjectileModifier mod = null;
+    public ProjectileModifier[] mods = null;
     
     [HideInInspector]
     public int pierceCount = 0;
@@ -50,11 +50,17 @@ public class Projectile : MonoBehaviour
 
     void Awake()
     {
-        if (!mod)
+        Debug.Log("hello");
+        mods = GetComponents<ProjectileModifier>();
+
+        if (mods.Length > 0)
         {
-            mod = GetComponent<ProjectileModifier>();
+            foreach (ProjectileModifier mod in mods)
+            {
+                mod?.ProjectileStart();
+            }
         }
-        mod?.ProjectileStart();
+        
     }
 
     void Update()
@@ -65,7 +71,13 @@ public class Projectile : MonoBehaviour
             Destroy();
         } else
         {
-            mod?.ProjectileUpdate();
+            if (mods.Length > 0)
+            {
+                foreach (ProjectileModifier mod in mods)
+                {
+                    mod?.ProjectileUpdate();
+                }
+            }
         }
     }
 
@@ -159,7 +171,14 @@ public class Projectile : MonoBehaviour
         {
             weaponSystem.OnEnd(this);
         }
-        mod?.ProjectileEnd();
+        if (mods.Length > 0)
+        {
+            foreach (ProjectileModifier mod in mods)
+            {
+                mod?.ProjectileEnd();
+            }
+        }
+        
         Destroy(gameObject);
     }
 
