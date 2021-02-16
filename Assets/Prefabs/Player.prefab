@@ -919,11 +919,11 @@ MonoBehaviour:
   - {fileID: 438445870270989449, guid: 31faffd63d7cc0c49986d89ee62bcf3f, type: 3}
   - {fileID: 4244506687537655845, guid: 77d28748061e2344cbf7407507a6ee10, type: 3}
   baseHp: 10
-  baseSpeed: 6
+  baseSpeed: 8
   baseArmorAddition: 0
   baseArmorDivision: 0
-  baseStamina: 100
-  baseStaminaRechargeRate: 2
+  baseStamina: 32
+  baseStaminaRechargeRate: 4
   proficiency: 1
   classSprite: {fileID: 0}
   chainLighting: 0
@@ -940,7 +940,7 @@ MonoBehaviour:
   killChain: 0
   killRequirement: 3
   chainTime: 4
-  attackSpeedBoost: 2
+  attackSizeBoost: 2
   speedBoost: 2
   melee: 0
   ranged: 0
@@ -948,18 +948,12 @@ MonoBehaviour:
   meleeDamageMultiplier: 1
   rangedDamageAddition: 0
   rangedDamageMultiplier: 1
-  critChanceAddition: 0
-  critChanceMultiplier: 1
-  meleeAttackSpeedAddition: 0
-  meleeAttackSpeedMultiplier: 1
-  rangedAttackSpeedAddition: 0
-  rangedAttackSpeedMultiplier: 1
-  projectileSpeedAddition: 0
-  projectileSpeedMultiplier: 1
-  accuracyAddition: 0
-  accuracyMultiplier: 1
-  ammoAddition: 0
-  ammoMultiplier: 1
+  meleeSizeAddition: 0
+  meleeSizeMultiplier: 1
+  rangedSpeedAddition: 0
+  rangedSpeedMultiplier: 1
+  projectileLifetimeAddition: 0
+  projectileLifetimeMultiplier: 1
 --- !u!1001 &1572360876979117614
 PrefabInstance:
   m_ObjectHideFlags: 0
