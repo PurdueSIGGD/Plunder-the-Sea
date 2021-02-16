@@ -32,8 +32,17 @@ public class PlayerInventory : MonoBehaviour
         updateWeaponDisplay();
     }
 
+    void OnEnable()
+    {
+        updateWeaponDisplay();
+    }
+
     public void updateWeaponDisplay()
     {
+        if (weapInv == null)
+        {
+            return;
+        }
         meleeSlot.sprite = weapInv.getWeaponImage(true);
         meleeLabel.text = ""+ weapInv.getMeleeWeaponClass();
         rangeSlot.sprite = weapInv.getWeaponImage(false);
