@@ -214,14 +214,13 @@ public class MapGen : MonoBehaviour
 
     public Sprite getWall()
     {
-        float wallNum = UnityEngine.Random.Range(0, walls.Length * 2);
-        if (wallNum < walls.Length)
+        if (UnityEngine.Random.Range(0, 1f) < 0.5f)
         {
             return walls[0];
         } 
         else
         {
-            return walls[(int) (wallNum / 2)];
+            return walls[UnityEngine.Random.Range(0, walls.Length)];
         }
     }
 
@@ -252,6 +251,7 @@ public class MapGen : MonoBehaviour
                         hallLoc.Item2 * roomScale, 0), rot);
                     foreach (SpriteRenderer SR in g2.GetComponentsInChildren<SpriteRenderer>())
                     {
+                        SR.transform.rotation = Quaternion.Euler(Vector3.zero);
                         if (SR.name.Contains("Wall"))
                         {
                             SR.sprite = getWall();
@@ -278,7 +278,11 @@ public class MapGen : MonoBehaviour
                     rot = Quaternion.Euler(0, 0, 90);
                 }
                 GameObject g = Instantiate(wall, new Vector3(wallLoc.Item1, wallLoc.Item2, 0), rot);
-                g.GetComponent<SpriteRenderer>().sprite = getWall();
+                foreach (SpriteRenderer SR in g.GetComponentsInChildren<SpriteRenderer>())
+                {
+                    SR.transform.rotation = Quaternion.Euler(Vector3.zero);
+                    SR.sprite = getWall();
+                }
             }
         }
         //Debug.Log("Room: " + (newRoom.x,newRoom.y) + ", " + (newRoom.rank, newRoom.branchLength));
@@ -288,6 +292,7 @@ public class MapGen : MonoBehaviour
         GameObject g3 = Object.Instantiate(rooms[UnityEngine.Random.Range(0, rooms.Length)], new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, 0), Quaternion.Euler(0, 0, randomRotation*90));
         foreach (SpriteRenderer SR in g3.GetComponentsInChildren<SpriteRenderer>())
         {
+            SR.transform.rotation = Quaternion.Euler(Vector3.zero);
             if (SR.name.Contains("Wall"))
             {
                 SR.sprite = getWall();
