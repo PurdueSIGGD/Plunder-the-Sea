@@ -69,16 +69,15 @@ public class PlayerClasses : MonoBehaviour
     [Range(0, 32)]
     public float chainTime = 4;
     [Range(1, 8)]
-    public float attackSpeedBoost = 2;
+    public float attackSizeBoost = 2;
     [Range(1, 8)]
     public float speedBoost = 2;
     private int kills = 0;
     private float killCountdown = 0;
 
-    [Header("--Starting Weapons (not yet implemented)--")]
+    [Header("--Starting Weapons--")]
     public WeaponFactory.CLASS melee;
     public WeaponFactory.CLASS ranged;
-    //this will be implemented after the weapon changes
 
     //modifies weapon stats
     [Header("--Weapon stat modifiers--")]
@@ -88,24 +87,15 @@ public class PlayerClasses : MonoBehaviour
     public float rangedDamageAddition = 0;
     [Range(0, 8)]
     public float rangedDamageMultiplier = 1;
-    public float critChanceAddition = 0;
+    public float meleeSizeAddition = 0;
     [Range(0, 8)]
-    public float critChanceMultiplier = 1;
-    public float meleeAttackSpeedAddition = 0;
+    public float meleeSizeMultiplier = 1;
+    public float rangedSpeedAddition = 0;
     [Range(0, 8)]
-    public float meleeAttackSpeedMultiplier = 1;
-    public float rangedAttackSpeedAddition = 0;
+    public float rangedSpeedMultiplier = 1;
+    public float projectileLifetimeAddition = 0;
     [Range(0, 8)]
-    public float rangedAttackSpeedMultiplier = 1;
-    public float projectileSpeedAddition = 0;
-    [Range(0, 8)]
-    public float projectileSpeedMultiplier = 1;
-    public float accuracyAddition = 0;
-    [Range(0, 8)]
-    public float accuracyMultiplier = 1;
-    public float ammoAddition = 0;
-    [Range(0, 8)]
-    public float ammoMultiplier = 1;
+    public float projectileLifetimeMultiplier = 1;
 
     //Use to acess weapon modifiers
     public WeaponModifiers weaponModifiers = new WeaponModifiers();
@@ -128,8 +118,8 @@ public class PlayerClasses : MonoBehaviour
 
             rigid = GetComponent<Rigidbody2D>();
             
-            inventory.SetWeapon(melee);
-            inventory.SetWeapon(ranged);
+            inventory.meleeWeaponClass = melee;
+            inventory.rangedWeaponClass = ranged;
         }
         else
         {
@@ -201,14 +191,19 @@ public class PlayerClasses : MonoBehaviour
     public void changeClass(int i)
     {
         classNumber = i;
+
         classes[classNumber].setPlayerStats(stats);
         baseSpeed = classes[classNumber].baseSpeed;
+
         classes[classNumber].setWeaponMods(weaponModifiers);
+
         setSpecialAttributes(classes[classNumber]);
+
         if (classSprite != null)
         {
             GetComponent<SpriteRenderer>().sprite = classSprite;
         }
+
         WeaponInventory inventory = GetComponent<WeaponInventory>();
         inventory.SetWeapon(melee);
         inventory.SetWeapon(ranged);
@@ -224,7 +219,6 @@ public class PlayerClasses : MonoBehaviour
         stats.staminaMax = baseStamina;
         stats.stamina = baseStamina;
         stats.staminaRechargeRate = baseStaminaRechargeRate;
-        //proficiency is not yet implemented
     }
 
     public void setWeaponMods(WeaponModifiers weaponModifiers)
@@ -233,22 +227,19 @@ public class PlayerClasses : MonoBehaviour
         weaponModifiers.meleeDamageMultiplier = meleeDamageMultiplier;
         weaponModifiers.rangedDamageAddition = rangedDamageAddition;
         weaponModifiers.rangedDamageMultiplier = rangedDamageMultiplier;
-        weaponModifiers.critChanceAddition = critChanceAddition;
-        weaponModifiers.critChanceMultiplier = critChanceMultiplier;
-        weaponModifiers.meleeAttackSpeedAddition = meleeAttackSpeedAddition;
-        weaponModifiers.meleeAttackSpeedMultiplier = meleeAttackSpeedMultiplier;
-        weaponModifiers.rangedAttackSpeedAddition = rangedAttackSpeedAddition;
-        weaponModifiers.rangedAttackSpeedMultiplier = rangedAttackSpeedMultiplier;
-        weaponModifiers.projectileSpeedAddition = projectileSpeedAddition;
-        weaponModifiers.projectileSpeedMultiplier = projectileSpeedMultiplier;
-        weaponModifiers.accuracyAddition = accuracyAddition;
-        weaponModifiers.accuracyMultiplier = accuracyMultiplier;
-        weaponModifiers.ammoAddition = ammoAddition;
-        weaponModifiers.ammoMultiplier = ammoMultiplier;
+        weaponModifiers.meleeSizeAddition = meleeSizeAddition;
+        weaponModifiers.meleeSizeMultiplier = meleeSizeMultiplier;
+        weaponModifiers.rangedSpeedAddition = rangedSpeedAddition;
+        weaponModifiers.rangedSpeedMultiplier = rangedSpeedMultiplier;
+        weaponModifiers.projectileLifetimeAddition = projectileLifetimeAddition;
+        weaponModifiers.projectileLifetimeMultiplier = projectileLifetimeMultiplier;
     }
 
     public void setSpecialAttributes(PlayerClasses pc)
     {
+        melee = pc.melee;
+        ranged = pc.ranged;
+        
         chainLighting = pc.chainLighting;
         chainChance = pc.chainChance;
         chainLength = pc.chainLength;
@@ -263,7 +254,7 @@ public class PlayerClasses : MonoBehaviour
         killChain = pc.killChain;
         killRequirement = pc.killRequirement;
         chainTime = pc.chainTime;
-        attackSpeedBoost = pc.attackSpeedBoost;
+        attackSizeBoost = pc.attackSizeBoost;
         speedBoost = pc.speedBoost;
 }
 
@@ -331,52 +322,33 @@ public class PlayerClasses : MonoBehaviour
     }
 
     //gives Struct when called and does checks (call this from weapon when attacking). True is melee and False is ranged
-    public WeaponModifiers attackCall(bool b)
+    public void getMods(WeaponModifiers weaponMods)
     {
-        WeaponModifiers modsToSend = weaponModifiers;
-        if (killChain)
-        {
-            //true if on a kill chain
-            if (kills >= killRequirement)
-            {
-                modsToSend.meleeAttackSpeedMultiplier *= attackSpeedBoost;
-            }
-        }
-        if (lunge)
-        {
-            if (b)
-            {
-                GetComponent<PlayerBase>().rigidBody.AddForce(transform.forward * meleeLungeDistance, ForceMode2D.Impulse);
-            }
-            else
-            {
-                GetComponent<PlayerBase>().rigidBody.AddForce(-transform.forward * rangedLungeDistance, ForceMode2D.Impulse);
-            }
-        }
-
-        //return Struct to give info
-        return weaponModifiers;
+        weaponMods.meleeDamageAddition = weaponModifiers.meleeDamageAddition;
+        weaponMods.meleeDamageMultiplier = weaponModifiers.meleeDamageMultiplier;
+        weaponMods.rangedDamageAddition = weaponModifiers.rangedDamageAddition;
+        weaponMods.rangedDamageMultiplier = weaponModifiers.rangedDamageMultiplier;
+        weaponMods.meleeSizeAddition = weaponModifiers.meleeSizeAddition;
+        weaponMods.meleeSizeMultiplier = weaponModifiers.meleeSizeMultiplier;
+        weaponMods.rangedSpeedAddition = weaponModifiers.rangedSpeedAddition;
+        weaponMods.rangedSpeedMultiplier = weaponModifiers.rangedSpeedMultiplier;
+        weaponMods.projectileLifetimeAddition = weaponModifiers.projectileLifetimeAddition;
+        weaponMods.projectileLifetimeMultiplier = weaponModifiers.projectileLifetimeMultiplier;
     }
 
     //modifies and sent to wepaons on attack
-    public struct WeaponModifiers
+    public class WeaponModifiers
     {
-        public float meleeDamageAddition;
-        public float meleeDamageMultiplier;
-        public float rangedDamageAddition;
-        public float rangedDamageMultiplier;
-        public float critChanceAddition;
-        public float critChanceMultiplier;
-        public float meleeAttackSpeedAddition;
-        public float meleeAttackSpeedMultiplier;
-        public float rangedAttackSpeedAddition;
-        public float rangedAttackSpeedMultiplier;
-        public float projectileSpeedAddition;
-        public float projectileSpeedMultiplier;
-        public float accuracyAddition;
-        public float accuracyMultiplier;
-        public float ammoAddition;
-        public float ammoMultiplier;
+        public float meleeDamageAddition = 0;
+        public float meleeDamageMultiplier = 0;
+        public float rangedDamageAddition = 0;
+        public float rangedDamageMultiplier = 0;
+        public float meleeSizeAddition = 0;
+        public float meleeSizeMultiplier = 0;
+        public float rangedSpeedAddition = 0;
+        public float rangedSpeedMultiplier = 0;
+        public float projectileLifetimeAddition = 0;
+        public float projectileLifetimeMultiplier = 0;
     }
 
 

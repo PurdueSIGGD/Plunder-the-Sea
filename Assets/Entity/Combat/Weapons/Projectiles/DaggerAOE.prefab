@@ -130,9 +130,28 @@ MonoBehaviour:
   lifeTime: 0.15
   currentLifeTime: 0
   damage: 1
-  destroyOnCollide: 1
+  pierceCount: 0
   source: {fileID: 0}
-  weapon: {fileID: 0}
+  tables: {fileID: 0}
+  weaponClass: 0
+  direction: {x: 0, y: 0}
+  destroyOnCollide: 1
+  destroyOnNonEntity: 0
+  friendlyFire: 0
+  reflectMelee: 0
+  reflectRanged: 0
+  collideWithProjectile: 0
+  collideWithWall: 1
+  attrHit:
+    name: 
+    type: 0
+    value: 0
+    duration: 0
+    stackable: 0
+    isAdditive: 0
+  attrChance: 0
+  speed: 0
+  sourceTag: 
 --- !u!61 &2719860953006305366
 BoxCollider2D:
   m_ObjectHideFlags: 0

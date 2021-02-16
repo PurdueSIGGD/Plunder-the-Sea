@@ -42,8 +42,8 @@ public class PlayerStats : EntityStats
     }
 
     public void resetAmmo(int max) {
-        this.ammo = max;
         this.maxAmmo = max;
+        this.ammo = max;
     }
 
     public void increaseKillRegen(float amount) {
@@ -89,7 +89,7 @@ public class PlayerStats : EntityStats
         {
             timeSinceLastTick = Time.time;
 
-            stamina = Mathf.Min(stamina + staminaRechargeRate, staminaMax);
+            stamina = Mathf.Min(stamina + staminaRechargeRate * timeBetweenTicks, staminaMax);
 
             ammoBar.value = (float)ammo / (float)maxAmmo;
         }
