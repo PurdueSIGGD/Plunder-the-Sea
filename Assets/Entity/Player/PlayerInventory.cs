@@ -12,6 +12,8 @@ public class PlayerInventory : MonoBehaviour
     public WeaponInventory weapInv;
     public Image meleeSlot;
     public Image rangeSlot;
+    public Text meleeLabel;
+    public Text rangedLabel;
 
     private void Start()
     {
@@ -33,8 +35,9 @@ public class PlayerInventory : MonoBehaviour
     public void updateWeaponDisplay()
     {
         meleeSlot.sprite = weapInv.getWeaponImage(true);
-        Debug.Log(weapInv.getMeleeWeaponClass());
+        meleeLabel.text = ""+ weapInv.getMeleeWeaponClass();
         rangeSlot.sprite = weapInv.getWeaponImage(false);
+        rangedLabel.text = ""+weapInv.getRangedWeaponClass();
 
     }
 

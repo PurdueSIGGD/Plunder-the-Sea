@@ -13,6 +13,10 @@ public class WeaponInventory : MonoBehaviour
     }
     [SerializeField]
     private WeaponFactory.CLASS rangedWeaponClass;
+    public WeaponFactory.CLASS getRangedWeaponClass()
+    {
+        return this.rangedWeaponClass;
+    }
     private WeaponSystem meleeSystem;
     private WeaponSystem rangedSystem;
     private UI_Camera cam;
