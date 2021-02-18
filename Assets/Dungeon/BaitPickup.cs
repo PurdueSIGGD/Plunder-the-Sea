@@ -16,7 +16,7 @@ public class BaitPickup : MonoBehaviour
         }
 
         //Update player bait
-        player.addBait(baitType, baitAmount);
+        player.baitInventory.addBait(baitType, baitAmount);
 
         //Destory bait pickup
         GameObject.Destroy(transform.gameObject);
