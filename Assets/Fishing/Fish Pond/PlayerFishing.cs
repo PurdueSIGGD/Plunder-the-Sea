@@ -39,13 +39,13 @@ public class PlayerFishing : MonoBehaviour
         {
             selectedBait = (selectedBait + 1) % amountOfBaitTypes;
             Debug.Log("Bait " + (selectedBait + 1) + " selected");
-            player.stats.changeRedText(selectedBait);
+            player.stats.baitInventory.changeRedText(selectedBait);
         }
         
         // NEED TO REMOVE THIS AT SOME POINT!!!
         if (Input.GetKeyDown(KeyCode.Alpha1))//1 button
         {
-            player.stats.addBait(selectedBait); //just for testing bait
+            player.stats.baitInventory.addBait(selectedBait); //just for testing bait
         }
 
         if (Input.GetButtonDown("Cast Fishing Pole"))//F key
@@ -59,13 +59,13 @@ public class PlayerFishing : MonoBehaviour
             }
             else
             {
-                if (player.stats.getBaitArray()[selectedBait] > 0)
+                if (player.stats.baitInventory.getBaitArray()[selectedBait] > 0)
                 {
                     audioSrc.clip = castSound;
                     audioSrc.Play();
                     bobber = Bobber.Create(bobberPrefab, this, cam.GetMousePosition(), selectedBait);
                     bobberIsCast = true;
-                    player.stats.removeBait(selectedBait);
+                    player.stats.baitInventory.removeBait(selectedBait);
                 }
                 else
                 {
@@ -89,7 +89,7 @@ public class PlayerFishing : MonoBehaviour
         {
             Debug.Log("Bobber returned");
             //This adds bait back once the bobber is returned, we can decide to have this or not
-            //player.stats.addBait(selectedBait);
+            //player.stats.baitInventory.addBait(selectedBait);
         }
         bobberIsCast = false;
     }

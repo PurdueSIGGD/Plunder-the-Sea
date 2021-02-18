@@ -13,6 +13,10 @@ public class WeaponInventory : MonoBehaviour
     }
     [SerializeField]
     public WeaponFactory.CLASS rangedWeaponClass;
+    public WeaponFactory.CLASS getRangedWeaponClass()
+    {
+        return this.rangedWeaponClass;
+    }
     private WeaponSystem meleeSystem;
     private WeaponSystem rangedSystem;
     private UI_Camera cam;
@@ -142,6 +146,15 @@ public class WeaponInventory : MonoBehaviour
         //pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
 
         return pStats;
+    }
+    public Sprite getWeaponImage(bool isMelee)
+    {
+        if (isMelee)
+        {
+            GameObject prefab = projectilePrefabTable.get(this.meleeWeaponClass);
+            return prefab.GetComponentInChildren<SpriteRenderer>().sprite;
+        }
+        return rangedWeaponSpritesTable.get(this.rangedWeaponClass);
     }
     public bool ShootAt(Vector2 position, bool isMelee)
     {

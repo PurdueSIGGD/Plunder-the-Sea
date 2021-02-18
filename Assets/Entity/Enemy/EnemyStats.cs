@@ -64,7 +64,7 @@ public class EnemyStats : EntityStats
         }
         if (dropTable[dropIndex] >= 0)
         {
-            pStats.addBait(dropTable[dropIndex]);
+            pStats.baitInventory.addBait(dropTable[dropIndex]);
         }
         
 
