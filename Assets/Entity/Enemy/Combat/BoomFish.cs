@@ -46,7 +46,5 @@ public class BoomFish : StateCombat
     void Explode()
     {
         Shoot(explosion);
-        //EnemyProjectile boom = EnemyProjectile.Shoot(explosion, transform.position, myBase.player.transform.position, 0.0f);
-        //boom.SetSource(gameObject);
     }
 }

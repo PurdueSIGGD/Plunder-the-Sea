@@ -110,9 +110,12 @@ public class PlayerStats : EntityStats
 
     public override void OnKill(EntityStats victim)
     {
-        weaponInv?.OnKill(victim);
-        pbase.OnKill(victim);
-        increaseKillRegen(0.6f);
+        if (victim.killRegenMult <= 0.0f)
+        {
+            weaponInv?.OnKill(victim);
+            pbase.OnKill(victim);
+        }
+        increaseKillRegen(0.6f * victim.killRegenMult);
     }
 
     //Fishing Methods

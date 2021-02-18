@@ -29,6 +29,19 @@ public class StateMovement : EnemyMovement
         }
     }
 
+    // Get the angle to the player (another one-liner)
+    public Vector3 PlayerAngle()
+    {
+        if (myBase != null && myBase.player != null)
+        {
+            return (myBase.player.transform.position - transform.position).normalized;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
+    }
+
     // Move towards the player
     protected void MoveTowards()
     {
