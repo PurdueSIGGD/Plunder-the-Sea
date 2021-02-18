@@ -8,6 +8,9 @@ public class HammerheadShark : StateCombat
     const int spinning = (int)SpinningMovement.SpinningState.spinning;
     const int dizzy = (int)SpinningMovement.SpinningState.dizzy;
 
+    // Spinning Attribute modifier
+    public EntityAttribute spinningDefense = new EntityAttribute(ENT_ATTR.ARMOR_MULT, 0.75f, float.PositiveInfinity, false, true, "Spinning");
+
     // The current state
     private int current = 0;
 
@@ -17,8 +20,24 @@ public class HammerheadShark : StateCombat
     // Update is called once per frame
     void Update()
     {
-        // Boot Trout is very simple, so no extra AI
         current = GetState();
+        switch (current)
+        {
+            case spinning:
+                if (prevState == dizzy)
+                {
+                    // Just started moving, so add defense
+                    myBase.myStats.AddAttribute(spinningDefense, myBase.myStats);
+                }
+                break;
+            case dizzy:
+                if (prevState == spinning)
+                {
+                    // Just stopped moving, so remove defense
+                    myBase.myStats.RemoveAttribute(spinningDefense);
+                }
+                break;
+        }
         prevState = current;
     }
 
@@ -36,6 +55,18 @@ public class HammerheadShark : StateCombat
 
         }
     }
+
+    public override bool OnProjectileHit(Projectile hit)
+    {
+        // Reflect ranged player projectiles while spinning
+        if (current == spinning && hit.ProjectileType() == 2)
+        {
+            hit.Reflect(gameObject);
+            return true;
+        }
+        return false;
+    }
+
     void meleeAttack() //Executes a melee attack
     {
         if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)

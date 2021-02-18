@@ -15,12 +15,12 @@ public enum ENT_ATTR
 [System.Serializable]
 public class EntityAttribute
 {
-    public string name;     // Name, used for determining if effects stack. Leave blank if it isn't relevant (a name of "" won't affect stackability)
+    public string name;     // Name, used for determining if effects stack (i.e an effect can only stack with a equally-named effect). Leave blank if it isn't relevant (a name of "" won't affect stackability)
     public ENT_ATTR type;   // The type of attribute
     public float value;     // The value of the attribute. What it does depends on the attribute type.
     public float duration;  // The duration of the attibute, in seconds.
     public bool stackable;  // Whether the attribute can stack with itself.
-    public bool isAdditive; // true: The attribute is additive. false: the attribute is multiplicative.
+    public bool isAdditive; // true: The attribute is additive. false: the attribute is multiplicative. (this is only relevant for modifiers affecting numerical stats, and not for something like poison)
 
     public EntityAttribute(ENT_ATTR type, float value, float duration = float.PositiveInfinity, bool stackable = false, bool isAdditive = true, string name = "")
     {

@@ -13,6 +13,8 @@ public class EntityStats : MonoBehaviour
     public float armorMult = 0.0f;
     //Constant amount of damage armor absorbs
     public float armorStatic = 0.0f;
+    // Float dictating how much kill regen this enemy contributes
+    public float killRegenMult = 1.0f;
     public Slider healthbar;
 
     /*
