@@ -158,7 +158,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 2.25
   maxHP: 30
-  currentHP: 1
+  currentHP: 30
   armorMult: 0
   armorStatic: 0
   healthbar: {fileID: 822015873233578773}
@@ -206,6 +206,13 @@ MonoBehaviour:
   attackRange: 0.5
   prevState: 0
   myStateMovement: {fileID: 0}
+  spinningDefense:
+    name: Spinning
+    type: 4
+    value: 0.75
+    duration: Infinity
+    stackable: 0
+    isAdditive: 1
 --- !u!114 &6093889094517169962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +235,7 @@ MonoBehaviour:
   spinSpeed: 1
   dizzyTime: 2
   time: 0
-  spinningState: 0
+  spinningState: 1
 --- !u!1 &7468075503751416203
 GameObject:
   m_ObjectHideFlags: 0
