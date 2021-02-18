@@ -178,8 +178,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.31260934, g: 0.8862745, b: 0.07058821, a: 1}
+  m_Sprite: {fileID: 21300000, guid: f8b7d272e5897aa49ac3f118edd1bb9b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -265,6 +265,14 @@ MonoBehaviour:
   attackSpeedInverse: 1
   damage: 1
   numberOfTimesToRespawn: 0
+  dropTable: ffffffff00000000010000000200000003000000
+  dropOdds:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  dropRange: 0
 --- !u!58 &6429869294199045200
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -295,8 +303,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
   moving: 0
+  moveTypes: 0000000001000000
   pathingRefresh: 0.25
   maxDist: 10
+  targetProximity: 0
   chargeDistance: 0.75
   chargeSpeed: 5
   chargeUpTime: 0.18
