@@ -118,6 +118,44 @@ public class MapGen : MonoBehaviour
             buildRoom(roomStack.Pop());
         }
 
+        List<SpriteRenderer> toDupe = new List<SpriteRenderer>();
+        List<SpriteRenderer> toMove = new List<SpriteRenderer>();
+
+        //this finds every vertical wall
+        foreach (SpriteRenderer SR in FindObjectsOfType<SpriteRenderer>())
+        {
+            //if wall
+            if (SR.name.Contains("Wall"))
+            {
+                //loop to check if above vertical
+                foreach (SpriteRenderer SR2 in FindObjectsOfType<SpriteRenderer>())
+                {
+                    //if true -> vertical (not top one)
+                    if (Vector3.Distance(SR2.transform.position, SR.transform.position - Vector3.up) < 0.1f)
+                    {
+                        toDupe.Add(SR);
+                        toMove.Add(SR);
+                        break;
+                    }
+                    //if true -> vertical (not bottem one)
+                    if (Vector3.Distance(SR2.transform.position, SR.transform.position + Vector3.up) < 0.1f)
+                    {
+                        toMove.Add(SR);
+                    }
+                }
+            }
+        }
+
+        foreach (SpriteRenderer SR in toDupe)
+        {
+            Instantiate(SR.gameObject, SR.transform.position - Vector3.up * 0.5f, SR.transform.rotation);
+        }
+
+        foreach (SpriteRenderer SR in toMove)
+        {
+            SR.transform.position -= Vector3.forward;
+        }
+
         //This is a janky implementation of placing a change scene door in the final room
         //Changes to the generation algorithm could break this and it is not very robust
         //Handling room spawns and customization will have to be implemented later
