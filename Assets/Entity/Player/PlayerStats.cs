@@ -98,7 +98,7 @@ public class PlayerStats : EntityStats
 
     public override void OnKill(EntityStats victim)
     {
-        if (victim.killRegenMult <= 0.0f)
+        if (victim.killRegenMult > 0.0f)
         {
             weaponInv?.OnKill(victim);
             pbase.OnKill(victim);
