@@ -46,7 +46,7 @@ public class ClamCannon : StateCombat
         // Shoot if off cooldown and within distance
         if(OnTarget(shootTarget) && myStateMovement.PlayerDistance() < shootDistance)
         {
-            Shoot(pearlShot, transform.position, transform.position + playerAngle);
+            Projectile p = Shoot(pearlShot, transform.position, transform.position + playerAngle);
             shootTarget = SetTarget(shootCooldown);
         }
     }

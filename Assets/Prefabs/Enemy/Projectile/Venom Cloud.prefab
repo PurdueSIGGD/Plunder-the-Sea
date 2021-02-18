@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6471832775542762957
+--- !u!1 &2808827960982064107
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7904641577732704944}
-  - component: {fileID: 6354773494344014187}
-  - component: {fileID: 6218319528797385432}
-  - component: {fileID: 6940673592277062962}
-  - component: {fileID: 2078709113391161028}
-  - component: {fileID: -4025637819014591233}
+  - component: {fileID: 1339972736838741142}
+  - component: {fileID: 2817801368616632141}
+  - component: {fileID: 2981821739990127870}
+  - component: {fileID: 2267666193016582932}
+  - component: {fileID: 7715260175935198236}
+  - component: {fileID: -2190907129564129649}
   m_Layer: 0
-  m_Name: Explosion
+  m_Name: Venom Cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7904641577732704944
+--- !u!4 &1339972736838741142
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6471832775542762957}
+  m_GameObject: {fileID: 2808827960982064107}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.8540182, y: 0.034934983, z: 0}
+  m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6354773494344014187
+--- !u!212 &2817801368616632141
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6471832775542762957}
+  m_GameObject: {fileID: 2808827960982064107}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0.36104655, b: 0, a: 1}
+  m_Color: {r: 0.7657053, g: 1, b: 0.25, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86,14 +86,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &6218319528797385432
+--- !u!50 &2981821739990127870
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6471832775542762957}
+  m_GameObject: {fileID: 2808827960982064107}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -107,13 +107,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &6940673592277062962
+--- !u!61 &2267666193016582932
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6471832775542762957}
+  m_GameObject: {fileID: 2808827960982064107}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -133,22 +133,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &2078709113391161028
+--- !u!114 &7715260175935198236
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6471832775542762957}
+  m_GameObject: {fileID: 2808827960982064107}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c39bddd6b1e172649bd99304f1d55a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 0.1
+  lifeTime: 2
   currentLifeTime: 0
-  damage: 50
-  mods: []
+  damage: 0
+  mod: {fileID: -2190907129564129649}
   pierceCount: 0
   source: {fileID: 0}
   tables: {fileID: 0}
@@ -156,33 +156,33 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   destroyOnCollide: 0
   destroyOnNonEntity: 0
-  friendlyFire: 1
+  friendlyFire: 0
   reflectMelee: 0
   reflectRanged: 0
-  collideWithProjectile: 0
+  collideWithProjectile: 1
   collideWithWall: 0
   attrHit:
-    name: 
-    type: 0
-    value: 0
-    duration: 0
+    name: Venom
+    type: 5
+    value: 1.5
+    duration: 3
     stackable: 0
     isAdditive: 0
-  attrChance: 0
+  attrChance: 1
   speed: 0
   sourceTag: 
---- !u!114 &-4025637819014591233
+--- !u!114 &-2190907129564129649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6471832775542762957}
+  m_GameObject: {fileID: 2808827960982064107}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c2c7012274b1d743896b67f8e8cb13d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSize: 1
-  endSize: 8
-  timeToMax: 0.05
+  startSize: 0.5
+  endSize: 1.5
+  timeToMax: 2

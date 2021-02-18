@@ -22,7 +22,7 @@ public class SpinningMovement : StateMovement
         spinning = 0,
         dizzy = 1
     }
-    public SpinningState spinningState = SpinningState.spinning;
+    public SpinningState spinningState = SpinningState.dizzy;
 
     // Update is called once per frame
     void Update()
