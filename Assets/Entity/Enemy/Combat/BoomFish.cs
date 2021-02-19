@@ -63,6 +63,7 @@ public class BoomFish : StateCombat
             Explode();
             exploded = true;
             explodeTarget = SetTarget(lingerTime);
+            GetComponentInChildren<Canvas>().enabled = false;
         }
         prevState = current;
     }
