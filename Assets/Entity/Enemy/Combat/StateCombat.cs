@@ -69,4 +69,14 @@ public class StateCombat : EnemyCombat
         }
         return false;
     }
+
+    // Returns true if the enemy should be facing up to face the player (i.e the player is behind them). Otherwise returns false.
+    public bool isPlayerUp()
+    {
+        if (myBase.player)
+        {
+            return (myBase.player.transform.position.y > transform.position.y);
+        }
+        return false;
+    }
 }
