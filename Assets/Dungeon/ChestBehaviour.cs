@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ChestBehaviour : MonoBehaviour
 {
-
-    public GameObject weaponPrefab;
-
-
+    [SerializeField]
+    private WeaponFactory.CLASS weaponClass;
     private bool used = false;
+
+    public void SetWeaponClass(WeaponFactory.CLASS weaponClass) {
+        this.weaponClass = weaponClass;
+    }
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
@@ -17,10 +19,9 @@ public class ChestBehaviour : MonoBehaviour
             return;
         }
 
-        // weaponInv.SetWeaponPrefab(weaponPrefab);
-        
-
         used = true;
+        weaponInv.SetWeapon(weaponClass);
+        transform.localScale *= 0.5f;
 
         this.enabled = false;
     }

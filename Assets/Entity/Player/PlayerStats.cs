@@ -51,6 +51,10 @@ public class PlayerStats : EntityStats
         }
     }
 
+    public bool hasEnoughBait(int baitAmount, int baitType) {
+        return this.baitInventory.baitTypes[baitType] >= baitAmount;
+    }
+
     public void useKillRegen() {
         this.killRegen = 0f;
 
@@ -105,7 +109,5 @@ public class PlayerStats : EntityStats
         }
         increaseKillRegen(0.6f * victim.killRegenMult);
     }
-
-    
 
 }
