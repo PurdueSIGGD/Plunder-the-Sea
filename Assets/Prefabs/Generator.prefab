@@ -71,6 +71,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b67efe9639c0c664f9aa8746c91be024, type: 3}
   uniqueObjects:
   - {fileID: 21300000, guid: 124015aee32c27644a2b92f87eec023b, type: 3}
+  - {fileID: 21300000, guid: d4059bf39d97e3144bdaf4f2b4641d27, type: 3}
+  - {fileID: 21300000, guid: 663f807d7d328aa47abb10ffe8a4b001, type: 3}
   truePathLength: 8
   maxBranchLength: 2
   branchFactor: 0.5

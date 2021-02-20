@@ -266,15 +266,15 @@ public class MapGen : MonoBehaviour
         }
     }
 
-    public Sprite getUnique()
+    public void getUnique(SpriteRenderer SR)
     {
         if (UnityEngine.Random.Range(0, 1f) < 0.75f)
         {
-            return null;
+            Destroy(SR.gameObject, 0.5f);
         }
         else
         {
-            return uniqueObjects[UnityEngine.Random.Range(0, uniqueObjects.Length)];
+            SR.sprite =  uniqueObjects[UnityEngine.Random.Range(0, uniqueObjects.Length)];
         }
     }
 
@@ -316,7 +316,7 @@ public class MapGen : MonoBehaviour
                         }
                         if (SR.name.Contains("Unique"))
                         {
-                            SR.sprite = getUnique();
+                            getUnique(SR);
                         }
                     }
                 }
@@ -361,7 +361,7 @@ public class MapGen : MonoBehaviour
             }
             if (SR.name.Contains("Unique"))
             {
-                SR.sprite = getUnique();
+                getUnique(SR);
             }
         }
         //spawns enemies
