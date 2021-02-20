@@ -445,6 +445,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fd273577d27833f43bcd1de4c6a31781, type: 3}
   - {fileID: 21300000, guid: b67efe9639c0c664f9aa8746c91be024, type: 3}
   - {fileID: 21300000, guid: b67efe9639c0c664f9aa8746c91be024, type: 3}
+  uniqueObjects:
   - {fileID: 21300000, guid: 124015aee32c27644a2b92f87eec023b, type: 3}
   truePathLength: 8
   maxBranchLength: 2

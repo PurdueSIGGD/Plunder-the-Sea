@@ -16,6 +16,7 @@ public class MapGen : MonoBehaviour
     public GameObject goal;
     public Sprite[] floors;
     public Sprite[] walls;
+    public Sprite[] uniqueObjects;
     private Sprite chosenFloor;
     public int truePathLength;
     public int maxBranchLength;
@@ -130,17 +131,20 @@ public class MapGen : MonoBehaviour
                 //loop to check if above vertical
                 foreach (SpriteRenderer SR2 in FindObjectsOfType<SpriteRenderer>())
                 {
-                    //if true -> vertical (not top one)
-                    if (Vector3.Distance(SR2.transform.position, SR.transform.position - Vector3.up) < 0.1f)
+                    if (SR2.name.Contains("Wall"))
                     {
-                        toDupe.Add(SR);
-                        toMove.Add(SR);
-                        break;
-                    }
-                    //if true -> vertical (not bottem one)
-                    if (Vector3.Distance(SR2.transform.position, SR.transform.position + Vector3.up) < 0.1f)
-                    {
-                        toMove.Add(SR);
+                        //if true -> vertical (not top one)
+                        if (Vector3.Distance(SR2.transform.position, SR.transform.position - Vector3.up) < 0.1f)
+                        {
+                            toDupe.Add(SR);
+                            toMove.Add(SR);
+                            break;
+                        }
+                        //if true -> vertical (not bottem one)
+                        if (Vector3.Distance(SR2.transform.position, SR.transform.position + Vector3.up) < 0.1f)
+                        {
+                            toMove.Add(SR);
+                        }
                     }
                 }
             }
@@ -262,6 +266,18 @@ public class MapGen : MonoBehaviour
         }
     }
 
+    public Sprite getUnique()
+    {
+        if (UnityEngine.Random.Range(0, 1f) < 0.75f)
+        {
+            return null;
+        }
+        else
+        {
+            return uniqueObjects[UnityEngine.Random.Range(0, uniqueObjects.Length)];
+        }
+    }
+
     public void buildRoom(RoomData newRoom)
     {
         int roomScale = ROOMWIDTH + ROOMDIST;
@@ -294,9 +310,13 @@ public class MapGen : MonoBehaviour
                         {
                             SR.sprite = getWall();
                         }
-                        else
+                        if (SR.name.Contains("Floor"))
                         {
                             SR.sprite = chosenFloor;
+                        }
+                        if (SR.name.Contains("Unique"))
+                        {
+                            SR.sprite = getUnique();
                         }
                     }
                 }
@@ -335,9 +355,13 @@ public class MapGen : MonoBehaviour
             {
                 SR.sprite = getWall();
             }
-            else
+            if (SR.name.Contains("Floor"))
             {
                 SR.sprite = chosenFloor;
+            }
+            if (SR.name.Contains("Unique"))
+            {
+                SR.sprite = getUnique();
             }
         }
         //spawns enemies
