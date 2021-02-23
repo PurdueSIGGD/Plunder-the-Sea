@@ -7,10 +7,8 @@ using UnityEngine.UI;
 
 public class PlayerStats : EntityStats
 {
-    // Higher Index number means Stronger bait
-    public int[] baitTypes = { 0, 0, 0, 0 };
-    public Text[] baitText;
 
+    public PlayerInventory baitInventory;
     public GameObject healthPickupGameObj;
 
     PlayerBase pbase;
@@ -67,17 +65,7 @@ public class PlayerStats : EntityStats
     {
         pbase = GetComponent<PlayerBase>();
         weaponInv = GetComponent<WeaponInventory>();
-
-        if (baitText.Length != baitTypes.Length)
-        {
-            Debug.LogError("Make sure there are an identical number of bait types and text objects in each array in the player prefab");
-        }
-
-        baitText[0].color = Color.red;
-        for (int i = 0; i < baitTypes.Length; i++)
-        {
-            baitText[i].text = "Bait " + (i+1).ToString() + ": " + baitTypes[i].ToString();
-        }
+        baitInventory = GetComponentInChildren(typeof(PlayerInventory), true) as PlayerInventory;
     }
 
     private void Update()
@@ -110,43 +98,14 @@ public class PlayerStats : EntityStats
 
     public override void OnKill(EntityStats victim)
     {
-        weaponInv?.OnKill(victim);
-        pbase.OnKill(victim);
-        increaseKillRegen(0.6f);
-    }
-
-    //Fishing Methods
-    public int[] getBaitArray()
-    {
-        return baitTypes;
-    }
-
-    public void changeRedText(int num)
-    {
-        for (int i = 0; i < baitTypes.Length; i++)
+        if (victim.killRegenMult > 0.0f)
         {
-            if (i == num)
-            {
-                baitText[i].color = Color.red;
-            }
-            else
-            {
-                baitText[i].color = Color.white;
-            }
+            weaponInv?.OnKill(victim);
+            pbase.OnKill(victim);
         }
+        increaseKillRegen(0.6f * victim.killRegenMult);
     }
 
-    //Can be used to add bait to any index, and also decrement bait as well
-    public void addBait(int arrayIndex, int baitAmount = 1)
-    {
-        baitTypes[arrayIndex] = baitTypes[arrayIndex] + baitAmount;
-        baitText[arrayIndex].text = "Bait " + (arrayIndex+1).ToString() + ": " + baitTypes[arrayIndex].ToString();
-    }
-
-    public void removeBait(int arrayIndex, int baitAmount = 1)
-    {
-        baitTypes[arrayIndex] = baitTypes[arrayIndex] - baitAmount;
-        baitText[arrayIndex].text = "Bait "+ (arrayIndex + 1).ToString()+": "+baitTypes[arrayIndex].ToString();
-    }
+    
 
 }

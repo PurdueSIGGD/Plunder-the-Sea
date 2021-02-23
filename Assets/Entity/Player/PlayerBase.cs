@@ -17,7 +17,7 @@ public class PlayerBase : MonoBehaviour
     public PlayerStats stats;
     [HideInInspector]
     public PlayerFishing fishing;
-    public Canvas PlayerInventory;
+    public Canvas playerInventory;
 
     private UI_Camera cam;
     
@@ -68,13 +68,13 @@ public class PlayerBase : MonoBehaviour
 
         if (Input.GetKeyDown("e"))
         {
-            if (PlayerInventory.gameObject.activeSelf)
+            if (playerInventory.gameObject.activeSelf)
             {
-                PlayerInventory.gameObject.SetActive(false);
+                playerInventory.gameObject.SetActive(false);
             }
             else
             {
-                PlayerInventory.gameObject.SetActive(true);
+                playerInventory.gameObject.SetActive(true);
             }
         }
     }

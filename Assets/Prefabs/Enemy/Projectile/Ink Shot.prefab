@@ -147,6 +147,7 @@ MonoBehaviour:
   lifeTime: 2
   currentLifeTime: 0
   damage: 1
+  mods: []
   pierceCount: 0
   source: {fileID: 0}
   tables: {fileID: 0}
