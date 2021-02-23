@@ -63,7 +63,14 @@ public class EntityStats : MonoBehaviour
         //player damage call
         damageReturnCall();
 
-        float realDmg = Mathf.Max((amount  - armorStatic) * (1 - armorMult), 0);
+
+        //damage scaling is not stored as it can update
+        int multiplier = 1;
+        if (transform.tag == "Player")
+        {
+            multiplier = (int) Mathf.Min(1 + transform.GetComponent<PlayerStats>().dungeonLevel * 0.1f, 2);
+        }
+        float realDmg = Mathf.Max((amount  - armorStatic) * (1 - armorMult), 0) * multiplier;
 
         bool died = false;
         currentHP -= realDmg;

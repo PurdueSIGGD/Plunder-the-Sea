@@ -12,6 +12,7 @@ public class ChangeScene : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            FindObjectOfType<PlayerStats>().dungeonLevel++;
             SceneManager.LoadScene(newScene);
         }
     }

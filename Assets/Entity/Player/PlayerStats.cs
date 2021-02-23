@@ -18,6 +18,8 @@ public class PlayerStats : EntityStats
     public const float baseStaminaRechargeRate = 2f;
     public const float baseMaxHP = 10;
 
+    public int dungeonLevel;
+
     public float staminaMax = 100;
     public float stamina = 100;
     public float staminaRechargeRate = 2f;
@@ -93,6 +95,7 @@ public class PlayerStats : EntityStats
     {
         currentHP = maxHP;
         stamina = staminaMax;
+        dungeonLevel = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

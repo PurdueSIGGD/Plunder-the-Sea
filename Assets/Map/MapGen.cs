@@ -63,6 +63,13 @@ public class MapGen : MonoBehaviour
         roomGrid = new Hashtable();
         roomStack = new Stack<RoomData>();
         chosenFloor = floors[UnityEngine.Random.Range(0, floors.Length)];
+
+        //dungeon scaling
+        int level = FindObjectOfType<PlayerStats>().dungeonLevel;
+        truePathLength = 3 + (int) Mathf.Min(level * 0.5f, 5);
+        maxBranchLength = 1 + (int) Mathf.Min(level * 0.1f, 1);
+        branchFactor = 0.1f + Mathf.Min(level * 0.05f, 0.4f);
+
         generate();
     }
 
