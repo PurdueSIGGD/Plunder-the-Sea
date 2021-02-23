@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BarrelSquid : StateCombat
 {
+    // Sprite references
+    public SpriteRenderer sprite;
+    public Animator anim;
+
     // Const values to make coding easier
     const int flanking = (int)FlankMovement.FlankState.flanking;
     const int stationary = (int)FlankMovement.FlankState.stationary;
@@ -26,6 +30,9 @@ public class BarrelSquid : StateCombat
     {
         // Variable to ensure that the state used for comparison doesn't change partway through Update()
         int current = GetState();
+
+        anim.SetInteger("State", current);
+
         switch (current)
         {
             case flanking:
@@ -33,9 +40,18 @@ public class BarrelSquid : StateCombat
                 {
                     // Just started moving, so add defense
                     myBase.myStats.AddAttribute(barrelDefense, myBase.myStats);
+
+                    sprite.flipX = false;
+                    sprite.flipY = false;
                 }
                 break;
             case stationary:
+
+                // Animation
+                sprite.flipX = isPlayerLeft();
+                sprite.flipY = isPlayerUp();
+
+                // Gameplay stuff
                 if (prevState == flanking)
                 {
                     // Just stopped moving, so remove defense

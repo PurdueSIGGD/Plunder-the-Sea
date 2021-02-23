@@ -255,6 +255,8 @@ MonoBehaviour:
   attackRange: 0
   prevState: 0
   myStateMovement: {fileID: 0}
+  sprite: {fileID: 1274995968827724919}
+  anim: {fileID: 5072039114508560070}
   firingCooldown: 0.75
   inkShot: {fileID: 6059500687515898438, guid: 06f2ee863b1e83943a728a1c8ef4c4a5, type: 3}
 --- !u!114 &648655613971036833
@@ -279,6 +281,7 @@ MonoBehaviour:
   maxDistance: 5
   movingTime: 2
   stationaryTime: 2
+  transitionTime: 0.4
   flankState: 0
 --- !u!1 &6978763189785241747
 GameObject:

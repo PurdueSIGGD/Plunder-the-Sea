@@ -16,11 +16,16 @@ public class FlankMovement : StateMovement
     // The amount of time the enemy stays still (in seconds) between moving cycles. This is probably when it would attack.
     public float stationaryTime = 2.0f;
 
+    // The amount of time the enemy takes to transition between stages. The enemy doesn't move for these.
+    public float transitionTime = 0.4f;
+
     // The state of the flanking enemy. There are 2 options, which resemble different points in its movement.
     public enum FlankState
     {
         flanking = 0,
-        stationary = 1
+        stopping = 1,
+        stationary = 2,
+        starting = 3
     }
     public FlankState flankState = FlankState.flanking;
 
@@ -41,7 +46,7 @@ public class FlankMovement : StateMovement
                         if (OnTarget())
                         {
                             // Set target and change state
-                            flankState = FlankState.stationary;
+                            flankState = FlankState.stopping;
                             SetTarget(stationaryTime);
                         }
                         else
@@ -62,14 +67,36 @@ public class FlankMovement : StateMovement
                     }
                     break;
 
+                case FlankState.stopping:
+                    // Transition to stationary at the appropriate time (without moving)
+                    myBase.myRigid.velocity = Vector3.zero;
+
+                    if (OnTarget())
+                    {
+                        flankState = FlankState.stationary;
+                        SetTarget(stationaryTime);
+                    }
+                    break;
+
                 case FlankState.stationary:
                     // Check if it should be on the next state (without moving)
                     myBase.myRigid.velocity = Vector3.zero;
 
                     if (OnTarget())
                     {
-                        flankState = FlankState.flanking;
+                        flankState = FlankState.starting;
                         SetTarget(movingTime);
+                    }
+                    break;
+
+                case FlankState.starting:
+                    // Transition to stationary at the appropriate time (without moving)
+                    myBase.myRigid.velocity = Vector3.zero;
+
+                    if (OnTarget())
+                    {
+                        flankState = FlankState.stopping;
+                        SetTarget(stationaryTime);
                     }
                     break;
             }
