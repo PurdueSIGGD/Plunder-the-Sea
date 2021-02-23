@@ -270,6 +270,7 @@ public class MapGen : MonoBehaviour
     {
         if (UnityEngine.Random.Range(0, 1f) < 0.75f)
         {
+            SR.sprite = null;
             Destroy(SR.gameObject, 0.5f);
         }
         else
