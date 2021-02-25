@@ -19,7 +19,9 @@ public class FlankMovement : StateMovement
     // The amount of time the enemy takes to transition between stages. The enemy doesn't move for these.
     public float transitionTime = 0.4f;
 
-    // The state of the flanking enemy. There are 2 options, which resemble different points in its movement.
+    public Vector2 vel;
+
+    // The state of the flanking enemy. There are 4 options, which resemble different points in its movement.
     public enum FlankState
     {
         flanking = 0,
@@ -29,13 +31,15 @@ public class FlankMovement : StateMovement
     }
     public FlankState flankState = FlankState.flanking;
 
-
+    public Vector2 moveVector;
 
     // Update is called once per frame
     void Update()
     {
         if (moving)
         {
+            moveVector = myBase.myRigid.velocity;
+
             switch (flankState)
             {
                 case FlankState.flanking:
@@ -47,7 +51,7 @@ public class FlankMovement : StateMovement
                         {
                             // Set target and change state
                             flankState = FlankState.stopping;
-                            SetTarget(stationaryTime);
+                            SetTarget(transitionTime);
                         }
                         else
                         {
@@ -85,7 +89,7 @@ public class FlankMovement : StateMovement
                     if (OnTarget())
                     {
                         flankState = FlankState.starting;
-                        SetTarget(movingTime);
+                        SetTarget(transitionTime);
                     }
                     break;
 
@@ -95,8 +99,8 @@ public class FlankMovement : StateMovement
 
                     if (OnTarget())
                     {
-                        flankState = FlankState.stopping;
-                        SetTarget(stationaryTime);
+                        flankState = FlankState.flanking;
+                        SetTarget(movingTime);
                     }
                     break;
             }

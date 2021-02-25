@@ -11,6 +11,7 @@ public class BarrelSquid : StateCombat
     // Const values to make coding easier
     const int flanking = (int)FlankMovement.FlankState.flanking;
     const int stationary = (int)FlankMovement.FlankState.stationary;
+    const int stopping = (int)FlankMovement.FlankState.stopping;
 
     // Barrel Attribute modifier
     EntityAttribute barrelDefense = new EntityAttribute(ENT_ATTR.ARMOR_STATIC, 10);
@@ -24,6 +25,13 @@ public class BarrelSquid : StateCombat
 
     // Ink Shot projectile
     public GameObject inkShot;
+
+    private void Start()
+    {
+        myBase = GetComponent<EnemyBase>();
+        myStateMovement = GetComponent<StateMovement>();
+        prevState = GetState();
+    }
 
     // Update is called once per frame
     void Update()
@@ -41,18 +49,40 @@ public class BarrelSquid : StateCombat
                     // Just started moving, so add defense
                     myBase.myStats.AddAttribute(barrelDefense, myBase.myStats);
 
-                    sprite.flipX = false;
-                    sprite.flipY = false;
+                }
+
+                // Animation
+                //sprite.flipX = isPlayerLeft();
+                //sprite.flipY = isPlayerUp();
+
+                if (myBase.myRigid.velocity.magnitude >= 0.001f)
+                {
+                    anim.speed = 1.0f;
+
+                    // Rotate the sprite
+                    Vector3 v = myBase.myRigid.velocity;
+                    float angle = Mathf.Atan2(v.y,v.x) * Mathf.Rad2Deg - 90;
+                    sprite.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                } else
+                {
+                    // Don't rotate while not moving
+                    anim.speed = 0f;
+                }
+                
+
+                break;
+            case stopping:
+                if (prevState == flanking)
+                {
+                    // Reset animation and rotation
+                    sprite.transform.rotation = Quaternion.identity;
+                    anim.speed = 1.0f;
                 }
                 break;
             case stationary:
 
-                // Animation
-                sprite.flipX = isPlayerLeft();
-                sprite.flipY = isPlayerUp();
-
                 // Gameplay stuff
-                if (prevState == flanking)
+                if (prevState == stopping)
                 {
                     // Just stopped moving, so remove defense
                     myBase.myStats.RemoveAttribute(barrelDefense);
