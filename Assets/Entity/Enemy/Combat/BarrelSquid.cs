@@ -12,15 +12,13 @@ public class BarrelSquid : StateCombat
     const int flanking = (int)FlankMovement.FlankState.flanking;
     const int stationary = (int)FlankMovement.FlankState.stationary;
     const int stopping = (int)FlankMovement.FlankState.stopping;
+    const int starting = (int)FlankMovement.FlankState.starting;
 
     // Barrel Attribute modifier
-    EntityAttribute barrelDefense = new EntityAttribute(ENT_ATTR.ARMOR_STATIC, 10);
-
-    // Ink Attribute (to inflict on a hit)
-    EntityAttribute inkDebuff = new EntityAttribute(ENT_ATTR.ARMOR_STATIC,-1f,2f);
+    EntityAttribute barrelDefense = new EntityAttribute(ENT_ATTR.ARMOR_STATIC, 25);
 
     // How long the barrel squid has to wait before firing
-    public float firingCooldown = 0.5f;
+    public float firingCooldown = 0.4f;
     private float firingTracker = 0;
 
     // Ink Shot projectile
@@ -44,7 +42,7 @@ public class BarrelSquid : StateCombat
         switch (current)
         {
             case flanking:
-                if (prevState == stationary)
+                if (prevState == starting)
                 {
                     // Just started moving, so add defense
                     myBase.myStats.AddAttribute(barrelDefense, myBase.myStats);
@@ -86,6 +84,8 @@ public class BarrelSquid : StateCombat
                 {
                     // Just stopped moving, so remove defense
                     myBase.myStats.RemoveAttribute(barrelDefense);
+
+                    firingTracker = SetTarget(firingCooldown);
                 }
                 // Try to shoot if possible and the cooldown allows
                 if (OnTarget(firingTracker))

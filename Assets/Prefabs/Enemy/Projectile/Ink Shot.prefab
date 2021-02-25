@@ -196,7 +196,7 @@ MonoBehaviour:
   attrHit:
     name: Mighty Ink
     type: 3
-    value: -5
+    value: -2
     duration: 5
     stackable: 0
     isAdditive: 1

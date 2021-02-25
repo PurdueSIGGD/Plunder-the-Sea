@@ -31,15 +31,11 @@ public class FlankMovement : StateMovement
     }
     public FlankState flankState = FlankState.flanking;
 
-    public Vector2 moveVector;
-
     // Update is called once per frame
     void Update()
     {
         if (moving)
         {
-            moveVector = myBase.myRigid.velocity;
-
             switch (flankState)
             {
                 case FlankState.flanking:

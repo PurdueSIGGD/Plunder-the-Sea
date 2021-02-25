@@ -257,7 +257,7 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 1274995968827724919}
   anim: {fileID: 5072039114508560070}
-  firingCooldown: 0.75
+  firingCooldown: 0.6
   inkShot: {fileID: 6059500687515898438, guid: 06f2ee863b1e83943a728a1c8ef4c4a5, type: 3}
 --- !u!114 &648655613971036833
 MonoBehaviour:
@@ -282,7 +282,9 @@ MonoBehaviour:
   movingTime: 2
   stationaryTime: 2
   transitionTime: 0.4
+  vel: {x: 0, y: 0}
   flankState: 0
+  moveVector: {x: 0, y: 0}
 --- !u!1 &6978763189785241747
 GameObject:
   m_ObjectHideFlags: 0
