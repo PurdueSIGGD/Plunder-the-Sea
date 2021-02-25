@@ -19,15 +19,19 @@ MonoBehaviour:
   uniques:
   - {fileID: 21300000, guid: 124015aee32c27644a2b92f87eec023b, type: 3}
   rooms:
-  - {fileID: 2365682295269584082, guid: 1e932cc103a1d844ba4eb81925a0fd41, type: 3}
-  - {fileID: 2957268282219117759, guid: 46cd4d611b1e1e04abc6e0770ee1077d, type: 3}
-  - {fileID: 296905684760393612, guid: 3ea6799f0a952204f9950ae764d52bb2, type: 3}
-  - {fileID: 7448281565474574501, guid: 8eb3dcfb600ec00418ad3e9e6e2bc0fe, type: 3}
-  - {fileID: 8052367512697230351, guid: 6589e6e9fa4237544916095dcb08f2ea, type: 3}
-  - {fileID: 3048475737034582319, guid: b03978cff4345e746af669162f286b96, type: 3}
+  - {fileID: 5865754046741003139, guid: 970c96df44c8dd7428c63a6a20ed8a07, type: 3}
+  - {fileID: 4944574261751665073, guid: fbfaf670d7260c04da006339971b1ed8, type: 3}
+  - {fileID: 7237114656553064805, guid: 8949399d1a5f146409326f837e06abb0, type: 3}
+  - {fileID: 5260649468153656163, guid: f1bdffdfb7c7ecb48ad414e9c04f3f2b, type: 3}
+  - {fileID: 2857624797146644935, guid: 9af7a6c86a0b214439d20c7d49eacbd6, type: 3}
+  - {fileID: 7183818713292723827, guid: ace8e3533322d46449f1c1738d8b754e, type: 3}
+  - {fileID: 4198502865828412666, guid: eb912a39eec77b643b6863141b26f441, type: 3}
   halls:
   - {fileID: 9193578164241022313, guid: 44e452ca93c65234a98a907be4229d40, type: 3}
   - {fileID: 7956637199619189240, guid: 3d83f9de162d53a49bb3b8740f704323, type: 3}
+  - {fileID: 1249433330294978277, guid: c4d30f23423dfed4db97b8f5bed369d1, type: 3}
+  - {fileID: 7087063181025993757, guid: ce099eb2fc462994f9d5849055a2a65f, type: 3}
+  - {fileID: 2887365856498931971, guid: 0d5de5a981ece89498c8ce32b1d9ceda, type: 3}
   wall: {fileID: 7837137124845032347, guid: a23d469b47abf7f47a3fa345160ae0b5, type: 3}
-  roomWidth: 10
+  roomWidth: 14
   roomDist: 6

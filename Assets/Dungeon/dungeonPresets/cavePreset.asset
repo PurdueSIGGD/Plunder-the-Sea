@@ -17,14 +17,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b67efe9639c0c664f9aa8746c91be024, type: 3}
   floor: {fileID: 21300000, guid: 36447b5dfa5fc7249af54eff9eb85875, type: 3}
   uniques:
-  - {fileID: 21300000, guid: d4059bf39d97e3144bdaf4f2b4641d27, type: 3}
+  - {fileID: 21300000, guid: 663f807d7d328aa47abb10ffe8a4b001, type: 3}
   rooms:
-  - {fileID: 2365682295269584082, guid: 1e932cc103a1d844ba4eb81925a0fd41, type: 3}
-  - {fileID: 2957268282219117759, guid: 46cd4d611b1e1e04abc6e0770ee1077d, type: 3}
-  - {fileID: 296905684760393612, guid: 3ea6799f0a952204f9950ae764d52bb2, type: 3}
-  - {fileID: 7448281565474574501, guid: 8eb3dcfb600ec00418ad3e9e6e2bc0fe, type: 3}
   - {fileID: 8052367512697230351, guid: 6589e6e9fa4237544916095dcb08f2ea, type: 3}
   - {fileID: 3048475737034582319, guid: b03978cff4345e746af669162f286b96, type: 3}
+  - {fileID: 296905684760393612, guid: 3ea6799f0a952204f9950ae764d52bb2, type: 3}
+  - {fileID: 7448281565474574501, guid: 8eb3dcfb600ec00418ad3e9e6e2bc0fe, type: 3}
+  - {fileID: 5682997441567495133, guid: 1ce6ee1782f2c604d8859eee5c9de424, type: 3}
   halls:
   - {fileID: 2153119704139551805, guid: 69c6ce3bafed5004ea9eab9678c8e308, type: 3}
   - {fileID: 7894275185470349225, guid: 0cb614b6833e06641a54dcc58dda61f0, type: 3}

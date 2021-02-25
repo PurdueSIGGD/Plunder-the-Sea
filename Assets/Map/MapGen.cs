@@ -70,7 +70,12 @@ public class MapGen : MonoBehaviour
 
         //dungeon scaling
         int level = FindObjectOfType<PlayerStats>().dungeonLevel;
-        assignPresetData(presets[(int) Mathf.Min(level / 2, presets.Length - 1)]);
+        int presetNum = level / 2;
+        if (presetNum > presets.Length - 1)
+        {
+            presetNum = UnityEngine.Random.Range(0, presets.Length);
+        }
+        assignPresetData(presets[presetNum]);
         truePathLength = 3 + (int) Mathf.Min(level * 0.5f, 5);
         maxBranchLength = 1 + (int) Mathf.Min(level * 0.1f, 1);
         branchFactor = 0.1f + Mathf.Min(level * 0.05f, 0.4f);
