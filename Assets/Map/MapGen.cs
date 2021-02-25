@@ -16,6 +16,7 @@ public class MapGen : MonoBehaviour
     public GameObject goal;
     public Sprite[] floors;
     public Sprite[] walls;
+    public Sprite[] uniqueObjects;
     private Sprite chosenFloor;
     public int truePathLength;
     public int maxBranchLength;
@@ -116,6 +117,47 @@ public class MapGen : MonoBehaviour
         while (roomStack.Count > 1)
         {
             buildRoom(roomStack.Pop());
+        }
+
+        List<SpriteRenderer> toDupe = new List<SpriteRenderer>();
+        List<SpriteRenderer> toMove = new List<SpriteRenderer>();
+
+        //this finds every vertical wall
+        foreach (SpriteRenderer SR in FindObjectsOfType<SpriteRenderer>())
+        {
+            //if wall
+            if (SR.name.Contains("Wall"))
+            {
+                //loop to check if above vertical
+                foreach (SpriteRenderer SR2 in FindObjectsOfType<SpriteRenderer>())
+                {
+                    if (SR2.name.Contains("Wall"))
+                    {
+                        //if true -> vertical (not top one)
+                        if (Vector3.Distance(SR2.transform.position, SR.transform.position - Vector3.up) < 0.1f)
+                        {
+                            toDupe.Add(SR);
+                            toMove.Add(SR);
+                            break;
+                        }
+                        //if true -> vertical (not bottem one)
+                        if (Vector3.Distance(SR2.transform.position, SR.transform.position + Vector3.up) < 0.1f)
+                        {
+                            toMove.Add(SR);
+                        }
+                    }
+                }
+            }
+        }
+
+        foreach (SpriteRenderer SR in toDupe)
+        {
+            Instantiate(SR.gameObject, SR.transform.position - Vector3.up * 0.5f, SR.transform.rotation);
+        }
+
+        foreach (SpriteRenderer SR in toMove)
+        {
+            SR.transform.position -= Vector3.forward;
         }
 
         //This is a janky implementation of placing a change scene door in the final room
@@ -224,6 +266,19 @@ public class MapGen : MonoBehaviour
         }
     }
 
+    public void getUnique(SpriteRenderer SR)
+    {
+        if (UnityEngine.Random.Range(0, 1f) < 0.75f)
+        {
+            SR.sprite = null;
+            Destroy(SR.gameObject, 0.5f);
+        }
+        else
+        {
+            SR.sprite =  uniqueObjects[UnityEngine.Random.Range(0, uniqueObjects.Length)];
+        }
+    }
+
     public void buildRoom(RoomData newRoom)
     {
         int roomScale = ROOMWIDTH + ROOMDIST;
@@ -256,9 +311,13 @@ public class MapGen : MonoBehaviour
                         {
                             SR.sprite = getWall();
                         }
-                        else
+                        if (SR.name.Contains("Floor"))
                         {
                             SR.sprite = chosenFloor;
+                        }
+                        if (SR.name.Contains("Unique"))
+                        {
+                            getUnique(SR);
                         }
                     }
                 }
@@ -297,9 +356,13 @@ public class MapGen : MonoBehaviour
             {
                 SR.sprite = getWall();
             }
-            else
+            if (SR.name.Contains("Floor"))
             {
                 SR.sprite = chosenFloor;
+            }
+            if (SR.name.Contains("Unique"))
+            {
+                getUnique(SR);
             }
         }
         //spawns enemies
