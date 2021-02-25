@@ -12,7 +12,8 @@ public class PlayerStats : EntityStats
     public GameObject healthPickupGameObj;
 
     PlayerBase pbase;
-    WeaponInventory weaponInv;
+    [HideInInspector]
+    public WeaponInventory weaponInv;
     public const float baseMovementSpeed = 10;
     public const float baseStaminaMax = 100;
     public const float baseStaminaRechargeRate = 2f;

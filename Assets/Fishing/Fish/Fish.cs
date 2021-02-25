@@ -35,6 +35,9 @@ public class Fish : MonoBehaviour
         player.stats.maxHP += buffs[1];
         player.stats.staminaMax += buffs[2];
         player.stats.staminaRechargeRate += buffs[3];
+        player.stats.weaponInv.weaponMods.meleeDamageAddition += buffs[4];
+        player.stats.weaponInv.weaponMods.rangedDamageAddition += buffs[5];
+        player.stats.armorStatic += buffs[6];
         string text = "";
         for(int i = 0; i < buffs.Length; i++)
         {
