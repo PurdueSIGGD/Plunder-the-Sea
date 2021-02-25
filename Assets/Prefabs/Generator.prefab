@@ -43,36 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0da8ba25b0476e64db900404a2734ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rooms:
-  - {fileID: 2365682295269584082, guid: 1e932cc103a1d844ba4eb81925a0fd41, type: 3}
-  - {fileID: 2365682295269584082, guid: 1e932cc103a1d844ba4eb81925a0fd41, type: 3}
-  - {fileID: 7448281565474574501, guid: 8eb3dcfb600ec00418ad3e9e6e2bc0fe, type: 3}
-  - {fileID: 7448281565474574501, guid: 8eb3dcfb600ec00418ad3e9e6e2bc0fe, type: 3}
-  - {fileID: 2957268282219117759, guid: 46cd4d611b1e1e04abc6e0770ee1077d, type: 3}
-  - {fileID: 8052367512697230351, guid: 6589e6e9fa4237544916095dcb08f2ea, type: 3}
-  - {fileID: 3048475737034582319, guid: b03978cff4345e746af669162f286b96, type: 3}
-  halls:
-  - {fileID: 9193578164241022313, guid: 44e452ca93c65234a98a907be4229d40, type: 3}
-  - {fileID: 4633400110128920590, guid: eb1b9205e4133a242acc95df27304522, type: 3}
-  - {fileID: 7956637199619189240, guid: 3d83f9de162d53a49bb3b8740f704323, type: 3}
-  - {fileID: 2153119704139551805, guid: 69c6ce3bafed5004ea9eab9678c8e308, type: 3}
-  - {fileID: 7894275185470349225, guid: 0cb614b6833e06641a54dcc58dda61f0, type: 3}
-  wall: {fileID: 7837137124845032347, guid: a23d469b47abf7f47a3fa345160ae0b5, type: 3}
+  presets:
+  - {fileID: 11400000, guid: 36a7e9c93b4720d4fb0bb80d6c8eab50, type: 2}
+  - {fileID: 11400000, guid: f70030e11946ab94a9ba4d3e7b54fecb, type: 2}
+  - {fileID: 11400000, guid: cfb47a4f2946e144d93f9b74aa80a723, type: 2}
   goal: {fileID: 1000606575011608496, guid: 9e75e4764de434c4e8debc917d1148d2, type: 3}
-  floors:
-  - {fileID: 21300000, guid: 36447b5dfa5fc7249af54eff9eb85875, type: 3}
-  - {fileID: 21300000, guid: 2146a9dee4c650641951b8025aa6bfc2, type: 3}
-  - {fileID: 21300000, guid: 371731c5a898c3242bbe61a6345f78ad, type: 3}
-  walls:
-  - {fileID: 21300000, guid: fd273577d27833f43bcd1de4c6a31781, type: 3}
-  - {fileID: 21300000, guid: fd273577d27833f43bcd1de4c6a31781, type: 3}
-  - {fileID: 21300000, guid: fd273577d27833f43bcd1de4c6a31781, type: 3}
-  - {fileID: 21300000, guid: b67efe9639c0c664f9aa8746c91be024, type: 3}
-  - {fileID: 21300000, guid: b67efe9639c0c664f9aa8746c91be024, type: 3}
-  uniqueObjects:
-  - {fileID: 21300000, guid: 124015aee32c27644a2b92f87eec023b, type: 3}
-  - {fileID: 21300000, guid: d4059bf39d97e3144bdaf4f2b4641d27, type: 3}
-  - {fileID: 21300000, guid: 663f807d7d328aa47abb10ffe8a4b001, type: 3}
-  truePathLength: 8
-  maxBranchLength: 2
-  branchFactor: 0.5

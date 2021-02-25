@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a91a6ad89db8cd94a9a31cb4c554a12e, type: 3}
-  m_Name: aztecPreset
+  m_Name: greekPreset
   m_EditorClassIdentifier: 
   mainWall: {fileID: 21300000, guid: fd273577d27833f43bcd1de4c6a31781, type: 3}
   secondaryWalls:
   - {fileID: 21300000, guid: b67efe9639c0c664f9aa8746c91be024, type: 3}
-  floor: {fileID: 21300000, guid: 2146a9dee4c650641951b8025aa6bfc2, type: 3}
+  floor: {fileID: 21300000, guid: 371731c5a898c3242bbe61a6345f78ad, type: 3}
   uniques:
-  - {fileID: 21300000, guid: 663f807d7d328aa47abb10ffe8a4b001, type: 3}
+  - {fileID: 21300000, guid: 124015aee32c27644a2b92f87eec023b, type: 3}
   rooms:
   - {fileID: 2365682295269584082, guid: 1e932cc103a1d844ba4eb81925a0fd41, type: 3}
   - {fileID: 2957268282219117759, guid: 46cd4d611b1e1e04abc6e0770ee1077d, type: 3}
@@ -28,9 +28,6 @@ MonoBehaviour:
   halls:
   - {fileID: 9193578164241022313, guid: 44e452ca93c65234a98a907be4229d40, type: 3}
   - {fileID: 7956637199619189240, guid: 3d83f9de162d53a49bb3b8740f704323, type: 3}
-  - {fileID: 2153119704139551805, guid: 69c6ce3bafed5004ea9eab9678c8e308, type: 3}
-  - {fileID: 7894275185470349225, guid: 0cb614b6833e06641a54dcc58dda61f0, type: 3}
-  - {fileID: 4633400110128920590, guid: eb1b9205e4133a242acc95df27304522, type: 3}
   wall: {fileID: 7837137124845032347, guid: a23d469b47abf7f47a3fa345160ae0b5, type: 3}
   roomWidth: 10
   roomDist: 6

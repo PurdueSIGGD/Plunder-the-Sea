@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91a6ad89db8cd94a9a31cb4c554a12e, type: 3}
   m_Name: cavePreset
   m_EditorClassIdentifier: 
-  mainWall: {fileID: 21300000, guid: 371731c5a898c3242bbe61a6345f78ad, type: 3}
+  mainWall: {fileID: 21300000, guid: fd273577d27833f43bcd1de4c6a31781, type: 3}
   secondaryWalls:
-  - {fileID: 21300000, guid: 371731c5a898c3242bbe61a6345f78ad, type: 3}
+  - {fileID: 21300000, guid: b67efe9639c0c664f9aa8746c91be024, type: 3}
   floor: {fileID: 21300000, guid: 36447b5dfa5fc7249af54eff9eb85875, type: 3}
   uniques:
-  - {fileID: 21300000, guid: 663f807d7d328aa47abb10ffe8a4b001, type: 3}
   - {fileID: 21300000, guid: d4059bf39d97e3144bdaf4f2b4641d27, type: 3}
   rooms:
   - {fileID: 2365682295269584082, guid: 1e932cc103a1d844ba4eb81925a0fd41, type: 3}
