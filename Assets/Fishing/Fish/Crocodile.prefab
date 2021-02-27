@@ -113,6 +113,14 @@ MonoBehaviour:
   - 0
   - 0
   - 10
+  buffsMult:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0.5
   buffNames:
   - Movement Speed
   - HP

@@ -16,6 +16,8 @@ public class Fish : MonoBehaviour
     private float maxWaitTime;
     public int lootLevel;
     public float[] buffs = {0f, 0f, 0f, 0f, 0f, 0f, 0f};
+    public float[] buffsMult = {0f, 0f, 0f, 0f, 0f, 0f, 0f};
+    private float[] buffsApplied;
     public string[] buffNames = { "Movement Speed", "HP", "Stamina", "Stamina Recharge Rate", "Melee Damage",
         "Ranged Damage", "Armor", };
     public GameObject FishingMinigame;
@@ -27,6 +29,7 @@ public class Fish : MonoBehaviour
         StartCoroutine(MoveRandomly());
         transform.eulerAngles = new Vector3(0, 0, Random.Range(0f, 360f));
         sprite = this.GetComponent<SpriteRenderer>().sprite;
+        buffsApplied = new float[buffsMult.Length];
     }
 
     public void BuffPlayerStats(PlayerBase player)
@@ -38,12 +41,54 @@ public class Fish : MonoBehaviour
         player.stats.weaponInv.weaponMods.meleeDamageAddition += buffs[4];
         player.stats.weaponInv.weaponMods.rangedDamageAddition += buffs[5];
         player.stats.armorStatic += buffs[6];
+
+        buffsApplied[0] = player.stats.movementSpeed * buffsMult[0];
+        buffsApplied[1] = player.stats.maxHP * buffsMult[1];
+        buffsApplied[2] = player.stats.staminaMax * buffsMult[2];
+        buffsApplied[3] = player.stats.staminaRechargeRate * buffsMult[3];
+        buffsApplied[4] = buffsMult[4];
+        buffsApplied[5] = buffsMult[5];
+        buffsApplied[6] = (1 - player.stats.armorMult) * buffsMult[6];
+
+        player.stats.movementSpeed += buffsApplied[0];
+        player.stats.maxHP += buffsApplied[1];
+        player.stats.staminaMax += buffsApplied[2];
+        player.stats.staminaRechargeRate += buffsApplied[3];
+        player.stats.weaponInv.weaponMods.meleeDamageMultiplier += buffsApplied[4];
+        player.stats.weaponInv.weaponMods.rangedDamageMultiplier += buffsApplied[5];
+        player.stats.armorMult += buffsApplied[6];
+
         string text = "";
         for(int i = 0; i < buffs.Length; i++)
         {
             if(buffs[i] > 0f)
             {
                 text += "+" + buffs[i] + " " + buffNames[i] + "\n";
+            }
+            if (buffsApplied[i] > 0f)
+            {
+                text += "+" + buffsApplied[i] + " " + buffNames[i] + "\n";
+            }
+        }
+        player.fishing.SpawnPopupText(text);
+    }
+
+    public void UnbuffPlayerStats(PlayerBase player)
+    {
+        player.stats.movementSpeed -= buffsApplied[0];
+        player.stats.maxHP -= buffsApplied[1];
+        player.stats.staminaMax -= buffsApplied[2];
+        player.stats.staminaRechargeRate -= buffsApplied[3];
+        player.stats.weaponInv.weaponMods.meleeDamageMultiplier -= buffsApplied[4];
+        player.stats.weaponInv.weaponMods.rangedDamageMultiplier -= buffsApplied[5];
+        player.stats.armorMult -= buffsApplied[6];
+
+        string text = "";
+        for (int i = 0; i < buffs.Length; i++)
+        {
+            if (buffsApplied[i] > 0f)
+            {
+                text += "-" + buffsApplied[i] + " " + buffNames[i] + "\n";
             }
         }
         player.fishing.SpawnPopupText(text);
