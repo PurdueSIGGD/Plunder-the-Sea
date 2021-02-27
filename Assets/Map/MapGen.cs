@@ -8,19 +8,24 @@ public class MapGen : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public const int ROOMWIDTH = 10;
-    public const int ROOMDIST = 6;
-    public GameObject[] rooms;
-    public GameObject[] halls;
-    public GameObject wall;
+    [SerializeField]
+    private presetData[] presets;
+
+    private int roomWidth = 10;
+    private int roomDist = 6;
+    private GameObject[] rooms;
+    private GameObject[] halls;
+    private GameObject wall;
+    private Sprite floor;
+    private Sprite mainWall;
+    private Sprite[] secondaryWalls;
+    private Sprite[] uniqueObjects;
+
     public GameObject goal;
-    public Sprite[] floors;
-    public Sprite[] walls;
-    public Sprite[] uniqueObjects;
-    private Sprite chosenFloor;
-    public int truePathLength;
-    public int maxBranchLength;
-    public float branchFactor;
+
+    private int truePathLength;
+    private int maxBranchLength;
+    private float branchFactor;
 
     private Hashtable roomGrid;
     private Stack<RoomData> roomStack;
@@ -62,9 +67,34 @@ public class MapGen : MonoBehaviour
     {
         roomGrid = new Hashtable();
         roomStack = new Stack<RoomData>();
-        chosenFloor = floors[UnityEngine.Random.Range(0, floors.Length)];
+
+        //dungeon scaling
+        int level = FindObjectOfType<PlayerStats>().dungeonLevel;
+        int presetNum = level / 2;
+        if (presetNum > presets.Length - 1)
+        {
+            presetNum = UnityEngine.Random.Range(0, presets.Length);
+        }
+        assignPresetData(presets[presetNum]);
+        truePathLength = 3 + (int) Mathf.Min(level * 0.5f, 5);
+        maxBranchLength = 1 + (int) Mathf.Min(level * 0.1f, 1);
+        branchFactor = 0.1f + Mathf.Min(level * 0.05f, 0.4f);
+
         generate();
     }
+
+    private void assignPresetData(presetData PD)
+    {
+        roomWidth = PD.roomWidth;
+        roomDist = PD.roomDist;
+        rooms = PD.rooms;
+        halls = PD.halls;
+        wall = PD.wall;
+        floor = PD.floor;
+        mainWall = PD.mainWall;
+        secondaryWalls = PD.secondaryWalls;
+        uniqueObjects = PD.uniques;
+}
 
     // Update is called once per frame
     public void generate()
@@ -119,6 +149,17 @@ public class MapGen : MonoBehaviour
             buildRoom(roomStack.Pop());
         }
 
+        //This is a janky implementation of placing a change scene door in the final room
+        //Changes to the generation algorithm could break this and it is not very robust
+        //Handling room spawns and customization will have to be implemented later
+        RoomData lastRoom = roomStack.Pop();
+        buildRoom(lastRoom);
+        int roomScale = roomWidth + roomDist;
+        Object.Instantiate(goal, new Vector3(lastRoom.x * roomScale,
+            lastRoom.y * roomScale, 0), Quaternion.identity);
+
+        //Sets sprites
+
         List<SpriteRenderer> toDupe = new List<SpriteRenderer>();
         List<SpriteRenderer> toMove = new List<SpriteRenderer>();
 
@@ -160,14 +201,6 @@ public class MapGen : MonoBehaviour
             SR.transform.position -= Vector3.forward;
         }
 
-        //This is a janky implementation of placing a change scene door in the final room
-        //Changes to the generation algorithm could break this and it is not very robust
-        //Handling room spawns and customization will have to be implemented later
-        RoomData lastRoom = roomStack.Pop();
-        buildRoom(lastRoom);
-        int roomScale = ROOMWIDTH + ROOMDIST;
-        Object.Instantiate(goal, new Vector3(lastRoom.x * roomScale,
-            lastRoom.y * roomScale, 0), Quaternion.identity);
     }
 
     public void branch()
@@ -256,13 +289,13 @@ public class MapGen : MonoBehaviour
 
     public Sprite getWall()
     {
-        if (UnityEngine.Random.Range(0, 1f) < 0.5f)
+        if (UnityEngine.Random.Range(0, 1f) < 0.75f)
         {
-            return walls[0];
+            return mainWall;
         } 
         else
         {
-            return walls[UnityEngine.Random.Range(0, walls.Length)];
+            return secondaryWalls[UnityEngine.Random.Range(0, secondaryWalls.Length)];
         }
     }
 
@@ -281,7 +314,7 @@ public class MapGen : MonoBehaviour
 
     public void buildRoom(RoomData newRoom)
     {
-        int roomScale = ROOMWIDTH + ROOMDIST;
+        int roomScale = roomWidth + roomDist;
         for (int i = 0; i < 4; i++)
         {
             (int, int) dir = toDirection(i);
@@ -313,7 +346,7 @@ public class MapGen : MonoBehaviour
                         }
                         if (SR.name.Contains("Floor"))
                         {
-                            SR.sprite = chosenFloor;
+                            SR.sprite = floor;
                         }
                         if (SR.name.Contains("Unique"))
                         {
@@ -325,8 +358,8 @@ public class MapGen : MonoBehaviour
             else
             {
                 //plug opening
-                (float, float) wallLoc = (newRoom.x * roomScale + .5f * ((dir.Item1) * ROOMWIDTH - dir.Item1),
-                    newRoom.y * roomScale + .5f * ((dir.Item2) * ROOMWIDTH - dir.Item2));
+                (float, float) wallLoc = (newRoom.x * roomScale + .5f * ((dir.Item1) * roomWidth - dir.Item1),
+                    newRoom.y * roomScale + .5f * ((dir.Item2) * roomWidth - dir.Item2));
                 Quaternion rot;
                 if (dir.Item2 == 0)
                 {
@@ -358,7 +391,7 @@ public class MapGen : MonoBehaviour
             }
             if (SR.name.Contains("Floor"))
             {
-                SR.sprite = chosenFloor;
+                SR.sprite = floor;
             }
             if (SR.name.Contains("Unique"))
             {
