@@ -720,13 +720,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  maxHP: 1
-  currentHP: 1
+  maxHP: 100
+  currentHP: 100
   armorMult: 0
   armorStatic: 0
+  killRegenMult: 1
   healthbar: {fileID: 5887798363337455442}
   baitInventory: {fileID: 0}
   healthPickupGameObj: {fileID: 6062236654396820198, guid: b5c31f18ad4a0d842921ebed85f2c883, type: 3}
+  dungeonLevel: 0
   staminaMax: 100
   stamina: 100
   staminaRechargeRate: 2
