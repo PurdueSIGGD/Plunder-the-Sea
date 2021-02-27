@@ -149,6 +149,17 @@ public class MapGen : MonoBehaviour
             buildRoom(roomStack.Pop());
         }
 
+        //This is a janky implementation of placing a change scene door in the final room
+        //Changes to the generation algorithm could break this and it is not very robust
+        //Handling room spawns and customization will have to be implemented later
+        RoomData lastRoom = roomStack.Pop();
+        buildRoom(lastRoom);
+        int roomScale = roomWidth + roomDist;
+        Object.Instantiate(goal, new Vector3(lastRoom.x * roomScale,
+            lastRoom.y * roomScale, 0), Quaternion.identity);
+
+        //Sets sprites
+
         List<SpriteRenderer> toDupe = new List<SpriteRenderer>();
         List<SpriteRenderer> toMove = new List<SpriteRenderer>();
 
@@ -190,14 +201,6 @@ public class MapGen : MonoBehaviour
             SR.transform.position -= Vector3.forward;
         }
 
-        //This is a janky implementation of placing a change scene door in the final room
-        //Changes to the generation algorithm could break this and it is not very robust
-        //Handling room spawns and customization will have to be implemented later
-        RoomData lastRoom = roomStack.Pop();
-        buildRoom(lastRoom);
-        int roomScale = roomWidth + roomDist;
-        Object.Instantiate(goal, new Vector3(lastRoom.x * roomScale,
-            lastRoom.y * roomScale, 0), Quaternion.identity);
     }
 
     public void branch()

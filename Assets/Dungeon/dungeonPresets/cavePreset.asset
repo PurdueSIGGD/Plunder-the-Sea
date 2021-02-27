@@ -19,8 +19,8 @@ MonoBehaviour:
   uniques:
   - {fileID: 21300000, guid: 663f807d7d328aa47abb10ffe8a4b001, type: 3}
   rooms:
-  - {fileID: 8052367512697230351, guid: 6589e6e9fa4237544916095dcb08f2ea, type: 3}
-  - {fileID: 3048475737034582319, guid: b03978cff4345e746af669162f286b96, type: 3}
+  - {fileID: 2622923088835361031, guid: 5ceeef11d841cdb4ca38940bfa924c05, type: 3}
+  - {fileID: 1485195680733021285, guid: 9fd3ec71699480d43a461ad905def242, type: 3}
   - {fileID: 296905684760393612, guid: 3ea6799f0a952204f9950ae764d52bb2, type: 3}
   - {fileID: 7448281565474574501, guid: 8eb3dcfb600ec00418ad3e9e6e2bc0fe, type: 3}
   - {fileID: 5682997441567495133, guid: 1ce6ee1782f2c604d8859eee5c9de424, type: 3}
