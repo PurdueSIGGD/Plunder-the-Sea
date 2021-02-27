@@ -11,9 +11,15 @@ public class EnemySpawner : MonoBehaviour
     {
         int level = FindObjectOfType<PlayerStats>().dungeonLevel;
         GameObject[] enemiesToSpawn = groups[Random.Range(0, groups.Length)].enemySet;
+        int spawnNum = Random.Range(0, spawnPoints.Length);
         for (int i = 0; i < enemiesToSpawn.Length; i++)
         {
-            Instantiate(enemiesToSpawn[i], spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position, Quaternion.identity);
+            if (spawnNum >= spawnPoints.Length)
+            {
+                spawnNum = 0;
+            }
+            Instantiate(enemiesToSpawn[i], spawnPoints[spawnNum].transform.position, Quaternion.identity);
+            spawnNum++;
         }
     }
 }
