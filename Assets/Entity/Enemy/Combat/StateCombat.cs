@@ -15,7 +15,6 @@ public class StateCombat : EnemyCombat
         myBase = GetComponent<EnemyBase>();
         myStateMovement = GetComponent<StateMovement>();
         prevState = GetState();
-        myBase.myStats.currentHP = myBase.myStats.maxHP;
     }
 
     // Get the current state by calling the state of the movement

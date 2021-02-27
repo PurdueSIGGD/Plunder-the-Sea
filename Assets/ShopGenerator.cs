@@ -9,6 +9,7 @@ public class ShopGenerator : MonoBehaviour
 
     [SerializeField]
     private Transform[] targets;
+    private bool used = false;
     void Start() {
 
     }
@@ -24,6 +25,11 @@ public class ShopGenerator : MonoBehaviour
             return;
         }
 
+        if (used)
+        {
+            return;
+        }
+        used = true;
         var weaponClasses = (WeaponFactory.CLASS[])System.Enum.GetValues(typeof(WeaponFactory.CLASS));
         foreach (var target in targets)
         {
