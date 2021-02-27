@@ -665,7 +665,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922e87d10e4ac3844990fe5771a1d968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groups: []
+  groups:
+  - {fileID: 11400000, guid: a330833d1958cfa4d9d7dc7bf83de4ff, type: 2}
+  - {fileID: 11400000, guid: a4d46727fa73b0b4ca490decf852e221, type: 2}
+  - {fileID: 11400000, guid: 80dfb9b55b0d39a458ad1bf8ee07fb75, type: 2}
+  - {fileID: 11400000, guid: c2e76d5689eabc14b898d437d63d26f7, type: 2}
   spawnPoints:
   - {fileID: 1875000451238756096}
   - {fileID: 9179916820666658986}

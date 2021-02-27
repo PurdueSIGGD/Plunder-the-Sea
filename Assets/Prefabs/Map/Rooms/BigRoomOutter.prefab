@@ -518,7 +518,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922e87d10e4ac3844990fe5771a1d968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groups: []
+  groups:
+  - {fileID: 11400000, guid: dd5d7bde6c7a34648b618bf56be41811, type: 2}
+  - {fileID: 11400000, guid: ecc3cfe6bab86a243a0cde67ffadb2de, type: 2}
+  - {fileID: 11400000, guid: fb51d86e675ccb841af29bd9fb35d78a, type: 2}
   spawnPoints:
   - {fileID: 8506039308561071460}
   - {fileID: 8044963902418146566}

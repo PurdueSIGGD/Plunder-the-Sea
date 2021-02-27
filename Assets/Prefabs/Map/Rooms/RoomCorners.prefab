@@ -627,7 +627,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922e87d10e4ac3844990fe5771a1d968, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groups: []
+  groups:
+  - {fileID: 11400000, guid: 7272d7948db047942913826e5e752036, type: 2}
+  - {fileID: 11400000, guid: f9d7026184a75914eb4fa8350eb15f11, type: 2}
+  - {fileID: 11400000, guid: 545d3417d8ecfcd4385fdcd8a666fcf9, type: 2}
+  - {fileID: 11400000, guid: 43447fd05a254f94fb83cdd5750d243c, type: 2}
+  - {fileID: 11400000, guid: 47de0f16e662b7e408612799b9f56052, type: 2}
+  - {fileID: 11400000, guid: 0e1144488e6eb6e49a29dfb2c8c5bb4e, type: 2}
+  - {fileID: 11400000, guid: 883d137b7631e364c873439072577058, type: 2}
+  - {fileID: 11400000, guid: 7380e05298ecb324ba3ed11e8eee5bb5, type: 2}
+  - {fileID: 11400000, guid: caaf3a81df26632449cb107b25b1c07e, type: 2}
+  - {fileID: 11400000, guid: 532c903a8040bfa48a1ae03186cc1f5a, type: 2}
   spawnPoints:
   - {fileID: 6072917555327364660}
   - {fileID: 5936016234980890598}
