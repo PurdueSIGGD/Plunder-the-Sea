@@ -401,9 +401,7 @@ public class MapGen : MonoBehaviour
         //spawns enemies
         if (newRoom.x != 0 || newRoom.y != 0)
         {
-            foreach (EnemySpawner ES in g3.GetComponentsInChildren<EnemySpawner>()) { 
-                ES.spawnEnemies();
-            }
+            g3.GetComponent<EnemySpawner>().spawnEnemies();
         }
     }
 
