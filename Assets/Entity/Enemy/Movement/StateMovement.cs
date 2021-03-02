@@ -187,13 +187,13 @@ public class StateMovement : EnemyMovement
     private float targetTime = 0.0f;
 
     // Set a new target time
-    protected void SetTarget(float delay)
+    public void SetTarget(float delay)
     {
         targetTime = Time.time + delay;
     }
 
     // Check if the target time has passed
-    protected bool OnTarget()
+    public bool OnTarget()
     {
         return (Time.time >= targetTime);
     }
