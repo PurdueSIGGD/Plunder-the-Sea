@@ -277,14 +277,13 @@ MonoBehaviour:
   pathingRefresh: 0.25
   maxDist: 10
   targetProximity: 0
-  minDistance: 3
+  minDistance: 4
   maxDistance: 5
   movingTime: 2
   stationaryTime: 2
   transitionTime: 0.4
   vel: {x: 0, y: 0}
   flankState: 0
-  moveVector: {x: 0, y: 0}
 --- !u!1 &6978763189785241747
 GameObject:
   m_ObjectHideFlags: 0

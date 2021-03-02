@@ -19,8 +19,6 @@ public class FlankMovement : StateMovement
     // The amount of time the enemy takes to transition between stages. The enemy doesn't move for these.
     public float transitionTime = 0.4f;
 
-    public Vector2 vel;
-
     // The state of the flanking enemy. There are 4 options, which resemble different points in its movement.
     public enum FlankState
     {
@@ -39,24 +37,24 @@ public class FlankMovement : StateMovement
             switch (flankState)
             {
                 case FlankState.flanking:
+                    // If the minimum time has passed
+                    if (OnTarget())
+                    {
+                        // Set target and change state
+                        flankState = FlankState.stopping;
+                        SetTarget(transitionTime);
+                    }
+
                     // Check if in flanking range
                     if (minDistance <= PlayerDistance() && maxDistance >= PlayerDistance())
                     {
-                        // If the minimum time has passed
-                        if (OnTarget())
-                        {
-                            // Set target and change state
-                            flankState = FlankState.stopping;
-                            SetTarget(transitionTime);
-                        }
-                        else
-                        {
-                            // Stay still if within the range but the minimum flanking time hasn't passed yet
-                            myBase.myRigid.velocity = Vector3.zero;
-                        }
+                        // Stay still if within the range but the minimum flanking time hasn't passed yet
+                        myBase.myRigid.velocity = Vector3.zero;
                     }
                     else if (minDistance > PlayerDistance())
                     {
+
+
                         // Try to get more distance
                         MoveAway();
                     }
