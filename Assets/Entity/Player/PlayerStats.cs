@@ -9,6 +9,7 @@ public class PlayerStats : EntityStats
 {
 
     public PlayerInventory baitInventory;
+    public Fish appliedFish;
     public GameObject healthPickupGameObj;
 
     PlayerBase pbase;

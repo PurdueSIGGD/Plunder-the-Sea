@@ -34,6 +34,12 @@ public class Fish : MonoBehaviour
 
     public void BuffPlayerStats(PlayerBase player)
     {
+        if (player.stats.appliedFish != null)
+        {
+            player.stats.appliedFish.UnbuffPlayerStats(player);
+        }
+
+        //Apply persisting buffs
         player.stats.movementSpeed += buffs[0];
         player.stats.maxHP += buffs[1];
         player.stats.staminaMax += buffs[2];
@@ -42,6 +48,7 @@ public class Fish : MonoBehaviour
         player.stats.weaponInv.weaponMods.rangedDamageAddition += buffs[5];
         player.stats.armorStatic += buffs[6];
 
+        //Store temporary buffs
         buffsApplied[0] = player.stats.movementSpeed * buffsMult[0];
         buffsApplied[1] = player.stats.maxHP * buffsMult[1];
         buffsApplied[2] = player.stats.staminaMax * buffsMult[2];
@@ -50,6 +57,7 @@ public class Fish : MonoBehaviour
         buffsApplied[5] = buffsMult[5];
         buffsApplied[6] = (1 - player.stats.armorMult) * buffsMult[6];
 
+        //Apply temporary buffs
         player.stats.movementSpeed += buffsApplied[0];
         player.stats.maxHP += buffsApplied[1];
         player.stats.staminaMax += buffsApplied[2];
@@ -71,10 +79,12 @@ public class Fish : MonoBehaviour
             }
         }
         player.fishing.SpawnPopupText(text);
+        player.stats.appliedFish = this;
     }
 
     public void UnbuffPlayerStats(PlayerBase player)
     {
+        //Remove temporary buffs
         player.stats.movementSpeed -= buffsApplied[0];
         player.stats.maxHP -= buffsApplied[1];
         player.stats.staminaMax -= buffsApplied[2];
@@ -92,6 +102,8 @@ public class Fish : MonoBehaviour
             }
         }
         player.fishing.SpawnPopupText(text);
+
+        player.stats.appliedFish = null;
     }
 
     bool PassedTarget(Vector3 oldPosition, Vector3 targetPos)

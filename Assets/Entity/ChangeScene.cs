@@ -16,6 +16,14 @@ public class ChangeScene : MonoBehaviour
             {
                 FindObjectOfType<PlayerStats>().dungeonLevel++;
             }
+            else
+            {
+                PlayerBase player = FindObjectOfType<PlayerBase>();
+                if (player.stats.appliedFish != null)
+                {
+                    player.stats.appliedFish.UnbuffPlayerStats(player);
+                }
+            }
             SceneManager.LoadScene(newScene);
         }
     }
