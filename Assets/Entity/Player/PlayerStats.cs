@@ -18,6 +18,8 @@ public class PlayerStats : EntityStats
     public const float baseStaminaRechargeRate = 2f;
     public const float baseMaxHP = 10;
 
+    public int dungeonLevel;
+
     public float staminaMax = 100;
     public float stamina = 100;
     public float staminaRechargeRate = 2f;
@@ -49,6 +51,10 @@ public class PlayerStats : EntityStats
         if (killRegen == 1f) {
             useKillRegen();
         }
+    }
+
+    public bool hasEnoughBait(int baitAmount, int baitType) {
+        return this.baitInventory.baitTypes[baitType] >= baitAmount;
     }
 
     public void useKillRegen() {
@@ -93,6 +99,7 @@ public class PlayerStats : EntityStats
     {
         currentHP = maxHP;
         stamina = staminaMax;
+        dungeonLevel = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -105,7 +112,5 @@ public class PlayerStats : EntityStats
         }
         increaseKillRegen(0.6f * victim.killRegenMult);
     }
-
-    
 
 }

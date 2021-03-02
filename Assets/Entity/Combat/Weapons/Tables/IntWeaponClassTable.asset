@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc888ce5304a61045a1476a7403c8b44, type: 3}
+  m_Name: IntWeaponClassTable
+  m_EditorClassIdentifier: 
+  classIntPairs:
+  - weaponClass: 0
+    integer: 0
+  - weaponClass: 1
+    integer: 0
+  - weaponClass: 2
+    integer: 0
+  - weaponClass: 3
+    integer: 0
+  - weaponClass: 4
+    integer: 0
+  - weaponClass: 5
+    integer: 0
+  - weaponClass: 6
+    integer: 0
+  - weaponClass: 7
+    integer: 0
+  - weaponClass: 8
+    integer: 0
+  - weaponClass: 9
+    integer: 0
+  - weaponClass: 10
+    integer: 0
+  - weaponClass: 11
+    integer: 0
+  - weaponClass: 12
+    integer: 0
+  - weaponClass: 13
+    integer: 0
+  - weaponClass: 14
+    integer: 0
