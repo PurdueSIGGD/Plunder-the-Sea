@@ -10,6 +10,7 @@ public class presetData : ScriptableObject
     public Sprite[] secondaryWalls;
     public Sprite floor;
     public Sprite[] uniques;
+    public Sprite[] voidImages;
     public GameObject[] rooms;
     public GameObject[] halls;
     public GameObject wall;
