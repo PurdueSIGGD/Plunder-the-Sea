@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject[] enemies; //array of enemies that can be spawned, add weighting by duplicating the same enemy multiple times to spawn it more often
-    public float chanceToSpawn = 1f;
+    public enemyGroup[] groups; //groups of enemies that can spawn
+    public GameObject[] spawnPoints;
 
     public void spawnEnemies()
     {
-        int enemyNum = FindObjectOfType<PlayerStats>().dungeonLevel;
-        chanceToSpawn += enemyNum * 0.1f;
-        while(chanceToSpawn > 0) {
-            if (UnityEngine.Random.value <= chanceToSpawn) {
-                Instantiate(enemies[UnityEngine.Random.Range(0, enemies.Length)], transform.position, Quaternion.identity);
+        int level = FindObjectOfType<PlayerStats>().dungeonLevel;
+        GameObject[] enemiesToSpawn = groups[Random.Range(0, groups.Length)].enemySet;
+        int spawnNum = Random.Range(0, spawnPoints.Length);
+        for (int i = 0; i < enemiesToSpawn.Length; i++)
+        {
+            if (spawnNum >= spawnPoints.Length)
+            {
+                spawnNum = 0;
             }
-            chanceToSpawn--;
+            Instantiate(enemiesToSpawn[i], spawnPoints[spawnNum].transform.position, Quaternion.identity);
+            spawnNum++;
         }
     }
 }
