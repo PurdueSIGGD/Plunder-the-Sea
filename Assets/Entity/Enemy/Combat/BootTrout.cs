@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BootTrout : StateCombat
 {
+    public Animator anim;
+    public SpriteRenderer sprite;
+
     // Const values to make coding easier
     const int charging = (int)ChargeMovement.ChargeState.isCharging;
 
@@ -16,8 +19,17 @@ public class BootTrout : StateCombat
     // Update is called once per frame
     void Update()
     {
-        // Boot Trout is very simple, so no extra AI
         current = GetState();
+
+        // Update animation
+        anim.SetInteger("State", current);
+
+        // Face the proper direction unless charging
+        if (current != charging)
+        {
+            sprite.flipX = isPlayerLeft();
+        }
+
         prevState = current;
     }
 

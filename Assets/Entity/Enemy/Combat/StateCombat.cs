@@ -59,4 +59,24 @@ public class StateCombat : EnemyCombat
     {
         return Shoot(projectile, transform.position, myBase.player.transform.position);
     }
+
+    // Returns true if the enemy should be facing left to face the player. Otherwise returns false.
+    public bool isPlayerLeft()
+    {
+        if (myBase.player)
+        {
+            return (myBase.player.transform.position.x < transform.position.x);
+        }
+        return false;
+    }
+
+    // Returns true if the enemy should be facing up to face the player (i.e the player is behind them). Otherwise returns false.
+    public bool isPlayerUp()
+    {
+        if (myBase.player)
+        {
+            return (myBase.player.transform.position.y > transform.position.y);
+        }
+        return false;
+    }
 }
