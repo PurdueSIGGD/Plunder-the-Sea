@@ -19,9 +19,9 @@ public class ChangeScene : MonoBehaviour
             else
             {
                 PlayerBase player = FindObjectOfType<PlayerBase>();
-                if (player.stats.appliedFish != null)
+                if (player.stats.appliedStats != null)
                 {
-                    player.stats.appliedFish.UnbuffPlayerStats(player);
+                    Fish.UnbuffPlayerStats(player);
                 }
             }
             SceneManager.LoadScene(newScene);

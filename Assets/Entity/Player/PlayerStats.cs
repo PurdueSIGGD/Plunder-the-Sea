@@ -9,7 +9,7 @@ public class PlayerStats : EntityStats
 {
 
     public PlayerInventory baitInventory;
-    public Fish appliedFish;
+    public float[] appliedStats;
     public GameObject healthPickupGameObj;
 
     PlayerBase pbase;
@@ -74,6 +74,7 @@ public class PlayerStats : EntityStats
         pbase = GetComponent<PlayerBase>();
         weaponInv = GetComponent<WeaponInventory>();
         baitInventory = GetComponentInChildren(typeof(PlayerInventory), true) as PlayerInventory;
+        appliedStats = null;
     }
 
     private void Update()
