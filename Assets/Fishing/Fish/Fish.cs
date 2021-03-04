@@ -18,7 +18,7 @@ public class Fish : MonoBehaviour
     public float[] buffs = {0f, 0f, 0f, 0f, 0f, 0f, 0f};
     public float[] buffsMult = {0f, 0f, 0f, 0f, 0f, 0f, 0f};
     private float[] buffsApplied;
-    public string[] buffNames = { "Movement Speed", "HP", "Stamina", "Stamina Recharge Rate", "Melee Damage",
+    public static string[] buffNames = { "Movement Speed", "HP", "Stamina", "Stamina Recharge Rate", "Melee Damage",
         "Ranged Damage", "Armor", };
     public GameObject FishingMinigame;
 
@@ -34,9 +34,10 @@ public class Fish : MonoBehaviour
 
     public void BuffPlayerStats(PlayerBase player)
     {
+        string text = "";
         if (player.stats.appliedStats != null)
         {
-            Fish.UnbuffPlayerStats(player);
+            text = Fish.UnbuffPlayerStats(player, false);
         }
 
         //Apply persisting buffs
@@ -66,27 +67,31 @@ public class Fish : MonoBehaviour
         player.stats.weaponInv.weaponMods.rangedDamageMultiplier += buffsApplied[5];
         player.stats.armorMult += buffsApplied[6];
 
-        string text = "";
+        
         for(int i = 0; i < buffs.Length; i++)
         {
             if(buffs[i] > 0f)
             {
-                text += "+" + buffs[i] + " " + buffNames[i] + "\n";
+                text += "+" + buffs[i] + " " + Fish.buffNames[i] + "\n";
             }
             if (buffsApplied[i] > 0f)
             {
-                text += "+" + buffsApplied[i] + " " + buffNames[i] + "\n";
+                text += "+" + buffsApplied[i] + " " + Fish.buffNames[i] + "\n";
             }
         }
         player.fishing.SpawnPopupText(text);
-        Debug.Log(this);
-        Debug.Log(this.GetType());
         player.stats.appliedStats = buffsApplied;
     }
 
-    public static void UnbuffPlayerStats(PlayerBase player)
+    public static string UnbuffPlayerStats(PlayerBase player, bool spawnText = true)
     {
         float[] aStats = player.stats.appliedStats;
+        if (aStats.Length < Fish.buffNames.Length)
+        {
+            Debug.Log("Incompatible applied stats array");
+            return "";
+        }
+
         //Remove temporary buffs
         player.stats.movementSpeed -= aStats[0];
         player.stats.maxHP -= aStats[1];
@@ -101,12 +106,16 @@ public class Fish : MonoBehaviour
         {
             if (aStats[i] > 0f)
             {
-                text += "-" + aStats[i] + " " + aStats[i] + "\n";
+                text += "-" + aStats[i] + " " + Fish.buffNames[i] + "\n";
             }
         }
-        player.fishing.SpawnPopupText(text);
+        if (spawnText)
+        {
+            player.fishing.SpawnPopupText(text);
+        }
 
         player.stats.appliedStats = null;
+        return text;
     }
 
     bool PassedTarget(Vector3 oldPosition, Vector3 targetPos)
