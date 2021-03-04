@@ -359,11 +359,12 @@ MonoBehaviour:
   pathingRefresh: 0.25
   maxDist: 10
   targetProximity: 0
-  chargeDistance: 3
-  chargeSpeed: 15
-  chargeUpTime: 0.25
-  chargeDuration: 0.5
-  chargeCooldown: 1.5
+  chargeDistance: 2.5
+  chargeSpeed: 10
+  chargeUpTime: 1.3
+  chargeDuration: 0.75
+  chargeCooldown: 1
+  moveWhileRecharging: 0
   chargeState: 3
 --- !u!114 &8357049464780184490
 MonoBehaviour:
@@ -381,6 +382,8 @@ MonoBehaviour:
   attackRange: 0.5
   prevState: 0
   myStateMovement: {fileID: 0}
+  sprite: {fileID: 5928287918928385222}
+  anim: {fileID: 395157443853833357}
 --- !u!1001 &4447987134868804293
 PrefabInstance:
   m_ObjectHideFlags: 0

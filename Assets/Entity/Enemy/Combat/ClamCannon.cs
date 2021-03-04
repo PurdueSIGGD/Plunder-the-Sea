@@ -48,7 +48,7 @@ public class ClamCannon : StateCombat
         }
 
         // Shoot if off cooldown and within distance
-        if(OnTarget(shootTarget) && myStateMovement.PlayerDistance() < shootDistance)
+        if(OnTarget(shootTarget) && myStateMovement.PlayerDistance() < shootDistance && playerAngle != Vector3.zero)
         {
             anim.SetInteger("State", 1);
             sprite.flipX = isPlayerLeft();

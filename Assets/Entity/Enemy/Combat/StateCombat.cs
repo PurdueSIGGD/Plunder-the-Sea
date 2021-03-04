@@ -10,6 +10,9 @@ public class StateCombat : EnemyCombat
     [HideInInspector]
     public StateMovement myStateMovement;
 
+    // The distance used by isPlayerUp to determine if an enemy is truly "below" the player, used to make animations bias towards front-facing ones.
+    public static float belowThreshold = 0.5f;
+
     private void Start()
     {
         myBase = GetComponent<EnemyBase>();
@@ -75,7 +78,7 @@ public class StateCombat : EnemyCombat
     {
         if (myBase.player)
         {
-            return (myBase.player.transform.position.y > transform.position.y);
+            return ((myBase.player.transform.position.y - belowThreshold) > transform.position.y);
         }
         return false;
     }
