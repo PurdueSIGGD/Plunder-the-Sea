@@ -11,7 +11,7 @@ public class StateCombat : EnemyCombat
     public StateMovement myStateMovement;
 
     // The distance used by isPlayerUp to determine if an enemy is truly "below" the player, used to make animations bias towards front-facing ones.
-    public static float belowThreshold = 0.5f;
+    public static float belowThreshold = 0.75f;
 
     private void Start()
     {
