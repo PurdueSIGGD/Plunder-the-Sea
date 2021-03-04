@@ -13,8 +13,12 @@ public class GatlingSquid : StateCombat
     public float firingCooldown = 0.1f;
     private float firingTracker = 0;
 
-    // How long the gatling squid can fire before reloading
-
+    // How many shots the gatling squid can fire before reloading
+    public float clipSize = 40f;
+    public float reloadTime = 0.5f;
+    private float reloadTracker = 0;
+    private float clipCounter = 0f;
+    private bool reloading = false;
 
     // How long before each time the gatling squid searches
     public float searchCooldown = 0.25f;
@@ -40,9 +44,24 @@ public class GatlingSquid : StateCombat
         // Variable to ensure that the state used for comparison doesn't change partway through Update()
         int current = GetState();
 
+        // If the gatling squid should be reloading
+        if (reloading)
+        {
+            if (OnTarget(reloadTracker))
+            {
+                // Exit once reloading is complete
+                reloading = false;
+                clipCounter = 0;
+                return;
+            }
+            // Otherwise do nothing AI-wise, so reloading isn't interrupted
+            return;
+        }
+
         switch (current)
         {
             case cooldown:
+                
                 if (OnTarget(searchTarget))
                 {
                    // Get closer to the enemy if they're hiding behind a wall
