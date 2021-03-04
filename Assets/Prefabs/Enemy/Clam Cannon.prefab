@@ -376,6 +376,8 @@ MonoBehaviour:
   attackRange: 0.5
   prevState: 0
   myStateMovement: {fileID: 0}
+  sprite: {fileID: 6112569577086481303}
+  anim: {fileID: 4257575152065558771}
   searchCooldown: 0
   shootCooldown: 1
   shootDistance: 8

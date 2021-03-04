@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ClamCannon : StateCombat
 {
+    // Sprite references
+    public SpriteRenderer sprite;
+    public Animator anim;
+
     // Variables for operating
     private static LayerMask mask;
     private Vector3 playerAngle = Vector3.zero;
@@ -46,8 +50,15 @@ public class ClamCannon : StateCombat
         // Shoot if off cooldown and within distance
         if(OnTarget(shootTarget) && myStateMovement.PlayerDistance() < shootDistance)
         {
+            anim.SetInteger("State", 1);
+            sprite.flipX = isPlayerLeft();
             Projectile p = Shoot(pearlShot, transform.position, transform.position + playerAngle);
             shootTarget = SetTarget(shootCooldown);
+        }
+
+        if (myStateMovement.PlayerDistance() > shootDistance)
+        {
+            anim.SetInteger("State", 0);
         }
     }
 }
