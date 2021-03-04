@@ -161,11 +161,11 @@ MonoBehaviour:
   currentHP: 15
   armorMult: 0.5
   armorStatic: 0
-  killRegenMult: 0
+  killRegenMult: 1
   healthbar: {fileID: 265345590154777155}
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 10
-  damage: 1
+  damage: 10
   numberOfTimesToRespawn: 0
   dropTable: ffffffff
   dropOdds:

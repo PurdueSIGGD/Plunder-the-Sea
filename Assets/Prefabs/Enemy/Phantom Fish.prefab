@@ -165,7 +165,7 @@ MonoBehaviour:
   healthbar: {fileID: 1744128257473083715}
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 1
-  damage: 1
+  damage: 10
   numberOfTimesToRespawn: 0
   dropTable: ffffffff00000000010000000200000003000000
   dropOdds:
