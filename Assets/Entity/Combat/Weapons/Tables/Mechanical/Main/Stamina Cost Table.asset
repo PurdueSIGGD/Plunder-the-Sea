@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classFloatPairs:
   - name: 0
-    floatValue: 5
-  - name: 2
-    floatValue: 1
-  - name: 4
-    floatValue: 1
-  - name: 5
     floatValue: 15
-  - name: 9
+  - name: 2
     floatValue: 5
+  - name: 4
+    floatValue: 10
+  - name: 5
+    floatValue: 5
+  - name: 9
+    floatValue: 15
   - name: 11
     floatValue: 15
   - name: 14

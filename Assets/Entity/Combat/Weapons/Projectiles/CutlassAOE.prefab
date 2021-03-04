@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 8161092618706017957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.24482524, y: 0.3736541, z: -0.39736184}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 1670929204730862735}
   m_Father: {fileID: 0}
@@ -130,12 +130,27 @@ MonoBehaviour:
   lifeTime: 0.15
   currentLifeTime: 0
   damage: 1
-  destroyOnCollide: 1
+  mods: []
   pierceCount: 0
   source: {fileID: 0}
   tables: {fileID: 0}
   weaponClass: 0
   direction: {x: 0, y: 0}
+  destroyOnCollide: 1
+  destroyOnNonEntity: 0
+  friendlyFire: 0
+  reflectMelee: 0
+  reflectRanged: 0
+  collideWithProjectile: 0
+  collideWithWall: 1
+  attrHit:
+    name: 
+    type: 0
+    value: 0
+    duration: 0
+    stackable: 0
+    isAdditive: 0
+  attrChance: 0
   speed: 0
   sourceTag: 
 --- !u!61 &2719860953006305366
