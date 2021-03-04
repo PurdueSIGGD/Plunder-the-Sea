@@ -95,7 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 6
   currentLifeTime: 0
-  damage: 0
+  damage: 0.5
   mods: []
   pierceCount: 0
   source: {fileID: 0}

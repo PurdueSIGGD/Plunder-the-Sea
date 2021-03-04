@@ -13,12 +13,15 @@ public class GatlingSquid : StateCombat
     public float firingCooldown = 0.1f;
     private float firingTracker = 0;
 
-    // How many shots the gatling squid can fire before reloading
+    // How many shots the gatling squid can fire before reloading, and how long it takes to reload
     public float clipSize = 40f;
-    public float reloadTime = 0.5f;
+    public float reloadTime = 1.5f;
     private float reloadTracker = 0;
     private float clipCounter = 0f;
     private bool reloading = false;
+
+    // How much shots can spread, in degrees
+    public float shotSpread = 10.0f;
 
     // How long before each time the gatling squid searches
     public float searchCooldown = 0.25f;
@@ -52,6 +55,7 @@ public class GatlingSquid : StateCombat
                 // Exit once reloading is complete
                 reloading = false;
                 clipCounter = 0;
+                myStateMovement.moving = true;
                 return;
             }
             // Otherwise do nothing AI-wise, so reloading isn't interrupted
@@ -74,10 +78,18 @@ public class GatlingSquid : StateCombat
                     searchTarget = SetTarget(searchCooldown);
                 }
                 // Try to shoot if possible and the cooldown allows
-                if (OnTarget(firingTracker))
+                if (OnTarget(firingTracker) && clipCounter < clipSize)
                 {
-                    Shoot(squidBullet);
+                    Projectile bullet = Shoot(squidBullet);
+                    Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                    rb.velocity = Quaternion.AngleAxis(Random.Range(-shotSpread,shotSpread), Vector3.forward) * rb.velocity;
+                    clipCounter++;
                     firingTracker = SetTarget(firingCooldown);
+                } else if (clipCounter >= clipSize)
+                {
+                    reloading = true;
+                    reloadTracker = SetTarget(reloadTime);
+                    myStateMovement.moving = false;
                 }
                 break;
             case approaching:
