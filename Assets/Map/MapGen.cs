@@ -20,6 +20,9 @@ public class MapGen : MonoBehaviour
     private Sprite mainWall;
     private Sprite[] secondaryWalls;
     private Sprite[] uniqueObjects;
+    private Sprite[] voidObjects;
+    [SerializeField]
+    private GameObject voidPrefab;
 
     public GameObject goal;
 
@@ -94,7 +97,8 @@ public class MapGen : MonoBehaviour
         mainWall = PD.mainWall;
         secondaryWalls = PD.secondaryWalls;
         uniqueObjects = PD.uniques;
-}
+        voidObjects = PD.voidImages;
+    }
 
     // Update is called once per frame
     public void generate()
@@ -199,6 +203,21 @@ public class MapGen : MonoBehaviour
         foreach (SpriteRenderer SR in toMove)
         {
             SR.transform.position -= Vector3.forward;
+        }
+
+        //adds a few void object for each grid area
+        int gridScale = roomDist + roomWidth;
+        int maxSize = truePathLength + maxBranchLength;
+        for (int i = -maxSize; i <= maxSize; i++)
+        {
+            for (int j = -maxSize; j <= maxSize; j++)
+            {
+                for (int k = 0; k < gridScale; k++)
+                {
+                    GameObject g = Instantiate(voidPrefab, new Vector3(i * gridScale + UnityEngine.Random.Range(0, gridScale) - 0.5f, j * gridScale + UnityEngine.Random.Range(0, gridScale) - 0.5f, 2), Quaternion.identity);
+                    g.GetComponent<SpriteRenderer>().sprite = voidObjects[UnityEngine.Random.Range(0, voidObjects.Length)];
+                }
+            }
         }
 
     }
@@ -401,9 +420,7 @@ public class MapGen : MonoBehaviour
         //spawns enemies
         if (newRoom.x != 0 || newRoom.y != 0)
         {
-            foreach (EnemySpawner ES in g3.GetComponentsInChildren<EnemySpawner>()) { 
-                ES.spawnEnemies();
-            }
+            g3.GetComponent<EnemySpawner>().spawnEnemies();
         }
     }
 
