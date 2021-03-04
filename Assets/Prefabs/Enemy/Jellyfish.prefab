@@ -156,16 +156,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09ab1ea068274d69a030af1a1ff03d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 2
-  maxHP: 1
-  currentHP: 1
-  armorMult: 0
+  movementSpeed: 4
+  maxHP: 15
+  currentHP: 15
+  armorMult: 0.5
   armorStatic: 0
+  killRegenMult: 1
   healthbar: {fileID: 2201514445343193906}
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 10
   damage: 1
   numberOfTimesToRespawn: 0
+  dropTable: ffffffff00000000010000000200000003000000
+  dropOdds:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  dropRange: 0
 --- !u!58 &3745949659714890756
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -196,8 +205,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
   moving: 0
+  moveTypes: 0000000001000000
   pathingRefresh: 0.25
   maxDist: 10
+  targetProximity: 0
   chargeDistance: 3
   chargeSpeed: 2
   chargeUpTime: 0
@@ -223,19 +234,19 @@ MonoBehaviour:
   stickTime: 2.5
   cooldownTime: 1
   stickSpeed:
+    name: 
     type: 0
     value: 0
     duration: 0
     stackable: 0
     isAdditive: 0
   stickDamage:
+    name: 
     type: 0
     value: 0
     duration: 0
     stackable: 0
     isAdditive: 0
-  isSticking: 0
-  isCooldown: 0
 --- !u!1 &8234503954636331436
 GameObject:
   m_ObjectHideFlags: 0

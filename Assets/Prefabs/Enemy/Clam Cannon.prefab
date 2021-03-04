@@ -131,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7975743969792835165}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.33, y: 1.34, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4339684511153228824}
@@ -256,15 +256,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
-  maxHP: 1
-  currentHP: 1
-  armorMult: 0
+  maxHP: 20
+  currentHP: 20
+  armorMult: 0.5
   armorStatic: 0
+  killRegenMult: 1
   healthbar: {fileID: 5832764184097074823}
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 10
   damage: 1
   numberOfTimesToRespawn: 0
+  dropTable: ffffffff00000000010000000200000003000000
+  dropOdds:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  dropRange: 0
 --- !u!58 &9044130717736729009
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -295,8 +304,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
   moving: 0
+  moveTypes: 0000000001000000
   pathingRefresh: 0.25
   maxDist: 10
+  targetProximity: 0
   movementState: 0
 --- !u!114 &6207880432243840487
 MonoBehaviour:
@@ -318,7 +329,6 @@ MonoBehaviour:
   shootCooldown: 1
   shootDistance: 8
   pearlShot: {fileID: 8419220994995289636, guid: 5fadcbc94a4619f42823350a153981c5, type: 3}
-  pearlShotSpeed: 5
 --- !u!1001 &4339684510288728742
 PrefabInstance:
   m_ObjectHideFlags: 0

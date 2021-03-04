@@ -49,7 +49,7 @@ public class WeaponInventory : MonoBehaviour
         }
 
         spriteRen = new GameObject().AddComponent<SpriteRenderer>();
-        spriteRen.transform.localScale = this.transform.localScale * 1.5f;
+        spriteRen.transform.localScale = this.transform.localScale * 0.5f; //gunScale
         spriteRen.transform.position = this.transform.position;
         spriteRen.transform.SetParent(this.transform);
 
@@ -140,7 +140,7 @@ public class WeaponInventory : MonoBehaviour
             pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
 
             pStats.prefab = projectilePrefabTable.get(weaponClass);
-            pStats.prefab.transform.localScale = Vector3.one * (1 + weaponMods.meleeSizeAddition) * weaponMods.meleeSizeMultiplier;
+            pStats.prefab.transform.localScale = Vector3.one * (1 + weaponMods.meleeSizeAddition) * weaponMods.meleeSizeMultiplier * 0.5f; //swordScale
         }
 
         //pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;

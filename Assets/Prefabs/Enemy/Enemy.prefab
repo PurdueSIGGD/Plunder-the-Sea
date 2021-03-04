@@ -270,15 +270,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
-  maxHP: 1
-  currentHP: 1
+  maxHP: 100
+  currentHP: 100
   armorMult: 0
   armorStatic: 0
+  killRegenMult: 1
   healthbar: {fileID: 7839513570301541432}
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 10
   damage: 1
   numberOfTimesToRespawn: 0
+  dropTable: ffffffff00000000010000000200000003000000
+  dropOdds:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  dropRange: 0
 --- !u!58 &4736270485073046286
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -308,14 +317,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
-  moving: 0
-  moveTypes: 0000000001000000
-  pathingRefresh: 0.25
-  maxDist: 10
-  approachDistance: 0.5
-  actChargeUpTime: 1
-  actCooldownTime: 1
-  approachState: 0
   attackRange: 0.5
 --- !u!1001 &185663513
 PrefabInstance:

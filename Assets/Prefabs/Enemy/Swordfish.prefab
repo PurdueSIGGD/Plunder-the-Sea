@@ -131,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8010861710391754302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0042504, y: 1.2438434, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4447987135195581563}
@@ -256,15 +256,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
-  maxHP: 1
-  currentHP: 1
+  maxHP: 30
+  currentHP: 30
   armorMult: 0
-  armorStatic: 0
+  armorStatic: 5
+  killRegenMult: 1
   healthbar: {fileID: 5868718857868324580}
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 1
   damage: 1
   numberOfTimesToRespawn: 0
+  dropTable: ffffffff00000000010000000200000003000000
+  dropOdds:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  dropRange: 0
 --- !u!58 &8935405896062728658
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -298,6 +307,7 @@ MonoBehaviour:
   moveTypes: 0000000001000000
   pathingRefresh: 0.25
   maxDist: 10
+  targetProximity: 0
   chargeDistance: 3
   chargeSpeed: 15
   chargeUpTime: 0.25
