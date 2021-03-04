@@ -76,7 +76,12 @@ public class Fish : MonoBehaviour
             }
             if (buffsApplied[i] > 0f)
             {
-                text += "+" + buffsApplied[i] + " " + Fish.buffNames[i] + "\n";
+                text += "+" + buffsApplied[i] + " " + Fish.buffNames[i];
+                if (i >= 4)
+                {
+                    text += " Multiplier";
+                }
+                text += "\n";
             }
         }
         player.fishing.SpawnPopupText(text);
@@ -106,7 +111,12 @@ public class Fish : MonoBehaviour
         {
             if (aStats[i] > 0f)
             {
-                text += "-" + aStats[i] + " " + Fish.buffNames[i] + "\n";
+                text += "-" + aStats[i] + " " + Fish.buffNames[i];
+                if (i >= 4)
+                {
+                    text += " Multiplier";
+                }
+                text += "\n";
             }
         }
         if (spawnText)

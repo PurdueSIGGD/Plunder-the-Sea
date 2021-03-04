@@ -16,15 +16,17 @@ public class ChangeScene : MonoBehaviour
             {
                 FindObjectOfType<PlayerStats>().dungeonLevel++;
             }
-            else
+            
+            SceneManager.LoadScene(newScene);
+            if (newScene == "FishPond")
             {
+                Debug.Log("Fish time");
                 PlayerBase player = FindObjectOfType<PlayerBase>();
                 if (player.stats.appliedStats != null)
                 {
                     Fish.UnbuffPlayerStats(player);
                 }
             }
-            SceneManager.LoadScene(newScene);
         }
     }
 }
