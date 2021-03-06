@@ -107,14 +107,28 @@ MonoBehaviour:
   lootLevel: 1
   buffs:
   - 0
+  - 0
   - 20
+  - 0
+  - 0
+  - 0
+  - 0
+  buffsMult:
+  - 0
+  - 0
+  - 0.5
+  - 0
+  - 0
   - 0
   - 0
   buffNames:
   - Movement Speed
-  - Stamina
   - HP
+  - Stamina
   - Stamina Recharge Rate
+  - Melee Damage
+  - Ranged Damage
+  - Armor
   FishingMinigame: {fileID: 0}
   sprite: {fileID: 0}
 --- !u!50 &-8485167538343993492
