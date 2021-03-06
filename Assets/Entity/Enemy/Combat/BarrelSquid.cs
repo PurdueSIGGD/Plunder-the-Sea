@@ -53,7 +53,7 @@ public class BarrelSquid : StateCombat
                 //sprite.flipX = isPlayerLeft();
                 //sprite.flipY = isPlayerUp();
 
-                if (myBase.myRigid.velocity.magnitude >= 0.001f)
+                if (myBase != null && myBase.myRigid != null && myBase.myRigid.velocity.magnitude >= 0.001f)
                 {
                     anim.speed = 1.0f;
 

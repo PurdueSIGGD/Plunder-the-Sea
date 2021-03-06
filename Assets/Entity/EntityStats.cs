@@ -70,7 +70,7 @@ public class EntityStats : MonoBehaviour
         {
             multiplier = (int) Mathf.Min(1 + transform.GetComponent<PlayerStats>().dungeonLevel * 0.1f, 2);
         }
-        float realDmg = Mathf.Max((amount  - armorStatic), 0) * multiplier * Mathf.Max(1 - armorMult, 0);
+        float realDmg = Mathf.Max((amount  - armorStatic), Mathf.Min(1, amount)) * multiplier * Mathf.Max(1 - armorMult, 0);
 
         bool died = false;
         currentHP -= realDmg;
