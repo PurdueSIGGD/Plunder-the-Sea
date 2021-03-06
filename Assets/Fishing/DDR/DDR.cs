@@ -76,12 +76,13 @@ public class DDR : MonoBehaviour
     void Update()
     {
 
-        bool[] input = { Input.GetKeyDown(KeyCode.LeftArrow), Input.GetKeyDown(KeyCode.UpArrow), Input.GetKeyDown(KeyCode.DownArrow), Input.GetKeyDown(KeyCode.RightArrow) };
+        bool[] input = { Input.GetKeyDown(KeyCode.LeftArrow), Input.GetKeyDown(KeyCode.UpArrow), Input.GetKeyDown(KeyCode.DownArrow), Input.GetKeyDown(KeyCode.RightArrow),
+                            Input.GetKeyDown(KeyCode.A), Input.GetKeyDown(KeyCode.W), Input.GetKeyDown(KeyCode.S), Input.GetKeyDown(KeyCode.D)};
 
         for (int i = 0; i < arrowTargets.Length; i++)
         {
             //Input check
-            if (input[i])
+            if (input[i] || input[i+4])
             {
 
                 int score = -perfectScore;//Complete miss is negative perfect

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9c09bc3ad83c4f40a5361b512832d25, type: 3}
+  m_Name: wellRoundedGroup4
+  m_EditorClassIdentifier: 
+  enemySet:
+  - {fileID: 5338947076325555132, guid: 6bfd232b6cc98ab4da3f8b76052d4f59, type: 3}
+  - {fileID: 5338947076325555132, guid: 6bfd232b6cc98ab4da3f8b76052d4f59, type: 3}
+  - {fileID: 2767971687338764697, guid: 2a106c8c9d7977b4d85246506761f08a, type: 3}
+  - {fileID: 2767971687338764697, guid: 2a106c8c9d7977b4d85246506761f08a, type: 3}
+  - {fileID: 7975743969792835165, guid: 5f698519e731e22418c54839683d080f, type: 3}
