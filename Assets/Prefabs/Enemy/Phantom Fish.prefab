@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1990761194686808809}
   - component: {fileID: 3838601318679195253}
   - component: {fileID: 7817703052618813987}
-  - component: {fileID: 7817703052618813984}
+  - component: {fileID: 5762531300531257094}
   m_Layer: 0
   m_Name: Phantom Fish
   m_TagString: Enemy
@@ -161,11 +161,20 @@ MonoBehaviour:
   currentHP: 1
   armorMult: 0
   armorStatic: 0
+  killRegenMult: 1
   healthbar: {fileID: 1744128257473083715}
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 1
   damage: 1
   numberOfTimesToRespawn: 0
+  dropTable: ffffffff00000000010000000200000003000000
+  dropOdds:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  dropRange: 0
 --- !u!58 &3838601318679195253
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -204,7 +213,7 @@ MonoBehaviour:
   actChargeUpTime: 0
   actCooldownTime: 0
   approachState: 0
---- !u!114 &7817703052618813984
+--- !u!114 &5762531300531257094
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,20 +222,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2767971687338764697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6571343b817b3340afe2ec54d2514e7, type: 3}
+  m_Script: {fileID: 11500000, guid: e4e42849e76b41c43bf7c2208a36bd7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
   attackRange: 0.5
   prevState: 0
   myStateMovement: {fileID: 0}
-  fireProjectile: {fileID: 440332554722693003, guid: f7fa7628e965c584c8b722e6e0b40d5d, type: 3}
-  fireCooldown: 0.05
-  fireDistance: 5
-  fireSpread: 0.2
-  deathSpread: 0.4
-  deathCount: 5
-  deathLinger: 5
+  fireProjectile: {fileID: 1833207429367906764, guid: b4b0a00483ec5fa4395b3ce499fe1b00, type: 3}
+  fireCooldown: 0.5
+  fireDistance: 3
 --- !u!1 &8430720250744462301
 GameObject:
   m_ObjectHideFlags: 0
