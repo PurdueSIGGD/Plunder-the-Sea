@@ -165,7 +165,7 @@ MonoBehaviour:
     name: Venom
     type: 5
     value: 1
-    duration: 10
+    duration: 5
     stackable: 0
     isAdditive: 0
   attrChance: 1
