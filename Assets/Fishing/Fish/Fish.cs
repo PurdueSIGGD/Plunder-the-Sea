@@ -16,7 +16,9 @@ public class Fish : MonoBehaviour
     private float maxWaitTime;
     public int lootLevel;
     public float[] buffs = {0f, 0f, 0f, 0f, 0f, 0f, 0f};
-    public string[] buffNames = { "Movement Speed", "HP", "Stamina", "Stamina Recharge Rate", "Melee Damage",
+    public float[] buffsMult = {0f, 0f, 0f, 0f, 0f, 0f, 0f};
+    private float[] buffsApplied;
+    public static string[] buffNames = { "Movement Speed", "HP", "Stamina", "Stamina Recharge Rate", "Melee Damage",
         "Ranged Damage", "Armor", };
     public GameObject FishingMinigame;
 
@@ -27,23 +29,103 @@ public class Fish : MonoBehaviour
         StartCoroutine(MoveRandomly());
         transform.eulerAngles = new Vector3(0, 0, Random.Range(0f, 360f));
         sprite = this.GetComponent<SpriteRenderer>().sprite;
+        buffsApplied = new float[buffsMult.Length];
     }
 
     public void BuffPlayerStats(PlayerBase player)
     {
+        string text = "";
+        if (player.stats.appliedStats != null)
+        {
+            text = Fish.UnbuffPlayerStats(player, false);
+        }
+
+        //Apply persisting buffs
         player.stats.movementSpeed += buffs[0];
         player.stats.maxHP += buffs[1];
         player.stats.staminaMax += buffs[2];
         player.stats.staminaRechargeRate += buffs[3];
-        string text = "";
+        player.stats.weaponInv.weaponMods.meleeDamageAddition += buffs[4];
+        player.stats.weaponInv.weaponMods.rangedDamageAddition += buffs[5];
+        player.stats.armorStatic += buffs[6];
+
+        //Store temporary buffs
+        buffsApplied[0] = player.stats.movementSpeed * buffsMult[0];
+        buffsApplied[1] = player.stats.maxHP * buffsMult[1];
+        buffsApplied[2] = player.stats.staminaMax * buffsMult[2];
+        buffsApplied[3] = player.stats.staminaRechargeRate * buffsMult[3];
+        buffsApplied[4] = buffsMult[4];
+        buffsApplied[5] = buffsMult[5];
+        buffsApplied[6] = (1 - player.stats.armorMult) * buffsMult[6];
+
+        //Apply temporary buffs
+        player.stats.movementSpeed += buffsApplied[0];
+        player.stats.maxHP += buffsApplied[1];
+        player.stats.staminaMax += buffsApplied[2];
+        player.stats.staminaRechargeRate += buffsApplied[3];
+        player.stats.weaponInv.weaponMods.meleeDamageMultiplier += buffsApplied[4];
+        player.stats.weaponInv.weaponMods.rangedDamageMultiplier += buffsApplied[5];
+        player.stats.armorMult += buffsApplied[6];
+
+        
         for(int i = 0; i < buffs.Length; i++)
         {
             if(buffs[i] > 0f)
             {
-                text += "+" + buffs[i] + " " + buffNames[i] + "\n";
+                text += "+" + buffs[i] + " " + Fish.buffNames[i] + "\n";
+            }
+            if (buffsApplied[i] > 0f)
+            {
+                text += "+" + buffsApplied[i] + " " + Fish.buffNames[i];
+                if (i >= 4)
+                {
+                    text += " Multiplier";
+                }
+                text += "\n";
             }
         }
         player.fishing.SpawnPopupText(text);
+        player.stats.appliedStats = buffsApplied;
+    }
+
+    public static string UnbuffPlayerStats(PlayerBase player, bool spawnText = true)
+    {
+        float[] aStats = player.stats.appliedStats;
+        if (aStats.Length < Fish.buffNames.Length)
+        {
+            Debug.Log("Incompatible applied stats array");
+            return "";
+        }
+
+        //Remove temporary buffs
+        player.stats.movementSpeed -= aStats[0];
+        player.stats.maxHP -= aStats[1];
+        player.stats.staminaMax -= aStats[2];
+        player.stats.staminaRechargeRate -= aStats[3];
+        player.stats.weaponInv.weaponMods.meleeDamageMultiplier -= aStats[4];
+        player.stats.weaponInv.weaponMods.rangedDamageMultiplier -= aStats[5];
+        player.stats.armorMult -= aStats[6];
+
+        string text = "";
+        for (int i = 0; i < aStats.Length; i++)
+        {
+            if (aStats[i] > 0f)
+            {
+                text += "-" + aStats[i] + " " + Fish.buffNames[i];
+                if (i >= 4)
+                {
+                    text += " Multiplier";
+                }
+                text += "\n";
+            }
+        }
+        if (spawnText)
+        {
+            player.fishing.SpawnPopupText(text);
+        }
+
+        player.stats.appliedStats = null;
+        return text;
     }
 
     bool PassedTarget(Vector3 oldPosition, Vector3 targetPos)

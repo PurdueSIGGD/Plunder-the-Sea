@@ -18,6 +18,9 @@ MonoBehaviour:
   floor: {fileID: 21300000, guid: 36447b5dfa5fc7249af54eff9eb85875, type: 3}
   uniques:
   - {fileID: 21300000, guid: 663f807d7d328aa47abb10ffe8a4b001, type: 3}
+  voidImages:
+  - {fileID: 21300000, guid: c3860943da1ebf04a80baa8f5ccf9cec, type: 3}
+  - {fileID: 21300000, guid: def9600ad1fc61f40874ac4c2a5efbc4, type: 3}
   rooms:
   - {fileID: 2622923088835361031, guid: 5ceeef11d841cdb4ca38940bfa924c05, type: 3}
   - {fileID: 1485195680733021285, guid: 9fd3ec71699480d43a461ad905def242, type: 3}

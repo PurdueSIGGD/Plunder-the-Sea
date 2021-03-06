@@ -101,6 +101,7 @@ MonoBehaviour:
   speed: 2
   rotationSpeed: 0.25
   preferredBaitType: 0
+  wrongBaitCatchPercent: 0.25
   minWaitTime: 4
   maxWaitTime: 8
   lootLevel: 0
@@ -112,6 +113,14 @@ MonoBehaviour:
   - 0
   - 10
   - 0
+  buffsMult:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0.5
+  - 0
   buffNames:
   - Movement Speed
   - HP
@@ -121,6 +130,7 @@ MonoBehaviour:
   - Ranged Damage
   - Armor
   FishingMinigame: {fileID: 0}
+  sprite: {fileID: 0}
 --- !u!50 &7486588697838117084
 Rigidbody2D:
   serializedVersion: 4
