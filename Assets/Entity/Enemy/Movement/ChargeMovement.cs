@@ -19,6 +19,9 @@ public class ChargeMovement : StateMovement
     // The time after a charge before the charge can be used again (enemy will move normally if able to)
     public float chargeCooldown = 0.5f;
 
+    // Whether the enemy can move when recharging.
+    public bool moveWhileRecharging = true;
+
     // The state of the charging enemy. There are 4 options, which resemble different points in its movement.
     public enum ChargeState
     {
@@ -30,7 +33,7 @@ public class ChargeMovement : StateMovement
     public ChargeState chargeState = ChargeState.ready;
 
     // The target angle.
-    private Vector2 targetAngle;
+    public Vector2 targetAngle;
 
     // Update is called once per frame
     void Update()
@@ -86,8 +89,14 @@ public class ChargeMovement : StateMovement
                     break;
 
                 case ChargeState.isRecharging:
-                    // Move normally
-                    MoveTowards();
+                    // Move normally if moveWhileRecharging is enabled
+                    if (moveWhileRecharging)
+                    {
+                        MoveTowards();
+                    } else
+                    {
+                        myBase.myRigid.velocity = Vector2.zero;
+                    }                    
 
                     // Advance state if it finishes recharging
                     if (OnTarget())

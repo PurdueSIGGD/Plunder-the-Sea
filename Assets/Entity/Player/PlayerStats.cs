@@ -9,10 +9,12 @@ public class PlayerStats : EntityStats
 {
 
     public PlayerInventory baitInventory;
+    public float[] appliedStats;
     public GameObject healthPickupGameObj;
 
     PlayerBase pbase;
-    WeaponInventory weaponInv;
+    [HideInInspector]
+    public WeaponInventory weaponInv;
     public const float baseMovementSpeed = 10;
     public const float baseStaminaMax = 100;
     public const float baseStaminaRechargeRate = 2f;
@@ -72,6 +74,7 @@ public class PlayerStats : EntityStats
         pbase = GetComponent<PlayerBase>();
         weaponInv = GetComponent<WeaponInventory>();
         baitInventory = GetComponentInChildren(typeof(PlayerInventory), true) as PlayerInventory;
+        appliedStats = null;
     }
 
     private void Update()

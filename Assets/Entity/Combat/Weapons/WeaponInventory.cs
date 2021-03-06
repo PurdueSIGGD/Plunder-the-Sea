@@ -37,7 +37,7 @@ public class WeaponInventory : MonoBehaviour
     private WeaponTables tables;
 
     //stores player weapon modifiers
-    private PlayerClasses.WeaponModifiers weaponMods = new PlayerClasses.WeaponModifiers();
+    public PlayerClasses.WeaponModifiers weaponMods = new PlayerClasses.WeaponModifiers();
 
     private void Start()
     {
@@ -144,7 +144,6 @@ public class WeaponInventory : MonoBehaviour
         }
 
         //pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
-
         return pStats;
     }
     public Sprite getWeaponImage(bool isMelee)
