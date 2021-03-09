@@ -79,7 +79,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.12, y: 0.12}
   m_EdgeRadius: 0
 --- !u!114 &2659208062355153648
 MonoBehaviour:
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 6
   currentLifeTime: 0
-  damage: 0.5
+  damage: 1
   mods: []
   pierceCount: 0
   source: {fileID: 0}
@@ -117,7 +117,7 @@ MonoBehaviour:
     stackable: 0
     isAdditive: 0
   attrChance: 0
-  speed: 12
+  speed: 9
   sourceTag: 
 --- !u!1 &6648705215132145162
 GameObject:
@@ -144,8 +144,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6648705215132145162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.012, y: 0.012, z: 0}
-  m_LocalScale: {x: 2.3, y: 2.3, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 138935739596235202}
   m_RootOrder: 0
