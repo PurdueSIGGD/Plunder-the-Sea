@@ -106,9 +106,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
-  maxHP: 1
-  currentHP: 1
-  armorMult: 0
+  maxHP: 30
+  currentHP: 30
+  armorMult: 0.25
   armorStatic: 0
   killRegenMult: 1
   healthbar: {fileID: 2201514445343193906}
@@ -163,7 +163,9 @@ MonoBehaviour:
   chargeUpTime: 0
   chargeDuration: 2
   chargeCooldown: 0
+  moveWhileRecharging: 1
   chargeState: 3
+  targetAngle: {x: 0, y: 0}
 --- !u!114 &-665727340696724966
 MonoBehaviour:
   m_ObjectHideFlags: 0

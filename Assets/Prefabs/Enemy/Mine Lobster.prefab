@@ -131,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7035775119580984967}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.77967316, y: 0.63602674, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 3689073452060067010}
@@ -256,14 +256,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
-  maxHP: 30
-  currentHP: 1
+  maxHP: 50
+  currentHP: 50
   armorMult: 0
-  armorStatic: 0
+  armorStatic: 5
+  killRegenMult: 1
   healthbar: {fileID: 6915757495020086877}
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 1
-  damage: 1
+  damage: 20
   numberOfTimesToRespawn: 0
   dropTable: ffffffff00000000010000000200000003000000
   dropOdds:
@@ -332,8 +333,6 @@ MonoBehaviour:
   mineCooldown: 2
   mineDistance: 3
   mineSpread: 0.2
-  deathSpread: 0.4
-  deathCount: 4
 --- !u!1001 &3689073452286122620
 PrefabInstance:
   m_ObjectHideFlags: 0
