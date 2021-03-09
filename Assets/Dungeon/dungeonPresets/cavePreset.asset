@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a91a6ad89db8cd94a9a31cb4c554a12e, type: 3}
   m_Name: cavePreset
   m_EditorClassIdentifier: 
-  mainWall: {fileID: 21300000, guid: fd273577d27833f43bcd1de4c6a31781, type: 3}
+  mainWall: {fileID: 21300000, guid: 17e0c94b589f8a849b2cbd1116c0789a, type: 3}
   secondaryWalls:
-  - {fileID: 21300000, guid: b67efe9639c0c664f9aa8746c91be024, type: 3}
+  - {fileID: 21300000, guid: 17e0c94b589f8a849b2cbd1116c0789a, type: 3}
   floor: {fileID: 21300000, guid: 36447b5dfa5fc7249af54eff9eb85875, type: 3}
   uniques:
   - {fileID: 21300000, guid: 663f807d7d328aa47abb10ffe8a4b001, type: 3}
   voidImages:
-  - {fileID: 21300000, guid: c3860943da1ebf04a80baa8f5ccf9cec, type: 3}
-  - {fileID: 21300000, guid: def9600ad1fc61f40874ac4c2a5efbc4, type: 3}
+  - {fileID: 21300000, guid: b4cf976a6808b54439328d7d7dbe5e96, type: 3}
+  - {fileID: 21300000, guid: ac1c73afc4563f94ba71a932482be890, type: 3}
   rooms:
   - {fileID: 2622923088835361031, guid: 5ceeef11d841cdb4ca38940bfa924c05, type: 3}
   - {fileID: 1485195680733021285, guid: 9fd3ec71699480d43a461ad905def242, type: 3}
