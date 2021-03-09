@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91a6ad89db8cd94a9a31cb4c554a12e, type: 3}
+  m_Name: darkPreset
+  m_EditorClassIdentifier: 
+  mainWall: {fileID: 21300000, guid: a88b217911e8f8b4a82f842dc13dc5cb, type: 3}
+  secondaryWalls:
+  - {fileID: 21300000, guid: aeaf1f4997c6b2948849fd5abcc1dd48, type: 3}
+  floor: {fileID: 21300000, guid: d33ce74965d5cd3438c0497c1ac82a69, type: 3}
+  uniques:
+  - {fileID: 21300000, guid: 663f807d7d328aa47abb10ffe8a4b001, type: 3}
+  voidImages:
+  - {fileID: 21300000, guid: c3860943da1ebf04a80baa8f5ccf9cec, type: 3}
+  - {fileID: 21300000, guid: def9600ad1fc61f40874ac4c2a5efbc4, type: 3}
+  rooms:
+  - {fileID: 5865754046741003139, guid: 970c96df44c8dd7428c63a6a20ed8a07, type: 3}
+  - {fileID: 7237114656553064805, guid: 8949399d1a5f146409326f837e06abb0, type: 3}
+  - {fileID: 5260649468153656163, guid: f1bdffdfb7c7ecb48ad414e9c04f3f2b, type: 3}
+  - {fileID: 4944574261751665073, guid: fbfaf670d7260c04da006339971b1ed8, type: 3}
+  - {fileID: 2857624797146644935, guid: 9af7a6c86a0b214439d20c7d49eacbd6, type: 3}
+  - {fileID: 7183818713292723827, guid: ace8e3533322d46449f1c1738d8b754e, type: 3}
+  - {fileID: 4198502865828412666, guid: eb912a39eec77b643b6863141b26f441, type: 3}
+  halls:
+  - {fileID: 8955660293950008067, guid: b2a867bb5d04bf747a4d95704571a653, type: 3}
+  - {fileID: 6514551382528425080, guid: eeed0b4aee8916547aca1b6b27e2af59, type: 3}
+  - {fileID: 1254689048515212680, guid: 1efcb66902468f847bed0d692ad16b10, type: 3}
+  - {fileID: 4190058982190288178, guid: bf1704084213a734684a5494dd719613, type: 3}
+  wall: {fileID: 7837137124845032347, guid: a23d469b47abf7f47a3fa345160ae0b5, type: 3}
+  roomWidth: 14
+  roomDist: 4
