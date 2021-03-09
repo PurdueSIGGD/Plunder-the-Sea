@@ -93,7 +93,7 @@ public class Projectile : MonoBehaviour
         }
 
         /* Don't collide with the floor */
-        if (collider.layer == LayerMask.NameToLayer("Ground"))
+        if (collider.layer == LayerMask.NameToLayer("Ground") || collider.layer == LayerMask.NameToLayer("Object"))
         {
             return;
         }
