@@ -102,6 +102,14 @@ public class PlayerStats : EntityStats
     {
         currentHP = maxHP;
         stamina = staminaMax;
+        ammo = maxAmmo;
+        if (appliedStats != null)
+        {
+            Fish.UnbuffPlayerStats(pbase, false);
+        }
+        PlayerClasses pClass = GetComponent<PlayerClasses>();
+        pClass.initialize();
+        baitInventory.flushBait();
         dungeonLevel = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

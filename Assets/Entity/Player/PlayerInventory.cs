@@ -83,4 +83,15 @@ public class PlayerInventory : MonoBehaviour
         baitTypes[arrayIndex] = baitTypes[arrayIndex] - baitAmount;
         baitText[arrayIndex].text = "Bait " + (arrayIndex + 1).ToString() + ": " + baitTypes[arrayIndex].ToString();
     }
+
+    public void flushBait()
+    {
+        
+        for (int i = 0; i < baitTypes.Length; i++)
+        {
+            baitTypes[i] = 0;
+            baitText[i].text = "Bait " + (i + 1).ToString() + ": " + 0.ToString();
+        }
+        
+    }
 }
