@@ -69,6 +69,7 @@ public class EntityStats : MonoBehaviour
         if (transform.tag == "Player")
         {
             multiplier = (int) Mathf.Min(1 + transform.GetComponent<PlayerStats>().dungeonLevel * 0.1f, 2);
+            print("player hit");
         }
         float realDmg = Mathf.Max((amount  - armorStatic), Mathf.Min(1, amount)) * multiplier * Mathf.Max(1 - armorMult, 0);
 

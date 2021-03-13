@@ -147,6 +147,7 @@ MonoBehaviour:
   lifeTime: 1.25
   currentLifeTime: 0
   damage: 0
+  mods: []
   pierceCount: 0
   source: {fileID: 0}
   tables: {fileID: 0}
@@ -162,8 +163,8 @@ MonoBehaviour:
   attrHit:
     name: Dragon's Fire
     type: 5
-    value: 1
-    duration: 5
+    value: 5
+    duration: 1
     stackable: 0
     isAdditive: 0
   attrChance: 1
