@@ -110,6 +110,8 @@ public class PlayerStats : EntityStats
         PlayerClasses pClass = GetComponent<PlayerClasses>();
         pClass.initialize();
         baitInventory.flushBait();
+        pbase.rigidBody.velocity = Vector2.zero;
+        killRegen = 0;
         dungeonLevel = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

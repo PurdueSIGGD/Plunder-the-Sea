@@ -583,7 +583,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1967557275858959617
 RectTransform:
   m_ObjectHideFlags: 0
@@ -727,7 +727,9 @@ MonoBehaviour:
   killRegenMult: 1
   healthbar: {fileID: 5887798363337455442}
   baitInventory: {fileID: 0}
+  appliedStats: []
   healthPickupGameObj: {fileID: 6062236654396820198, guid: b5c31f18ad4a0d842921ebed85f2c883, type: 3}
+  weaponInv: {fileID: 0}
   dungeonLevel: 0
   staminaMax: 100
   stamina: 100
@@ -856,14 +858,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipSound: {fileID: 0}
-  meleeWeaponClass: 0
-  rangedWeaponClass: 0
-  damageTable: {fileID: 0}
-  projectileLifeTimesTable: {fileID: 0}
-  rangedWeaponSpritesTable: {fileID: 0}
-  projectilePrefabTable: {fileID: 0}
-  bulletTemplate: {fileID: 0}
-  tables: {fileID: 0}
+  meleeWeaponClass: 14
+  rangedWeaponClass: 3
+  damageTable: {fileID: 11400000, guid: 27bd03c58ebebe442baa032491ef57cb, type: 2}
+  projectileLifeTimesTable: {fileID: 11400000, guid: 0be363965d01fe74081335877502ab96, type: 2}
+  rangedWeaponSpritesTable: {fileID: 11400000, guid: 7a62c654ea2c06d4f9877824a4d7780c, type: 2}
+  projectilePrefabTable: {fileID: 11400000, guid: 296673b8e7e2ad244b8dbd0bdb2d3ac0, type: 2}
+  bulletTemplate: {fileID: 8850584598485551201, guid: 665bee2cce4084b5580666db5ec97ad4, type: 3}
+  tables: {fileID: 11400000, guid: f23b07f02af71b44fa4d0988487b7ea5, type: 2}
 --- !u!114 &7045101813800168208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1135,6 +1137,10 @@ PrefabInstance:
     - target: {fileID: 3996559547052274909, guid: bf38822933213504e9ea3e5fe8538df8, type: 3}
       propertyPath: m_Name
       value: Inventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996559547052274909, guid: bf38822933213504e9ea3e5fe8538df8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5563308836797362748, guid: bf38822933213504e9ea3e5fe8538df8, type: 3}
       propertyPath: m_LocalPosition.x
