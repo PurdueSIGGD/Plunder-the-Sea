@@ -72,14 +72,16 @@ public class EntityStats : MonoBehaviour
             print("player hit");
         }
         float realDmg = Mathf.Max((amount  - armorStatic), Mathf.Min(1, amount)) * multiplier * Mathf.Max(1 - armorMult, 0);
+        //Debug.Log("Vlaue: " + realDmg);
 
         bool died = false;
         currentHP -= realDmg;
         if (currentHP <= 0)
         {
             currentHP = 0;
-            Die();
             RemoveAllAttributes();
+            Die();
+            
             died = true;
             if (source)
             {
