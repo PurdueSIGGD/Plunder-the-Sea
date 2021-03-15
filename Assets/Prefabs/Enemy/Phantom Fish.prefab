@@ -206,7 +206,7 @@ MonoBehaviour:
   myBase: {fileID: 0}
   moving: 0
   moveTypes: 0200000003000000
-  pathingRefresh: 0.25
+  pathingRefresh: 0.5
   maxDist: 10
   targetProximity: 0
   approachDistance: 0
@@ -230,8 +230,9 @@ MonoBehaviour:
   prevState: 0
   myStateMovement: {fileID: 0}
   fireProjectile: {fileID: 1833207429367906764, guid: b4b0a00483ec5fa4395b3ce499fe1b00, type: 3}
-  fireCooldown: 0.5
-  fireDistance: 3
+  fireCooldown: 1
+  maxFireDistance: 8
+  minFireDistance: 1
 --- !u!1 &8430720250744462301
 GameObject:
   m_ObjectHideFlags: 0
