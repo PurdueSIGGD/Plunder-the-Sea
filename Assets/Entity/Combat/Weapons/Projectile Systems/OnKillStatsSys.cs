@@ -5,7 +5,7 @@ public class OnKillStatsSys : ProjectileSystem {
 
     public override void OnKill(EntityStats victim)
     {
-        this.stats.replenishAmmo(this.ammoPerKill);
+        //this.stats.replenishAmmo(this.ammoPerKill);
     }
 
     protected override void OnEquip(WeaponInventory inv)
