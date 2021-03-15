@@ -45,11 +45,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classNumber: -1
   classes: []
-  baseHp: 10
-  baseSpeed: 8
+  baseHp: 100
+  baseSpeed: 10
   baseArmorAddition: 0
   baseArmorDivision: 0
-  baseStamina: 32
+  baseStamina: 40
   baseStaminaRechargeRate: 4
   proficiency: 1
   classSprite: {fileID: 0}
@@ -69,7 +69,7 @@ MonoBehaviour:
   chainTime: 4
   attackSizeBoost: 2
   speedBoost: 2
-  melee: 5
+  melee: 4
   ranged: 8
   meleeDamageAddition: 0
   meleeDamageMultiplier: 1

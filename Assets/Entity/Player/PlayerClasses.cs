@@ -20,8 +20,8 @@ public class PlayerClasses : MonoBehaviour
 
     //modifies the initial player values or abilities
     [Header("--Player stats--")]
-    [Range(1, 64)]
-    public float baseHp = 10;
+    [Range(1, 200)]
+    public float baseHp = 100;
     [Range(0, 32)]
     public float baseSpeed = 6;
     public float baseArmorAddition = 0;

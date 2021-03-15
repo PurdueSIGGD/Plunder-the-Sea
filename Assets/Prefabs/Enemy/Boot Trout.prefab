@@ -205,15 +205,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
-  maxHP: 1
-  currentHP: 1
+  maxHP: 40
+  currentHP: 40
   armorMult: 0
-  armorStatic: 0
+  armorStatic: 5
   killRegenMult: 1
   healthbar: {fileID: 8379629806533454694}
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 1
-  damage: 1
+  damage: 20
   numberOfTimesToRespawn: 0
   dropTable: ffffffff00000000010000000200000003000000
   dropOdds:

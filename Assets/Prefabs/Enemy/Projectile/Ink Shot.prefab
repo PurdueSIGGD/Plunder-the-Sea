@@ -177,9 +177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39bddd6b1e172649bd99304f1d55a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 2
+  lifeTime: 5
   currentLifeTime: 0
-  damage: 1
+  damage: 5
   mods: []
   pierceCount: 0
   source: {fileID: 0}
