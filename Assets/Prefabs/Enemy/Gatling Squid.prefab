@@ -205,8 +205,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 2
-  maxHP: 1
-  currentHP: 1
+  maxHP: 30
+  currentHP: 30
   armorMult: 0
   armorStatic: 0
   killRegenMult: 1
