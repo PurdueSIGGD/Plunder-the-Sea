@@ -104,28 +104,33 @@ public class PlayerClasses : MonoBehaviour
     {
         if (classNumber != -1)
         {
-            //if on a player: set this script's weapon struct and the player's stats based on the selected class (does not modify the variables of this script)
-            stats = GetComponent<PlayerStats>();
-            classes[classNumber].setPlayerStats(stats);
-            baseSpeed = classes[classNumber].baseSpeed;
-            classes[classNumber].setWeaponMods(weaponModifiers);
-            setSpecialAttributes(classes[classNumber]);
-            if (classSprite != null)
-            {
-                GetComponent<SpriteRenderer>().sprite = classSprite;
-            }
-            WeaponInventory inventory = GetComponent<WeaponInventory>();
-
-            rigid = GetComponent<Rigidbody2D>();
-            
-            inventory.meleeWeaponClass = melee;
-            inventory.rangedWeaponClass = ranged;
+            initialize();
         }
         else
         {
             //if not a player
 
         }
+    }
+
+    public void initialize()
+    {
+        //if on a player: set this script's weapon struct and the player's stats based on the selected class (does not modify the variables of this script)
+        stats = GetComponent<PlayerStats>();
+        classes[classNumber].setPlayerStats(stats);
+        baseSpeed = classes[classNumber].baseSpeed;
+        classes[classNumber].setWeaponMods(weaponModifiers);
+        setSpecialAttributes(classes[classNumber]);
+        if (classSprite != null)
+        {
+            GetComponent<SpriteRenderer>().sprite = classSprite;
+        }
+        WeaponInventory inventory = GetComponent<WeaponInventory>();
+
+        rigid = GetComponent<Rigidbody2D>();
+
+        inventory.meleeWeaponClass = melee;
+        inventory.rangedWeaponClass = ranged;
     }
 
     private void Update()

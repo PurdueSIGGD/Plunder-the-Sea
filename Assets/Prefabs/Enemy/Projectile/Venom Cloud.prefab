@@ -164,7 +164,7 @@ MonoBehaviour:
   attrHit:
     name: Venom
     type: 5
-    value: 1
+    value: 10
     duration: 5
     stackable: 0
     isAdditive: 0

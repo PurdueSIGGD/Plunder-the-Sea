@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1000606575011608503}
   - component: {fileID: 1000606575011608502}
   - component: {fileID: 1000606575011608497}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ChangeSceneDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
