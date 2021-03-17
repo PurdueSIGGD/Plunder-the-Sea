@@ -58,7 +58,7 @@ public class EntityStats : MonoBehaviour
     }
 
     //Return true if results in death
-    public bool TakeDamage(float amount, EntityStats source)
+    public virtual bool TakeDamage(float amount, EntityStats source)
     {
         //player damage call
         damageReturnCall();
@@ -100,7 +100,7 @@ public class EntityStats : MonoBehaviour
         }
     }
 
-    public void AddAttribute(EntityAttribute attr, EntityStats source)
+    public virtual void AddAttribute(EntityAttribute attr, EntityStats source)
     {
         AppliedAttribute app;
         app.attr = attr;
@@ -130,7 +130,7 @@ public class EntityStats : MonoBehaviour
         attr.OnAdd(this);
     }
 
-    public void RemoveAttribute(EntityAttribute attr)
+    public virtual void RemoveAttribute(EntityAttribute attr)
     {
         for (int i = 0; i < attribList.Count; i++)
         {
@@ -142,7 +142,7 @@ public class EntityStats : MonoBehaviour
         }
     }
 
-    public void RemoveAllAttributes()
+    public virtual void RemoveAllAttributes()
     {
         for (int i = 0; i < attribList.Count; i++)
         {
