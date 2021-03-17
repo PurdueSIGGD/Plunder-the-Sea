@@ -100,7 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   rotationSpeed: 0.3
-  preferredBaitType: 0
+  preferredBaitType: 2
+  wrongBaitCatchPercent: 0.25
   minWaitTime: 4
   maxWaitTime: 8
   lootLevel: 4
@@ -121,6 +122,7 @@ MonoBehaviour:
   - Ranged Damage
   - Armor
   FishingMinigame: {fileID: 0}
+  sprite: {fileID: 0}
 --- !u!50 &6090371748246765999
 Rigidbody2D:
   serializedVersion: 4

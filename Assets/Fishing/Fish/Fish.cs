@@ -8,8 +8,8 @@ public class Fish : MonoBehaviour
     private float speed;
     [SerializeField]
     private float rotationSpeed = 0.35f;
-    [SerializeField]
-    private int preferredBaitType;
+    public int preferredBaitType;
+    public float wrongBaitCatchPercent = 0.25f;
     [SerializeField]
     private float minWaitTime;
     [SerializeField]

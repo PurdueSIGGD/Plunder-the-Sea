@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8419220994995289636
+--- !u!1 &2097555531895565969
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4662748298586233177}
-  - component: {fileID: 8446278652390394498}
-  - component: {fileID: 8884596938269729073}
-  - component: {fileID: 5572567535265203931}
-  - component: {fileID: 4133872797448370219}
+  - component: {fileID: 5057984425797904376}
+  - component: {fileID: 8499900216327555368}
   m_Layer: 0
-  m_Name: Pearl Shot
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4662748298586233177
+--- !u!4 &5057984425797904376
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8419220994995289636}
+  m_GameObject: {fileID: 2097555531895565969}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.05521, y: 1.5392591, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.012, y: 0.012, z: 0}
+  m_LocalScale: {x: 2.3, y: 2.3, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 4662748298586233177}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &8446278652390394498
+--- !u!212 &8499900216327555368
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8419220994995289636}
+  m_GameObject: {fileID: 2097555531895565969}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -74,17 +71,51 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.91144687, g: 0.80566037, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 83d6bc9aba17c5f458b4fc8694f8cad8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.08, y: 0.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8419220994995289636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4662748298586233177}
+  - component: {fileID: 8884596938269729073}
+  - component: {fileID: 5572567535265203931}
+  - component: {fileID: 7331743829407554155}
+  m_Layer: 0
+  m_Name: Pearl Shot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4662748298586233177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8419220994995289636}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.05521, y: 1.5392591, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 5057984425797904376}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8884596938269729073
 Rigidbody2D:
   serializedVersion: 4
@@ -123,8 +154,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.2, y: 0.2}
-    newSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -132,7 +163,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
---- !u!114 &4133872797448370219
+--- !u!114 &7331743829407554155
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,26 +172,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 8419220994995289636}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73e235bbd564841448eb10cc8dc9850c, type: 3}
+  m_Script: {fileID: 11500000, guid: c39bddd6b1e172649bd99304f1d55a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 4
   currentLifeTime: 0
   damage: 3
-  destroyOnCollide: 1
+  mods: []
   pierceCount: 0
   source: {fileID: 0}
-  weapon: {fileID: 0}
+  tables: {fileID: 0}
+  weaponClass: 0
+  direction: {x: 0, y: 0}
+  destroyOnCollide: 1
+  destroyOnNonEntity: 0
   friendlyFire: 0
   reflectMelee: 1
   reflectRanged: 0
   collideWithProjectile: 1
   collideWithWall: 1
   attrHit:
+    name: 
     type: 0
     value: 0
     duration: 0
     stackable: 0
     isAdditive: 0
   attrChance: 0
-  speed: 0
+  speed: 5
+  sourceTag: 

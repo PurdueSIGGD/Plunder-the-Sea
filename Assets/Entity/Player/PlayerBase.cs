@@ -17,6 +17,7 @@ public class PlayerBase : MonoBehaviour
     public PlayerStats stats;
     [HideInInspector]
     public PlayerFishing fishing;
+    public Canvas playerInventory;
 
     private UI_Camera cam;
     
@@ -53,35 +54,38 @@ public class PlayerBase : MonoBehaviour
     private void Update()
     {
         var inv = GetComponent<WeaponInventory>();
+        
 
         if (Input.GetMouseButton(0))
         {
-            ShootAt(cam.GetMousePosition(), inv.GetRanged());
+            inv.ShootAt(cam.GetMousePosition(), false);
         }
 
         if (Input.GetMouseButtonDown(1))
         {
-            ShootAt(cam.GetMousePosition(), inv.GetMelee());
+            inv.ShootAt(cam.GetMousePosition(), true);
+        }
+
+        if (Input.GetKeyDown("e"))
+        {
+            if (playerInventory.gameObject.activeSelf)
+            {
+                playerInventory.gameObject.SetActive(false);
+            }
+            else
+            {
+                playerInventory.gameObject.SetActive(true);
+            }
         }
     }
 
+    
     //PlayerStats calls this when player kills entity
     public void OnKill (EntityStats victim) 
     {
-        
+        GetComponent<WeaponInventory>().OnKill(victim);
+           
     }
 
-    public bool ShootAt(Vector2 position, ScriptableWeapon weapon)
-    {
-        if (weapon.CanShoot(this.gameObject))
-        {
-            Projectile hitbox = Projectile.Shoot(weapon.projectilePrefab, this.gameObject, position, weapon.projectileSpeed);
-            hitbox.weapon = weapon;
-            hitbox.damage = weapon.damage;
-            hitbox.lifeTime = weapon.lifeTime;
-            weapon.OnFire(hitbox);
-            return true;
-        }
-        return false;
-    }
+   
 }

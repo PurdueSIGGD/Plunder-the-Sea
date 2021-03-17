@@ -7,11 +7,37 @@ public class WeaponInventory : MonoBehaviour
     public AudioClip equipSound;
     private AudioSource audioSrc;
     [SerializeField]
-    private ScriptableWeapon meleeWeapon;
+    public WeaponFactory.CLASS meleeWeaponClass;
+    public WeaponFactory.CLASS getMeleeWeaponClass(){ 
+        return this.meleeWeaponClass;
+    }
     [SerializeField]
-    private ScriptableWeapon rangeWeapon;
+    public WeaponFactory.CLASS rangedWeaponClass;
+    public WeaponFactory.CLASS getRangedWeaponClass()
+    {
+        return this.rangedWeaponClass;
+    }
+    private WeaponSystem meleeSystem;
+    private WeaponSystem rangedSystem;
     private UI_Camera cam;
     private SpriteRenderer spriteRen;
+
+    [SerializeField]
+    private IntWeaponClassTable damageTable; 
+    [SerializeField]
+    private FloatWeaponClassTable projectileLifeTimesTable; 
+    [SerializeField]
+    private SpritesWeaponClassTable rangedWeaponSpritesTable; 
+    [SerializeField]
+    private PrefabWeaponClassTable projectilePrefabTable; 
+
+    [SerializeField]
+    private GameObject bulletTemplate;
+    [SerializeField]
+    private WeaponTables tables;
+
+    //stores player weapon modifiers
+    private PlayerClasses.WeaponModifiers weaponMods = new PlayerClasses.WeaponModifiers();
 
     private void Start()
     {
@@ -21,25 +47,29 @@ public class WeaponInventory : MonoBehaviour
         {
             audioSrc = gameObject.AddComponent<AudioSource>();
         }
+
         spriteRen = new GameObject().AddComponent<SpriteRenderer>();
         spriteRen.transform.localScale = this.transform.localScale * 1.5f;
         spriteRen.transform.position = this.transform.position;
         spriteRen.transform.SetParent(this.transform);
-        if (meleeWeapon)
-        {
-            meleeWeapon.OnEquip(this);
-        }
-        if (rangeWeapon)
-        {
-            rangeWeapon.OnEquip(this);
-            spriteRen.sprite = rangeWeapon.gunSprite;
-        }
-    }
 
+        PlayerClasses PC = GetComponent<PlayerClasses>();
+        PC.getMods(weaponMods);
+        meleeWeaponClass = PC.melee;
+        rangedWeaponClass = PC.ranged;
+
+        SetWeapon(this.meleeWeaponClass);
+        SetWeapon(this.rangedWeaponClass);
+   }
+
+    public void OnKill(EntityStats victim) {
+        this.meleeSystem?.OnKill(victim);
+        this.rangedSystem?.OnKill(victim);
+    }
     private void Update()
     {
-        meleeWeapon.Update();
-        rangeWeapon.Update();
+        meleeSystem?.Update();
+        rangedSystem?.Update();
     }
 
     private void LateUpdate()
@@ -47,41 +77,108 @@ public class WeaponInventory : MonoBehaviour
         spriteRen.transform.rotation = Quaternion.FromToRotation(new Vector3(1,1,0), (Vector3)cam.GetMousePosition() - spriteRen.transform.position);
     }
 
-    public ScriptableWeapon GetMelee()
+    private void SetMelee(WeaponSystem wep)
     {
-        return meleeWeapon;
+        meleeSystem?.OnUnequip(this);
+        wep.OnEquip(this, tables, meleeWeaponClass);
+        // Make sure to set weapon after the equip methods run
+        meleeSystem = wep;
     }
 
-    public ScriptableWeapon GetRanged()
+    private void SetRanged(WeaponSystem wep)
     {
-        return rangeWeapon;
+        rangedSystem?.OnUnequip(this);
+        wep.OnEquip(this, tables, rangedWeaponClass);
+        // Make sure to set weapon after the equip methods run
+        rangedSystem = wep;
+
+        //TESTING
+        if (spriteRen != null)
+        {
+            if (rangedWeaponSpritesTable.get(this.rangedWeaponClass))
+            {
+                spriteRen.sprite = rangedWeaponSpritesTable.get(this.rangedWeaponClass);
+            }
+            else
+            {
+                Debug.Log("Sprite not set");
+            }
+        }
+        else
+        {
+            Debug.Log("Renderer not made");
+        }
+        //spriteRen.sprite = rangedWeaponSpritesTable.get(this.rangedWeaponClass);
     }
 
-    public void SetMelee(ScriptableWeapon wep)
-    {
+    public void SetWeapon(WeaponFactory.CLASS weaponClass) {
+        var weapon = new WeaponSystem(weaponClass, this.tables);
         if (equipSound)
         {
             audioSrc.clip = equipSound;
             audioSrc.Play();
         }
-        meleeWeapon.OnUnequip(this);
-        wep.OnEquip(this);
-        // Make sure to set weapon after the equip methods run
-        meleeWeapon = wep;
-    }
-
-    public void SetRanged(ScriptableWeapon wep)
-    {
-        if (equipSound)
-        {
-            audioSrc.clip = equipSound;
-            audioSrc.Play();
+        if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE){ 
+            this.meleeWeaponClass = weaponClass;
+            SetMelee(weapon);
+        } else {
+            this.rangedWeaponClass = weaponClass;
+            SetRanged(weapon);
         }
-        rangeWeapon.OnUnequip(this);
-        wep.OnEquip(this);
-        // Make sure to set weapon after the equip methods run
-        rangeWeapon = wep;
-        spriteRen.sprite = rangeWeapon.gunSprite;
+    }
+    public ProjectileStats constructProjectileStats(WeaponFactory.CLASS weaponClass) {
+
+        //sets up assuming a ranged weapon
+        var pStats = new ProjectileStats() {
+            prefab = bulletTemplate, damage = (int)((damageTable.get(weaponClass).Value + weaponMods.rangedDamageAddition) * weaponMods.rangedDamageMultiplier),
+            lifeTime = (weaponMods.projectileLifetimeAddition + projectileLifeTimesTable.get(weaponClass).Value) * weaponMods.projectileLifetimeMultiplier
+            };
+
+        if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE) {
+            //corrects if melee
+            pStats.damage = (int)((damageTable.get(weaponClass).Value + weaponMods.meleeDamageAddition) * weaponMods.meleeDamageMultiplier);
+            pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
+
+            pStats.prefab = projectilePrefabTable.get(weaponClass);
+            pStats.prefab.transform.localScale = Vector3.one * (1 + weaponMods.meleeSizeAddition) * weaponMods.meleeSizeMultiplier;
+        }
+
+        //pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
+
+        return pStats;
+    }
+    public Sprite getWeaponImage(bool isMelee)
+    {
+        if (isMelee)
+        {
+            GameObject prefab = projectilePrefabTable.get(this.meleeWeaponClass);
+            return prefab.GetComponentInChildren<SpriteRenderer>().sprite;
+        }
+        return rangedWeaponSpritesTable.get(this.rangedWeaponClass);
+    }
+    public bool ShootAt(Vector2 position, bool isMelee)
+    {
+        var weaponClass = isMelee ? this.meleeWeaponClass : this.rangedWeaponClass;
+        var weaponSystem = isMelee ? this.meleeSystem : this.rangedSystem;
+        var stats = constructProjectileStats(weaponClass);
+        if (weaponSystem?.CanShoot(this.gameObject) == true)
+        {
+            Projectile hitbox = Projectile.Shoot(stats.prefab, this.gameObject, position);
+            hitbox.weaponSystem = weaponSystem;
+            hitbox.weaponClass = weaponClass;
+            hitbox.damage = stats.damage;
+            hitbox.tables = this.tables;
+            hitbox.lifeTime = stats.lifeTime;
+        
+            if (!isMelee) {
+                var direction = (position - (Vector2)transform.position).normalized;
+                hitbox.GetComponent<Rigidbody2D>().velocity =
+                    direction * (tables.projectileSpeed.get(weaponClass).GetValueOrDefault(0f) + weaponMods.rangedSpeedAddition) * weaponMods.rangedSpeedMultiplier;
+            } 
+            weaponSystem.OnFire(hitbox);
+            return true;
+        }
+        return false;
     }
 
-}
+} 

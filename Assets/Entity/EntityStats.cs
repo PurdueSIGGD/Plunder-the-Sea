@@ -13,6 +13,8 @@ public class EntityStats : MonoBehaviour
     public float armorMult = 0.0f;
     //Constant amount of damage armor absorbs
     public float armorStatic = 0.0f;
+    // Float dictating how much kill regen this enemy contributes
+    public float killRegenMult = 1.0f;
     public Slider healthbar;
 
     /*
@@ -50,6 +52,10 @@ public class EntityStats : MonoBehaviour
             GetComponent<EnemyStats>().enemyDamageReturnCall();
         }
     }
+    public void ReplenishHealth(float amount) {
+        this.currentHP = Mathf.Min(this.currentHP + amount, this.maxHP);
+        updateHealthBar();
+    }
 
     //Return true if results in death
     public bool TakeDamage(float amount, EntityStats source)
@@ -57,7 +63,14 @@ public class EntityStats : MonoBehaviour
         //player damage call
         damageReturnCall();
 
-        float realDmg = Mathf.Max((amount  - armorStatic) * (1 - armorMult), 0);
+
+        //damage scaling is not stored as it can update
+        int multiplier = 1;
+        if (transform.tag == "Player")
+        {
+            multiplier = (int) Mathf.Min(1 + transform.GetComponent<PlayerStats>().dungeonLevel * 0.1f, 2);
+        }
+        float realDmg = Mathf.Max((amount  - armorStatic) * (1 - armorMult), 0) * multiplier;
 
         bool died = false;
         currentHP -= realDmg;
@@ -72,13 +85,16 @@ public class EntityStats : MonoBehaviour
                 source.OnKill(this);
             }
         }
+        updateHealthBar();
+
+        return died;
+    }
+
+    private void updateHealthBar() {
         if (healthbar != null)
         {
             healthbar.value = currentHP / maxHP;
         }
-
-        return died;
-
     }
 
     public void AddAttribute(EntityAttribute attr, EntityStats source)

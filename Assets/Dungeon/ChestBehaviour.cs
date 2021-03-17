@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ChestBehaviour : MonoBehaviour
 {
-    public ScriptableWeapon weapon;
-
-    public bool isMelee;
-
+    [SerializeField]
+    private WeaponFactory.CLASS weaponClass;
     private bool used = false;
+
+    public void SetWeaponClass(WeaponFactory.CLASS weaponClass) {
+        this.weaponClass = weaponClass;
+    }
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
@@ -16,15 +18,10 @@ public class ChestBehaviour : MonoBehaviour
         if (weaponInv == null || used) {
             return;
         }
-        
-        if (isMelee) {
-            weaponInv.SetMelee(this.weapon);
-        } 
-        else {
-            weaponInv.SetRanged(this.weapon);
-        }
 
         used = true;
+        weaponInv.SetWeapon(weaponClass);
+        transform.localScale *= 0.5f;
 
         this.enabled = false;
     }

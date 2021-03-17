@@ -19,7 +19,27 @@ public class StateMovement : EnemyMovement
     // One-liner for distance from the player
     public float PlayerDistance()
     {
-        return Vector2.Distance(myBase.player.transform.position, myBase.transform.position);
+        if (myBase != null && myBase.player != null)
+        {
+            return Vector2.Distance(myBase.player.transform.position, myBase.transform.position);
+        }
+        else
+        {
+            return -1;
+        }
+    }
+
+    // Get the angle to the player (another one-liner)
+    public Vector3 PlayerAngle()
+    {
+        if (myBase != null && myBase.player != null)
+        {
+            return (myBase.player.transform.position - transform.position).normalized;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
     }
 
     // Move towards the player
@@ -167,13 +187,13 @@ public class StateMovement : EnemyMovement
     private float targetTime = 0.0f;
 
     // Set a new target time
-    protected void SetTarget(float delay)
+    public void SetTarget(float delay)
     {
         targetTime = Time.time + delay;
     }
 
     // Check if the target time has passed
-    protected bool OnTarget()
+    public bool OnTarget()
     {
         return (Time.time >= targetTime);
     }

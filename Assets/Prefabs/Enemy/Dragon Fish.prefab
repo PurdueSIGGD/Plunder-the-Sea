@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 6690421698729291659}
   - component: {fileID: 1990761194686808809}
   - component: {fileID: 3838601318679195253}
-  - component: {fileID: 7817703052618813987}
   - component: {fileID: 7817703052618813984}
+  - component: {fileID: 2739941548566315107}
   m_Layer: 0
   m_Name: Dragon Fish
   m_TagString: Enemy
@@ -166,6 +166,14 @@ MonoBehaviour:
   attackSpeedInverse: 1
   damage: 1
   numberOfTimesToRespawn: 0
+  dropTable: ffffffff00000000010000000200000003000000
+  dropOdds:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  dropRange: 0
 --- !u!58 &3838601318679195253
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -182,26 +190,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
---- !u!114 &7817703052618813987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2767971687338764697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b05494563a16e054ab5202b936063458, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myBase: {fileID: 0}
-  moving: 0
-  pathingRefresh: 0.25
-  maxDist: 10
-  approachDistance: 0
-  actChargeUpTime: 0
-  actCooldownTime: 0
-  approachState: 0
 --- !u!114 &7817703052618813984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +212,28 @@ MonoBehaviour:
   fireSpread: 0.2
   deathSpread: 0.4
   deathCount: 5
+  deathLinger: 5
+--- !u!114 &2739941548566315107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2767971687338764697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3831ed0f5decc014f98ce378bde0dcb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myBase: {fileID: 0}
+  moving: 0
+  moveTypes: 0000000001000000
+  pathingRefresh: 0.25
+  maxDist: 10
+  targetProximity: 0
+  angleChange: 1.5
+  sweepDistance: 8
+  sweepState: 1
 --- !u!1 &8430720250744462301
 GameObject:
   m_ObjectHideFlags: 0

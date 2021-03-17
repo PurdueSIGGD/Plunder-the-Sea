@@ -11,6 +11,7 @@ public class Bobber : MonoBehaviour
     public PlayerFishing source;
     private Rigidbody2D rigid;
     public int baitType;
+    private bool hitFish = false;
 
     private void Start()
     {
@@ -47,7 +48,7 @@ public class Bobber : MonoBehaviour
         {
             rigid.velocity = new Vector2(0.0f, 0.0f);
         }
-
+        hitFish = false;
         reeling = true;
         return true;
     }
@@ -76,18 +77,24 @@ public class Bobber : MonoBehaviour
 
             Fish fish = collider.GetComponent<Fish>();
             //Fish wrangled!
-            if (fish)
+            if (fish && !hitFish)
             {
-                FishingMinigame fm = fish.FishingMinigame.GetComponent<FishingMinigame>();
-                fm.ddr.fishBeingCaught = fish;
-                fm.ddr.targetPlayer = source.player;
-                fm.fish.SetSourceImage(fish.sprite);
-                source.player.movement.enabled = false;
-                source.player.rigidBody.velocity = new Vector3(0, 0, 0);
-                source.OnReelFinish(fish);
-                Destroy(fish.gameObject);
-                Destroy(this.gameObject);
-                return;
+                if (fish.preferredBaitType == baitType || Random.Range(0f,1f) <= fish.wrongBaitCatchPercent) {
+                    FishingMinigame fm = fish.FishingMinigame.GetComponent<FishingMinigame>();
+                    fm.ddr.fishBeingCaught = fish;
+                    fm.ddr.targetPlayer = source.player;
+                    fm.fish.SetSourceImage(fish.sprite);
+                    source.player.movement.enabled = false;
+                    source.player.rigidBody.velocity = new Vector3(0, 0, 0);
+                    source.OnReelFinish(fish);
+                    Destroy(fish.gameObject);
+                    Destroy(this.gameObject);
+                    return;
+                } else
+                {
+                    Debug.Log("No bite");
+                    hitFish = true;
+                }
             }
 
         }
