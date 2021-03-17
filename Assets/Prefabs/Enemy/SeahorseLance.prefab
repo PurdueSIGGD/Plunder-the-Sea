@@ -245,7 +245,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1760924043896257558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17925d3c795a74da9a9d523457cbf3e1, type: 3}
+  m_Script: {fileID: 11500000, guid: f43f571ce742d6b509650b72d29a0761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
@@ -256,7 +256,7 @@ MonoBehaviour:
   targetProximity: 0
   retreatDistance: 5
   actCooldownTime: 5
-  enemyToSpawn: {fileID: 8010861710391754302, guid: 9587eb74143e5bf4fb2e9b15b0f265fd, type: 3}
+  enemyToSpawn: {fileID: 0}
   numberOfEnemiesToSpawn: 3
   retreatState: 0
 --- !u!1 &2751035179650061797
