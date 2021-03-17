@@ -16,6 +16,7 @@ public class EntityStats : MonoBehaviour
     // Float dictating how much kill regen this enemy contributes
     public float killRegenMult = 1.0f;
     public Slider healthbar;
+    public int lastHitAmmoAddition = 0;
 
     /*
      * Storing endtime in attribute class does not allow for the same attribute
@@ -57,6 +58,11 @@ public class EntityStats : MonoBehaviour
         updateHealthBar();
     }
 
+    public void setLastHit(int ammoRefillAmmount)
+    {
+        lastHitAmmoAddition = ammoRefillAmmount;
+    }
+
     //Return true if results in death
     public virtual bool TakeDamage(float amount, EntityStats source)
     {
@@ -86,6 +92,10 @@ public class EntityStats : MonoBehaviour
             if (source)
             {
                 source.OnKill(this);
+                if (lastHitAmmoAddition != 0)
+                {
+                    source.GetComponent<PlayerStats>().replenishAmmo(lastHitAmmoAddition);
+                }
             }
         }
         updateHealthBar();

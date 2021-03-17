@@ -11,6 +11,8 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public float currentLifeTime = 0;
     public float damage = 1.0f;
+    [HideInInspector]
+    public int ammoRefill;
 
     public ProjectileModifier[] mods = null;
     
@@ -93,7 +95,7 @@ public class Projectile : MonoBehaviour
         }
 
         /* Don't collide with the floor */
-        if (collider.layer == LayerMask.NameToLayer("Ground"))
+        if (collider.layer == LayerMask.NameToLayer("Ground") || collider.layer == LayerMask.NameToLayer("Object"))
         {
             return;
         }
@@ -148,6 +150,10 @@ public class Projectile : MonoBehaviour
             }
 
             // Deal damage
+            if (weaponSystem != null)
+            {
+                ent.setLastHit(ammoRefill);
+            }
             EntityStats attacker = (source) ? source.GetComponent<EntityStats>() : null;
             ent.TakeDamage(damage, attacker);
 
