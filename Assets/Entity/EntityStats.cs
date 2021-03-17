@@ -64,7 +64,7 @@ public class EntityStats : MonoBehaviour
     }
 
     //Return true if results in death
-    public bool TakeDamage(float amount, EntityStats source)
+    public virtual bool TakeDamage(float amount, EntityStats source)
     {
         //player damage call
         damageReturnCall();
@@ -78,14 +78,16 @@ public class EntityStats : MonoBehaviour
             print("player hit");
         }
         float realDmg = Mathf.Max((amount  - armorStatic), Mathf.Min(1, amount)) * multiplier * Mathf.Max(1 - armorMult, 0);
+        //Debug.Log("Vlaue: " + realDmg);
 
         bool died = false;
         currentHP -= realDmg;
         if (currentHP <= 0)
         {
             currentHP = 0;
-            Die();
             RemoveAllAttributes();
+            Die();
+            
             died = true;
             if (source)
             {
@@ -108,7 +110,7 @@ public class EntityStats : MonoBehaviour
         }
     }
 
-    public void AddAttribute(EntityAttribute attr, EntityStats source)
+    public virtual void AddAttribute(EntityAttribute attr, EntityStats source)
     {
         AppliedAttribute app;
         app.attr = attr;
@@ -138,7 +140,7 @@ public class EntityStats : MonoBehaviour
         attr.OnAdd(this);
     }
 
-    public void RemoveAttribute(EntityAttribute attr)
+    public virtual void RemoveAttribute(EntityAttribute attr)
     {
         for (int i = 0; i < attribList.Count; i++)
         {
@@ -150,7 +152,7 @@ public class EntityStats : MonoBehaviour
         }
     }
 
-    public void RemoveAllAttributes()
+    public virtual void RemoveAllAttributes()
     {
         for (int i = 0; i < attribList.Count; i++)
         {

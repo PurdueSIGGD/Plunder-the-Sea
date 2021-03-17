@@ -201,7 +201,7 @@ MonoBehaviour:
     stackable: 0
     isAdditive: 1
   attrChance: 1
-  speed: 7
+  speed: 5
   sourceTag: 
 --- !u!212 &8834291485653062408
 SpriteRenderer:

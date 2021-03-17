@@ -163,7 +163,7 @@ MonoBehaviour:
   attrHit:
     name: Dragon's Fire
     type: 5
-    value: 5
+    value: 10
     duration: 1
     stackable: 0
     isAdditive: 0
