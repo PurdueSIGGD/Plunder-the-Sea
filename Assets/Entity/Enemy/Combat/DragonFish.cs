@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class DragonFish : StateCombat
 {
+    // Sprite references
+    public SpriteRenderer sprite;
+    public Animator anim;
+
     // Projectile to be used as fire
     public GameObject fireProjectile;
     
@@ -34,6 +38,16 @@ public class DragonFish : StateCombat
         // Dragon fish doesn't use its movement very much
         current = GetState();
         prevState = current;
+
+        anim.SetBool("Attacking", myStateMovement.PlayerDistance() < fireDistance);
+
+        // Rotate the sprite
+        Vector3 v = myBase.myRigid.velocity;
+        float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg - 180;
+        sprite.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        //sprite.flipX = isPlayerLeft();
+        sprite.flipY = !isPlayerLeft();
 
         // Place the fire if it can
         if (OnTarget(fireTarget) && myStateMovement.PlayerDistance() < fireDistance)

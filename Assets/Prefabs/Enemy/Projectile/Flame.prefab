@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSize: 1
   endSize: 0.1
-  timeToMax: 1.25
+  timeToMax: 2
 --- !u!1 &5659809193418146442
 GameObject:
   m_ObjectHideFlags: 0
