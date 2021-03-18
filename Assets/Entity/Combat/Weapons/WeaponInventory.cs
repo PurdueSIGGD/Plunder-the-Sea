@@ -126,12 +126,14 @@ public class WeaponInventory : MonoBehaviour
             SetRanged(weapon);
         }
     }
+
     public ProjectileStats constructProjectileStats(WeaponFactory.CLASS weaponClass) {
 
         //sets up assuming a ranged weapon
         var pStats = new ProjectileStats() {
             prefab = bulletTemplate, damage = (int)((damageTable.get(weaponClass).Value + weaponMods.rangedDamageAddition) * weaponMods.rangedDamageMultiplier),
-            lifeTime = (weaponMods.projectileLifetimeAddition + projectileLifeTimesTable.get(weaponClass).Value) * weaponMods.projectileLifetimeMultiplier
+            lifeTime = (weaponMods.projectileLifetimeAddition + projectileLifeTimesTable.get(weaponClass).Value) * weaponMods.projectileLifetimeMultiplier,
+            ammoRefill = tables.ammoPerKill.get(weaponClass).Value
             };
 
         if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE) {
@@ -168,6 +170,7 @@ public class WeaponInventory : MonoBehaviour
             hitbox.damage = stats.damage;
             hitbox.tables = this.tables;
             hitbox.lifeTime = stats.lifeTime;
+            hitbox.ammoRefill = stats.ammoRefill;
         
             if (!isMelee) {
                 var direction = (position - (Vector2)transform.position).normalized;
