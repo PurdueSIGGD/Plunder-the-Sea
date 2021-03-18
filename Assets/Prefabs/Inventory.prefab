@@ -751,6 +751,14 @@ MonoBehaviour:
   rangeSlot: {fileID: 3781734618616787116}
   meleeLabel: {fileID: 380346146147262440}
   rangedLabel: {fileID: 961099538573820562}
+  healthLabel: {fileID: 0}
+  stamLavel: {fileID: 0}
+  ammoLabel: {fileID: 0}
+  speedLabel: {fileID: 0}
+  stamRechLabel: {fileID: 0}
+  meleeDamLabel: {fileID: 0}
+  rangeDamLabel: {fileID: 0}
+  armorLabel: {fileID: 0}
 --- !u!1 &4389671412987379405
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,8 +877,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -430, y: -90}
-  m_SizeDelta: {x: 1000, y: 500}
+  m_AnchoredPosition: {x: -395, y: -90}
+  m_SizeDelta: {x: 1090, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5712005830655824647
 CanvasRenderer:

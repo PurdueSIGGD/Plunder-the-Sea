@@ -14,6 +14,14 @@ public class PlayerInventory : MonoBehaviour
     public Image rangeSlot;
     public Text meleeLabel;
     public Text rangedLabel;
+    public Text healthLabel;
+    public Text stamLavel;
+    public Text ammoLabel;
+    public Text speedLabel;
+    public Text stamRechLabel;
+    public Text meleeDamLabel;
+    public Text rangeDamLabel;
+    public Text armorLabel;
 
     private void Start()
     {
