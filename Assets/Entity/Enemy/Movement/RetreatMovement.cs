@@ -22,6 +22,12 @@ public class RetreatMovement : StateMovement
     //the number of enemies to spawn
     public int numberOfEnemiesToSpawn = 3;
 
+    //won't spawn more than the maximum number of enemies
+    public int maxEnemiesToSpawn = 6;
+
+    //the enemies that have been spawned
+    private List<GameObject> spawnedEnemies = new List<GameObject>();
+
     public enum RetreatState
     {
         ACTIVATING,
@@ -78,6 +84,17 @@ public class RetreatMovement : StateMovement
     */
     private void doAction()
     {
+        for(int i = 0; i < spawnedEnemies.Count; i++) {
+            //if an enemy has been killed then remove it
+            if(!spawnedEnemies[i]){
+                spawnedEnemies.RemoveAt(i);
+            }
+        }
+        //don't spawn more enemies than maxEnemiesToSpawn
+        if (spawnedEnemies.Count > maxEnemiesToSpawn - numberOfEnemiesToSpawn) {
+            return;
+        }
+
         Vector3 dirToPlayer = myBase.player.transform.position - transform.position;
         dirToPlayer = dirToPlayer.normalized;
         //RaycastHit2D hit = Physics2D.Raycast(transform.position, dirToPlayer);
@@ -87,7 +104,8 @@ public class RetreatMovement : StateMovement
         for (int i = 0; i < numberOfEnemiesToSpawn; i++)
         {
             //spawnLocation += dirToPlayer;
-            Instantiate(enemyToSpawn, spawnLocation, Quaternion.identity);
+            GameObject spawnedEnemy = Instantiate(enemyToSpawn, spawnLocation, Quaternion.identity);
+            spawnedEnemies.Add(spawnedEnemy);
         }
     }
 }
