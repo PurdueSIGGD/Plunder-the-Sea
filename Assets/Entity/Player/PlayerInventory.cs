@@ -10,12 +10,13 @@ public class PlayerInventory : MonoBehaviour
     public int[] baitTypes = { 0, 0, 0, 0 };
     public Text[] baitText;
     public WeaponInventory weapInv;
+    public PlayerBase pBase;
     public Image meleeSlot;
     public Image rangeSlot;
     public Text meleeLabel;
     public Text rangedLabel;
     public Text healthLabel;
-    public Text stamLavel;
+    public Text stamLabel;
     public Text ammoLabel;
     public Text speedLabel;
     public Text stamRechLabel;
@@ -35,27 +36,48 @@ public class PlayerInventory : MonoBehaviour
         {
             baitText[i].text = "Bait " + (i + 1).ToString() + ": " + baitTypes[i].ToString();
         }
-
+        pBase = GetComponentInParent<PlayerBase>();
         weapInv = GetComponentInParent<WeaponInventory>();
         updateWeaponDisplay();
+        updateStatDisplay();
     }
 
     void OnEnable()
     {
         updateWeaponDisplay();
+        updateStatDisplay();
     }
 
     public void updateWeaponDisplay()
     {
-        if (weapInv == null)
+        if (weapInv != null)
         {
-            return;
+            meleeSlot.sprite = weapInv.getWeaponImage(true);
+            meleeLabel.text = "" + weapInv.getMeleeWeaponClass();
+            rangeSlot.sprite = weapInv.getWeaponImage(false);
+            rangedLabel.text = "" + weapInv.getRangedWeaponClass();
         }
-        meleeSlot.sprite = weapInv.getWeaponImage(true);
-        meleeLabel.text = ""+ weapInv.getMeleeWeaponClass();
-        rangeSlot.sprite = weapInv.getWeaponImage(false);
-        rangedLabel.text = ""+weapInv.getRangedWeaponClass();
+    }
 
+    void Update()
+    {
+        updateStatDisplay();
+    }
+
+    public void updateStatDisplay()
+    {
+        if (pBase != null)
+        {
+            healthLabel.text = "HP: " + Mathf.Round(pBase.stats.currentHP) + "/" + Mathf.Round(pBase.stats.maxHP);
+            stamLabel.text = "Stam: " + Mathf.Round(pBase.stats.stamina) + "/" + Mathf.Round(pBase.stats.staminaMax);
+            ammoLabel.text = "Ammo: " + pBase.stats.ammo + "/" + pBase.stats.maxAmmo;
+            armorLabel.text = "Armor: " + pBase.stats.armorStatic + "(x" +pBase.stats.armorMult+ ")";
+
+            speedLabel.text = "Spd: " + pBase.stats.movementSpeed;
+            stamRechLabel.text = "Rest: " + pBase.stats.staminaRechargeRate;
+            meleeDamLabel.text = "Melee: " + weapInv.projectileDamage(weapInv.getMeleeWeaponClass());
+            rangeDamLabel.text = "Range: " + weapInv.projectileDamage(weapInv.getRangedWeaponClass());
+        }
     }
 
     //Fishing Methods
