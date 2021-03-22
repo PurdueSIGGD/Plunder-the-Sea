@@ -23,6 +23,8 @@ public class MapGen : MonoBehaviour
     private Sprite[] voidObjects;
     [SerializeField]
     private GameObject voidPrefab;
+    [SerializeField]
+    private GameObject chestPrefab;
 
     public GameObject goal;
 
@@ -150,7 +152,9 @@ public class MapGen : MonoBehaviour
 
         while (roomStack.Count > 1)
         {
-            buildRoom(roomStack.Pop());
+            RoomData room = roomStack.Pop();
+            buildRoom(room);
+            makeChest(room);
         }
 
         //This is a janky implementation of placing a change scene door in the final room
@@ -331,6 +335,17 @@ public class MapGen : MonoBehaviour
         }
     }
 
+    public void makeChest(RoomData newRoom)
+    {
+        //spawns chest
+        if (UnityEngine.Random.Range(0, 1f) < 0.2f && (newRoom.x != 0 || newRoom.y != 0))
+        {
+            int roomScale = roomWidth + roomDist;
+            GameObject chest = Instantiate(chestPrefab, new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, -1), Quaternion.identity);
+            chest.GetComponent<ChestBehaviour>().SetWeaponClass((WeaponFactory.CLASS)(UnityEngine.Random.Range(0, 15)));
+        }
+    }
+
     public void buildRoom(RoomData newRoom)
     {
         int roomScale = roomWidth + roomDist;
@@ -417,9 +432,11 @@ public class MapGen : MonoBehaviour
                 getUnique(SR);
             }
         }
-        //spawns enemies
+
+        //if not fist room
         if (newRoom.x != 0 || newRoom.y != 0)
         {
+            //spawns enemies
             g3.GetComponent<EnemySpawner>().spawnEnemies();
         }
     }

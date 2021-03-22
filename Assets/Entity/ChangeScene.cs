@@ -22,7 +22,10 @@ public class ChangeScene : MonoBehaviour
             {
                 Debug.Log("Fish time");
                 PlayerBase player = FindObjectOfType<PlayerBase>();
-                if (player.stats.appliedStats != null)
+                PlayerStats stats = player.stats;
+                stats.resetAmmo(stats.maxAmmo);
+                stats.stamina = stats.staminaMax;
+                if (stats.appliedStats != null)
                 {
                     Fish.UnbuffPlayerStats(player);
                 }
