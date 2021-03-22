@@ -18,13 +18,13 @@ MonoBehaviour:
   - weaponClass: 1
     integer: 0
   - weaponClass: 2
-    integer: 1
+    integer: 2
   - weaponClass: 3
     integer: 0
   - weaponClass: 4
-    integer: 1
+    integer: 2
   - weaponClass: 5
-    integer: 1
+    integer: 2
   - weaponClass: 6
     integer: 0
   - weaponClass: 7
@@ -36,10 +36,10 @@ MonoBehaviour:
   - weaponClass: 10
     integer: 0
   - weaponClass: 11
-    integer: 1
+    integer: 2
   - weaponClass: 12
     integer: 0
   - weaponClass: 13
     integer: 0
   - weaponClass: 14
-    integer: 1
+    integer: 2
