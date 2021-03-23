@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PhantomFish : StateCombat
 {
+    public Animator anim;
+    public SpriteRenderer sprite;
+
     // Projectile to be used as fire
     public GameObject fireProjectile;
 
@@ -30,6 +33,16 @@ public class PhantomFish : StateCombat
 
         // Place the fire if it can
         float dist = myStateMovement.PlayerDistance();
+        if (dist > minFireDistance && dist < maxFireDistance)
+        {
+            anim.SetInteger("State", 2);
+        } else
+        {
+            anim.SetInteger("State", 0);
+        }
+        anim.SetBool("Back", isPlayerUp());
+        sprite.flipX = isPlayerLeft();
+
         if (OnTarget(fireTarget) && dist > minFireDistance && dist < maxFireDistance)
         {
             fireTarget = SetTarget(fireCooldown);

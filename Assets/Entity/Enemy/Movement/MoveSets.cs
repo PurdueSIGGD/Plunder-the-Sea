@@ -66,46 +66,51 @@ public class MoveSets
     {
         //MoveAction move = new MoveAction(Vector2.up, 1);
         float dist;
+        float moveDist;
         switch (type)
         {
             case MoveTypes.Rook:
+                moveDist = 1;
                 return new MoveAction[]
                 {
-                    new MoveAction(Vector2.up, 1),
-                    new MoveAction(Vector2.down, 1),
-                    new MoveAction(Vector2.left, 1),
-                    new MoveAction(Vector2.right, 1)
+                    new MoveAction(moveDist * Vector2.up, 1),
+                    new MoveAction(moveDist *Vector2.down, 1),
+                    new MoveAction(moveDist *Vector2.left, 1),
+                    new MoveAction(moveDist *Vector2.right, 1)
                 };
             case MoveTypes.Bishop:
                 dist = Mathf.Sqrt(2);
+                moveDist = 1;
                 return new MoveAction[]
                 {
-                    new MoveAction(Vector2.left+Vector2.up, dist),
-                    new MoveAction(Vector2.left+Vector2.down, dist),
-                    new MoveAction(Vector2.right+Vector2.up, dist),
-                    new MoveAction(Vector2.right+Vector2.down, dist)
+                    new MoveAction(moveDist *(Vector2.left+Vector2.up), dist),
+                    new MoveAction(moveDist *(Vector2.left+Vector2.down), dist),
+                    new MoveAction(moveDist *(Vector2.right+Vector2.up), dist),
+                    new MoveAction(moveDist *(Vector2.right+Vector2.down), dist)
                 };
             case MoveTypes.Knight:
                 dist = Mathf.Sqrt(5);
+                moveDist = 1;
                 return new MoveAction[]
                 {
-                    new MoveAction(Vector2.left+2*Vector2.up, dist, CheckTypes.Point),
-                    new MoveAction(Vector2.left+2*Vector2.down, dist, CheckTypes.Point),
-                    new MoveAction(Vector2.right+2*Vector2.up, dist, CheckTypes.Point),
-                    new MoveAction(Vector2.right+2*Vector2.down, dist, CheckTypes.Point),
-                    new MoveAction(2*Vector2.left+Vector2.up, dist, CheckTypes.Point),
-                    new MoveAction(2*Vector2.left+Vector2.down, dist, CheckTypes.Point),
-                    new MoveAction(2*Vector2.right+Vector2.up, dist, CheckTypes.Point),
-                    new MoveAction(2*Vector2.right+Vector2.down, dist, CheckTypes.Point)
+                    new MoveAction(moveDist*(Vector2.left+2*Vector2.up), dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(Vector2.left+2*Vector2.down), dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(Vector2.right+2*Vector2.up), dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(Vector2.right+2*Vector2.down), dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(2*Vector2.left+Vector2.up), dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(2*Vector2.left+Vector2.down), dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(2*Vector2.right+Vector2.up), dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(2*Vector2.right+Vector2.down), dist, CheckTypes.Point)
                 };
             case MoveTypes.BishopTp:
                 dist = Mathf.Sqrt(2);
+                moveDist = 1;
                 return new MoveAction[]
                 {
-                    new MoveAction(Vector2.left+Vector2.up, dist, CheckTypes.Point),
-                    new MoveAction(Vector2.left+Vector2.down, dist, CheckTypes.Point),
-                    new MoveAction(Vector2.right+Vector2.up, dist, CheckTypes.Point),
-                    new MoveAction(Vector2.right+Vector2.down, dist, CheckTypes.Point)
+                    new MoveAction(moveDist*(Vector2.left+Vector2.up), dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(Vector2.left+Vector2.down), dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(Vector2.right+Vector2.up), dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(Vector2.right+Vector2.down), dist, CheckTypes.Point)
                     //new MoveAction(Vector2.up, 1, CheckTypes.Point),
                     //new MoveAction(Vector2.down, 1, CheckTypes.Point),
                     //new MoveAction(Vector2.left, 1, CheckTypes.Point),

@@ -67,7 +67,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -179,6 +179,8 @@ MonoBehaviour:
   attackRange: 0.5
   prevState: 0
   myStateMovement: {fileID: 0}
+  anim: {fileID: 6173985270142198171}
+  sprite: {fileID: 2521180540370833766}
   fireProjectile: {fileID: 1833207429367906764, guid: b4b0a00483ec5fa4395b3ce499fe1b00, type: 3}
   fireCooldown: 1
   maxFireDistance: 8
@@ -354,7 +356,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: e997bbb1f3ca9ab4282479c6e6ce0951, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
