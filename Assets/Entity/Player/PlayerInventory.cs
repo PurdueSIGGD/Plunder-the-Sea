@@ -77,6 +77,38 @@ public class PlayerInventory : MonoBehaviour
             stamRechLabel.text = "Rest: " + pBase.stats.staminaRechargeRate;
             meleeDamLabel.text = "Melee: " + weapInv.projectileDamage(weapInv.getMeleeWeaponClass());
             rangeDamLabel.text = "Range: " + weapInv.projectileDamage(weapInv.getRangedWeaponClass());
+
+            if (pBase.stats.appliedStats != null && pBase.stats.appliedStats.Length >= Fish.buffNames.Length)
+            {
+                if (pBase.stats.appliedStats[0] > 0)
+                {
+                    speedLabel.color = Color.green;
+                }
+                if (pBase.stats.appliedStats[1] > 0)
+                {
+                    healthLabel.color = Color.green;
+                }
+                if (pBase.stats.appliedStats[2] > 0)
+                {
+                    stamLabel.color = Color.green;
+                }
+                if (pBase.stats.appliedStats[3] > 0)
+                {
+                    stamRechLabel.color = Color.green;
+                }
+                if (pBase.stats.appliedStats[4] > 0)
+                {
+                    meleeDamLabel.color = Color.green;
+                }
+                if (pBase.stats.appliedStats[5] > 0)
+                {
+                    rangeDamLabel.color = Color.green;
+                }
+                if (pBase.stats.appliedStats[6] > 0)
+                {
+                    armorLabel.color = Color.green;
+                }
+            }
         }
     }
 
