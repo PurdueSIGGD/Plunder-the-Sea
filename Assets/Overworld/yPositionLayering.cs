@@ -24,15 +24,22 @@ public class yPositionLayering : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y - objectHeight <= playerTransform.position.y - characterHeight && !front)
+        if (playerTransform)
         {
-            front = true;
-            renderer.sortingOrder = startLayer;
+            if (transform.position.y - objectHeight <= playerTransform.position.y - characterHeight && !front)
+            {
+                front = true;
+                renderer.sortingOrder = startLayer;
+            }
+            if (transform.position.y - objectHeight > playerTransform.position.y - characterHeight && front)
+            {
+                front = false;
+                renderer.sortingOrder = -startLayer;
+            }
         }
-        if (transform.position.y - objectHeight > playerTransform.position.y - characterHeight && front)
+        else
         {
-            front = false;
-            renderer.sortingOrder = -startLayer;
+            playerTransform = FindObjectOfType<PlayerBase>().transform;
         }
     }
 }
