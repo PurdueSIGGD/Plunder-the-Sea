@@ -24,4 +24,16 @@ public class EnemyCombat : MonoBehaviour
     {
         return false;
     }
+
+    // Called right after the enemy teleports.
+    public virtual void AfterTeleport()
+    {
+        // Do nothing by default
+    }
+
+    // Called right before the enemy teleports.
+    public virtual void BeforeTeleport()
+    {
+        // Do nothing by default
+    }
 }

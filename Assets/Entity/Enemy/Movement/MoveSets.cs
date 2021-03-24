@@ -29,8 +29,10 @@ public class MoveSets
             case CheckTypes.Point:
                 if (currAction.dist <= 0)
                 {
+                    myBase.myCombat.BeforeTeleport();
                     myBase.myRigid.position = myBase.myRigid.position + (currAction.dir + correction).normalized * currAction.maxDist;
                     myBase.myRigid.velocity = Vector2.zero;
+                    myBase.myCombat.AfterTeleport();
                 }
                 return;
         }
@@ -90,27 +92,27 @@ public class MoveSets
                 };
             case MoveTypes.Knight:
                 dist = Mathf.Sqrt(5);
-                moveDist = 1;
+                moveDist = 2;
                 return new MoveAction[]
                 {
-                    new MoveAction(moveDist*(Vector2.left+2*Vector2.up), dist, CheckTypes.Point),
-                    new MoveAction(moveDist*(Vector2.left+2*Vector2.down), dist, CheckTypes.Point),
-                    new MoveAction(moveDist*(Vector2.right+2*Vector2.up), dist, CheckTypes.Point),
-                    new MoveAction(moveDist*(Vector2.right+2*Vector2.down), dist, CheckTypes.Point),
-                    new MoveAction(moveDist*(2*Vector2.left+Vector2.up), dist, CheckTypes.Point),
-                    new MoveAction(moveDist*(2*Vector2.left+Vector2.down), dist, CheckTypes.Point),
-                    new MoveAction(moveDist*(2*Vector2.right+Vector2.up), dist, CheckTypes.Point),
-                    new MoveAction(moveDist*(2*Vector2.right+Vector2.down), dist, CheckTypes.Point)
+                    new MoveAction(moveDist*(Vector2.left+2*Vector2.up), moveDist*dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(Vector2.left+2*Vector2.down), moveDist*dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(Vector2.right+2*Vector2.up), moveDist*dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(Vector2.right+2*Vector2.down), moveDist*dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(2*Vector2.left+Vector2.up), moveDist*dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(2*Vector2.left+Vector2.down), moveDist*dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(2*Vector2.right+Vector2.up), moveDist*dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(2*Vector2.right+Vector2.down), moveDist*dist, CheckTypes.Point)
                 };
             case MoveTypes.BishopTp:
                 dist = Mathf.Sqrt(2);
-                moveDist = 1;
+                moveDist = 2;
                 return new MoveAction[]
                 {
-                    new MoveAction(moveDist*(Vector2.left+Vector2.up), dist, CheckTypes.Point),
-                    new MoveAction(moveDist*(Vector2.left+Vector2.down), dist, CheckTypes.Point),
-                    new MoveAction(moveDist*(Vector2.right+Vector2.up), dist, CheckTypes.Point),
-                    new MoveAction(moveDist*(Vector2.right+Vector2.down), dist, CheckTypes.Point)
+                    new MoveAction(moveDist*(Vector2.left+Vector2.up), moveDist*dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(Vector2.left+Vector2.down), moveDist*dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(Vector2.right+Vector2.up), moveDist*dist, CheckTypes.Point),
+                    new MoveAction(moveDist*(Vector2.right+Vector2.down), moveDist*dist, CheckTypes.Point)
                     //new MoveAction(Vector2.up, 1, CheckTypes.Point),
                     //new MoveAction(Vector2.down, 1, CheckTypes.Point),
                     //new MoveAction(Vector2.left, 1, CheckTypes.Point),

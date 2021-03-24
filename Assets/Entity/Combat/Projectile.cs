@@ -192,34 +192,6 @@ public class Projectile : MonoBehaviour
     // Modifies the trajectory of the bullet to aim towards the source, and modifies this projectile's source (or away from the parameter's source)
     public void Reflect(Projectile proj)
     {
-        //Rigidbody2D rigidBody = GetComponent<Rigidbody2D>();
-        //Vector2 direction;
-
-        //if (source)
-        //{
-        //    // Deflects straight back at the source if it exists
-        //    direction = (source.transform.position - transform.position).normalized;
-        //}
-        //else
-        //{
-        //    // Otherwise, deflects away from the projectile's source
-        //    direction = (transform.position - proj.source.transform.position).normalized;
-        //}
-
-        //foreach (ProjectileModifier mod in mods)
-        //{
-        //    if (mod is Homing)
-        //    {
-        //        mod.enabled = false;
-        //    }
-        //}
-
-        //if (rigidBody)
-        //{
-        //    rigidBody.velocity = direction * speed;
-        //}
-        //SetSource(proj.source);
-
         Reflect(proj.source);
     }
 

@@ -7,8 +7,9 @@ public class PhantomFish : StateCombat
     public Animator anim;
     public SpriteRenderer sprite;
 
-    // Projectile to be used as fire
+    // Projectile to be used as fire and fake phantom fish
     public GameObject fireProjectile;
+    public GameObject fakePhantom;
 
     // Number of seconds between fire drops
     public float fireCooldown = 0.5f;
@@ -24,6 +25,10 @@ public class PhantomFish : StateCombat
     private float meleeTarget = 0.0f;
     private float fireTarget = 0.0f;
 
+    // Stats for fading back into existence
+    private float fadeCooldown = 1.3f;
+    private float fadeTarget = 0.0f;
+
     // Update is called once per frame
     void Update()
     {
@@ -35,10 +40,16 @@ public class PhantomFish : StateCombat
         float dist = myStateMovement.PlayerDistance();
         if (dist > minFireDistance && dist < maxFireDistance)
         {
-            anim.SetInteger("State", 2);
+            if (OnTarget(fadeTarget))
+            {
+                anim.SetInteger("State", 2);
+            }
         } else
         {
-            anim.SetInteger("State", 0);
+            if (OnTarget(fadeTarget))
+            {
+                anim.SetInteger("State", 0);
+            }
         }
         anim.SetBool("Back", isPlayerUp());
         sprite.flipX = isPlayerLeft();
@@ -71,5 +82,22 @@ public class PhantomFish : StateCombat
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
         }
         myBase.myMovement.moving = true;
+    }
+
+    public override void BeforeTeleport()
+    {
+        Vector3 pos = transform.position;
+        Vector3 vel = myBase.myRigid.velocity;
+        Vector3 destVector = new Vector3(pos.x + vel.x, pos.y + vel.y, pos.z);
+        Projectile fake = Shoot(fakePhantom, transform.position, destVector);
+        fake.speed = vel.magnitude;
+        fake.transform.rotation = Quaternion.identity;
+        fake.GetComponentInChildren<SpriteRenderer>().flipX = sprite.flipX;
+    }
+
+    public override void AfterTeleport()
+    {
+        anim.SetInteger("State", 3);
+        fadeTarget = SetTarget(fadeCooldown);
     }
 }

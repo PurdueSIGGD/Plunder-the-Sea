@@ -182,6 +182,7 @@ MonoBehaviour:
   anim: {fileID: 6173985270142198171}
   sprite: {fileID: 2521180540370833766}
   fireProjectile: {fileID: 1833207429367906764, guid: b4b0a00483ec5fa4395b3ce499fe1b00, type: 3}
+  fakePhantom: {fileID: 6710824395406004353, guid: cabeb2afa20b4014f949d6a6605fe12e, type: 3}
   fireCooldown: 1
   maxFireDistance: 8
   minFireDistance: 1
