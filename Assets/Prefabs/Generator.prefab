@@ -49,4 +49,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cfb47a4f2946e144d93f9b74aa80a723, type: 2}
   - {fileID: 11400000, guid: 89ae2b4c00424a845941009745e4bdf6, type: 2}
   voidPrefab: {fileID: 7120865865117587245, guid: 0706fc74c831f3e47b628151d09c9860, type: 3}
+  chestPrefab: {fileID: 7664811252461816296, guid: 91078f0dacbc53d468fdcd9c595d501a, type: 3}
   goal: {fileID: 1000606575011608496, guid: 9e75e4764de434c4e8debc917d1148d2, type: 3}
