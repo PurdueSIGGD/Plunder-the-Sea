@@ -78,36 +78,23 @@ public class PlayerInventory : MonoBehaviour
             meleeDamLabel.text = "Melee: " + weapInv.projectileDamage(weapInv.getMeleeWeaponClass());
             rangeDamLabel.text = "Range: " + weapInv.projectileDamage(weapInv.getRangedWeaponClass());
 
+            speedLabel.color = Color.white;
+            healthLabel.color = Color.white;
+            stamLabel.color = Color.white;
+            stamRechLabel.color = Color.white;
+            meleeDamLabel.color = Color.white;
+            rangeDamLabel.color = Color.white;
+            armorLabel.color = Color.white;
+
             if (pBase.stats.appliedStats != null && pBase.stats.appliedStats.Length >= Fish.buffNames.Length)
             {
-                if (pBase.stats.appliedStats[0] > 0)
-                {
-                    speedLabel.color = Color.green;
-                }
-                if (pBase.stats.appliedStats[1] > 0)
-                {
-                    healthLabel.color = Color.green;
-                }
-                if (pBase.stats.appliedStats[2] > 0)
-                {
-                    stamLabel.color = Color.green;
-                }
-                if (pBase.stats.appliedStats[3] > 0)
-                {
-                    stamRechLabel.color = Color.green;
-                }
-                if (pBase.stats.appliedStats[4] > 0)
-                {
-                    meleeDamLabel.color = Color.green;
-                }
-                if (pBase.stats.appliedStats[5] > 0)
-                {
-                    rangeDamLabel.color = Color.green;
-                }
-                if (pBase.stats.appliedStats[6] > 0)
-                {
-                    armorLabel.color = Color.green;
-                }
+                speedLabel.color = pBase.stats.appliedStats[0] > 0 ? Color.green : Color.white;
+                healthLabel.color = pBase.stats.appliedStats[1] > 0 ? Color.green : Color.white;
+                stamLabel.color = pBase.stats.appliedStats[2] > 0 ? Color.green : Color.white;
+                stamRechLabel.color = pBase.stats.appliedStats[3] > 0 ? Color.green : Color.white;
+                meleeDamLabel.color = pBase.stats.appliedStats[4] > 0 ? Color.green : Color.white;
+                rangeDamLabel.color = pBase.stats.appliedStats[5] > 0 ? Color.green : Color.white;
+                armorLabel.color = pBase.stats.appliedStats[6] > 0 ? Color.green : Color.white;
             }
         }
     }
