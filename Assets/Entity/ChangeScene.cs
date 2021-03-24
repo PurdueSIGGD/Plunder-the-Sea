@@ -12,6 +12,12 @@ public class ChangeScene : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            //reset ammo and stamina
+            PlayerBase player = FindObjectOfType<PlayerBase>();
+            PlayerStats stats = player.stats;
+            stats.resetAmmo(stats.maxAmmo);
+            stats.stamina = stats.staminaMax;
+
             if (newScene == "Combat")
             {
                 FindObjectOfType<PlayerStats>().dungeonLevel++;
@@ -21,14 +27,11 @@ public class ChangeScene : MonoBehaviour
             if (newScene == "FishPond")
             {
                 Debug.Log("Fish time");
-                PlayerBase player = FindObjectOfType<PlayerBase>();
-                PlayerStats stats = player.stats;
-                stats.resetAmmo(stats.maxAmmo);
-                stats.stamina = stats.staminaMax;
                 if (stats.appliedStats != null)
                 {
                     Fish.UnbuffPlayerStats(player);
                 }
+                player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             }
         }
     }
