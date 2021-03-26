@@ -876,6 +876,8 @@ GameObject:
   - component: {fileID: 7045101813800168208}
   - component: {fileID: 7045101813800168215}
   - component: {fileID: 1216624810783500037}
+  - component: {fileID: 294607765}
+  - component: {fileID: 294607770}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -987,7 +989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipSound: {fileID: 0}
-  meleeWeaponClass: 14
+  meleeWeaponClass: 9
   rangedWeaponClass: 3
   damageTable: {fileID: 11400000, guid: 27bd03c58ebebe442baa032491ef57cb, type: 2}
   projectileLifeTimesTable: {fileID: 11400000, guid: 0be363965d01fe74081335877502ab96, type: 2}
