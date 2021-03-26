@@ -6,8 +6,15 @@ using UnityEngine;
 
 public class Swordfish : StateCombat
 {
+    // Sprite references
+    public SpriteRenderer sprite;
+    public Animator anim;
+
     // Const values to make coding easier
-    const int charging = (int)ChargeMovement.ChargeState.isCharging;
+    const int dashing = (int)ChargeMovement.ChargeState.isCharging;
+    const int dizzy = (int)ChargeMovement.ChargeState.isRecharging;
+    const int charging = (int)ChargeMovement.ChargeState.isChargingUp;
+    const int ready = (int)ChargeMovement.ChargeState.ready;
 
     // The current state
     private int current = 0;
@@ -20,12 +27,41 @@ public class Swordfish : StateCombat
     {
         // Swordfish is very simple, so no extra AI
         current = GetState();
+
+        // Update variables used by the animator
+        anim.SetInteger("State", current);
+        if (current == ready)
+        {
+            // Turn the sprite only while in the normal moving state
+            anim.SetBool("Back", isPlayerUp());
+            sprite.flipX = isPlayerLeft();
+        }
+
+        // Rotate the swordfish once it begins its charge
+        if (current == dashing && prevState == charging)
+        {
+            Vector3 v = ((ChargeMovement)myStateMovement).targetAngle;
+            float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+            if (sprite.flipX)
+            {
+                angle += 180;
+            }
+            sprite.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+
+        // De-rotate the swordfish once exits its charge
+        if (current == dizzy && prevState == dashing)
+        {
+            sprite.transform.rotation = Quaternion.identity;
+        }
+        
+
         prevState = current;
     }
 
     private void OnTriggerStay2D(Collider2D collider) //Called when something enters the enemy's range, only activates if charging
     {
-        if (current == charging && collider.GetComponent<PlayerBase>())
+        if (current == dashing && collider.GetComponent<PlayerBase>())
         {
             if (OnTarget(meleeTarget))
             {

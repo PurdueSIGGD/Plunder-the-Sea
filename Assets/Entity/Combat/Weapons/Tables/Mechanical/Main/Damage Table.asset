@@ -14,32 +14,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classIntPairs:
   - weaponClass: 0
-    integer: 20
+    integer: 15
   - weaponClass: 1
-    integer: 20
+    integer: 25
   - weaponClass: 2
-    integer: 20
+    integer: 15
   - weaponClass: 3
     integer: 20
   - weaponClass: 4
     integer: 20
   - weaponClass: 6
-    integer: 20
+    integer: 15
   - weaponClass: 7
-    integer: 20
+    integer: 10
   - weaponClass: 8
     integer: 20
   - weaponClass: 9
-    integer: 20
+    integer: 15
   - weaponClass: 10
-    integer: 20
+    integer: 15
   - weaponClass: 11
     integer: 20
   - weaponClass: 12
-    integer: 20
+    integer: 10
   - weaponClass: 13
-    integer: 20
+    integer: 5
   - weaponClass: 14
-    integer: 20
+    integer: 15
   - weaponClass: 5
-    integer: 20
+    integer: 10

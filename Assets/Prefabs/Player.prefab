@@ -876,9 +876,7 @@ GameObject:
   - component: {fileID: 7045101813800168208}
   - component: {fileID: 7045101813800168215}
   - component: {fileID: 1216624810783500037}
-  - component: {fileID: 294607765}
-  - component: {fileID: 294607770}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -923,6 +921,7 @@ MonoBehaviour:
   armorStatic: 0
   killRegenMult: 1
   healthbar: {fileID: 5887798363337455442}
+  lastHitAmmoAddition: 0
   baitInventory: {fileID: 0}
   appliedStats: []
   healthPickupGameObj: {fileID: 6062236654396820198, guid: b5c31f18ad4a0d842921ebed85f2c883, type: 3}

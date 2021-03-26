@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Jellyfish : StateCombat
 {
+    // Sprite references
+    public SpriteRenderer sprite;
+    public Animator anim;
+
     // How long the jellyfish should stick for
     public float stickTime = 2.5f;
     public float cooldownTime = 1.0f;
@@ -32,6 +36,7 @@ public class Jellyfish : StateCombat
         myStateMovement = GetComponent<StateMovement>();
         stickSpeed = new EntityAttribute(ENT_ATTR.MOVESPEED, 0.5f, stickTime, true, false);
         stickDamage = new EntityAttribute(ENT_ATTR.POISON, 1f, stickTime, true);
+        anim.SetInteger("Variant", Random.Range(0, 2));
         prevState = GetState();
     }
 
@@ -53,6 +58,10 @@ public class Jellyfish : StateCombat
         {
             transform.position = stickVictim.transform.position + stickVector;
             myBase.myRigid.velocity = Vector3.zero;
+            
+        } else
+        {
+            anim.SetInteger("State", 0);
         }
 
         prevState = current;
@@ -86,6 +95,9 @@ public class Jellyfish : StateCombat
         target.AddAttribute(stickDamage, myBase.myStats);
         stickVictim = target;
         stickVector = transform.position - target.transform.position;
+        float angle = Mathf.Atan2(stickVector.y, stickVector.x) * Mathf.Rad2Deg - 90;
+        sprite.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        anim.SetInteger("State", 1);
         isSticking = true;
     }
 
@@ -94,6 +106,8 @@ public class Jellyfish : StateCombat
         target?.RemoveAttribute(stickSpeed);
         target?.RemoveAttribute(stickDamage);
         cooldownTarget = SetTarget(cooldownTime);
+        sprite.transform.rotation = Quaternion.identity;
+        anim.SetInteger("State", 0);
         isCooldown = true;
         isSticking = false;
     }

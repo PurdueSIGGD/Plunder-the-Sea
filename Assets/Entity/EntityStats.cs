@@ -16,6 +16,7 @@ public class EntityStats : MonoBehaviour
     // Float dictating how much kill regen this enemy contributes
     public float killRegenMult = 1.0f;
     public Slider healthbar;
+    public int lastHitAmmoAddition = 0;
 
     /*
      * Storing endtime in attribute class does not allow for the same attribute
@@ -57,8 +58,13 @@ public class EntityStats : MonoBehaviour
         updateHealthBar();
     }
 
+    public void setLastHit(int ammoRefillAmmount)
+    {
+        lastHitAmmoAddition = ammoRefillAmmount;
+    }
+
     //Return true if results in death
-    public bool TakeDamage(float amount, EntityStats source)
+    public virtual bool TakeDamage(float amount, EntityStats source)
     {
         //player damage call
         damageReturnCall();
@@ -69,20 +75,27 @@ public class EntityStats : MonoBehaviour
         if (transform.tag == "Player")
         {
             multiplier = (int) Mathf.Min(1 + transform.GetComponent<PlayerStats>().dungeonLevel * 0.1f, 2);
+            print("player hit");
         }
-        float realDmg = Mathf.Max((amount  - armorStatic), 0) * multiplier * Mathf.Max(1 - armorMult, 0);
+        float realDmg = Mathf.Max((amount  - armorStatic), Mathf.Min(1, amount)) * multiplier * Mathf.Max(1 - armorMult, 0);
+        //Debug.Log("Vlaue: " + realDmg);
 
         bool died = false;
         currentHP -= realDmg;
         if (currentHP <= 0)
         {
             currentHP = 0;
-            Die();
             RemoveAllAttributes();
+            Die();
+            
             died = true;
             if (source)
             {
                 source.OnKill(this);
+                if (lastHitAmmoAddition != 0)
+                {
+                    source.GetComponent<PlayerStats>().replenishAmmo(lastHitAmmoAddition);
+                }
             }
         }
         updateHealthBar();
@@ -90,14 +103,14 @@ public class EntityStats : MonoBehaviour
         return died;
     }
 
-    private void updateHealthBar() {
+    public void updateHealthBar() {
         if (healthbar != null)
         {
             healthbar.value = currentHP / maxHP;
         }
     }
 
-    public void AddAttribute(EntityAttribute attr, EntityStats source)
+    public virtual void AddAttribute(EntityAttribute attr, EntityStats source)
     {
         AppliedAttribute app;
         app.attr = attr;
@@ -127,7 +140,7 @@ public class EntityStats : MonoBehaviour
         attr.OnAdd(this);
     }
 
-    public void RemoveAttribute(EntityAttribute attr)
+    public virtual void RemoveAttribute(EntityAttribute attr)
     {
         for (int i = 0; i < attribList.Count; i++)
         {
@@ -139,7 +152,7 @@ public class EntityStats : MonoBehaviour
         }
     }
 
-    public void RemoveAllAttributes()
+    public virtual void RemoveAllAttributes()
     {
         for (int i = 0; i < attribList.Count; i++)
         {

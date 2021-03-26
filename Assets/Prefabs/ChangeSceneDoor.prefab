@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1000606575011608503}
   - component: {fileID: 1000606575011608502}
   - component: {fileID: 1000606575011608497}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ChangeSceneDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,9 +70,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1930420151
+  m_SortingLayer: -1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.5566038, g: 0.37790135, b: 0, a: 1}
   m_FlipX: 0

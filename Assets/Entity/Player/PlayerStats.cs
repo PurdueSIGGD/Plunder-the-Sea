@@ -63,7 +63,7 @@ public class PlayerStats : EntityStats
         this.killRegen = 0f;
 
         var pickupObj = Instantiate(healthPickupGameObj);
-        pickupObj.GetComponent<HealthPickup>().health = this.maxHP * 0.25f;
+        pickupObj.GetComponent<HealthPickup>().health = this.maxHP * 0.2f;
 
         pickupObj.transform.position = transform.position;
     }
@@ -102,6 +102,16 @@ public class PlayerStats : EntityStats
     {
         currentHP = maxHP;
         stamina = staminaMax;
+        ammo = maxAmmo;
+        if (appliedStats != null)
+        {
+            Fish.UnbuffPlayerStats(pbase, false);
+        }
+        PlayerClasses pClass = GetComponent<PlayerClasses>();
+        pClass.initialize();
+        baitInventory.flushBait();
+        pbase.rigidBody.velocity = Vector2.zero;
+        killRegen = 0;
         dungeonLevel = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
