@@ -43,6 +43,7 @@ public class Fish : MonoBehaviour
         //Apply persisting buffs
         player.stats.movementSpeed += buffs[0];
         player.stats.maxHP += buffs[1];
+        player.stats.currentHP += buffs[1];
         player.stats.staminaMax += buffs[2];
         player.stats.staminaRechargeRate += buffs[3];
         player.stats.weaponInv.weaponMods.meleeDamageAddition += buffs[4];
@@ -61,6 +62,8 @@ public class Fish : MonoBehaviour
         //Apply temporary buffs
         player.stats.movementSpeed += buffsApplied[0];
         player.stats.maxHP += buffsApplied[1];
+        player.stats.currentHP += buffsApplied[1];
+        player.stats.updateHealthBar();
         player.stats.staminaMax += buffsApplied[2];
         player.stats.staminaRechargeRate += buffsApplied[3];
         player.stats.weaponInv.weaponMods.meleeDamageMultiplier += buffsApplied[4];
@@ -100,6 +103,8 @@ public class Fish : MonoBehaviour
         //Remove temporary buffs
         player.stats.movementSpeed -= aStats[0];
         player.stats.maxHP -= aStats[1];
+        player.stats.currentHP -= aStats[1];
+        player.stats.updateHealthBar();
         player.stats.staminaMax -= aStats[2];
         player.stats.staminaRechargeRate -= aStats[3];
         player.stats.weaponInv.weaponMods.meleeDamageMultiplier -= aStats[4];

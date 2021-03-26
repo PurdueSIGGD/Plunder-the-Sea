@@ -131,14 +131,14 @@ public class WeaponInventory : MonoBehaviour
 
         //sets up assuming a ranged weapon
         var pStats = new ProjectileStats() {
-            prefab = bulletTemplate, damage = (int)((damageTable.get(weaponClass).Value + weaponMods.rangedDamageAddition) * weaponMods.rangedDamageMultiplier),
+            prefab = bulletTemplate, damage = projectileDamage(weaponClass),
             lifeTime = (weaponMods.projectileLifetimeAddition + projectileLifeTimesTable.get(weaponClass).Value) * weaponMods.projectileLifetimeMultiplier,
             ammoRefill = tables.ammoPerKill.get(weaponClass).Value
             };
 
         if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE) {
             //corrects if melee
-            pStats.damage = (int)((damageTable.get(weaponClass).Value + weaponMods.meleeDamageAddition) * weaponMods.meleeDamageMultiplier);
+            pStats.damage = projectileDamage(weaponClass);
             pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
 
             pStats.prefab = projectilePrefabTable.get(weaponClass);
@@ -148,6 +148,16 @@ public class WeaponInventory : MonoBehaviour
         //pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
         return pStats;
     }
+
+    public int projectileDamage(WeaponFactory.CLASS weaponClass)
+    {
+        if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE)
+        {
+            return (int)((damageTable.get(weaponClass).Value + weaponMods.meleeDamageAddition) * weaponMods.meleeDamageMultiplier);
+        }
+        return (int)((damageTable.get(weaponClass).Value + weaponMods.rangedDamageAddition) * weaponMods.rangedDamageMultiplier);
+    }
+
     public Sprite getWeaponImage(bool isMelee)
     {
         if (isMelee)
