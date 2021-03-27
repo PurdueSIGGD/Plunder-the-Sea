@@ -37,6 +37,7 @@ public class parrot : MonoBehaviour
         renderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         anim.SetFloat("Parrot", PlayerPrefs.GetFloat("classNum"));
+        restTimer = timeToRest;
     }
 
     // Update is called once per frame

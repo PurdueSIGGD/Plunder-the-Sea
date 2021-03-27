@@ -50,7 +50,7 @@ MonoBehaviour:
   followSpeed: 1
   idleSpeed: 0.5
   timeToRest: 2
-  timeToWake: 1
+  timeToWake: 0.5
 --- !u!50 &5211373676904820314
 Rigidbody2D:
   serializedVersion: 4
