@@ -23,6 +23,7 @@ public class PlayerInventory : MonoBehaviour
     public Text meleeDamLabel;
     public Text rangeDamLabel;
     public Text armorLabel;
+    public Text Description;
 
     private void Start()
     {

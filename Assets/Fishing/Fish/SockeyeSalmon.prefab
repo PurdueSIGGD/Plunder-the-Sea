@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: -8485167538343993492}
   - component: {fileID: 4289853425265027530}
   - component: {fileID: 9175915202284406063}
+  - component: {fileID: 1925908235807332868}
   m_Layer: 0
   m_Name: SockeyeSalmon
   m_TagString: Fish
@@ -100,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.5
   rotationSpeed: 0.25
-  preferredBaitType: 4
+  preferredBaitType: 0
   wrongBaitCatchPercent: 0.25
   minWaitTime: 0
   maxWaitTime: 1
@@ -121,14 +122,6 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  buffNames:
-  - Movement Speed
-  - HP
-  - Stamina
-  - Stamina Recharge Rate
-  - Melee Damage
-  - Ranged Damage
-  - Armor
   FishingMinigame: {fileID: 0}
   sprite: {fileID: 0}
 --- !u!50 &-8485167538343993492
@@ -184,3 +177,27 @@ CircleCollider2D:
   m_Offset: {x: 0.35, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
+--- !u!114 &1925908235807332868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290696634750580292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 'Sockeye Salmon
+
+    Favorite: Bait 1
+
+    Buff Type: Stamina
+
+
+    Description:
+
+    He''s
+    a hard worker. Doesn''t tire easily. Watch yourself, he''s keeping an eye on
+    you'
