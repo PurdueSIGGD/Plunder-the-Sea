@@ -20,6 +20,7 @@ public class parrot : MonoBehaviour
     private Vector2 target;
     private Animator anim;
     private Rigidbody2D rigid;
+    private SpriteRenderer renderer;
 
     private float restTimer;
     private float wakeTimer;
@@ -33,6 +34,7 @@ public class parrot : MonoBehaviour
     {
         playerTransform = FindObjectOfType<PlayerBase>().transform;
         rigid = GetComponent<Rigidbody2D>();
+        renderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         anim.SetFloat("Parrot", PlayerPrefs.GetFloat("classNum"));
     }
@@ -91,6 +93,14 @@ public class parrot : MonoBehaviour
             playerTransform = FindObjectOfType<PlayerBase>().transform;
         }
         anim.SetFloat("Speed", rigid.velocity.magnitude);
+        if (rigid.velocity.x > 0)
+        {
+            renderer.flipX = false;
+        }
+        if (rigid.velocity.x < 0)
+        {
+            renderer.flipX = true;
+        }
     }
 
     private bool checkBounds()
