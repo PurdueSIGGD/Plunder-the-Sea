@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bc0a0c1cbfefd4d448d8a7751a968403, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7764706}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -121,14 +121,6 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  buffNames:
-  - Movement Speed
-  - HP
-  - Stamina
-  - Stamina Recharge Rate
-  - Melee Damage
-  - Ranged Damage
-  - Armor
   FishingMinigame: {fileID: 0}
   sprite: {fileID: 0}
 --- !u!50 &-8485167538343993492

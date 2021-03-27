@@ -104,6 +104,7 @@ public class PlayerClasses : MonoBehaviour
     {
         if (classNumber != -1)
         {
+            classNumber = PlayerPrefs.GetInt("classNum");
             initialize();
         }
         else
