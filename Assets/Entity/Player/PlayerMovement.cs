@@ -21,6 +21,5 @@ public class PlayerMovement : MonoBehaviour
         Vector2 newVelocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized * speed * Time.deltaTime;
 
         myBase.rigidBody.AddForce(newVelocity * 64);
-
     }
 }
