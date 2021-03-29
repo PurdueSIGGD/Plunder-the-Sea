@@ -103,7 +103,7 @@ public class EntityStats : MonoBehaviour
         return died;
     }
 
-    private void updateHealthBar() {
+    public void updateHealthBar() {
         if (healthbar != null)
         {
             healthbar.value = currentHP / maxHP;
