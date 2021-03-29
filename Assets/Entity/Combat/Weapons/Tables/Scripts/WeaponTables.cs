@@ -27,5 +27,6 @@ public class WeaponTables : ScriptableObject
     public IntWeaponClassTable pierce;
     public FloatWeaponClassTable revertTime;
     public FloatWeaponClassTable whipLinkSpeed;
+    public WhipLinkOBJ whipLinkObj;
 
 }

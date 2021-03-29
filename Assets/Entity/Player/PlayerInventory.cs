@@ -24,6 +24,9 @@ public class PlayerInventory : MonoBehaviour
     public Text rangeDamLabel;
     public Text armorLabel;
 
+    //death stats variables
+    public int baitsGot = 0;
+
     private void Start()
     {
         if (baitText.Length != baitTypes.Length)
@@ -125,6 +128,7 @@ public class PlayerInventory : MonoBehaviour
     {
         baitTypes[arrayIndex] = baitTypes[arrayIndex] + baitAmount;
         baitText[arrayIndex].text = "Bait " + (arrayIndex + 1).ToString() + ": " + baitTypes[arrayIndex].ToString();
+        baitsGot += baitAmount;
     }
 
     public void removeBait(int arrayIndex, int baitAmount = 1)

@@ -12,6 +12,7 @@ public class WhipProjSys : ProjectileSystem {
     protected override void OnEquip(WeaponInventory inv)
     {
         this.linkSpeed = this.tables.whipLinkSpeed.get(this.weaponClass).Value;
+        WhipLink = tables.whipLinkObj.WhipOBJ;
         this.cam = GameObject.FindObjectOfType<UI_Camera>();
     }
 

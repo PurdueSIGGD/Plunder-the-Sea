@@ -66,6 +66,7 @@ public class PlayerFishing : MonoBehaviour
                     bobber = Bobber.Create(bobberPrefab, this, cam.GetMousePosition(), selectedBait);
                     bobberIsCast = true;
                     player.stats.baitInventory.removeBait(selectedBait);
+                    PlayerPrefs.SetInt("FishingBait", PlayerPrefs.GetInt("FishingBait") + 1);
                 }
                 else
                 {
@@ -82,12 +83,12 @@ public class PlayerFishing : MonoBehaviour
         audioSrc.Stop();
         if (fish)
         {
-            Debug.Log("Fish caught");
+            //Debug.Log("Fish caught");
             fish.FishingMinigame.SetActive(true);
         }
         else
         {
-            Debug.Log("Bobber returned");
+            //Debug.Log("Bobber returned");
             //This adds bait back once the bobber is returned, we can decide to have this or not
             //player.stats.baitInventory.addBait(selectedBait);
         }

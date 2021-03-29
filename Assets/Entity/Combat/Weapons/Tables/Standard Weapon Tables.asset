@@ -29,3 +29,4 @@ MonoBehaviour:
   pierce: {fileID: 11400000, guid: 1d59799c53d3e4e48814e988708564ad, type: 2}
   revertTime: {fileID: 11400000, guid: de1c9a3695c52c04d9fb98ba2a8b5e49, type: 2}
   whipLinkSpeed: {fileID: 11400000, guid: c9abcec0de745d04c98f75bdc9572ef6, type: 2}
+  whipLinkObj: {fileID: 11400000, guid: 416e9797de87b5d44bbf6d5a81459ef7, type: 2}

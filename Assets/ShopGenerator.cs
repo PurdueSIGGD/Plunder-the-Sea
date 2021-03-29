@@ -35,10 +35,16 @@ public class ShopGenerator : MonoBehaviour
         {
             var randWClass = weaponClasses[Random.Range(0, weaponClasses.Length)];
 
+            //bottle check
+            if (randWClass == WeaponFactory.CLASS.BOTTLE)
+            {
+                continue;
+            }
+
             var itemGameObj = Instantiate(shopItemPrefab, target.position, Quaternion.identity);
             var itemGameComp = itemGameObj.GetComponent<ShopItem>();
 
-            itemGameComp.SetShopItem(randWClass, 5, 0);
+            itemGameComp.SetShopItem(randWClass, Random.Range(1, 11), Random.Range(0, 4));
             itemGameComp.OnEnable();
 
         }

@@ -37,6 +37,9 @@ public class WeaponInventory : MonoBehaviour
     //stores player weapon modifiers
     public PlayerClasses.WeaponModifiers weaponMods = new PlayerClasses.WeaponModifiers();
 
+    //death stats variables
+    public int wepsGot = 0;
+
     private void Start()
     {
         audioSrc = GetComponent<AudioSource>();
@@ -98,6 +101,7 @@ public class WeaponInventory : MonoBehaviour
             this.rangedWeaponClass = weaponClass;
             SetRanged(weapon);
         }
+        wepsGot++;
     }
 
     public ProjectileStats constructProjectileStats(WeaponFactory.CLASS weaponClass) {
@@ -115,7 +119,7 @@ public class WeaponInventory : MonoBehaviour
             pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
 
             pStats.prefab = projectilePrefabTable.get(weaponClass);
-            pStats.prefab.transform.localScale = Vector3.one * (1 + weaponMods.meleeSizeAddition) * weaponMods.meleeSizeMultiplier * 0.5f; //swordScale
+            pStats.prefab.transform.localScale = Vector3.one * (1 + weaponMods.meleeSizeAddition) * weaponMods.meleeSizeMultiplier; //swordScale
         }
 
         //pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
