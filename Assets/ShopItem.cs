@@ -52,6 +52,8 @@ public class ShopItem : MonoBehaviour
             this.enabled = false;
             Destroy(gameObject);
 
+            PlayerPrefs.SetInt("WeaponBait", PlayerPrefs.GetInt("WeaponBait") + baitPrice);
+
             playerStats.baitInventory.removeBait(baitType, baitPrice);
 
             var chestGameObj = Instantiate(chestPrefab, this.transform.position, Quaternion.identity);

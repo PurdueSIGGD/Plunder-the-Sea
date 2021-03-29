@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -33,6 +30,9 @@ public class PlayerStats : EntityStats
     public int maxAmmo {get; private set;}
     private float timeSinceLastTick = 0;
     private float timeBetweenTicks = 0.1f;
+
+    //death stats variables
+    private float levelTime;
 
     public void decrementAmmo() {
         this.ammo = Mathf.Max(ammo - 1, 0);
@@ -90,12 +90,42 @@ public class PlayerStats : EntityStats
 
             ammoBar.value = (float)ammo / (float)maxAmmo;
         }
+        levelTime += Time.deltaTime;
     }
 
 
     public void UseStamina(float staminaCost)
     {
         stamina = Mathf.Max(stamina - staminaCost, 0);
+    }
+
+    private void setDeathStats()
+    {
+        PlayerPrefs.SetInt("Level", dungeonLevel + 1);
+        PlayerPrefs.SetFloat("Time", levelTime);
+
+        //All of these are handled in other scripts
+        //PlayerPrefs.SetInt("Kills");
+        //PlayerPrefs.SetInt("Damage");
+        //PlayerPrefs.SetInt("Hurt");
+        //PlayerPrefs.SetString("Killer");
+
+        PlayerClasses pc = GetComponent<PlayerClasses>();
+        PlayerPrefs.SetString("Class", GetComponent<PlayerClasses>().classes[pc.classNumber].name);
+
+        PlayerPrefs.SetInt("BaitGot", baitInventory.baitsGot);
+
+        //All of these are handled in other scripts
+        //PlayerPrefs.SetInt("FishingBait");
+        //PlayerPrefs.SetInt("Caught");
+        //PlayerPrefs.SetInt("WeaponBait");
+        //PlayerPrefs.SetInt("Chests")
+
+        PlayerPrefs.SetInt("Weapons", weaponInv.wepsGot);
+        int[] baits = baitInventory.baitTypes;
+
+        PlayerPrefs.SetInt("BaitLeft", baits[0] + baits[1] + baits[2] + baits[3]);
+
     }
 
     public override void Die()
@@ -110,10 +140,13 @@ public class PlayerStats : EntityStats
         PlayerClasses pClass = GetComponent<PlayerClasses>();
         pClass.initialize();
         baitInventory.flushBait();
+        setDeathStats();
         pbase.rigidBody.velocity = Vector2.zero;
         killRegen = 0;
         dungeonLevel = 0;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("DeathScreen");
+        Destroy(gameObject, 0.1f);
+        Destroy(Camera.main.gameObject, 0.1f);
     }
 
     public override void OnKill(EntityStats victim)

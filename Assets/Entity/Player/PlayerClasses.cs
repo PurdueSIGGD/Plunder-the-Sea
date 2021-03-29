@@ -102,6 +102,7 @@ public class PlayerClasses : MonoBehaviour
 
     public void Awake()
     {
+        resetDeathStats();
         if (classNumber != -1)
         {
             classNumber = PlayerPrefs.GetInt("classNum");
@@ -112,6 +113,18 @@ public class PlayerClasses : MonoBehaviour
             //if not a player
 
         }
+    }
+
+    private void resetDeathStats()
+    {
+        PlayerPrefs.SetInt("Kills", 0);
+        PlayerPrefs.SetInt("Damage", 0);
+        PlayerPrefs.SetInt("Hurt", 0);
+        PlayerPrefs.SetString("Killer", "???");
+        PlayerPrefs.SetInt("FishingBait", 0);
+        PlayerPrefs.SetInt("Caught", 0);
+        PlayerPrefs.SetInt("WeaponBait", 0);
+        PlayerPrefs.SetInt("Chests", 0);
     }
 
     public void initialize()

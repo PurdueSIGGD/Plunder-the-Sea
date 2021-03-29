@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7624220246629391907
+--- !u!1 &4680100573532103329
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4864415104606552031}
-  - component: {fileID: 3397976319809124363}
+  - component: {fileID: 7691156972234212189}
+  - component: {fileID: 438445870270989449}
   m_Layer: 0
-  m_Name: FirstMate
+  m_Name: Swash Buckler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4864415104606552031
+--- !u!4 &7691156972234212189
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7624220246629391907}
+  m_GameObject: {fileID: 4680100573532103329}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,13 +31,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3397976319809124363
+--- !u!114 &438445870270989449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7624220246629391907}
+  m_GameObject: {fileID: 4680100573532103329}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2b2458fe8bdaca468457c10375cb4c4, type: 3}
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classNumber: -1
   classes: []
-  baseHp: 100
-  baseSpeed: 10
+  baseHp: 120
+  baseSpeed: 15
   baseArmorAddition: 0
   baseArmorDivision: 0
   baseStamina: 45
@@ -59,24 +59,24 @@ MonoBehaviour:
   chainLength: 4
   chainRadius: 4
   lightingPrefab: {fileID: 0}
-  lunge: 0
-  meleeLungeDistance: 2
-  rangedLungeDistance: 4
+  lunge: 1
+  meleeLungeDistance: 4
+  rangedLungeDistance: 8
   lungeOneDirectionCooldown: 0.25
   lungeBackDirectionCooldown: 0.1
-  killChain: 1
+  killChain: 0
   killRequirement: 3
   chainTime: 4
   attackSizeBoost: 2
   speedBoost: 2
-  melee: 0
-  ranged: 8
+  melee: 4
+  ranged: 7
   meleeDamageAddition: 0
-  meleeDamageMultiplier: 0.5
+  meleeDamageMultiplier: 1
   rangedDamageAddition: 0
-  rangedDamageMultiplier: 0.5
+  rangedDamageMultiplier: 1
   meleeSizeAddition: 0.5
-  meleeSizeMultiplier: 1
+  meleeSizeMultiplier: 1.5
   rangedSpeedAddition: 0
   rangedSpeedMultiplier: 1
   projectileLifetimeAddition: 0

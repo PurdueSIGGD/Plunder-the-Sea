@@ -66,6 +66,7 @@ public class PlayerFishing : MonoBehaviour
                     bobber = Bobber.Create(bobberPrefab, this, cam.GetMousePosition(), selectedBait);
                     bobberIsCast = true;
                     player.stats.baitInventory.removeBait(selectedBait);
+                    PlayerPrefs.SetInt("FishingBait", PlayerPrefs.GetInt("FishingBait") + 1);
                 }
                 else
                 {

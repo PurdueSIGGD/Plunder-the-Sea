@@ -39,6 +39,9 @@ public class WeaponInventory : MonoBehaviour
     //stores player weapon modifiers
     public PlayerClasses.WeaponModifiers weaponMods = new PlayerClasses.WeaponModifiers();
 
+    //death stats variables
+    public int wepsGot = 0;
+
     private void Start()
     {
         cam = GameObject.FindObjectOfType<UI_Camera>();
@@ -125,6 +128,7 @@ public class WeaponInventory : MonoBehaviour
             this.rangedWeaponClass = weaponClass;
             SetRanged(weapon);
         }
+        wepsGot++;
     }
 
     public ProjectileStats constructProjectileStats(WeaponFactory.CLASS weaponClass) {
