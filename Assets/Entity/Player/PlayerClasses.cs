@@ -277,7 +277,7 @@ public class PlayerClasses : MonoBehaviour
     //call this when an enemy is hit/damaged
     public void enemyHit(EnemyStats current)
     {
-        Debug.Log("Enemy got hit");
+        //Debug.Log("Enemy got hit");
 
         if (chainLighting && !sendingLighting)
         {
