@@ -53,7 +53,7 @@ public class writeStats : MonoBehaviour
                 {
                     tip = "The Warrent Officer has a chance to create chain lighting, try grouping enemies together to take them out all at once.";
                 }
-                if (PlayerPrefs.GetFloat("Time") > Mathf.Pow(PlayerPrefs.GetFloat("Level") + 1, 0.5f) * 90)
+                if (PlayerPrefs.GetFloat("Time") > Mathf.Pow(PlayerPrefs.GetFloat("Level") + 1, 1.25f) * 60)
                 {
                     tip = "There is no need to do everything in a level, getting to the exit is your main goal.";
                 }

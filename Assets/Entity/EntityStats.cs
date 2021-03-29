@@ -100,7 +100,7 @@ public class EntityStats : MonoBehaviour
                 source.OnKill(this);
 
                 //if is not the player
-                if (!isPlayer)
+                if (isPlayer)
                 {
                     string killerName = source.name;
                     if (killerName.Contains("(Clone)"))

@@ -104,28 +104,16 @@ public class PlayerStats : EntityStats
         PlayerPrefs.SetInt("Level", dungeonLevel + 1);
         PlayerPrefs.SetFloat("Time", levelTime);
 
-        //All of these are handled in other scripts
-        //PlayerPrefs.SetInt("Kills");
-        //PlayerPrefs.SetInt("Damage");
-        //PlayerPrefs.SetInt("Hurt");
-        //PlayerPrefs.SetString("Killer");
-
         PlayerClasses pc = GetComponent<PlayerClasses>();
         PlayerPrefs.SetString("Class", GetComponent<PlayerClasses>().classes[pc.classNumber].name);
 
         PlayerPrefs.SetInt("BaitGot", baitInventory.baitsGot);
-
-        //All of these are handled in other scripts
-        //PlayerPrefs.SetInt("FishingBait");
-        //PlayerPrefs.SetInt("Caught");
-        //PlayerPrefs.SetInt("WeaponBait");
-        //PlayerPrefs.SetInt("Chests")
-
         PlayerPrefs.SetInt("Weapons", weaponInv.wepsGot);
-        int[] baits = baitInventory.baitTypes;
 
+        int[] baits = baitInventory.baitTypes;
         PlayerPrefs.SetInt("BaitLeft", baits[0] + baits[1] + baits[2] + baits[3]);
 
+        //The other playerpref values are set elsewere realtime
     }
 
     public override void Die()
