@@ -19,8 +19,6 @@ public class WeaponInventory : MonoBehaviour
     }
     private WeaponSystem meleeSystem;
     private WeaponSystem rangedSystem;
-    private UI_Camera cam;
-    private SpriteRenderer spriteRen;
 
     [SerializeField]
     private IntWeaponClassTable damageTable; 
@@ -44,17 +42,11 @@ public class WeaponInventory : MonoBehaviour
 
     private void Start()
     {
-        cam = GameObject.FindObjectOfType<UI_Camera>();
         audioSrc = GetComponent<AudioSource>();
         if (audioSrc == null)
         {
             audioSrc = gameObject.AddComponent<AudioSource>();
         }
-
-        spriteRen = new GameObject().AddComponent<SpriteRenderer>();
-        spriteRen.transform.localScale = this.transform.localScale * 0.5f; //gunScale
-        spriteRen.transform.position = this.transform.position;
-        spriteRen.transform.SetParent(this.transform);
 
         PlayerClasses PC = GetComponent<PlayerClasses>();
         PC.getMods(weaponMods);
@@ -75,9 +67,8 @@ public class WeaponInventory : MonoBehaviour
         rangedSystem?.Update();
     }
 
-    private void LateUpdate()
-    {
-        spriteRen.transform.rotation = Quaternion.FromToRotation(new Vector3(1,1,0), (Vector3)cam.GetMousePosition() - spriteRen.transform.position);
+    public Sprite GetGunSprite() {
+        return this.rangedWeaponSpritesTable.get(this.rangedWeaponClass);
     }
 
     private void SetMelee(WeaponSystem wep)
@@ -94,24 +85,6 @@ public class WeaponInventory : MonoBehaviour
         wep.OnEquip(this, tables, rangedWeaponClass);
         // Make sure to set weapon after the equip methods run
         rangedSystem = wep;
-
-        //TESTING
-        if (spriteRen != null)
-        {
-            if (rangedWeaponSpritesTable.get(this.rangedWeaponClass))
-            {
-                spriteRen.sprite = rangedWeaponSpritesTable.get(this.rangedWeaponClass);
-            }
-            else
-            {
-                Debug.Log("Sprite not set");
-            }
-        }
-        else
-        {
-            Debug.Log("Renderer not made");
-        }
-        //spriteRen.sprite = rangedWeaponSpritesTable.get(this.rangedWeaponClass);
     }
 
     public void SetWeapon(WeaponFactory.CLASS weaponClass) {
