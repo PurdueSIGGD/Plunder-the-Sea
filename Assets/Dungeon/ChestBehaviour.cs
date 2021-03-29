@@ -23,6 +23,8 @@ public class ChestBehaviour : MonoBehaviour
         weaponInv.SetWeapon(weaponClass);
         transform.localScale *= 0.5f;
 
+        PlayerPrefs.SetInt("Chests", PlayerPrefs.GetInt("Chests") + 1);
+
         this.enabled = false;
     }
 

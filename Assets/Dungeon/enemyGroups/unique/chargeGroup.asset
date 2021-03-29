@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: chargeGroup
   m_EditorClassIdentifier: 
   enemySet:
-  - {fileID: 8010861710391754302, guid: 9587eb74143e5bf4fb2e9b15b0f265fd, type: 3}
-  - {fileID: 8010861710391754302, guid: 9587eb74143e5bf4fb2e9b15b0f265fd, type: 3}
+  - {fileID: 1760924043896257558, guid: 72fc1f8739a5d8a44838e2fedc6648c7, type: 3}
   - {fileID: 5338947076325555132, guid: 6bfd232b6cc98ab4da3f8b76052d4f59, type: 3}
   - {fileID: 5338947076325555132, guid: 6bfd232b6cc98ab4da3f8b76052d4f59, type: 3}
   - {fileID: 2767971687338764697, guid: d2e7a01280f7bea45a2c788b3b56fa26, type: 3}
