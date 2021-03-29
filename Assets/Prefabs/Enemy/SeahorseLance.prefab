@@ -85,7 +85,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.3
 --- !u!50 &1760924043896257555
 Rigidbody2D:
   serializedVersion: 4
@@ -171,7 +171,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.35
 --- !u!114 &4553874436539418821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +204,8 @@ MonoBehaviour:
   pathingRefresh: 0.25
   maxDist: 10
   targetProximity: 0
+  sprite: {fileID: 42060390853313088}
+  anim: {fileID: 4513903146821453606}
   retreatDistance: 5
   actCooldownTime: 5
   enemyToSpawn: {fileID: 4856430215809392895, guid: 3af6ffef36ed5a135ad8c0adb46da670, type: 3}
@@ -494,7 +496,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1806740929681760905}
   - component: {fileID: 42060390853313088}
-  - component: {fileID: 2214926048353793690}
+  - component: {fileID: 4513903146821453606}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -511,7 +513,7 @@ Transform:
   m_GameObject: {fileID: 3489548980154905724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1760924043896257580}
   m_RootOrder: 1
@@ -567,7 +569,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &2214926048353793690
+--- !u!95 &4513903146821453606
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -577,7 +579,7 @@ Animator:
   m_GameObject: {fileID: 3489548980154905724}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 21647a0fd09b1ca489d19c6a01567bfe, type: 2}
+  m_Controller: {fileID: 9100000, guid: 127ea79e94401d749a19357774e6f6a2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -622,7 +624,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.05}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5397053866034056798

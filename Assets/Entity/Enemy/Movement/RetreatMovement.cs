@@ -10,6 +10,9 @@ using UnityEngine;
 */
 public class RetreatMovement : StateMovement
 {
+    public SpriteRenderer sprite;
+    public Animator anim;
+
     //the distance to retreat to before doing action
     public float retreatDistance = 5f;
 
@@ -48,11 +51,19 @@ public class RetreatMovement : StateMovement
         switch (retreatState)
         {
             case RetreatState.ACTIVATING:
+                anim.SetInteger("State", 1);
+
                 myBase.myRigid.velocity = Vector2.zero;
                 doAction();
                 retreatState = RetreatState.RETREATING;
                 break;
             case RetreatState.RETREATING:
+                anim.SetInteger("State", 0);
+                if (myBase.player)
+                {
+                    sprite.flipX = !(myBase.player.transform.position.x < transform.position.x);
+                }
+
                 myBase.myStats.currentHP = 1;
                 //check if far enough away from the player
                 if (PlayerDistance() > retreatDistance)
@@ -67,6 +78,8 @@ public class RetreatMovement : StateMovement
                 }
                 break;
             case RetreatState.COOLDOWN:
+                anim.SetInteger("State", 1);
+
                 myBase.myRigid.velocity = Vector2.zero;
                 myBase.myStats.currentHP = myBase.myStats.maxHP;
                 //wait until cooldown time is over
