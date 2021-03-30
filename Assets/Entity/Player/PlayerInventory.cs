@@ -10,9 +10,12 @@ public class PlayerInventory : MonoBehaviour
     public int[] baitTypes = { 0, 0, 0, 0 };
     public Text[] baitText;
     public WeaponInventory weapInv;
+    public WeaponTables tables;
     public PlayerBase pBase;
     public Image meleeSlot;
     public Image rangeSlot;
+    private DescriptionInfo meleeInfo;
+    private DescriptionInfo rangeInfo;
     public Text meleeLabel;
     public Text rangedLabel;
     public Text healthLabel;
@@ -42,6 +45,8 @@ public class PlayerInventory : MonoBehaviour
         }
         pBase = GetComponentInParent<PlayerBase>();
         weapInv = GetComponentInParent<WeaponInventory>();
+        meleeInfo = meleeSlot.GetComponent<DescriptionInfo>();
+        rangeInfo = rangeSlot.GetComponent<DescriptionInfo>();
         updateWeaponDisplay();
         updateStatDisplay();
     }
@@ -57,9 +62,36 @@ public class PlayerInventory : MonoBehaviour
         if (weapInv != null)
         {
             meleeSlot.sprite = weapInv.getWeaponImage(true);
-            meleeLabel.text = "" + weapInv.getMeleeWeaponClass();
+            meleeLabel.text = "" + tables.about.getName(weapInv.getMeleeWeaponClass());
+            setDescription(weapInv.getMeleeWeaponClass());
             rangeSlot.sprite = weapInv.getWeaponImage(false);
-            rangedLabel.text = "" + weapInv.getRangedWeaponClass();
+            rangedLabel.text = "" + tables.about.getName(weapInv.getRangedWeaponClass());
+            setDescription(weapInv.getRangedWeaponClass());
+        }
+    }
+
+    public void setDescription(WeaponFactory.CLASS weaponClass)
+    {
+        string descr = tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE ? "Melee: " : "Range: ";
+        descr += tables.about.getName(weaponClass) + "\nBase Damage: ";
+        descr += tables.damage.get(weaponClass) + "\n\nDescription:\n";
+        descr += tables.about.getDescr(weaponClass);
+
+        if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE)
+        {
+            if (meleeInfo == null)
+            {
+                return;
+            }
+            meleeInfo.description = descr;
+        }
+        else
+        {
+            if (rangeInfo == null)
+            {
+                return;
+            }
+            rangeInfo.description = descr;
         }
     }
 

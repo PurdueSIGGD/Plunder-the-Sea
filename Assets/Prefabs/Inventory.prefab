@@ -797,6 +797,7 @@ GameObject:
   - component: {fileID: 3506777769107161194}
   - component: {fileID: 6758929029353156282}
   - component: {fileID: 3781734618616787116}
+  - component: {fileID: 6564278458357989294}
   m_Layer: 5
   m_Name: RangedSlot
   m_TagString: Untagged
@@ -861,6 +862,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6564278458357989294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3362579879387547122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
 --- !u!1 &3410485630306815585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,6 +1468,7 @@ MonoBehaviour:
   - {fileID: 8943148669779162416}
   - {fileID: 8687233094917976268}
   weapInv: {fileID: 0}
+  tables: {fileID: 11400000, guid: f23b07f02af71b44fa4d0988487b7ea5, type: 2}
   pBase: {fileID: 0}
   meleeSlot: {fileID: 8399434923189517206}
   rangeSlot: {fileID: 3781734618616787116}
@@ -1468,6 +1483,7 @@ MonoBehaviour:
   rangeDamLabel: {fileID: 1121947885119303728}
   armorLabel: {fileID: 4023771828566342264}
   Description: {fileID: 8441273529929990105}
+  baitsGot: 0
 --- !u!1 &4389671412987379405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,6 +1495,7 @@ GameObject:
   - component: {fileID: 5946171257040987717}
   - component: {fileID: 7523796496743207963}
   - component: {fileID: 8399434923189517206}
+  - component: {fileID: 4576465857599970879}
   m_Layer: 5
   m_Name: MeleeSlot
   m_TagString: Untagged
@@ -1543,6 +1560,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4576465857599970879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4389671412987379405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 
 --- !u!1 &5880343684764559122
 GameObject:
   m_ObjectHideFlags: 0

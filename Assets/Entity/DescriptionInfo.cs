@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class DescriptionInfo : MonoBehaviour
+public class DescriptionInfo : MonoBehaviour, IPointerEnterHandler
 {
     [TextArea]
     public string description;
@@ -12,8 +13,7 @@ public class DescriptionInfo : MonoBehaviour
         pInv = FindObjectOfType<PlayerInventory>(true);
     }
 
-    // Start is called before the first frame update
-    void OnMouseEnter()
+    public void updateInventoryDescription()
     {
         if (pInv == null)
         {
@@ -24,5 +24,16 @@ public class DescriptionInfo : MonoBehaviour
             return;
         }
         pInv.Description.text = description;
+    }
+
+    // Start is called before the first frame update
+    void OnMouseEnter()
+    {
+        updateInventoryDescription();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        updateInventoryDescription();
     }
 }

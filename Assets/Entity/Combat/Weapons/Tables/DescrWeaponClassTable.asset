@@ -12,34 +12,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11937c1efc389a74ca0902d35e32887f, type: 3}
   m_Name: DescrWeaponClassTable
   m_EditorClassIdentifier: 
-  classDescrPairs:
+  classDescrTrios:
   - weaponClass: 0
-    description: 
+    name: Big Axe
+    description: Big axe go swing
   - weaponClass: 1
-    description: 
+    name: Blunder Buss
+    description: Was quite the blunder comin in my way. Now, I'll bust you with some
+      hefty lead
   - weaponClass: 2
-    description: 
+    name: Bottle
+    description: A pirate's best friend. "As beautiful as the day I lost you"
   - weaponClass: 3
-    description: 
+    name: Crossbolt
+    description: Like a bow, but also like a gun. It's sure to punch a hole
   - weaponClass: 4
-    description: 
+    name: Cutlass
+    description: A pirate's standard arm. Can't go wrong with it
   - weaponClass: 5
-    description: 
+    name: Dagger
+    description: '"Let me see what you have"'
   - weaponClass: 6
-    description: 
+    name: Dualies
+    description: Two is better than one. Don't let anyone tell you otherwise
   - weaponClass: 7
-    description: 
+    name: Duckshot
+    description: Hope you don't have trypophobia. Cause that may be all you're seeing
+      for a while
   - weaponClass: 8
-    description: 
+    name: Flintlock
+    description: Good ol reliable. A pirate's standard pistol
   - weaponClass: 9
-    description: 
+    name: Great Sword
+    description: Big sword go swing
   - weaponClass: 10
-    description: 
+    name: Harpoon
+    description: '*Ahem*
+
+      GETOVERHERE
+
+      Sorry, had to get that out of
+      my system'
   - weaponClass: 11
-    description: 
+    name: Spear
+    description: 6 feet apart please
   - weaponClass: 12
-    description: 
+    name: Squidgun
+    description: Turn this fine specimen against its own kind. Maybe it'll be lucky
+      and never see its family again
   - weaponClass: 13
-    description: 
+    name: Volleygun
+    description: Bullets go brrrrrrrr
   - weaponClass: 14
-    description: 
+    name: Whip
+    description: An archeologist's best friend. I guess a pirate can be an archeologist
+      too. Just sell the loot to a museum
