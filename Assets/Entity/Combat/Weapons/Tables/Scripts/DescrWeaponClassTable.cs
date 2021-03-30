@@ -6,15 +6,21 @@ public class DescrWeaponClassTable : ScriptableObject
 {
     // DO NOT MODIFY THE PAIR CLASS
     [System.Serializable]
-    public class Pair
+    public class Trio
     {
         public WeaponFactory.CLASS weaponClass;
+        public string name;
         [TextArea]
         public string description;
     }
-    public Pair[] classDescrPairs;
-    public string get(WeaponFactory.CLASS weaponClass)
+    public Trio[] classDescrTrios;
+    public string getDescr(WeaponFactory.CLASS weaponClass)
     {
-        return System.Array.Find(this.classDescrPairs, (p) => p.weaponClass == weaponClass).description;
+        return System.Array.Find(this.classDescrTrios, (p) => p.weaponClass == weaponClass).description;
+    }
+
+    public string getName(WeaponFactory.CLASS weaponClass)
+    {
+        return System.Array.Find(this.classDescrTrios, (p) => p.weaponClass == weaponClass).name;
     }
 }
