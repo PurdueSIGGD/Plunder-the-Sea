@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PhantomFish : StateCombat
 {
-    public Animator anim;
-    public SpriteRenderer sprite;
-
     // Projectile to be used as fire and fake phantom fish
     public GameObject fireProjectile;
     public GameObject fakePhantom;

@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class BootTrout : StateCombat
 {
-    public Animator anim;
-    public SpriteRenderer sprite;
-
     // Const values to make coding easier
     const int charging = (int)ChargeMovement.ChargeState.isCharging;
 

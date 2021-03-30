@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class DragonFish : StateCombat
 {
-    // Sprite references
-    public SpriteRenderer sprite;
-    public Animator anim;
-
     // Projectile to be used as fire
     public GameObject fireProjectile;
     
