@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &820964081554628507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2485110098029214109}
+  m_Layer: 11
+  m_Name: Melee Objects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2485110098029214109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820964081554628507}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 423145108869536366}
+  - {fileID: 6455462690745413404}
+  m_Father: {fileID: -4332445788766981374}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &849168558451191946
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,7 +345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.116}
   m_SizeDelta: {x: 5, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2465607312519387776
@@ -402,7 +434,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1483882055083211458}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.408, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: -4332445788766981374}
@@ -572,6 +604,51 @@ Transform:
   m_Father: {fileID: 1283021409805530943}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4348645179967168424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 423145108869536366}
+  - component: {fileID: 2723650993648649101}
+  m_Layer: 11
+  m_Name: Melee Grip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &423145108869536366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348645179967168424}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2485110098029214109}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2723650993648649101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348645179967168424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c14d5e8e6cc87704bbe79289592ccc7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 1
+  center: {fileID: 6455462690745413404}
 --- !u!1 &4948749012880811816
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,6 +978,7 @@ Transform:
   - {fileID: 1967557275858959617}
   - {fileID: 7062255694859361496}
   - {fileID: 186918889189370870}
+  - {fileID: 2485110098029214109}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -997,6 +1075,8 @@ MonoBehaviour:
   projectilePrefabTable: {fileID: 11400000, guid: 296673b8e7e2ad244b8dbd0bdb2d3ac0, type: 2}
   bulletTemplate: {fileID: 8850584598485551201, guid: 665bee2cce4084b5580666db5ec97ad4, type: 3}
   tables: {fileID: 11400000, guid: f23b07f02af71b44fa4d0988487b7ea5, type: 2}
+  wepsGot: 0
+  meleeParent: {fileID: 423145108869536366}
 --- !u!114 &7045101813800168208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1214,6 +1294,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8441233063294655929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6455462690745413404}
+  m_Layer: 11
+  m_Name: Melee Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6455462690745413404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8441233063294655929}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.497, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2485110098029214109}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1572360876979117614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1489,14 +1599,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf38822933213504e9ea3e5fe8538df8, type: 3}
---- !u!224 &1229625747266313565 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5563308836797362748, guid: bf38822933213504e9ea3e5fe8538df8, type: 3}
-  m_PrefabInstance: {fileID: 6639526254450224993}
-  m_PrefabAsset: {fileID: 0}
 --- !u!223 &9221751412264514575 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 2584621981527251822, guid: bf38822933213504e9ea3e5fe8538df8, type: 3}
+  m_PrefabInstance: {fileID: 6639526254450224993}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1229625747266313565 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5563308836797362748, guid: bf38822933213504e9ea3e5fe8538df8, type: 3}
   m_PrefabInstance: {fileID: 6639526254450224993}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7441502160206278159
