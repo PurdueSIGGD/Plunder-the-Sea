@@ -16,6 +16,8 @@ public class PlayerInventory : MonoBehaviour
     public Image rangeSlot;
     private DescriptionInfo meleeInfo;
     private DescriptionInfo rangeInfo;
+    private WeaponFactory.CLASS meleeMem;
+    private WeaponFactory.CLASS rangeMem;
     public Text meleeLabel;
     public Text rangedLabel;
     public Text healthLabel;
@@ -61,12 +63,20 @@ public class PlayerInventory : MonoBehaviour
     {
         if (weapInv != null)
         {
+            WeaponFactory.CLASS meleeClass = weapInv.getMeleeWeaponClass();
+            WeaponFactory.CLASS rangeClass = weapInv.getRangedWeaponClass();
+            if (meleeClass == meleeMem && rangeClass == rangeMem)
+            {
+                return;
+            }
             meleeSlot.sprite = weapInv.getWeaponImage(true);
-            meleeLabel.text = "" + tables.about.getName(weapInv.getMeleeWeaponClass());
-            setDescription(weapInv.getMeleeWeaponClass());
+            meleeLabel.text = "" + tables.about.getName(meleeClass);
+            setDescription(meleeClass);
             rangeSlot.sprite = weapInv.getWeaponImage(false);
-            rangedLabel.text = "" + tables.about.getName(weapInv.getRangedWeaponClass());
-            setDescription(weapInv.getRangedWeaponClass());
+            rangedLabel.text = "" + tables.about.getName(rangeClass);
+            setDescription(rangeClass);
+            meleeMem = meleeClass;
+            rangeMem = rangeClass;
         }
     }
 
@@ -98,6 +108,7 @@ public class PlayerInventory : MonoBehaviour
     void Update()
     {
         updateStatDisplay();
+        updateWeaponDisplay();
     }
 
     public void updateStatDisplay()
