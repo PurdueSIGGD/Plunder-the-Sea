@@ -5,6 +5,9 @@ using UnityEngine;
 // Venom mine is implemented as having approach movement with zero speed for simplicity
 public class VenomMine : StateCombat
 {
+    public Sprite defaultSprite;
+    public Sprite detonateSprite;
+
     // Venom cloud projectile
     public GameObject venomCloud;
 
@@ -41,6 +44,16 @@ public class VenomMine : StateCombat
 
         // Variable to ensure that the state used for comparison doesn't change partway through Update()
         int current = GetState();
+
+        if (current == activating)
+        {
+            sprite.sprite = detonateSprite;
+            sprite.flipX = sprite.flipY = false;
+        } else
+        {
+            sprite.sprite = defaultSprite;
+            sprite.flipX = sprite.flipY = true;
+        }
 
         // Explodes the frame the venom mine finishes activating, or when the duration runs out
         if (!exploded && (OnTarget(durationTarget)) || (!exploded && current == cooldown && prevState == activating))
