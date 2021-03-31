@@ -109,16 +109,16 @@ MonoBehaviour:
   buffs:
   - 0
   - 0
-  - 0
-  - 3
+  - 10
+  - 2
   - 0
   - 0
   - 0
   buffsMult:
   - 0
   - 0
-  - 0
-  - 0.5
+  - 0.25
+  - 0.25
   - 0
   - 0
   - 0
@@ -193,10 +193,11 @@ MonoBehaviour:
 
     Favorite: Bait 3
 
-    Buff Type: Stamina Recharge
+    Buff Type: Stamina, Stamina
+    Recharge
 
 
     Description:
 
-    A
-    fish who never gives up. He''s trying really hard you know'
+    A fish who never gives up. He''s trying really
+    hard you know'

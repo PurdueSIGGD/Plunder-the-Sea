@@ -107,17 +107,17 @@ MonoBehaviour:
   maxWaitTime: 1
   lootLevel: 1
   buffs:
+  - 2
   - 0
   - 0
-  - 20
   - 0
   - 0
   - 0
   - 0
   buffsMult:
+  - 0.25
   - 0
   - 0
-  - 0.5
   - 0
   - 0
   - 0
@@ -193,7 +193,7 @@ MonoBehaviour:
 
     Favorite: Bait 1
 
-    Buff Type: Stamina
+    Buff Type: Movement Speed
 
 
     Description:
