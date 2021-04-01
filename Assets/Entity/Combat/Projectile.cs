@@ -50,6 +50,8 @@ public class Projectile : MonoBehaviour
     // Source's tag (in case the source dies)
     public string sourceTag;
 
+    public Transform parent;
+
     void Awake()
     {
         mods = GetComponents<ProjectileModifier>();
