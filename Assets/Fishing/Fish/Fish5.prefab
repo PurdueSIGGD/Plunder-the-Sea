@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7486588697838117084}
   - component: {fileID: 3229996452879357985}
   - component: {fileID: -5036196332400072322}
+  - component: {fileID: 1393433214402758053}
   m_Layer: 0
   m_Name: Fish5
   m_TagString: Fish
@@ -176,3 +177,26 @@ CircleCollider2D:
   m_Offset: {x: 0.35, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
+--- !u!114 &1393433214402758053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5669315062709524256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 'Fish: Fish 5
+
+    Favorite: Bait 1
+
+    Buff Type: Ranged Damage
+
+
+    Description:
+
+    What
+    a mystery. No name to speak of. Almost like he''s just holding someone''s place...'

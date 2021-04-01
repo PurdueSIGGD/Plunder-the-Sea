@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6090371748246765999}
   - component: {fileID: -865221556427217019}
   - component: {fileID: -5731511110211377871}
+  - component: {fileID: 209363557314406669}
   m_Layer: 0
   m_Name: Dunky
   m_TagString: Fish
@@ -108,16 +109,16 @@ MonoBehaviour:
   buffs:
   - 0
   - 0
-  - 0
-  - 3
+  - 10
+  - 2
   - 0
   - 0
   - 0
   buffsMult:
   - 0
   - 0
-  - 0
-  - 0.5
+  - 0.25
+  - 0.25
   - 0
   - 0
   - 0
@@ -176,3 +177,27 @@ CircleCollider2D:
   m_Offset: {x: 0.35, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
+--- !u!114 &209363557314406669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9065068838090454611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 'Fish: Dunky
+
+    Favorite: Bait 3
+
+    Buff Type: Stamina, Stamina
+    Recharge
+
+
+    Description:
+
+    A fish who never gives up. He''s trying really
+    hard you know'

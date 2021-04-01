@@ -15,6 +15,7 @@ public class ShopItem : MonoBehaviour
     private int baitPrice;
     [SerializeField]
     private int baitType;
+    private DescriptionInfo descrInfo;
 
     [SerializeField]
     private SpritesWeaponClassTable rangedWeaponSpritesTable; 
@@ -25,9 +26,26 @@ public class ShopItem : MonoBehaviour
         this.weaponClass = weaponClass;
         this.baitPrice = baitPrice;
         this.baitType = baitType;
+        SetDescription();
+    }
+
+    public void SetDescription()
+    {
+        if (descrInfo == null)
+        {
+            return;
+        }
+        string descr = tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE ? "Melee: " : "Range: ";
+        descr += tables.about.getName(weaponClass) + "\nBase Damage: ";
+        descr += tables.damage.get(weaponClass) + "\nPrice: "; 
+        descr += baitPrice + " bait " + (baitType+1) + "\n\nDescription:\n";
+        descr += tables.about.getDescr(weaponClass);
+        descrInfo.description = descr;
     }
 
     public void OnEnable() {
+        descrInfo = GetComponent<DescriptionInfo>();
+        SetDescription();
         var newTMPText = "T: " + baitType + " P: " + baitPrice;
         GetComponentInChildren<TMPro.TMP_Text>().text = newTMPText;
 

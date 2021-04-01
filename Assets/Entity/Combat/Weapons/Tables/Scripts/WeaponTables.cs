@@ -29,4 +29,6 @@ public class WeaponTables : ScriptableObject
     public FloatWeaponClassTable whipLinkSpeed;
     public WhipLinkOBJ whipLinkObj;
 
+    public DescrWeaponClassTable about;
+
 }
