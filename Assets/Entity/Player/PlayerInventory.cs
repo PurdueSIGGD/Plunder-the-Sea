@@ -10,9 +10,14 @@ public class PlayerInventory : MonoBehaviour
     public int[] baitTypes = { 0, 0, 0, 0 };
     public Text[] baitText;
     public WeaponInventory weapInv;
+    public WeaponTables tables;
     public PlayerBase pBase;
     public Image meleeSlot;
     public Image rangeSlot;
+    private DescriptionInfo meleeInfo;
+    private DescriptionInfo rangeInfo;
+    private WeaponFactory.CLASS meleeMem;
+    private WeaponFactory.CLASS rangeMem;
     public Text meleeLabel;
     public Text rangedLabel;
     public Text healthLabel;
@@ -23,6 +28,10 @@ public class PlayerInventory : MonoBehaviour
     public Text meleeDamLabel;
     public Text rangeDamLabel;
     public Text armorLabel;
+    public Text Description;
+
+    //death stats variables
+    public int baitsGot = 0;
 
     private void Start()
     {
@@ -38,6 +47,8 @@ public class PlayerInventory : MonoBehaviour
         }
         pBase = GetComponentInParent<PlayerBase>();
         weapInv = GetComponentInParent<WeaponInventory>();
+        meleeInfo = meleeSlot.GetComponent<DescriptionInfo>();
+        rangeInfo = rangeSlot.GetComponent<DescriptionInfo>();
         updateWeaponDisplay();
         updateStatDisplay();
     }
@@ -52,16 +63,52 @@ public class PlayerInventory : MonoBehaviour
     {
         if (weapInv != null)
         {
+            WeaponFactory.CLASS meleeClass = weapInv.getMeleeWeaponClass();
+            WeaponFactory.CLASS rangeClass = weapInv.getRangedWeaponClass();
+            if (meleeClass == meleeMem && rangeClass == rangeMem)
+            {
+                return;
+            }
             meleeSlot.sprite = weapInv.getWeaponImage(true);
-            meleeLabel.text = "" + weapInv.getMeleeWeaponClass();
+            meleeLabel.text = "" + tables.about.getName(meleeClass);
+            setDescription(meleeClass);
             rangeSlot.sprite = weapInv.getWeaponImage(false);
-            rangedLabel.text = "" + weapInv.getRangedWeaponClass();
+            rangedLabel.text = "" + tables.about.getName(rangeClass);
+            setDescription(rangeClass);
+            meleeMem = meleeClass;
+            rangeMem = rangeClass;
+        }
+    }
+
+    public void setDescription(WeaponFactory.CLASS weaponClass)
+    {
+        string descr = tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE ? "Melee: " : "Range: ";
+        descr += tables.about.getName(weaponClass) + "\nBase Damage: ";
+        descr += tables.damage.get(weaponClass) + "\n\nDescription:\n";
+        descr += tables.about.getDescr(weaponClass);
+
+        if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE)
+        {
+            if (meleeInfo == null)
+            {
+                return;
+            }
+            meleeInfo.description = descr;
+        }
+        else
+        {
+            if (rangeInfo == null)
+            {
+                return;
+            }
+            rangeInfo.description = descr;
         }
     }
 
     void Update()
     {
         updateStatDisplay();
+        updateWeaponDisplay();
     }
 
     public void updateStatDisplay()
@@ -125,6 +172,7 @@ public class PlayerInventory : MonoBehaviour
     {
         baitTypes[arrayIndex] = baitTypes[arrayIndex] + baitAmount;
         baitText[arrayIndex].text = "Bait " + (arrayIndex + 1).ToString() + ": " + baitTypes[arrayIndex].ToString();
+        baitsGot += baitAmount;
     }
 
     public void removeBait(int arrayIndex, int baitAmount = 1)

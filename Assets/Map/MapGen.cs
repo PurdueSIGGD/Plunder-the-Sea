@@ -34,6 +34,7 @@ public class MapGen : MonoBehaviour
 
     private Hashtable roomGrid;
     private Stack<RoomData> roomStack;
+    private int weaponsCount;
 
     public class RoomData
     {
@@ -84,6 +85,8 @@ public class MapGen : MonoBehaviour
         truePathLength = 3 + (int) Mathf.Min(level * 0.5f, 5);
         maxBranchLength = 1 + (int) Mathf.Min(level * 0.1f, 1);
         branchFactor = 0.1f + Mathf.Min(level * 0.05f, 0.4f);
+
+        weaponsCount = System.Enum.GetValues(typeof(WeaponFactory.CLASS)).Length;
 
         generate();
     }
@@ -340,9 +343,16 @@ public class MapGen : MonoBehaviour
         //spawns chest
         if (UnityEngine.Random.Range(0, 1f) < 0.2f && (newRoom.x != 0 || newRoom.y != 0))
         {
+            WeaponFactory.CLASS wepClass = (WeaponFactory.CLASS)UnityEngine.Random.Range(0, weaponsCount);
+            //bottle check
+            if (wepClass == WeaponFactory.CLASS.BOTTLE)
+            {
+                return;
+            }
+
             int roomScale = roomWidth + roomDist;
             GameObject chest = Instantiate(chestPrefab, new Vector3(newRoom.x * roomScale, newRoom.y * roomScale, -1), Quaternion.identity);
-            chest.GetComponent<ChestBehaviour>().SetWeaponClass((WeaponFactory.CLASS)(UnityEngine.Random.Range(0, 15)));
+            chest.GetComponent<ChestBehaviour>().SetWeaponClass(wepClass);
         }
     }
 

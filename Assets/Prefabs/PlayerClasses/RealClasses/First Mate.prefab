@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8935465770842150413
+--- !u!1 &7624220246629391907
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6218999319379638257}
-  - component: {fileID: 4244506687537655845}
+  - component: {fileID: 4864415104606552031}
+  - component: {fileID: 3397976319809124363}
   m_Layer: 0
-  m_Name: WarrentOfficer
+  m_Name: First Mate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6218999319379638257
+--- !u!4 &4864415104606552031
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8935465770842150413}
+  m_GameObject: {fileID: 7624220246629391907}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,13 +31,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4244506687537655845
+--- !u!114 &3397976319809124363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8935465770842150413}
+  m_GameObject: {fileID: 7624220246629391907}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2b2458fe8bdaca468457c10375cb4c4, type: 3}
@@ -49,33 +49,33 @@ MonoBehaviour:
   baseSpeed: 10
   baseArmorAddition: 0
   baseArmorDivision: 0
-  baseStamina: 40
-  baseStaminaRechargeRate: 4
-  proficiency: 2
+  baseStamina: 45
+  baseStaminaRechargeRate: 6
+  proficiency: 1
   classSprite: {fileID: 0}
-  chainLighting: 1
+  chainLighting: 0
   lightingDamage: 4
   chainChance: 0.5
   chainLength: 4
   chainRadius: 4
-  lightingPrefab: {fileID: 5899607823344340309, guid: 589e7930d6f182843820387f45a40df1, type: 3}
+  lightingPrefab: {fileID: 0}
   lunge: 0
   meleeLungeDistance: 2
   rangedLungeDistance: 4
   lungeOneDirectionCooldown: 0.25
   lungeBackDirectionCooldown: 0.1
-  killChain: 0
+  killChain: 1
   killRequirement: 3
   chainTime: 4
   attackSizeBoost: 2
   speedBoost: 2
-  melee: 11
-  ranged: 10
+  melee: 0
+  ranged: 8
   meleeDamageAddition: 0
-  meleeDamageMultiplier: 1
+  meleeDamageMultiplier: 0.5
   rangedDamageAddition: 0
   rangedDamageMultiplier: 0.5
-  meleeSizeAddition: 0
+  meleeSizeAddition: 0.5
   meleeSizeMultiplier: 1
   rangedSpeedAddition: 0
   rangedSpeedMultiplier: 1

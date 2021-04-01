@@ -37,6 +37,12 @@ public class WeaponInventory : MonoBehaviour
     //stores player weapon modifiers
     public PlayerClasses.WeaponModifiers weaponMods = new PlayerClasses.WeaponModifiers();
 
+    //death stats variables
+    public int wepsGot = 0;
+
+    [SerializeField]
+    private Transform meleeParent;
+
     private void Start()
     {
         audioSrc = GetComponent<AudioSource>();
@@ -98,6 +104,7 @@ public class WeaponInventory : MonoBehaviour
             this.rangedWeaponClass = weaponClass;
             SetRanged(weapon);
         }
+        wepsGot++;
     }
 
     public ProjectileStats constructProjectileStats(WeaponFactory.CLASS weaponClass) {
@@ -109,13 +116,14 @@ public class WeaponInventory : MonoBehaviour
             ammoRefill = tables.ammoPerKill.get(weaponClass).Value
             };
 
+
         if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE) {
             //corrects if melee
             pStats.damage = projectileDamage(weaponClass);
             pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
 
             pStats.prefab = projectilePrefabTable.get(weaponClass);
-            pStats.prefab.transform.localScale = Vector3.one * (1 + weaponMods.meleeSizeAddition) * weaponMods.meleeSizeMultiplier * 0.5f; //swordScale
+            pStats.prefab.transform.localScale = Vector3.one * (1 + weaponMods.meleeSizeAddition) * weaponMods.meleeSizeMultiplier; //swordScale
         }
 
         //pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
@@ -154,6 +162,7 @@ public class WeaponInventory : MonoBehaviour
             hitbox.tables = this.tables;
             hitbox.lifeTime = stats.lifeTime;
             hitbox.ammoRefill = stats.ammoRefill;
+            hitbox.parent = this.meleeParent;
         
             if (!isMelee) {
                 var direction = (position - (Vector2)transform.position).normalized;
