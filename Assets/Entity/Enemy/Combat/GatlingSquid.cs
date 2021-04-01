@@ -82,7 +82,6 @@ public class GatlingSquid : StateCombat
                 // Animate Shooting Sprites
                 anim.SetInteger("State", 1);
                 float angle = Vector2.Angle(Vector2.up, myStateMovement.PlayerAngle());
-                Debug.Log(angle);
                 if (angle <= 157.5)
                 {
                     sprite.flipX = isPlayerLeft();
