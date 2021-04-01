@@ -18,6 +18,8 @@ public class PlayerBase : MonoBehaviour
     [HideInInspector]
     public PlayerFishing fishing;
     public Canvas playerInventory;
+    [SerializeField]
+    private bool keep = true;
 
     private UI_Camera cam;
     
@@ -37,7 +39,10 @@ public class PlayerBase : MonoBehaviour
             }
             Destroy(this.gameObject);
         }
-        DontDestroyOnLoad(this.gameObject);
+        if (keep)
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
 
     private void Start()
