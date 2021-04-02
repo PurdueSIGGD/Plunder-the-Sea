@@ -16,7 +16,7 @@ public class MainMenuScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            SceneManager.LoadScene("Combat");
+            SceneManager.LoadScene("ClassSelect");
         } 
     }
 }
