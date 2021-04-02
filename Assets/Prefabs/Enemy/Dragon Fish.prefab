@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09ab1ea068274d69a030af1a1ff03d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Dragon Fish
   movementSpeed: 3
   maxHP: 40
   currentHP: 40
@@ -280,6 +281,7 @@ MonoBehaviour:
   armorStatic: 5
   killRegenMult: 1
   healthbar: {fileID: 1744128257473083715}
+  lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 1
   damage: 5
@@ -400,6 +402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b252ea28352e043b31f4d2bf8bfabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: 
   movementSpeed: 10
   maxHP: 1
   currentHP: 1
@@ -407,6 +410,7 @@ MonoBehaviour:
   armorStatic: 0
   killRegenMult: 1
   healthbar: {fileID: 0}
+  lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 10
   damage: 1.5
@@ -626,6 +630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b252ea28352e043b31f4d2bf8bfabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: 
   movementSpeed: 10
   maxHP: 1
   currentHP: 1
@@ -633,6 +638,7 @@ MonoBehaviour:
   armorStatic: 0
   killRegenMult: 1
   healthbar: {fileID: 0}
+  lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 10
   damage: 1.5
@@ -769,6 +775,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b252ea28352e043b31f4d2bf8bfabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: 
   movementSpeed: 10
   maxHP: 1
   currentHP: 1
@@ -776,6 +783,7 @@ MonoBehaviour:
   armorStatic: 0
   killRegenMult: 1
   healthbar: {fileID: 0}
+  lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 10
   damage: 1.5
@@ -1057,6 +1065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b252ea28352e043b31f4d2bf8bfabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: 
   movementSpeed: 10
   maxHP: 1
   currentHP: 1
@@ -1064,6 +1073,7 @@ MonoBehaviour:
   armorStatic: 0
   killRegenMult: 1
   healthbar: {fileID: 0}
+  lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 10
   damage: 1.5

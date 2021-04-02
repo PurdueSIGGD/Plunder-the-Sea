@@ -204,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09ab1ea068274d69a030af1a1ff03d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Boot Trout
   movementSpeed: 2
   maxHP: 40
   currentHP: 40
@@ -211,6 +212,7 @@ MonoBehaviour:
   armorStatic: 5
   killRegenMult: 1
   healthbar: {fileID: 8379629806533454694}
+  lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 1
   damage: 20
@@ -262,7 +264,9 @@ MonoBehaviour:
   chargeUpTime: 0.18
   chargeDuration: 0.2
   chargeCooldown: 0.5
+  moveWhileRecharging: 1
   chargeState: 3
+  targetAngle: {x: 0, y: 0}
 --- !u!114 &1765939815318567382
 MonoBehaviour:
   m_ObjectHideFlags: 0

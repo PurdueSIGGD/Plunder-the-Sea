@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09ab1ea068274d69a030af1a1ff03d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Hammerhead
   movementSpeed: 2.25
   maxHP: 30
   currentHP: 30
@@ -163,6 +164,7 @@ MonoBehaviour:
   armorStatic: 0
   killRegenMult: 1
   healthbar: {fileID: 822015873233578773}
+  lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 1
   damage: 20
