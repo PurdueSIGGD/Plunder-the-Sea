@@ -54,7 +54,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.2
 --- !u!50 &2364659476975283181
 Rigidbody2D:
   serializedVersion: 4
@@ -112,6 +112,7 @@ MonoBehaviour:
   armorStatic: 0
   killRegenMult: 1
   healthbar: {fileID: 2201514445343193906}
+  lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 10
   damage: 1
@@ -139,7 +140,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.25
 --- !u!114 &8234503953198782560
 MonoBehaviour:
   m_ObjectHideFlags: 0

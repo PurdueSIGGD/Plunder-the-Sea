@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class ClamCannon : StateCombat
 {
-    // Sprite references
-    public SpriteRenderer sprite;
-    public Animator anim;
-
     // Variables for operating
     private static LayerMask mask;
     private Vector3 playerAngle = Vector3.zero;

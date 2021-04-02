@@ -10,6 +10,10 @@ public class StateCombat : EnemyCombat
     [HideInInspector]
     public StateMovement myStateMovement;
 
+    // Sprite References
+    public SpriteRenderer sprite;
+    public Animator anim;
+
     // The distance used by isPlayerUp to determine if an enemy is truly "below" the player, used to make animations bias towards front-facing ones.
     public static float belowThreshold = 0.75f;
 
