@@ -31,4 +31,15 @@ public class EnemyBase : MonoBehaviour
         myMovement.moving = true;
     }
 
+    private void Update()
+    {
+        if (!player)
+        {
+            player = FindObjectOfType<PlayerBase>();
+        }
+        if (!myRigid)
+        {
+            myRigid = GetComponent<Rigidbody2D>();
+        }
+    }
 }
