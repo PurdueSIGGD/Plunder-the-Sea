@@ -5,18 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void changeScene(string sceneName)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Mouse0))
-        {
-            SceneManager.LoadScene("ClassSelect");
-        } 
+        SceneManager.LoadScene(sceneName);
     }
 }
