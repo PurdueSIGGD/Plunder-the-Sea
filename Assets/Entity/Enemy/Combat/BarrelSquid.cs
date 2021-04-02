@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class BarrelSquid : StateCombat
 {
-    // Sprite references
-    public SpriteRenderer sprite;
-    public Animator anim;
-
     // Const values to make coding easier
     const int flanking = (int)FlankMovement.FlankState.flanking;
     const int stationary = (int)FlankMovement.FlankState.stationary;
