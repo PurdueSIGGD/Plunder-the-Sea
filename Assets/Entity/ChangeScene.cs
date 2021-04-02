@@ -26,7 +26,7 @@ public class ChangeScene : MonoBehaviour
             SceneManager.LoadScene(newScene);
             if (newScene == "FishPond")
             {
-                Debug.Log("Fish time");
+                //Debug.Log("Fish time");
                 if (stats.appliedStats != null)
                 {
                     Fish.UnbuffPlayerStats(player);

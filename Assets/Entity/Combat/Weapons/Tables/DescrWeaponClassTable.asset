@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11937c1efc389a74ca0902d35e32887f, type: 3}
+  m_Name: DescrWeaponClassTable
+  m_EditorClassIdentifier: 
+  classDescrTrios:
+  - weaponClass: 0
+    name: Big Axe
+    description: Big axe go swing
+  - weaponClass: 1
+    name: Blunder Buss
+    description: Was quite the blunder comin in my way. Now, I'll bust you with some
+      hefty lead
+  - weaponClass: 2
+    name: Bottle
+    description: A pirate's best friend. "As beautiful as the day I lost you"
+  - weaponClass: 3
+    name: Crossbolt
+    description: Like a bow, but also like a gun. It's sure to punch a hole
+  - weaponClass: 4
+    name: Cutlass
+    description: A pirate's standard arm. Can't go wrong with it
+  - weaponClass: 5
+    name: Dagger
+    description: '"Let me see what you have"'
+  - weaponClass: 6
+    name: Dualies
+    description: Two is better than one. Don't let anyone tell you otherwise
+  - weaponClass: 7
+    name: Duckshot
+    description: Hope you don't have trypophobia. Cause that may be all you're seeing
+      for a while
+  - weaponClass: 8
+    name: Flintlock
+    description: Good ol reliable. A pirate's standard pistol
+  - weaponClass: 9
+    name: Great Sword
+    description: Big sword go swing
+  - weaponClass: 10
+    name: Harpoon
+    description: '*Ahem*
+
+      GETOVERHERE
+
+      Sorry, had to get that out of
+      my system'
+  - weaponClass: 11
+    name: Spear
+    description: 6 feet apart please
+  - weaponClass: 12
+    name: Squidgun
+    description: Turn this fine specimen against its own kind. Maybe it'll be lucky
+      and never see its family again
+  - weaponClass: 13
+    name: Volleygun
+    description: Bullets go brrrrrrrr
+  - weaponClass: 14
+    name: Whip
+    description: An archeologist's best friend. I guess a pirate can be an archeologist
+      too. Just sell the loot to a museum
