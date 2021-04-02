@@ -52,9 +52,7 @@ public class RetreatMovement : StateMovement
         {
             case RetreatState.ACTIVATING:
                 anim.SetInteger("State", 1);
-                if (myBase.myRigid) {
-                    myBase.myRigid.velocity = Vector2.zero;
-                }
+                myBase.myRigid.velocity = Vector2.zero;
                 doAction();
                 retreatState = RetreatState.RETREATING;
                 break;
