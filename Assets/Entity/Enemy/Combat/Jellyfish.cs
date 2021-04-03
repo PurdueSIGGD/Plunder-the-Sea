@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class Jellyfish : StateCombat
 {
-    // Sprite references
-    public SpriteRenderer sprite;
-    public Animator anim;
-
     // How long the jellyfish should stick for
     public float stickTime = 2.5f;
     public float cooldownTime = 1.0f;

@@ -98,6 +98,7 @@ MonoBehaviour:
   lifeTime: 4
   currentLifeTime: 0
   damage: 10
+  ammoRefill: 0
   mods: []
   pierceCount: 0
   source: {fileID: 0}
@@ -121,6 +122,7 @@ MonoBehaviour:
   attrChance: 0
   speed: 5
   sourceTag: 
+  parent: {fileID: 0}
 --- !u!114 &7901504604647505910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +180,7 @@ Transform:
   m_GameObject: {fileID: 8123309787701760377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.012, y: 0.012, z: 0}
-  m_LocalScale: {x: 2.3, y: 2.3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3247834535494854321}
   m_RootOrder: 0

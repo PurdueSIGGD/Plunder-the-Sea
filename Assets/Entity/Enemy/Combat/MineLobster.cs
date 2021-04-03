@@ -32,6 +32,16 @@ public class MineLobster : StateCombat
         current = GetState();
         prevState = current;
 
+        if (myStateMovement.PlayerDistance() < mineDistance)
+        {
+            anim.SetInteger("State", 1);
+        } else
+        {
+            anim.SetInteger("State", 0);
+            anim.SetBool("Back", isPlayerUp());
+        }
+        sprite.flipX = isPlayerLeft();
+
         // Place the mine if it can
         if (OnTarget(mineTarget) && myStateMovement.PlayerDistance() < mineDistance)
         {

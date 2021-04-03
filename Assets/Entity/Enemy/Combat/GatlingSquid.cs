@@ -58,6 +58,9 @@ public class GatlingSquid : StateCombat
                 myStateMovement.moving = true;
                 return;
             }
+            // Animate reloading as idle animation
+            anim.SetInteger("State", 2);
+
             // Otherwise do nothing AI-wise, so reloading isn't interrupted
             return;
         }
@@ -65,7 +68,6 @@ public class GatlingSquid : StateCombat
         switch (current)
         {
             case cooldown:
-                
                 if (OnTarget(searchTarget))
                 {
                    // Get closer to the enemy if they're hiding behind a wall
@@ -77,6 +79,39 @@ public class GatlingSquid : StateCombat
                     }
                     searchTarget = SetTarget(searchCooldown);
                 }
+                // Animate Shooting Sprites
+                anim.SetInteger("State", 1);
+                float angle = Vector2.Angle(Vector2.up, myStateMovement.PlayerAngle());
+                if (angle <= 157.5)
+                {
+                    sprite.flipX = isPlayerLeft();
+                } else
+                {
+                    sprite.flipX = false;
+                }
+                anim.SetBool("Mirror", sprite.flipX);
+
+                if (angle <= 22.5)
+                {
+                    anim.SetInteger("Angle", 0);
+                }
+                else if (angle <= 67.5)
+                {
+                    anim.SetInteger("Angle", 1);
+                }
+                else if (angle <= 112.5)
+                {
+                    anim.SetInteger("Angle", 2);
+                }
+                else if (angle <= 157.5)
+                {
+                    anim.SetInteger("Angle", 3);
+                }
+                else
+                {
+                    anim.SetInteger("Angle", 4);
+                }
+
                 // Try to shoot if possible and the cooldown allows
                 if (OnTarget(firingTracker) && clipCounter < clipSize)
                 {
@@ -104,8 +139,17 @@ public class GatlingSquid : StateCombat
                     }
                     searchTarget = SetTarget(searchCooldown);
                 }
+                // Animate moving sprites
+                anim.SetInteger("State", 0);
+                sprite.flipX = isPlayerLeft();
+                anim.SetBool("Mirror", sprite.flipX);
+
                 break;
             default:
+                // Animate idle sprites
+                anim.SetInteger("State", 2);
+                sprite.flipX = isPlayerLeft();
+                anim.SetBool("Mirror", sprite.flipX);
                 break;
         }
 

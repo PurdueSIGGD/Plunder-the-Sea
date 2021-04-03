@@ -35,6 +35,16 @@ public class DragonFish : StateCombat
         current = GetState();
         prevState = current;
 
+        anim.SetBool("Attacking", myStateMovement.PlayerDistance() < fireDistance);
+
+        // Rotate the sprite
+        Vector3 v = myBase.myRigid.velocity;
+        float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg - 180;
+        sprite.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        //sprite.flipX = isPlayerLeft();
+        sprite.flipY = !isPlayerLeft();
+
         // Place the fire if it can
         if (OnTarget(fireTarget) && myStateMovement.PlayerDistance() < fireDistance)
         {
