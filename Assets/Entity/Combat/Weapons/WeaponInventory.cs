@@ -163,6 +163,7 @@ public class WeaponInventory : MonoBehaviour
             hitbox.lifeTime = stats.lifeTime;
             hitbox.ammoRefill = stats.ammoRefill;
             hitbox.parent = this.meleeParent;
+            hitbox.GetComponentInChildren<SpriteRenderer>().sortingOrder = 1;
         
             if (!isMelee) {
                 var direction = (position - (Vector2)transform.position).normalized;
