@@ -5,7 +5,8 @@ public class ParentProjSys : ProjectileSystem {
 
     public override void OnFire(Projectile projectile)
     {
-        projectile.transform.SetParent(projectile.source.transform);
+        projectile.transform.SetParent(projectile.parent);
+        projectile.transform.localPosition = Vector3.zero;
     }
 
     // only melee weapons can use this system

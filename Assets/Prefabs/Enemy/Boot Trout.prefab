@@ -211,6 +211,7 @@ MonoBehaviour:
   armorStatic: 5
   killRegenMult: 1
   healthbar: {fileID: 8379629806533454694}
+  lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 1
   damage: 20
@@ -238,7 +239,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.25
 --- !u!114 &1765939815318567380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +263,9 @@ MonoBehaviour:
   chargeUpTime: 0.18
   chargeDuration: 0.2
   chargeCooldown: 0.5
+  moveWhileRecharging: 1
   chargeState: 3
+  targetAngle: {x: 0, y: 0}
 --- !u!114 &1765939815318567382
 MonoBehaviour:
   m_ObjectHideFlags: 0

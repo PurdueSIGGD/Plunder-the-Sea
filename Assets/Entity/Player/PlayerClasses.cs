@@ -167,7 +167,7 @@ public class PlayerClasses : MonoBehaviour
                 rigid.AddForce(lookDirection.normalized * meleeLungeDistance * 2, ForceMode2D.Impulse);
                 lastLungeMelee = true;
                 lungeCooldownTimer = 0;
-                Debug.Log("Lunge foreward");
+                //Debug.Log("Lunge foreward");
             } 
             else
             {
@@ -181,7 +181,7 @@ public class PlayerClasses : MonoBehaviour
                     rigid.AddForce(-lookDirection.normalized * meleeLungeDistance * 2, ForceMode2D.Impulse);
                     lastLungeMelee = false;
                     lungeCooldownTimer = 0;
-                    Debug.Log("Lunge backward");
+                    //Debug.Log("Lunge backward");
                 }
             }
         }
@@ -299,7 +299,7 @@ public class PlayerClasses : MonoBehaviour
             //only spawn if chance is high enough
             if (Random.Range(0f, 1f) <= chainChance)
             {
-                Debug.Log("Lighting should spawn");
+                //Debug.Log("Lighting should spawn");
                 
                 //create chain lighting
                 EnemyStats next = null;

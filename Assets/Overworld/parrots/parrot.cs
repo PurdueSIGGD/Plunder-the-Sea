@@ -36,7 +36,7 @@ public class parrot : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        anim.SetFloat("Parrot", PlayerPrefs.GetFloat("classNum"));
+        anim.SetFloat("Parrot", PlayerPrefs.GetInt("classNum"));
         restTimer = timeToRest;
     }
 

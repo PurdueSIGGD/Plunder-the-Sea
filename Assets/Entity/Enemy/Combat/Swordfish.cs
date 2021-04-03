@@ -6,10 +6,6 @@ using UnityEngine;
 
 public class Swordfish : StateCombat
 {
-    // Sprite references
-    public SpriteRenderer sprite;
-    public Animator anim;
-
     // Const values to make coding easier
     const int dashing = (int)ChargeMovement.ChargeState.isCharging;
     const int dizzy = (int)ChargeMovement.ChargeState.isRecharging;
