@@ -72,7 +72,7 @@ public class RetreatMovement : StateMovement
                 }
                 else
                 {
-                    Debug.Log(PlayerDistance());
+                    //Debug.Log(PlayerDistance());
                     MoveAway();
                 }
                 break;
