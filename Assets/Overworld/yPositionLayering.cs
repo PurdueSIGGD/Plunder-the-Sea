@@ -8,7 +8,7 @@ public class yPositionLayering : MonoBehaviour
     private Transform playerTransform;
     private bool front;
     private SpriteRenderer renderer;
-    private float characterHeight = 0.2f;
+    private float characterHeight = 0.55f;
     private float objectHeight = 0.5f;
 
     private void Start()
@@ -17,21 +17,25 @@ public class yPositionLayering : MonoBehaviour
         objectHeight = renderer.size.y/2;
         playerTransform = FindObjectOfType<PlayerBase>().transform;
         startLayer = renderer.sortingOrder;
-        //use this once the player has a sprite
-        //characterHeight = playerTransform.GetComponent<SpriteRenderer>().size.y/2;
+        sortOBJ(true);
     }
 
     // Update is called once per frame
     void Update()
     {
+        sortOBJ(false);
+    }
+
+    private void sortOBJ(bool first)
+    {
         if (playerTransform)
         {
-            if (transform.position.y - objectHeight <= playerTransform.position.y - characterHeight && !front)
+            if (transform.position.y - objectHeight <= playerTransform.position.y - characterHeight && (!front || first))
             {
                 front = true;
                 renderer.sortingOrder = startLayer;
             }
-            if (transform.position.y - objectHeight > playerTransform.position.y - characterHeight && front)
+            if (transform.position.y - objectHeight > playerTransform.position.y - characterHeight && (front || first))
             {
                 front = false;
                 renderer.sortingOrder = -startLayer;

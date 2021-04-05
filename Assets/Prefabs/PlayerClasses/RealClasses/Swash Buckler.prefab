@@ -46,7 +46,7 @@ MonoBehaviour:
   classNumber: -1
   classes: []
   baseHp: 120
-  baseSpeed: 15
+  baseSpeed: 12
   baseArmorAddition: 0
   baseArmorDivision: 0
   baseStamina: 45
@@ -76,7 +76,7 @@ MonoBehaviour:
   rangedDamageAddition: 0
   rangedDamageMultiplier: 1
   meleeSizeAddition: 0.5
-  meleeSizeMultiplier: 1.5
+  meleeSizeMultiplier: 1
   rangedSpeedAddition: 0
   rangedSpeedMultiplier: 1
   projectileLifetimeAddition: 0
