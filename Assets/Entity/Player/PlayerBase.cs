@@ -61,12 +61,12 @@ public class PlayerBase : MonoBehaviour
         var inv = GetComponent<WeaponInventory>();
         
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetButtonDown("Fire1"))
         {
             inv.ShootAt(cam.GetMousePosition(), false);
         }
 
-        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.Space))
         {
             inv.ShootAt(cam.GetMousePosition(), true);
         }

@@ -162,7 +162,7 @@ public class PlayerClasses : MonoBehaviour
         
         if (lunge)
         {
-            if (Input.GetButtonDown("Fire2") && ((lastLungeMelee == false && lungeCooldownTimer >= lungeBackDirectionCooldown) || (lastLungeMelee == true && lungeCooldownTimer >= lungeOneDirectionCooldown)))
+            if ((Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.Space)) && ((lastLungeMelee == false && lungeCooldownTimer >= lungeBackDirectionCooldown) || (lastLungeMelee == true && lungeCooldownTimer >= lungeOneDirectionCooldown)))
             {
                 //forward lunge
 
