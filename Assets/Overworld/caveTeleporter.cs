@@ -12,6 +12,11 @@ public class caveTeleporter : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            parrot p = FindObjectOfType<parrot>();
+            if (p)
+            {
+                p.transform.position = p.transform.position - collision.transform.position + teleportLocation;
+            }
             collision.transform.position = teleportLocation;
         }
     }

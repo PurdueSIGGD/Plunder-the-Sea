@@ -255,7 +255,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.15
 --- !u!50 &4856430215809392890
 Rigidbody2D:
   serializedVersion: 4
@@ -306,6 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09ab1ea068274d69a030af1a1ff03d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Swordfish Minion
   movementSpeed: 2
   maxHP: 30
   currentHP: 30
@@ -316,7 +317,7 @@ MonoBehaviour:
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 1
-  damage: 1
+  damage: 5
   numberOfTimesToRespawn: 0
   dropTable: ffffffff
   dropOdds:

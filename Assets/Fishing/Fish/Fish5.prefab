@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7486588697838117084}
   - component: {fileID: 3229996452879357985}
   - component: {fileID: -5036196332400072322}
+  - component: {fileID: 1393433214402758053}
   m_Layer: 0
   m_Name: Fish5
   m_TagString: Fish
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bc0a0c1cbfefd4d448d8a7751a968403, type: 3}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7764706}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -121,14 +122,6 @@ MonoBehaviour:
   - 0
   - 0.5
   - 0
-  buffNames:
-  - Movement Speed
-  - HP
-  - Stamina
-  - Stamina Recharge Rate
-  - Melee Damage
-  - Ranged Damage
-  - Armor
   FishingMinigame: {fileID: 0}
   sprite: {fileID: 0}
 --- !u!50 &7486588697838117084
@@ -184,3 +177,26 @@ CircleCollider2D:
   m_Offset: {x: 0.35, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
+--- !u!114 &1393433214402758053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5669315062709524256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 'Fish: Fish 5
+
+    Favorite: Bait 1
+
+    Buff Type: Ranged Damage
+
+
+    Description:
+
+    What
+    a mystery. No name to speak of. Almost like he''s just holding someone''s place...'

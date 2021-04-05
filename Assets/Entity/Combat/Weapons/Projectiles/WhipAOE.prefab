@@ -156,6 +156,7 @@ MonoBehaviour:
   lifeTime: 0.15
   currentLifeTime: 0
   damage: 1
+  ammoRefill: 0
   mods: []
   pierceCount: 0
   source: {fileID: 0}

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class EntityStats : MonoBehaviour
 {
+    public string displayName;
     public float movementSpeed = 10.0f;
     public float maxHP = 1;
     public float currentHP = 1;
@@ -68,16 +69,22 @@ public class EntityStats : MonoBehaviour
     {
         //player damage call
         damageReturnCall();
-
+        bool isPlayer = false;
 
         //damage scaling is not stored as it can update
         int multiplier = 1;
+        float realDmg = Mathf.Max((amount - armorStatic), Mathf.Min(1, amount)) * Mathf.Max(1 - armorMult, 0);
         if (transform.tag == "Player")
         {
             multiplier = (int) Mathf.Min(1 + transform.GetComponent<PlayerStats>().dungeonLevel * 0.1f, 2);
-            print("player hit");
+            realDmg *= multiplier;
+            PlayerPrefs.SetInt("Hurt", PlayerPrefs.GetInt("Hurt") + (int)realDmg);
+            isPlayer = true;
+            //print("player hit");
+        } else
+        {
+            PlayerPrefs.SetInt("Damage", PlayerPrefs.GetInt("Damage") + (int)realDmg);
         }
-        float realDmg = Mathf.Max((amount  - armorStatic), Mathf.Min(1, amount)) * multiplier * Mathf.Max(1 - armorMult, 0);
         //Debug.Log("Vlaue: " + realDmg);
 
         bool died = false;
@@ -92,6 +99,27 @@ public class EntityStats : MonoBehaviour
             if (source)
             {
                 source.OnKill(this);
+
+                //if is not the player
+                if (isPlayer)
+                {
+
+                    string killerName = source.displayName.Length > 0 ? source.displayName : source.name;
+                    if (killerName.Contains("(Clone)"))
+                    {
+                        PlayerPrefs.SetString("Killer", killerName.Substring(0, killerName.Length - 7));
+                    }
+                    else
+                    {
+                        PlayerPrefs.SetString("Killer", killerName);
+                    }
+                }
+                else
+                {
+                    PlayerPrefs.SetInt("Kills", PlayerPrefs.GetInt("Kills") + 1);
+                }
+
+                //is ranged weapon on player
                 if (lastHitAmmoAddition != 0)
                 {
                     source.GetComponent<PlayerStats>().replenishAmmo(lastHitAmmoAddition);

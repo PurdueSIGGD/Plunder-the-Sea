@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3129921333085929233}
   - component: {fileID: 1373274281781304316}
   - component: {fileID: 288724639897624243}
+  - component: {fileID: 3108273409932557153}
   m_Layer: 0
   m_Name: Hammerhead
   m_TagString: Fish
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 78fa6988ab8e31847be8b7157b956223, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7764706}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -121,14 +122,6 @@ MonoBehaviour:
   - 0.5
   - 0
   - 0
-  buffNames:
-  - Movement Speed
-  - HP
-  - Stamina
-  - Stamina Recharge Rate
-  - Melee Damage
-  - Ranged Damage
-  - Armor
   FishingMinigame: {fileID: 0}
   sprite: {fileID: 0}
 --- !u!50 &3129921333085929233
@@ -184,3 +177,26 @@ CircleCollider2D:
   m_Offset: {x: 0.35, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
+--- !u!114 &3108273409932557153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155222579010472173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: 'Fish: Hammerhead
+
+    Favorite: Bait 4
+
+    Buff Type: Melee Damage
+
+
+    Description:
+
+    The
+    calmer relative of the hammerheads you might find in dungeons. Still wide head'
