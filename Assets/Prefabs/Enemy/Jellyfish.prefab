@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09ab1ea068274d69a030af1a1ff03d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Jellyfish
   movementSpeed: 2
   maxHP: 30
   currentHP: 30

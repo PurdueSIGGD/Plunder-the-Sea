@@ -313,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09ab1ea068274d69a030af1a1ff03d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Dragon Fish
   movementSpeed: 3
   maxHP: 40
   currentHP: 40
@@ -444,6 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b252ea28352e043b31f4d2bf8bfabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: 
   movementSpeed: 10
   maxHP: 1
   currentHP: 1
@@ -706,6 +708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b252ea28352e043b31f4d2bf8bfabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: 
   movementSpeed: 10
   maxHP: 1
   currentHP: 1
@@ -865,6 +868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b252ea28352e043b31f4d2bf8bfabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: 
   movementSpeed: 10
   maxHP: 1
   currentHP: 1
@@ -1209,6 +1213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b252ea28352e043b31f4d2bf8bfabe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: 
   movementSpeed: 10
   maxHP: 1
   currentHP: 1
