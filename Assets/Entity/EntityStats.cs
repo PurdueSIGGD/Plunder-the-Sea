@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class EntityStats : MonoBehaviour
 {
+    public string displayName;
     public float movementSpeed = 10.0f;
     public float maxHP = 1;
     public float currentHP = 1;
@@ -102,7 +103,8 @@ public class EntityStats : MonoBehaviour
                 //if is not the player
                 if (isPlayer)
                 {
-                    string killerName = source.name;
+
+                    string killerName = source.displayName.Length > 0 ? source.displayName : source.name;
                     if (killerName.Contains("(Clone)"))
                     {
                         PlayerPrefs.SetString("Killer", killerName.Substring(0, killerName.Length - 7));
