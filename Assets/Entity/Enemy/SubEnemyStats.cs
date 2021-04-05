@@ -11,7 +11,9 @@ public class SubEnemyStats : EnemyStats
 
     public override bool TakeDamage(float amount, EntityStats source)
     {
-        return parent.TakeDamage(amount, source);
+        // Only adjust incoming damage based on armor
+        float realDmg = Mathf.Max((amount - armorStatic), Mathf.Min(1, amount)) * Mathf.Max(1 - armorMult, 0);
+        return parent.TakeDamage(realDmg, source);
     }
 
     public override void AddAttribute(EntityAttribute attr, EntityStats source)

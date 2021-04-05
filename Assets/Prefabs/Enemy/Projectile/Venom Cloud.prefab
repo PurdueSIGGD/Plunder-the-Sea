@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2808827960982064107
+--- !u!1 &958478196537146012
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,36 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1339972736838741142}
-  - component: {fileID: 2817801368616632141}
-  - component: {fileID: 2981821739990127870}
-  - component: {fileID: 2267666193016582932}
-  - component: {fileID: 7715260175935198236}
-  - component: {fileID: -2190907129564129649}
+  - component: {fileID: 9083334520131893428}
+  - component: {fileID: 5361368513160647953}
   m_Layer: 0
-  m_Name: Venom Cloud
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1339972736838741142
+--- !u!4 &9083334520131893428
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2808827960982064107}
+  m_GameObject: {fileID: 958478196537146012}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8540182, y: 0.034934983, z: 0}
-  m_LocalScale: {x: 8, y: 8, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1339972736838741142}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2817801368616632141
+--- !u!212 &5361368513160647953
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2808827960982064107}
+  m_GameObject: {fileID: 958478196537146012}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -75,17 +71,53 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.80569124, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: eb0bf1c0497543045b00e3278ab41e01, type: 3}
+  m_Color: {r: 0.76380515, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2808827960982064107
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1339972736838741142}
+  - component: {fileID: 2981821739990127870}
+  - component: {fileID: 2267666193016582932}
+  - component: {fileID: 7715260175935198236}
+  - component: {fileID: -2190907129564129649}
+  - component: {fileID: 5628665975039258303}
+  m_Layer: 0
+  m_Name: Venom Cloud
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1339972736838741142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2808827960982064107}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8540182, y: 0.034934983, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 9083334520131893428}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &2981821739990127870
 Rigidbody2D:
   serializedVersion: 4
@@ -131,7 +163,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.6, y: 0.6}
   m_EdgeRadius: 0
 --- !u!114 &7715260175935198236
 MonoBehaviour:
@@ -172,6 +204,7 @@ MonoBehaviour:
   attrChance: 1
   speed: 0
   sourceTag: 
+  parent: {fileID: 0}
 --- !u!114 &-2190907129564129649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,3 +220,20 @@ MonoBehaviour:
   startSize: 0.5
   endSize: 1.5
   timeToMax: 2
+--- !u!114 &5628665975039258303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2808827960982064107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2336d0bc9001f4bad5ea15a5973a66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: eb0bf1c0497543045b00e3278ab41e01, type: 3}
+  - {fileID: 21300000, guid: 3e7dafad75e96a04aad1377e82b33073, type: 3}
+  - {fileID: 21300000, guid: 0266bfa5d1b862142a5d3a62215bce3d, type: 3}
+  destination: {fileID: 958478196537146012}

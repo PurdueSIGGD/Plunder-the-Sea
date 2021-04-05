@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 4463945284487561881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 8026890519551668444}
   m_Father: {fileID: 0}
@@ -207,7 +207,7 @@ MonoBehaviour:
   pathingRefresh: 0.25
   maxDist: 10
   targetProximity: 0
-  approachDistance: 0.5
+  approachDistance: 1
   actChargeUpTime: 1
   actCooldownTime: 1
   approachState: 0
