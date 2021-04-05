@@ -54,8 +54,8 @@ MonoBehaviour:
   proficiency: 2
   classSprite: {fileID: 0}
   chainLighting: 1
-  lightingDamage: 16
-  chainChance: 0.5
+  lightingDamage: 5
+  chainChance: 1
   chainLength: 4
   chainRadius: 4
   lightingPrefab: {fileID: 5899607823344340309, guid: 589e7930d6f182843820387f45a40df1, type: 3}
@@ -72,7 +72,7 @@ MonoBehaviour:
   melee: 11
   ranged: 10
   meleeDamageAddition: 0
-  meleeDamageMultiplier: 1
+  meleeDamageMultiplier: 0.5
   rangedDamageAddition: 0
   rangedDamageMultiplier: 0.5
   meleeSizeAddition: 0
