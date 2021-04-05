@@ -372,7 +372,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &8238766740981743561
 MonoBehaviour:
@@ -1455,6 +1455,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   fishing: {fileID: 0}
   playerInventory: {fileID: 9221751412264514575}
+  keep: 1
 --- !u!114 &1216624810783500037
 MonoBehaviour:
   m_ObjectHideFlags: 0

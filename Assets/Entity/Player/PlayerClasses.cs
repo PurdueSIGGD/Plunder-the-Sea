@@ -329,7 +329,9 @@ public class PlayerClasses : MonoBehaviour
                     {
                         //instantiate lighting and deal damage
                         GameObject g = Instantiate(lightingPrefab, current.transform.position, Quaternion.identity);
-                        g.GetComponent<LineRenderer>().SetPositions(new Vector3[] { current.transform.position, next.transform.position });
+                        LineRenderer lr = g.GetComponent<LineRenderer>();
+                        lr.SetPositions(new Vector3[] { current.transform.position, next.transform.position });
+                        lr.material.SetTextureScale("_MainTex", new Vector2(Vector3.Distance(lr.GetPosition(0), lr.GetPosition(1) / lr.widthMultiplier), 1));
                         Destroy(g, 0.5f);
                         next.TakeDamage(lightingDamage, stats);
                         current = next;

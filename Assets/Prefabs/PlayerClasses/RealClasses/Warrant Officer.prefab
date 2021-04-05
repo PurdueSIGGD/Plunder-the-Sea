@@ -54,7 +54,7 @@ MonoBehaviour:
   proficiency: 2
   classSprite: {fileID: 0}
   chainLighting: 1
-  lightingDamage: 4
+  lightingDamage: 16
   chainChance: 0.5
   chainLength: 4
   chainRadius: 4

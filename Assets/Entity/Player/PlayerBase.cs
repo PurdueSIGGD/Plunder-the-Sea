@@ -66,7 +66,7 @@ public class PlayerBase : MonoBehaviour
             inv.ShootAt(cam.GetMousePosition(), false);
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space))
         {
             inv.ShootAt(cam.GetMousePosition(), true);
         }
