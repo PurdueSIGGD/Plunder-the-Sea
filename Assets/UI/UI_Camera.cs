@@ -18,6 +18,8 @@ public class UI_Camera : MonoBehaviour
     private float zoomSize = 1.0f;
     private float zoomEndTime = 0.0f;
     private bool isZooming = false;
+    [SerializeField]
+    private bool keep = true;
 
     private void Awake()
     {
@@ -30,7 +32,10 @@ public class UI_Camera : MonoBehaviour
             }
             Destroy(this.gameObject);
         }
-        DontDestroyOnLoad(this.gameObject);
+        if (keep)
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
 
     public void moveHere(Transform newPos)

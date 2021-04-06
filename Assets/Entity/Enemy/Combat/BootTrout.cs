@@ -36,7 +36,6 @@ public class BootTrout : StateCombat
         {
             if (OnTarget(meleeTarget))
             {
-                myBase.myMovement.moving = false;
                 myBase.myRigid.velocity = Vector2.zero;
                 meleeAttack();
                 meleeTarget = SetTarget(1.0f / myBase.myStats.attackSpeedInverse);
@@ -50,6 +49,5 @@ public class BootTrout : StateCombat
         {
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
         }
-        myBase.myMovement.moving = true;
     }
 }

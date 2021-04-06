@@ -29,7 +29,7 @@ public class HammerheadShark : StateCombat
                     // Just started moving, so add defense
                     myBase.myStats.AddAttribute(spinningDefense, myBase.myStats);
                     anim.SetInteger("State", 1);
-                    anim.SetBool("back", isPlayerUp());
+                    anim.SetBool("Back", isPlayerUp());
                     sprite.flipX = isPlayerLeft();
                 }
                 break;

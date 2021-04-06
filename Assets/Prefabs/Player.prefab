@@ -372,7 +372,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &8238766740981743561
 MonoBehaviour:
@@ -1303,6 +1303,7 @@ GameObject:
   - component: {fileID: 1216624810783500037}
   - component: {fileID: 294607765}
   - component: {fileID: 294607770}
+  - component: {fileID: 8485961227986367599}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -1342,6 +1343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa39cea6a722da4fa2abb86180d4de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: 
   movementSpeed: 10
   maxHP: 100
   currentHP: 100
@@ -1455,6 +1457,7 @@ MonoBehaviour:
   stats: {fileID: 0}
   fishing: {fileID: 0}
   playerInventory: {fileID: 9221751412264514575}
+  keep: 1
 --- !u!114 &1216624810783500037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1543,6 +1546,19 @@ MonoBehaviour:
   rb2D: {fileID: 7045101813800168214}
   bodyAnimator: {fileID: 2667540318395973743}
   bodyRenderer: {fileID: 7354794971105111827}
+--- !u!114 &8485961227986367599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7045101813800168174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68453f6fd8812d64baddb6387b9f051e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debug: 1
 --- !u!1 &7358381538591861277
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,6 +2162,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8069da242dd289f4ab690c63c53f3819, type: 3}
+--- !u!4 &4197716345853168967 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 522256626616059444, guid: 8069da242dd289f4ab690c63c53f3819, type: 3}
+  m_PrefabInstance: {fileID: 4431020195500690291}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5887798363337455442 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7839513570453519393, guid: 8069da242dd289f4ab690c63c53f3819, type: 3}
@@ -2157,11 +2178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &4197716345853168967 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 522256626616059444, guid: 8069da242dd289f4ab690c63c53f3819, type: 3}
-  m_PrefabInstance: {fileID: 4431020195500690291}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6639526254450224993
 PrefabInstance:
   m_ObjectHideFlags: 0

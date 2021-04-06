@@ -22,6 +22,9 @@ public class parrot : MonoBehaviour
     private Rigidbody2D rigid;
     private SpriteRenderer renderer;
 
+    [SerializeField]
+    private bool tutorial = false;
+
     private float restTimer;
     private float wakeTimer;
     [SerializeField]
@@ -36,7 +39,14 @@ public class parrot : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         renderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        anim.SetFloat("Parrot", PlayerPrefs.GetInt("classNum"));
+        if (tutorial)
+        {
+            anim.SetFloat("Parrot", 1);
+        }
+        else
+        {
+            anim.SetFloat("Parrot", PlayerPrefs.GetInt("classNum"));
+        }
         restTimer = timeToRest;
     }
 

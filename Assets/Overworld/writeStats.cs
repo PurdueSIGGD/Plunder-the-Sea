@@ -29,6 +29,7 @@ public class writeStats : MonoBehaviour
             {
                 string tip = "Try again?";
                 string playerClass = PlayerPrefs.GetString("Class");
+                string killer = PlayerPrefs.GetString("Killer");
                 if (playerClass == "Test Class")
                 {
                     tip = "The Test class is average in every way and has no special abilities, focus on dodgeing and attacking.";
@@ -52,6 +53,22 @@ public class writeStats : MonoBehaviour
                 if (playerClass == "Warrant Officer")
                 {
                     tip = "The Warrent Officer has a chance to create chain lighting, try grouping enemies together to take them out all at once.";
+                }
+                if (killer == "Boomfish")
+                {
+                    tip = "The bombfish deals massive damage to the surrounding area! Get out of its range once it starts blinking.";
+                }
+                if (killer == "Hammerhead")
+                {
+                    tip = "The hammerhead cannot be damaged while spinning and reflects bullets. Quickly damage it between spins";
+                }
+                if (killer == "Swordfish Minion")
+                {
+                    tip = "Swordfish minions will keep spawning while the Seahorse Lancer is alive, make sure to take it out.";
+                }
+                if (killer == "Venom Mine")
+                {
+                    tip = "Venom mines deal high damage over time, take them out at range or avoid them.";
                 }
                 if (PlayerPrefs.GetFloat("Time") > Mathf.Pow(PlayerPrefs.GetFloat("Level") + 1, 1.25f) * 60)
                 {

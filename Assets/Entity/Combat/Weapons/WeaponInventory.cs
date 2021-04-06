@@ -123,7 +123,8 @@ public class WeaponInventory : MonoBehaviour
             pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
 
             pStats.prefab = projectilePrefabTable.get(weaponClass);
-            pStats.prefab.transform.localScale = Vector3.one * (1 + weaponMods.meleeSizeAddition) * weaponMods.meleeSizeMultiplier; //swordScale
+            pStats.prefab.transform.localScale = Vector3.one * (1 + weaponMods.meleeSizeAddition) * weaponMods.meleeSizeMultiplier * 0.5f; //swordScale
+            //Debug.Log("Scale: " + pStats.prefab.transform.localScale.ToString());
         }
 
         //pStats.lifeTime = projectileLifeTimesTable.get(weaponClass).Value;
