@@ -70,7 +70,7 @@ public class writeStats : MonoBehaviour
                 {
                     tip = "Venom mines deal high damage over time, take them out at range or avoid them.";
                 }
-                if (PlayerPrefs.GetFloat("Time") > Mathf.Pow(PlayerPrefs.GetFloat("Level") + 1, 1.25f) * 60)
+                if (PlayerPrefs.GetFloat("Time") > Mathf.Pow(PlayerPrefs.GetFloat("Level") + 2, 1.25f) * 60)
                 {
                     tip = "There is no need to do everything in a level, getting to the exit is your main goal.";
                 }
