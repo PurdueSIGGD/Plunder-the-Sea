@@ -16,21 +16,6 @@ public class SubEnemyStats : EnemyStats
         return parent.TakeDamage(realDmg, source);
     }
 
-    public override void AddAttribute(EntityAttribute attr, EntityStats source)
-    {
-        parent.AddAttribute(attr, source);
-    }
-
-    public override void RemoveAttribute(EntityAttribute attr)
-    {
-        parent.RemoveAttribute(attr);
-    }
-
-    public override void RemoveAllAttributes()
-    {
-        parent.RemoveAllAttributes();
-    }
-
     public override void Die()
     {
         parent.Die();

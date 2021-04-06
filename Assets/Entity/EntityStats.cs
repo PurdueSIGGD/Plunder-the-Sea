@@ -23,14 +23,14 @@ public class EntityStats : MonoBehaviour
      * Storing endtime in attribute class does not allow for the same attribute
      * to be applied to multiple entities. Store in this struct instead.
      */
-    private struct AppliedAttribute
+    public struct AppliedAttribute
     {
         public EntityAttribute attr;
         public EntityStats source;
         public float endTime;
     };
 
-    private List<AppliedAttribute> attribList = new List<AppliedAttribute>();
+    public List<AppliedAttribute> attribList = new List<AppliedAttribute>();
 
     /* Extending classes must call this in update function */
     protected void StatUpdate()
@@ -173,7 +173,9 @@ public class EntityStats : MonoBehaviour
                 }
             }
         }
+
         
+
         attribList.Add(app);
         attr.OnAdd(this);
     }

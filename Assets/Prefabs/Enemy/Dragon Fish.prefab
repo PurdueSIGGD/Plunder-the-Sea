@@ -521,7 +521,7 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.15
+  m_Distance: 0.3
   m_MaxDistanceOnly: 1
 --- !u!114 &5384352038267196695
 MonoBehaviour:
@@ -784,7 +784,7 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.14999998
+  m_Distance: 0.29999995
   m_MaxDistanceOnly: 1
 --- !u!114 &2164769460551925693
 MonoBehaviour:
@@ -944,7 +944,7 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.15000004
+  m_Distance: 0.30000007
   m_MaxDistanceOnly: 1
 --- !u!114 &8975432209788838443
 MonoBehaviour:
@@ -1289,7 +1289,7 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.15
+  m_Distance: 0.3
   m_MaxDistanceOnly: 1
 --- !u!114 &5327873543528425362
 MonoBehaviour:
