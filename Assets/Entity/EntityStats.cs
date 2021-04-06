@@ -65,7 +65,7 @@ public class EntityStats : MonoBehaviour
     }
 
     //Return true if results in death
-    public virtual bool TakeDamage(float amount, EntityStats source)
+    public virtual bool TakeDamage(float amount, EntityStats source, bool tickDamage = false)
     {
         //player damage call
         damageReturnCall();
@@ -73,7 +73,11 @@ public class EntityStats : MonoBehaviour
 
         //damage scaling is not stored as it can update
         int multiplier = 1;
-        float realDmg = Mathf.Max((amount - Mathf.Max(armorStatic, 0)), Mathf.Min(1, amount)) * Mathf.Max(1 - armorMult, 0);
+        float realDmg = amount;
+        if (!tickDamage)
+        {
+            realDmg = Mathf.Max((amount - armorStatic), Mathf.Min(1, amount)) * Mathf.Max(1 - armorMult, 0);
+        }
         if (transform.tag == "Player")
         {
             multiplier = (int) Mathf.Min(1 + transform.GetComponent<PlayerStats>().dungeonLevel * 0.1f, 2);

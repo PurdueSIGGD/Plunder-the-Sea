@@ -9,7 +9,7 @@ public class SubEnemyStats : EnemyStats
     // The parent that all damage will be sent to
     public EntityStats parent;
 
-    public override bool TakeDamage(float amount, EntityStats source)
+    public override bool TakeDamage(float amount, EntityStats source, bool tickDamage = false)
     {
         // Only adjust incoming damage based on armor
         float realDmg = Mathf.Max((amount - armorStatic), Mathf.Min(1, amount)) * Mathf.Max(1 - armorMult, 0);
