@@ -74,6 +74,13 @@ public class PlayerStats : EntityStats
         pbase = GetComponent<PlayerBase>();
         weaponInv = GetComponent<WeaponInventory>();
         baitInventory = GetComponentInChildren(typeof(PlayerInventory), true) as PlayerInventory;
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            baitInventory.addBait(0, 256);
+            baitInventory.addBait(1, 256);
+            baitInventory.addBait(2, 256);
+            baitInventory.addBait(3, 256);
+        }
         appliedStats = null;
     }
 

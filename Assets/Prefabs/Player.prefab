@@ -1343,7 +1343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa39cea6a722da4fa2abb86180d4de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayName: 
+  displayName: Yourself
   movementSpeed: 10
   maxHP: 100
   currentHP: 100
@@ -1501,7 +1501,6 @@ MonoBehaviour:
   killChain: 0
   killRequirement: 3
   chainTime: 4
-  attackSizeBoost: 2
   speedBoost: 2
   melee: 0
   ranged: 0
