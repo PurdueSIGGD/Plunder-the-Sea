@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startSize: 0.5
-  endSize: 1.5
+  endSize: 3.5
   timeToMax: 2
 --- !u!114 &5628665975039258303
 MonoBehaviour:
