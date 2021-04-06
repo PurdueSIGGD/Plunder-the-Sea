@@ -131,7 +131,7 @@ Transform:
   m_GameObject: {fileID: 5338947076325555132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 1765939815146326521}
   - {fileID: 3975890997556373244}
@@ -214,7 +214,7 @@ MonoBehaviour:
   healthbar: {fileID: 8379629806533454694}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
-  attackSpeedInverse: 1
+  attackSpeedInverse: 0.5
   damage: 20
   numberOfTimesToRespawn: 0
   dropTable: ffffffff00000000010000000200000003000000
@@ -240,7 +240,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.3
 --- !u!114 &1765939815318567380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,8 +283,8 @@ MonoBehaviour:
   attackRange: 0.5
   prevState: 0
   myStateMovement: {fileID: 0}
-  anim: {fileID: 2935453451513460977}
   sprite: {fileID: 6340107299991062651}
+  anim: {fileID: 2935453451513460977}
 --- !u!1 &6500774269780998053
 GameObject:
   m_ObjectHideFlags: 0
