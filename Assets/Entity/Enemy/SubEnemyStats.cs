@@ -9,7 +9,7 @@ public class SubEnemyStats : EnemyStats
     // The parent that all damage will be sent to
     public EntityStats parent;
 
-    public override bool TakeDamage(float amount, EntityStats source)
+    public override bool TakeDamage(float amount, EntityStats source, bool tickDamage = false)
     {
         return parent.TakeDamage(amount, source);
     }
