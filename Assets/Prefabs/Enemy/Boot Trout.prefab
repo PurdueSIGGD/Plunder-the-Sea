@@ -259,7 +259,7 @@ MonoBehaviour:
   pathingRefresh: 0.25
   maxDist: 10
   targetProximity: 0
-  chargeDistance: 0.75
+  chargeDistance: 1
   chargeSpeed: 5
   chargeUpTime: 0.18
   chargeDuration: 0.2
