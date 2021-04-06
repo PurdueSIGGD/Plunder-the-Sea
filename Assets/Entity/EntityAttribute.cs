@@ -112,7 +112,7 @@ public class EntityAttribute
         switch(type)
         {
             case ENT_ATTR.POISON:
-                owner.TakeDamage(value * Time.deltaTime, source, true);
+                owner.TakeDamage(value * Time.deltaTime, source, true, name);
                 return;
         }
     }

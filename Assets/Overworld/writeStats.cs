@@ -66,7 +66,7 @@ public class writeStats : MonoBehaviour
                 {
                     tip = "Swordfish minions will keep spawning while the Seahorse Lancer is alive, make sure to take it out.";
                 }
-                if (killer == "Venom Mine")
+                if (killer == "Venom")
                 {
                     tip = "Venom mines deal high damage over time, take them out at range or avoid them.";
                 }

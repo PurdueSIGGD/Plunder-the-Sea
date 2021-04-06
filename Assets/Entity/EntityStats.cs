@@ -65,7 +65,7 @@ public class EntityStats : MonoBehaviour
     }
 
     //Return true if results in death
-    public virtual bool TakeDamage(float amount, EntityStats source, bool tickDamage = false)
+    public virtual bool TakeDamage(float amount, EntityStats source, bool tickDamage = false, string killerNameOverride = "")
     {
         //player damage call
         damageReturnCall();
@@ -134,6 +134,10 @@ public class EntityStats : MonoBehaviour
                 {
                     source.GetComponent<PlayerStats>().replenishAmmo(lastHitAmmoAddition);
                 }
+            }
+            if (killerNameOverride != "")
+            {
+                PlayerPrefs.SetString("Killer", killerNameOverride);
             }
         }
         updateHealthBar();
