@@ -223,6 +223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   offset: {x: 0, y: 0}
+  keep: 1
 --- !u!82 &1545560704
 AudioSource:
   m_ObjectHideFlags: 0
@@ -590,6 +591,18 @@ PrefabInstance:
     - target: {fileID: 832614830952300313, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 849168558451191944, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 849168558451191944, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.67088604
+      objectReference: {fileID: 0}
+    - target: {fileID: 849168558451191944, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 849168558451191947, guid: 4219fe7bf075fee42af8dceadc154b1e, type: 3}
       propertyPath: m_AnchorMax.x
