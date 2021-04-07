@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classIntPairs:
   - weaponClass: 0
-    integer: 25
+    integer: 20
   - weaponClass: 1
     integer: 35
   - weaponClass: 2
@@ -30,7 +30,7 @@ MonoBehaviour:
   - weaponClass: 8
     integer: 25
   - weaponClass: 9
-    integer: 25
+    integer: 20
   - weaponClass: 10
     integer: 20
   - weaponClass: 11
