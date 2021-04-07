@@ -46,11 +46,11 @@ MonoBehaviour:
   classNumber: -1
   classes: []
   baseHp: 120
-  baseSpeed: 8
+  baseSpeed: 10
   baseArmorAddition: 1
   baseArmorDivision: 0.5
   baseStamina: 20
-  baseStaminaRechargeRate: 4
+  baseStaminaRechargeRate: 8
   proficiency: 1
   classSprite: {fileID: 0}
   chainLighting: 0

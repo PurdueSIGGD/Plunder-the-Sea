@@ -124,7 +124,7 @@ public class PlayerClasses : MonoBehaviour
     {
         PlayerPrefs.SetInt("Kills", 0);
         PlayerPrefs.SetInt("Damage", 0);
-        PlayerPrefs.SetInt("Hurt", 0);
+        PlayerPrefs.SetFloat("Hurt", 0);
         PlayerPrefs.SetString("Killer", "???");
         PlayerPrefs.SetInt("FishingBait", 0);
         PlayerPrefs.SetInt("Caught", 0);

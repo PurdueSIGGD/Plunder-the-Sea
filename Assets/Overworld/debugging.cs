@@ -41,7 +41,9 @@ public class debugging : MonoBehaviour
         //teleports to next dungeon level
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            stats.dungeonLevel += 1;
+            stats.resetAmmo(stats.maxAmmo);
+            stats.stamina = stats.staminaMax;
+            stats.dungeonLevel++;
             SceneManager.LoadScene("Combat");
         }
         //teleports to previous dungeon level
@@ -49,7 +51,10 @@ public class debugging : MonoBehaviour
         {
             if (stats.dungeonLevel > 0)
             {
-                stats.dungeonLevel -= 1;
+                stats.dungeonLevel += 1;
+                stats.resetAmmo(stats.maxAmmo);
+                stats.stamina = stats.staminaMax;
+                stats.dungeonLevel--;
             }
             SceneManager.LoadScene("Combat");
         }

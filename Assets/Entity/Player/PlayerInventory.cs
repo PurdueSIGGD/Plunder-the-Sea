@@ -191,4 +191,14 @@ public class PlayerInventory : MonoBehaviour
         }
         
     }
+
+    public int getBaitTotal()
+    {
+        int sum = 0;
+        foreach (int i in baitTypes)
+        {
+            sum += i;
+        }
+        return sum;
+    }
 }

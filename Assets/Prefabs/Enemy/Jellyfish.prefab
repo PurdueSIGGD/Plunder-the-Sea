@@ -111,7 +111,7 @@ MonoBehaviour:
   currentHP: 30
   armorMult: 0.25
   armorStatic: 0
-  killRegenMult: 1
+  killRegenMult: 0.5
   healthbar: {fileID: 2201514445343193906}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
