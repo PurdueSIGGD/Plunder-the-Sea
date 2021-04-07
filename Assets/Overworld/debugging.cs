@@ -31,6 +31,11 @@ public class debugging : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        //quits the game
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         //goes to the menu
         if (Input.GetKeyDown(KeyCode.M))
         {
