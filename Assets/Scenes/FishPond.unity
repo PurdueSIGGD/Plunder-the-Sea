@@ -4113,14 +4113,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5710652294291839103, guid: 42e14d21367abf14a8e2f27976fff21a, type: 3}
-      propertyPath: teleportLocation.x
-      value: -18.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5710652294291839103, guid: 42e14d21367abf14a8e2f27976fff21a, type: 3}
-      propertyPath: teleportLocation.y
-      value: 9.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5710652294291839103, guid: 42e14d21367abf14a8e2f27976fff21a, type: 3}
       propertyPath: teleportTransform
       value: 
       objectReference: {fileID: 966348464}
