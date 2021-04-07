@@ -11,6 +11,11 @@ public class StaminaProjSys : ProjectileSystem {
     }
 
     public override bool CanShoot(GameObject player) {
+        //The return was giving Null reference errors, this is a quick and dirty fix, but should stop them from occuring
+        if (!stats)
+        {
+            stats = player.GetComponent<PlayerBase>().stats;
+        }
         return stats.stamina >= staminaCost;
     }
 
