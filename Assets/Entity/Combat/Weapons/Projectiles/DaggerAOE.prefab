@@ -130,6 +130,8 @@ MonoBehaviour:
   lifeTime: 0.15
   currentLifeTime: 0
   damage: 1
+  ammoRefill: 0
+  mods: []
   pierceCount: 0
   source: {fileID: 0}
   tables: {fileID: 0}
@@ -152,6 +154,7 @@ MonoBehaviour:
   attrChance: 0
   speed: 0
   sourceTag: 
+  parent: {fileID: 0}
 --- !u!61 &2719860953006305366
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,7 +168,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.19245782, y: -0.016637579}
+  m_Offset: {x: 0.5658891, y: -0.036680833}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -176,5 +179,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5031877, y: 0.1428071}
+  m_Size: {x: 0.8128624, y: 0.24120077}
   m_EdgeRadius: 0

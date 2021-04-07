@@ -116,12 +116,12 @@ public class PlayerInventory : MonoBehaviour
         if (pBase != null)
         {
             healthLabel.text = "HP: " + Mathf.Round(pBase.stats.currentHP) + "/" + Mathf.Round(pBase.stats.maxHP);
-            stamLabel.text = "Stam: " + Mathf.Round(pBase.stats.stamina) + "/" + Mathf.Round(pBase.stats.staminaMax);
+            stamLabel.text = "Stamina: " + Mathf.Round(pBase.stats.stamina) + "/" + Mathf.Round(pBase.stats.staminaMax);
             ammoLabel.text = "Ammo: " + pBase.stats.ammo + "/" + pBase.stats.maxAmmo;
             armorLabel.text = "Armor: " + pBase.stats.armorStatic + "(x" +pBase.stats.armorMult+ ")";
 
-            speedLabel.text = "Spd: " + pBase.stats.movementSpeed;
-            stamRechLabel.text = "Rest: " + pBase.stats.staminaRechargeRate;
+            speedLabel.text = "Speed: " + pBase.stats.movementSpeed;
+            stamRechLabel.text = "Recharge: " + pBase.stats.staminaRechargeRate;
             meleeDamLabel.text = "Melee: " + weapInv.projectileDamage(weapInv.getMeleeWeaponClass());
             rangeDamLabel.text = "Range: " + weapInv.projectileDamage(weapInv.getRangedWeaponClass());
 

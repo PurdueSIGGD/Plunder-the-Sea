@@ -20,10 +20,10 @@ MonoBehaviour:
   - name: 4
     floatValue: 12
   - name: 5
-    floatValue: 8
+    floatValue: 10
   - name: 9
     floatValue: 15
   - name: 11
     floatValue: 15
   - name: 14
-    floatValue: 20
+    floatValue: 15

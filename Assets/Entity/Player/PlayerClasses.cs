@@ -150,6 +150,8 @@ public class PlayerClasses : MonoBehaviour
 
         inventory.meleeWeaponClass = melee;
         inventory.rangedWeaponClass = ranged;
+
+        lungeOneDirectionCooldown = inventory.getMaxWait();
     }
 
     private void Update()

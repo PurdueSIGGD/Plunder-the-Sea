@@ -128,7 +128,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.015663754, y: 0.0008404376}
+  m_Offset: {x: 0.01781338, y: 0.00084043667}
   m_SpriteTilingProperty:
     border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
@@ -139,7 +139,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.029530901, y: 0.042508766}
+  m_Size: {x: 0.078542314, y: 0.042508766}
   m_EdgeRadius: 0
 --- !u!114 &7995115018178927190
 MonoBehaviour:
@@ -156,11 +156,28 @@ MonoBehaviour:
   lifeTime: 0.15
   currentLifeTime: 0
   damage: 1
-  destroyOnCollide: 1
+  ammoRefill: 0
+  mods: []
   pierceCount: 0
   source: {fileID: 0}
   tables: {fileID: 0}
   weaponClass: 0
   direction: {x: 0, y: 0}
+  destroyOnCollide: 1
+  destroyOnNonEntity: 0
+  friendlyFire: 0
+  reflectMelee: 0
+  reflectRanged: 0
+  collideWithProjectile: 0
+  collideWithWall: 1
+  attrHit:
+    name: 
+    type: 0
+    value: 0
+    duration: 0
+    stackable: 0
+    isAdditive: 0
+  attrChance: 0
   speed: 0
   sourceTag: 
+  parent: {fileID: 0}

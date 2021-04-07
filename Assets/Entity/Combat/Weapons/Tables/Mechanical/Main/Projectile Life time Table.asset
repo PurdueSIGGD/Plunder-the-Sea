@@ -38,8 +38,8 @@ MonoBehaviour:
   - name: 11
     floatValue: 1
   - name: 12
-    floatValue: 1
+    floatValue: 2
   - name: 13
     floatValue: 1
   - name: 14
-    floatValue: 1
+    floatValue: 0.5
