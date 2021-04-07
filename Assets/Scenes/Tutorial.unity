@@ -2718,7 +2718,7 @@ PrefabInstance:
       objectReference: {fileID: 1970325624}
     - target: {fileID: 8362527590249832686, guid: 7fe195ce0227f17478f3956d93b679e0, type: 3}
       propertyPath: numFish
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8362527590249832687, guid: 7fe195ce0227f17478f3956d93b679e0, type: 3}
       propertyPath: m_LocalPosition.x
