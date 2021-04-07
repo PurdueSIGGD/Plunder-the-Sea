@@ -23,14 +23,14 @@ public class EntityStats : MonoBehaviour
      * Storing endtime in attribute class does not allow for the same attribute
      * to be applied to multiple entities. Store in this struct instead.
      */
-    private struct AppliedAttribute
+    public struct AppliedAttribute
     {
         public EntityAttribute attr;
         public EntityStats source;
         public float endTime;
     };
 
-    private List<AppliedAttribute> attribList = new List<AppliedAttribute>();
+    public List<AppliedAttribute> attribList = new List<AppliedAttribute>();
 
     /* Extending classes must call this in update function */
     protected void StatUpdate()
@@ -65,14 +65,14 @@ public class EntityStats : MonoBehaviour
     }
 
     //Return true if results in death
-    public virtual bool TakeDamage(float amount, EntityStats source, bool tickDamage = false)
+    public virtual bool TakeDamage(float amount, EntityStats source, bool tickDamage = false, string killerNameOverride = "")
     {
         //player damage call
         damageReturnCall();
         bool isPlayer = false;
 
         //damage scaling is not stored as it can update
-        int multiplier = 1;
+        float multiplier = 1;
         float realDmg = amount;
         if (!tickDamage)
         {
@@ -80,13 +80,19 @@ public class EntityStats : MonoBehaviour
         }
         if (transform.tag == "Player")
         {
-            multiplier = (int) Mathf.Min(1 + transform.GetComponent<PlayerStats>().dungeonLevel * 0.1f, 2);
+            multiplier = Mathf.Min(1 + transform.GetComponent<PlayerStats>().dungeonLevel * 0.1f, 2);
             realDmg *= multiplier;
             PlayerPrefs.SetInt("Hurt", PlayerPrefs.GetInt("Hurt") + (int)realDmg);
             isPlayer = true;
             //print("player hit");
         } else
         {
+            if (source is PlayerStats)
+            {
+                PlayerStats pStats = (PlayerStats)source;
+                multiplier = 1 / (1 + .3f * pStats.dungeonLevel);
+                realDmg *= multiplier;
+            }
             PlayerPrefs.SetInt("Damage", PlayerPrefs.GetInt("Damage") + (int)realDmg);
         }
         //Debug.Log("Vlaue: " + realDmg);
@@ -129,6 +135,10 @@ public class EntityStats : MonoBehaviour
                     source.GetComponent<PlayerStats>().replenishAmmo(lastHitAmmoAddition);
                 }
             }
+            if (killerNameOverride != "")
+            {
+                PlayerPrefs.SetString("Killer", killerNameOverride);
+            }
         }
         updateHealthBar();
 
@@ -167,7 +177,9 @@ public class EntityStats : MonoBehaviour
                 }
             }
         }
+
         
+
         attribList.Add(app);
         attr.OnAdd(this);
     }

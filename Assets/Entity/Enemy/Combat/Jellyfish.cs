@@ -31,7 +31,7 @@ public class Jellyfish : StateCombat
         myBase = GetComponent<EnemyBase>();
         myStateMovement = GetComponent<StateMovement>();
         stickSpeed = new EntityAttribute(ENT_ATTR.MOVESPEED, 0.5f, stickTime, true, false);
-        stickDamage = new EntityAttribute(ENT_ATTR.POISON, 1f, stickTime, true);
+        stickDamage = new EntityAttribute(ENT_ATTR.POISON, 1f, stickTime, true, true, "Jellyfish");
         anim.SetInteger("Variant", Random.Range(0, 2));
         prevState = GetState();
     }
