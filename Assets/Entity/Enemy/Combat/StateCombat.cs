@@ -49,7 +49,7 @@ public class StateCombat : EnemyCombat
     }
 
     // Fire a projectile towards a direction, and ensure it functions like an enemy projectile
-    public Projectile Shoot(GameObject projectile, Vector2 startPos, Vector2 target)
+    public Projectile Shoot(GameObject projectile, Vector2 startPos, Vector2 target, bool inheritDamage = false)
     {
         Projectile shot = Projectile.Shoot(projectile, startPos, target);
         shot.SetSource(myBase.gameObject);
@@ -58,13 +58,17 @@ public class StateCombat : EnemyCombat
         shot.GetComponent<Rigidbody2D>().velocity = direction * shot.speed;
         shot.tables = null;
         shot.weaponSystem = null;
+        if (inheritDamage)
+        {
+            shot.damage = myBase.myStats.damage;
+        }
         return shot;
     }
 
     // Reduction of previous method to assumedly shoot from the enemy to the player
-    public Projectile Shoot(GameObject projectile)
+    public Projectile Shoot(GameObject projectile, bool inheritDamage = false)
     {
-        return Shoot(projectile, transform.position, myBase.player.transform.position);
+        return Shoot(projectile, transform.position, myBase.player.transform.position, inheritDamage);
     }
 
     // Returns true if the enemy should be facing left to face the player. Otherwise returns false.

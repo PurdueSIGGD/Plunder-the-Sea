@@ -118,7 +118,16 @@ public class GatlingSquid : StateCombat
                 // Try to shoot if possible and the cooldown allows
                 if (OnTarget(firingTracker) && clipCounter < clipSize)
                 {
-                    Projectile bullet = Shoot(squidBullet);
+                    Projectile bullet;
+                    if (myBase.player)
+                    {
+                        Vector3 shootVector = Vector3.ClampMagnitude(myBase.player.transform.position - transform.position, 0.35f);
+                        bullet = Shoot(squidBullet, transform.position+shootVector, myBase.player.transform.position);
+                    } else
+                    {
+                        bullet = Shoot(squidBullet);
+                    }
+                    
                     Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                     rb.velocity = Quaternion.AngleAxis(Random.Range(-shotSpread,shotSpread), Vector3.forward) * rb.velocity;
                     clipCounter++;
