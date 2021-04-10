@@ -42,7 +42,7 @@ public class PlayerFishing : MonoBehaviour
             selectedBait = (selectedBait + 1) % amountOfBaitTypes;
             Debug.Log("Bait " + (selectedBait) + " selected");
             player.stats.baitInventory.changeRedText(selectedBait);
-        } else if (Input.GetAxis("Mouse ScrollWheel") != 0.0f)
+        } else if (Input.GetAxis("Mouse ScrollWheel") != 0.0f && !bobberIsCast)
         {
             selectedBait = ((selectedBait - (int)(10*Input.GetAxis("Mouse ScrollWheel"))) % amountOfBaitTypes);
             if (selectedBait < 0) selectedBait += amountOfBaitTypes;
