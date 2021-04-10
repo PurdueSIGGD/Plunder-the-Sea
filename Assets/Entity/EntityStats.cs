@@ -6,18 +6,30 @@ using UnityEngine.UI;
 
 public class EntityStats : MonoBehaviour
 {
+    // The name this entity displays as
     public string displayName;
+
+    // How fast this entity moves
     public float movementSpeed = 10.0f;
+
+    // Maximum and current health
     public float maxHP = 1;
     public float currentHP = 1;
+
     //Ratio of damage which armor absorbs
     public float armorMult = 0.0f;
     //Constant amount of damage armor absorbs
     public float armorStatic = 0.0f;
+
     // Float dictating how much kill regen this enemy contributes
     public float killRegenMult = 1.0f;
+
+    // Bool determining whether this enemy takes damage
+    public bool invulnerable = false;
+
     public Slider healthbar;
     public int lastHitAmmoAddition = 0;
+    
 
     /*
      * Storing endtime in attribute class does not allow for the same attribute
@@ -67,6 +79,10 @@ public class EntityStats : MonoBehaviour
     //Return true if results in death
     public virtual bool TakeDamage(float amount, EntityStats source, bool tickDamage = false, string killerNameOverride = "")
     {
+        // Invulnerability avoids damage altogether
+        if (invulnerable)
+            return false;
+
         //player damage call
         damageReturnCall();
         bool isPlayer = false;
