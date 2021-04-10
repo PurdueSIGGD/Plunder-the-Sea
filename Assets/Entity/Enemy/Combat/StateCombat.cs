@@ -34,6 +34,13 @@ public class StateCombat : EnemyCombat
         {
             MakeElite(Random.Range(1, 4));
         }
+        CombatStart();
+    }
+
+    // Called by Start() to allow enemies to perform their own actions
+    public virtual void CombatStart()
+    {
+        // Do nothing by default
     }
 
     // Get the current state by calling the state of the movement
