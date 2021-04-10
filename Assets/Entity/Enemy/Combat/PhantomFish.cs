@@ -54,7 +54,8 @@ public class PhantomFish : StateCombat
         if (OnTarget(fireTarget) && dist > minFireDistance && dist < maxFireDistance)
         {
             fireTarget = SetTarget(fireCooldown);
-            Shoot(fireProjectile);
+            Projectile fire = Shoot(fireProjectile);
+            //fire.damage = 2 * myBase.myStats.damage;
         }
     }
 

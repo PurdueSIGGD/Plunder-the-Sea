@@ -122,10 +122,10 @@ public class GatlingSquid : StateCombat
                     if (myBase.player)
                     {
                         Vector3 shootVector = Vector3.ClampMagnitude(myBase.player.transform.position - transform.position, 0.35f);
-                        bullet = Shoot(squidBullet, transform.position+shootVector, myBase.player.transform.position);
+                        bullet = Shoot(squidBullet, transform.position+shootVector, myBase.player.transform.position, true);
                     } else
                     {
-                        bullet = Shoot(squidBullet);
+                        bullet = Shoot(squidBullet, true);
                     }
                     
                     Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();

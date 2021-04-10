@@ -86,7 +86,7 @@ public class BarrelSquid : StateCombat
                 // Try to shoot if possible and the cooldown allows
                 if (OnTarget(firingTracker))
                 {
-                    Shoot(inkShot);
+                    Shoot(inkShot, true);
                     firingTracker = SetTarget(firingCooldown);
                 } 
                 break;
