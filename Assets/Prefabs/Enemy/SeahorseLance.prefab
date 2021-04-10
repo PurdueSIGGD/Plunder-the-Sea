@@ -143,6 +143,7 @@ MonoBehaviour:
   armorMult: 0
   armorStatic: 0
   killRegenMult: 2
+  invulnerable: 0
   healthbar: {fileID: 2751035180489403596}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -209,7 +210,7 @@ MonoBehaviour:
   anim: {fileID: 4513903146821453606}
   retreatDistance: 5
   actCooldownTime: 5
-  enemyToSpawn: {fileID: 4856430215809392895, guid: 3af6ffef36ed5a135ad8c0adb46da670, type: 3}
+  enemyToSpawn: {fileID: 8010861710391754302, guid: 9587eb74143e5bf4fb2e9b15b0f265fd, type: 3}
   numberOfEnemiesToSpawn: 3
   maxEnemiesToSpawn: 6
   retreatState: 0
@@ -557,7 +558,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1556805819
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a7aa7b11dd6139745a1a99c7022c50dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

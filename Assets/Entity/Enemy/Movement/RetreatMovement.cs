@@ -118,6 +118,12 @@ public class RetreatMovement : StateMovement
             //spawnLocation += dirToPlayer;
             GameObject spawnedEnemy = Instantiate(enemyToSpawn, spawnLocation, Quaternion.identity);
             spawnedEnemies.Add(spawnedEnemy);
+
+            // Manually remove the enemy's drop table chance and kill regen contribution
+            EnemyStats eStats = spawnedEnemy.GetComponent<EnemyStats>();
+            eStats.killRegenMult = 0f;
+            eStats.dropTable = new int[] { -1 };
+            eStats.dropOdds = new float[] { 1f };
         }
     }
 }
