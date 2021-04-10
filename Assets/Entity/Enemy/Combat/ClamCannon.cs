@@ -48,7 +48,7 @@ public class ClamCannon : StateCombat
         {
             anim.SetInteger("State", 1);
             sprite.flipX = isPlayerLeft();
-            Projectile p = Shoot(pearlShot, transform.position, transform.position + playerAngle);
+            Projectile p = Shoot(pearlShot, transform.position, transform.position + playerAngle, true);
             shootTarget = SetTarget(shootCooldown);
         }
 
