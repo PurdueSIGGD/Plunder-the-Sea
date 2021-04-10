@@ -197,12 +197,12 @@ MonoBehaviour:
   attrHit:
     name: Mighty Ink
     type: 3
-    value: -2
+    value: -3
     duration: 5
     stackable: 0
     isAdditive: 1
   attrChance: 1
-  speed: 5
+  speed: 3.5
   sourceTag: 
   parent: {fileID: 0}
 --- !u!212 &8834291485653062408

@@ -283,6 +283,6 @@ MonoBehaviour:
     stackable: 0
     isAdditive: 0
   attrChance: 0
-  speed: 8
+  speed: 6
   sourceTag: 
   parent: {fileID: 0}

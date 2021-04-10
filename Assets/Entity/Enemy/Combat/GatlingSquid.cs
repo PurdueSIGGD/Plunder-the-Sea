@@ -19,7 +19,7 @@ public class GatlingSquid : StateCombat
     // How many shots the gatling squid can fire before reloading, and how long it takes to reload
     public float clipSize = 20f;
     public float reloadTime = 1.5f;
-    private float reloadTracker = 0;
+    private float reloadTracker = 99;   // Reload at start as to not immediately target player
     private float clipCounter = 0f;
     private bool reloading = false;
 

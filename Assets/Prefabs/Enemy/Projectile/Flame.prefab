@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39bddd6b1e172649bd99304f1d55a58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 1.25
+  lifeTime: 3.5
   currentLifeTime: 0
   damage: 0
   ammoRefill: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSize: 1
   endSize: 0.1
-  timeToMax: 2
+  timeToMax: 4
 --- !u!1 &5659809193418146442
 GameObject:
   m_ObjectHideFlags: 0

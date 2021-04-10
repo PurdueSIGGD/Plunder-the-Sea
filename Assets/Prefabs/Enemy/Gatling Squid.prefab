@@ -260,7 +260,8 @@ MonoBehaviour:
   sprite: {fileID: 2072593970970632041}
   anim: {fileID: 7164970246706375020}
   firingCooldown: 0.1
-  clipSize: 40
+  maxRange: 6
+  clipSize: 20
   reloadTime: 1.5
   shotSpread: 3
   searchCooldown: 0.25

@@ -370,7 +370,7 @@ MonoBehaviour:
   anim: {fileID: 784422238704982525}
   fireProjectile: {fileID: 440332554722693003, guid: f7fa7628e965c584c8b722e6e0b40d5d, type: 3}
   fireCooldown: 0.05
-  fireDistance: 1
+  fireDistance: 4
   fireSpread: 0.2
   deathSpread: 0.4
   deathCount: 5
