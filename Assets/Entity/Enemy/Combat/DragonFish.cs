@@ -92,4 +92,10 @@ public class DragonFish : StateCombat
         }
         myBase.myMovement.moving = true;
     }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        GetComponentInChildren<SpriteRenderer>().color = sprite.color;
+    }
 }

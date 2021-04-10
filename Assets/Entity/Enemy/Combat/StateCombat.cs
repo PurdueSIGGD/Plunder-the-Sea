@@ -177,6 +177,9 @@ public class StateCombat : EnemyCombat
                 break;
         }
         // Tints the sprite a color based on the effects they have
-        sprite.color = tint;
+        if (sprite)
+        {
+            sprite.color = tint;
+        }
     }
 }

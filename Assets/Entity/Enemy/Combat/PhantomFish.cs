@@ -90,7 +90,13 @@ public class PhantomFish : StateCombat
         Projectile fake = Shoot(fakePhantom, transform.position, destVector);
         fake.speed = vel.magnitude;
         fake.transform.rotation = Quaternion.identity;
-        fake.GetComponentInChildren<SpriteRenderer>().flipX = sprite.flipX;
+        fake.transform.localScale = transform.localScale;
+        SpriteRenderer fakeSprite = fake.GetComponentInChildren<SpriteRenderer>();
+        if (fakeSprite)
+        {
+            fakeSprite.flipX = sprite.flipX;
+            fakeSprite.color = sprite.color;
+        }
     }
 
     public override void AfterTeleport()
