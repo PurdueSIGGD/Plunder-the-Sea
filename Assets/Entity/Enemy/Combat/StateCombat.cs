@@ -30,6 +30,7 @@ public class StateCombat : EnemyCombat
         myBase = GetComponent<EnemyBase>();
         myStateMovement = GetComponent<StateMovement>();
         prevState = GetState();
+        MakeElite(Random.Range(0, 4));
     }
 
     // Get the current state by calling the state of the movement
@@ -100,7 +101,7 @@ public class StateCombat : EnemyCombat
     }
 
     // Makes the enemy into an elite enemy, a rare and powerful version of an enemy. Usually overridden to add some unique additional effects.
-    public void makeElite(int numEffects)
+    public virtual void MakeElite(int numEffects)
     {
         // Increased health, damage, and kill regen multiplier gain
         myBase.myStats.elite = true;
@@ -123,13 +124,13 @@ public class StateCombat : EnemyCombat
                 switch (rand)
                 {
                     case 0:
-                        tint = new Color(255, 150, 0);  // Armor is orange
+                        tint = new Color(1f, 0.6f, 0);  // Armor is orange
                         break;
                     case 1:
-                        tint = new Color(0, 255, 0);    // Speed is green
+                        tint = new Color(0, 1f, 0);    // Speed is green
                         break;
                     case 2:
-                        tint = new Color(255, 0, 255);  // Regen is magenta
+                        tint = new Color(1f, 0, 1f);  // Regen is magenta
                         break;
                 }
                 break;
@@ -143,13 +144,13 @@ public class StateCombat : EnemyCombat
                 switch (rand)
                 {
                     case 0:
-                        tint = new Color(0, 255, 255);  // Speed/Regen is cyan
+                        tint = new Color(0, 1f, 1f);  // Speed/Regen is cyan
                         break;
                     case 1:
-                        tint = new Color(255, 0, 0);    // Armor/Regen is red
+                        tint = new Color(1f, 0, 0);    // Armor/Regen is red
                         break;
                     case 2:
-                        tint = new Color(255, 255, 0);  // Armor/Speed is yellow
+                        tint = new Color(1f, 1f, 0);  // Armor/Speed is yellow
                         break;
                 }
                 break;
@@ -159,13 +160,13 @@ public class StateCombat : EnemyCombat
                 {
                     myBase.myStats.AddAttribute(attr, myBase.myStats);
                 }
-                tint = new Color(50, 50, 50);  // All three is dark gray
+                tint = new Color(0.2f, 0.2f, 0.2f);  // All three is dark gray
                 break;
             default:
+                tint = new Color(1f, 1f, 1f);
                 break;
         }
         // Tints the sprite a color based on the effects they have
         sprite.color = tint;
-
     }
 }
