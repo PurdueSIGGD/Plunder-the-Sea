@@ -4,13 +4,14 @@ using UnityEngine;
 
 public enum ENT_ATTR
 {
-    MOVESPEED,
-    MAX_HP,
-    MAX_STAMINA,
-    ARMOR_STATIC,
-    ARMOR_MULT,
-    POISON,
-    TOTAL_STATS
+    MOVESPEED,      // Changes movespeed by a static amount or multiplier.
+    MAX_HP,         // Changes max HP by a static amount or multiplier.
+    MAX_STAMINA,    // Changes stamina by a static amount or multiplier.
+    ARMOR_STATIC,   // Reduces non-tick damage taken by a static amount, or multiplies an existing value.
+    ARMOR_MULT,     // Reduces non-tick damage taken by a multiplier, or multiplies an existing value.
+    POISON,         // Deals "value" damage per second to the enemy, ignoring armor.
+    TOTAL_STATS,    
+    REGEN           // Heals "value" amount of the target's max health per second.
 };
 [System.Serializable]
 public class EntityAttribute
@@ -113,6 +114,9 @@ public class EntityAttribute
         {
             case ENT_ATTR.POISON:
                 owner.TakeDamage(value * Time.deltaTime, source, true, name);
+                return;
+            case ENT_ATTR.REGEN:
+                owner.ReplenishHealth(value * Time.deltaTime * owner.maxHP);
                 return;
         }
     }
