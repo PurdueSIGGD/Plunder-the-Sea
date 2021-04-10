@@ -38,14 +38,26 @@ public class PlayerFishing : MonoBehaviour
         if (Input.GetButtonDown("Toggle Bait") && !bobberIsCast)//B key
         {
             selectedBait = (selectedBait + 1) % amountOfBaitTypes;
-            Debug.Log("Bait " + (selectedBait + 1) + " selected");
+            Debug.Log("Bait " + (selectedBait) + " selected");
+            player.stats.baitInventory.changeRedText(selectedBait);
+        } else if (Input.GetAxis("Mouse ScrollWheel") != 0.0f)
+        {
+            selectedBait = ((selectedBait - (int)(10*Input.GetAxis("Mouse ScrollWheel"))) % amountOfBaitTypes);
+            if (selectedBait < 0) selectedBait += amountOfBaitTypes;
+            Debug.Log("Bait " + (selectedBait) + " selected");
             player.stats.baitInventory.changeRedText(selectedBait);
         }
+
+        
         
         // NEED TO REMOVE THIS AT SOME POINT!!!
         if (Input.GetKeyDown(KeyCode.Alpha1))//1 button
         {
-            player.stats.baitInventory.addBait(selectedBait); //just for testing bait
+            //player.stats.baitInventory.addBait(selectedBait); //just for testing bait
+            player.stats.baitInventory.addBait(0);
+            player.stats.baitInventory.addBait(1);
+            player.stats.baitInventory.addBait(2);
+            player.stats.baitInventory.addBait(3);
         }
 
         if (Input.GetButtonDown("Cast Fishing Pole"))//F key
