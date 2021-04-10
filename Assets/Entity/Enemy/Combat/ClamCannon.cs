@@ -18,15 +18,13 @@ public class ClamCannon : StateCombat
     // Pearl Shot projectile
     public GameObject pearlShot;
 
-    void Start()
+    public override void CombatStart()
     {
-        myBase = GetComponent<EnemyBase>();
-        myStateMovement = GetComponent<StateMovement>();
+        base.CombatStart();
         if (searchCooldown <= 0f)
         {
             searchCooldown = myStateMovement.pathingRefresh;
         }
-        prevState = GetState();
         mask = LayerMask.GetMask("Wall");
     }
 

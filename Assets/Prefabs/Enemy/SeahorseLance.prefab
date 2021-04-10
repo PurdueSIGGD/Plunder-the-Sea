@@ -45,8 +45,8 @@ GameObject:
   - component: {fileID: 7115942040169888260}
   - component: {fileID: 2718303086744147814}
   - component: {fileID: 818726099733396474}
-  - component: {fileID: 4553874436539418821}
   - component: {fileID: 1760924043896257557}
+  - component: {fileID: 5551326952268812665}
   m_Layer: 0
   m_Name: SeahorseLance
   m_TagString: Enemy
@@ -174,20 +174,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
---- !u!114 &4553874436539418821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1760924043896257558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6578e6fdbf2cd344083f8d8387ebfa56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myBase: {fileID: 0}
-  attackRange: 0.5
 --- !u!114 &1760924043896257557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +200,24 @@ MonoBehaviour:
   numberOfEnemiesToSpawn: 3
   maxEnemiesToSpawn: 6
   retreatState: 0
+--- !u!114 &5551326952268812665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760924043896257558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798f226d01f0c4e6484d9d395690a3d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myBase: {fileID: 0}
+  attackRange: 0.5
+  prevState: 0
+  myStateMovement: {fileID: 0}
+  sprite: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!1 &2751035179650061797
 GameObject:
   m_ObjectHideFlags: 0

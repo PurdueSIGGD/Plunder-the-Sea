@@ -36,11 +36,9 @@ public class GatlingSquid : StateCombat
     // Layer mask for scanning wall
     private static LayerMask mask;
 
-    private void Start()
+    public override void CombatStart()
     {
-        myBase = GetComponent<EnemyBase>();
-        myStateMovement = GetComponent<StateMovement>();
-        prevState = GetState();
+        base.CombatStart();
         mask = LayerMask.GetMask("Wall");
     }
 

@@ -22,6 +22,13 @@ public class StateCombat : EnemyCombat
         myBase = GetComponent<EnemyBase>();
         myStateMovement = GetComponent<StateMovement>();
         prevState = GetState();
+        CombatStart();
+    }
+
+    // Called by Start() to allow enemies to perform their own actions
+    public virtual void CombatStart()
+    {
+        // Do nothing by default
     }
 
     // Get the current state by calling the state of the movement

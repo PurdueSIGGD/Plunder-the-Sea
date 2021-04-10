@@ -20,13 +20,6 @@ public class BarrelSquid : StateCombat
     // Ink Shot projectile
     public GameObject inkShot;
 
-    private void Start()
-    {
-        myBase = GetComponent<EnemyBase>();
-        myStateMovement = GetComponent<StateMovement>();
-        prevState = GetState();
-    }
-
     // Update is called once per frame
     void Update()
     {
