@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 spawnNum = 0;
             }
-            Instantiate(enemiesToSpawn[i], spawnPoints[spawnNum].transform.position, Quaternion.identity);
+            GameObject enemy = Instantiate(enemiesToSpawn[i], spawnPoints[spawnNum].transform.position, Quaternion.identity);
             spawnNum++;
         }
     }

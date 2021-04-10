@@ -13,7 +13,8 @@ public class EnemyStats : EntityStats
     public float[] dropOdds = { 1, 1, 1, 1, 1 };
     public float dropRange;
     private bool dead = false;
-    public bool elite = false;
+    public bool elite = false; // Determines if this enemy is an elite enemy.
+    public int eliteRank = 0; // Determines how many additional effects this enemy gets when elite.
 
     private void Start()
     {

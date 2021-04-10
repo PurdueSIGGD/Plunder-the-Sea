@@ -30,7 +30,10 @@ public class StateCombat : EnemyCombat
         myBase = GetComponent<EnemyBase>();
         myStateMovement = GetComponent<StateMovement>();
         prevState = GetState();
-        MakeElite(Random.Range(0, 4));
+        if (myBase.myStats.elite)
+        {
+            MakeElite(Random.Range(1, 4));
+        }
     }
 
     // Get the current state by calling the state of the movement
