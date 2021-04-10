@@ -20,10 +20,10 @@ public class DDR : MonoBehaviour
     private int currentScore = 0;
     private float targetFrequencyStep = 0.25f; // # of second per beat
     private int targetFrequencyMax = 3; // Max # of beats for target frequency
-    private int targetFrequencyMin = 2; // Min # of beats for target frequency
+    private int targetFrequencyMin = 1; // Min # of beats for target frequency
     private float nextTargetTime = 0.0f;//Time when to spawn new target
 
-    private int catchScore = 400; //score needed to "catch" the fish
+    private int catchScore = 300; //score needed to "catch" the fish
     private int releaseScore = -100; //score needed to "release" the fish
 
     public Fish fishBeingCaught;
@@ -66,6 +66,11 @@ public class DDR : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetButtonDown("Cast Fishing Pole")) // F Key
+        {
+            ResetMinigame();
+        }
+
 
         bool[] input = { Input.GetKeyDown(KeyCode.LeftArrow), Input.GetKeyDown(KeyCode.UpArrow), Input.GetKeyDown(KeyCode.DownArrow), Input.GetKeyDown(KeyCode.RightArrow),
                             Input.GetKeyDown(KeyCode.A), Input.GetKeyDown(KeyCode.W), Input.GetKeyDown(KeyCode.S), Input.GetKeyDown(KeyCode.D)};
@@ -155,6 +160,7 @@ public class DDR : MonoBehaviour
         currentScore = 0;
         FishingMinigame.SetActive(false);
         targetPlayer.movement.enabled = true;
+        targetPlayer.fishing.gameActive = false;
         nextTargetTime = Time.time + targetFrequencyStep*targetFrequencyMax;
         for (int i = 0; i < arrowTargets.Length; i++) {
             foreach (GameObject arrow in arrowTargets[i])

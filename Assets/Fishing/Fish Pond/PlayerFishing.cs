@@ -20,6 +20,8 @@ public class PlayerFishing : MonoBehaviour
     private AudioSource audioSrc;
     private bool bobberIsCast = false;
 
+    public bool gameActive = false;
+
     private int selectedBait = 0;
     private const int amountOfBaitTypes = 4;
 
@@ -62,27 +64,30 @@ public class PlayerFishing : MonoBehaviour
 
         if (Input.GetButtonDown("Cast Fishing Pole"))//F key
         {
-            if (bobber)
+            if (!gameActive)
             {
-                audioSrc.clip = reelSound;
-                audioSrc.loop = true;
-                audioSrc.Play();
-                bobber.Reel();
-            }
-            else
-            {
-                if (player.stats.baitInventory.getBaitArray()[selectedBait] > 0)
+                if (bobber)
                 {
-                    audioSrc.clip = castSound;
+                    audioSrc.clip = reelSound;
+                    audioSrc.loop = true;
                     audioSrc.Play();
-                    bobber = Bobber.Create(bobberPrefab, this, cam.GetMousePosition(), selectedBait);
-                    bobberIsCast = true;
-                    player.stats.baitInventory.removeBait(selectedBait);
-                    PlayerPrefs.SetInt("FishingBait", PlayerPrefs.GetInt("FishingBait") + 1);
+                    bobber.Reel();
                 }
                 else
                 {
-                    Debug.Log("None of selected bait "+(selectedBait+1).ToString()+" left");
+                    if (player.stats.baitInventory.getBaitArray()[selectedBait] > 0)
+                    {
+                        audioSrc.clip = castSound;
+                        audioSrc.Play();
+                        bobber = Bobber.Create(bobberPrefab, this, cam.GetMousePosition(), selectedBait);
+                        bobberIsCast = true;
+                        player.stats.baitInventory.removeBait(selectedBait);
+                        PlayerPrefs.SetInt("FishingBait", PlayerPrefs.GetInt("FishingBait") + 1);
+                    }
+                    else
+                    {
+                        Debug.Log("None of selected bait " + (selectedBait + 1).ToString() + " left");
+                    }
                 }
             }
         }
@@ -97,6 +102,8 @@ public class PlayerFishing : MonoBehaviour
         {
             //Debug.Log("Fish caught");
             fish.FishingMinigame.SetActive(true);
+            player.playerInventory.gameObject.SetActive(false);
+            gameActive = true;
         }
         else
         {
