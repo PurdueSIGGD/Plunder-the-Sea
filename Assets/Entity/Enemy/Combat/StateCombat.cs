@@ -14,6 +14,14 @@ public class StateCombat : EnemyCombat
     public SpriteRenderer sprite;
     public Animator anim;
 
+    // Elite status effects
+    [HideInInspector]
+    private static EntityAttribute[] eliteAttributes = {
+        new EntityAttribute(ENT_ATTR.ARMOR_STATIC,5f),
+        new EntityAttribute(ENT_ATTR.MOVESPEED,2f,float.PositiveInfinity,false,false),
+        new EntityAttribute(ENT_ATTR.REGEN,0.1f)
+    };
+
     // The distance used by isPlayerUp to determine if an enemy is truly "below" the player, used to make animations bias towards front-facing ones.
     public static float belowThreshold = 0.75f;
 
@@ -91,13 +99,73 @@ public class StateCombat : EnemyCombat
         return false;
     }
 
-    // Makes the enemy into an elite enemy. Usually overridden to add some unique additional effects.
-    public void makeElite()
+    // Makes the enemy into an elite enemy, a rare and powerful version of an enemy. Usually overridden to add some unique additional effects.
+    public void makeElite(int numEffects)
     {
+        // Increased health, damage, and kill regen multiplier gain
         myBase.myStats.elite = true;
         myBase.myStats.maxHP *= 3;
         myBase.myStats.currentHP *= 3;
+        myBase.myStats.killRegenMult *= 3;
+        myBase.myStats.damage *= 2;
+        
+        // Increased size
         transform.localScale = new Vector3(3.0f, 3.0f, 0);
-        sprite.color = new Color(255f, 0f, 0f);
+
+        // Gets 0-3 random attributes based on numEffects (default is armor, speed, and regen)
+        int rand = Random.Range(0, eliteAttributes.Length);
+        Color tint = new Color();
+        switch (numEffects)
+        {
+            case 1:
+                // Adds 1 random effect
+                myBase.myStats.AddAttribute(eliteAttributes[rand], myBase.myStats);
+                switch (rand)
+                {
+                    case 0:
+                        tint = new Color(255, 150, 0);  // Armor is orange
+                        break;
+                    case 1:
+                        tint = new Color(0, 255, 0);    // Speed is green
+                        break;
+                    case 2:
+                        tint = new Color(255, 0, 255);  // Regen is magenta
+                        break;
+                }
+                break;
+            case 2:
+                // Adds all but 1 random effect
+                for (int i = 0; i < eliteAttributes.Length; i++)
+                {
+                    if (i == rand) continue;
+                    myBase.myStats.AddAttribute(eliteAttributes[i], myBase.myStats);
+                }
+                switch (rand)
+                {
+                    case 0:
+                        tint = new Color(0, 255, 255);  // Speed/Regen is cyan
+                        break;
+                    case 1:
+                        tint = new Color(255, 0, 0);    // Armor/Regen is red
+                        break;
+                    case 2:
+                        tint = new Color(255, 255, 0);  // Armor/Speed is yellow
+                        break;
+                }
+                break;
+            case 3:
+                // Adds all effects
+                foreach (EntityAttribute attr in eliteAttributes)
+                {
+                    myBase.myStats.AddAttribute(attr, myBase.myStats);
+                }
+                tint = new Color(50, 50, 50);  // All three is dark gray
+                break;
+            default:
+                break;
+        }
+        // Tints the sprite a color based on the effects they have
+        sprite.color = tint;
+
     }
 }
