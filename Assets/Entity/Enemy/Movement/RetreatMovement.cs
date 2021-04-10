@@ -121,7 +121,7 @@ public class RetreatMovement : StateMovement
 
             // Manually remove the enemy's drop table chance and kill regen contribution
             EnemyStats eStats = spawnedEnemy.GetComponent<EnemyStats>();
-            eStats.killRegenMult = 0f;
+            eStats.killRegenMult = 0.25f;
             eStats.dropTable = new int[] { -1 };
             eStats.dropOdds = new float[] { 1f };
         }
