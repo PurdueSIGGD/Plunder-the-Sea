@@ -13,6 +13,7 @@ public class EnemyStats : EntityStats
     public float[] dropOdds = { 1, 1, 1, 1, 1 };
     public float dropRange;
     private bool dead = false;
+    public bool elite = false;
 
     private void Start()
     {

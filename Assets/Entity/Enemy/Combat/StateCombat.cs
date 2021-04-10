@@ -90,4 +90,14 @@ public class StateCombat : EnemyCombat
         }
         return false;
     }
+
+    // Makes the enemy into an elite enemy. Usually overridden to add some unique additional effects.
+    public void makeElite()
+    {
+        myBase.myStats.elite = true;
+        myBase.myStats.maxHP *= 3;
+        myBase.myStats.currentHP *= 3;
+        transform.localScale = new Vector3(3.0f, 3.0f, 0);
+        sprite.color = new Color(255f, 0f, 0f);
+    }
 }
