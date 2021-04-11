@@ -12,6 +12,8 @@ public class deathButton : MonoBehaviour
 
     public void loadScene(string sceneName)
     {
+        // Load the scene and reset player stats
+        PlayerClasses.resetDeathStats();
         SceneManager.LoadScene(sceneName);
     }
 }
