@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ClassUltimate : MonoBehaviour
 {
+    public SpriteRenderer aura;
     [SerializeField]
     private GameObject PopupText;
     private PlayerStats pStats;
@@ -33,6 +34,7 @@ public class ClassUltimate : MonoBehaviour
                 gunnerUlt(consumed);
                 break;
             case 3:     //Captain
+                captainUlt();
                 break;
             case 4:     //First Mate
                 break;
@@ -66,6 +68,10 @@ public class ClassUltimate : MonoBehaviour
                 cost = pStats.maxAmmo;
                 break;
             case 3:     //Captain
+                if (pStats.ContainsAttribute("pride"))
+                {
+                    return -1;
+                }
                 cost = 5;
                 break;
             case 4:     //First Mate
@@ -150,6 +156,14 @@ public class ClassUltimate : MonoBehaviour
     {
         pStats.replenishAmmo(amount);
         SpawnPopupText("Sacrificial\nReload");
+    }
+
+    public void captainUlt()
+    {
+        EntityAttribute capPride = new EntityAttribute(ENT_ATTR.ARMOR_MULT, 1, 5,false, true, "pride");
+        pStats.AddAttribute(capPride, pStats);
+        aura.gameObject.SetActive(true);
+        SpawnPopupText("Captain's\nPride");
     }
 
 

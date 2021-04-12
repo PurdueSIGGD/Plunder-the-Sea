@@ -204,6 +204,18 @@ public class EntityStats : MonoBehaviour
         }
         attribList.Clear();
     }
+
+    public virtual bool ContainsAttribute(string name)
+    {
+        for (int i = 0; i < attribList.Count; i++)
+        {
+            if (attribList[i].attr.name.Equals(name))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     
     public virtual void Die()
     {
