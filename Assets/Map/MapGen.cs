@@ -387,6 +387,11 @@ public class MapGen : MonoBehaviour
                         if (SR.name.Contains("Wall"))
                         {
                             SR.sprite = getWall();
+                            cornerWallFix CWF;
+                            if (CWF = SR.GetComponent<cornerWallFix>())
+                            {
+                                CWF.fixCorner();
+                            }
                         }
                         if (SR.name.Contains("Floor"))
                         {
@@ -432,6 +437,11 @@ public class MapGen : MonoBehaviour
             if (SR.name.Contains("Wall"))
             {
                 SR.sprite = getWall();
+                cornerWallFix CWF;
+                if (CWF = SR.GetComponent<cornerWallFix>())
+                {
+                    CWF.fixCorner();
+                }
             }
             if (SR.name.Contains("Floor"))
             {
