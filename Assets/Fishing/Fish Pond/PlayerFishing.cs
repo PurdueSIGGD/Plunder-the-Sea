@@ -76,6 +76,11 @@ public class PlayerFishing : MonoBehaviour
         }
     }
 
+    public int getSelectedBait()
+    {
+        return selectedBait;
+    }
+
     //Called when bobber returns or catches fish
     public void OnReelFinish(Fish fish)
     {

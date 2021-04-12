@@ -17,6 +17,8 @@ public class PlayerBase : MonoBehaviour
     public PlayerStats stats;
     [HideInInspector]
     public PlayerFishing fishing;
+    [HideInInspector]
+    public ClassUltimate classUlt;
     public Canvas playerInventory;
     [SerializeField]
     private bool keep = true;
@@ -51,6 +53,7 @@ public class PlayerBase : MonoBehaviour
         stats = GetComponent<PlayerStats>();
         rigidBody = GetComponent<Rigidbody2D>();
         fishing = GetComponent<PlayerFishing>();
+        classUlt = GetComponent<ClassUltimate>();
 
         /* Assume one camera exists */
         cam = GameObject.FindObjectOfType<UI_Camera>();
@@ -81,6 +84,11 @@ public class PlayerBase : MonoBehaviour
             {
                 playerInventory.gameObject.SetActive(true);
             }
+        }
+
+        if (Input.GetKeyDown("q"))
+        {
+            classUlt.callUlt(GetComponent<PlayerClasses>().classNumber);
         }
     }
 
