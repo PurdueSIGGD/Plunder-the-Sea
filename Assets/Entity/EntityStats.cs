@@ -194,8 +194,6 @@ public class EntityStats : MonoBehaviour
             }
         }
 
-        
-
         attribList.Add(app);
         attr.OnAdd(this);
     }
@@ -208,6 +206,7 @@ public class EntityStats : MonoBehaviour
             {
                 attribList.RemoveAt(i);
                 attr.OnRemove(this);
+                i--;
             }
         }
     }
@@ -219,6 +218,20 @@ public class EntityStats : MonoBehaviour
             attribList[i].attr.OnRemove(this);
         }
         attribList.Clear();
+    }
+
+    public virtual void RemoveAttributesByType(ENT_ATTR type)
+    {
+        for (int i = 0; i < attribList.Count; i++)
+        {
+            if (attribList[i].attr.type == type)
+            {
+                Debug.Log("Removed " + attribList[i].attr.name);
+                attribList.RemoveAt(i);
+                attribList[i].attr.OnRemove(this);
+                i--;
+            }
+        }
     }
     
     public virtual void Die()
