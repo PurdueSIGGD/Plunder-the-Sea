@@ -20,13 +20,6 @@ public class BarrelSquid : StateCombat
     // Ink Shot projectile
     public GameObject inkShot;
 
-    private void Start()
-    {
-        myBase = GetComponent<EnemyBase>();
-        myStateMovement = GetComponent<StateMovement>();
-        prevState = GetState();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -86,7 +79,7 @@ public class BarrelSquid : StateCombat
                 // Try to shoot if possible and the cooldown allows
                 if (OnTarget(firingTracker))
                 {
-                    Shoot(inkShot);
+                    Shoot(inkShot, true);
                     firingTracker = SetTarget(firingCooldown);
                 } 
                 break;
