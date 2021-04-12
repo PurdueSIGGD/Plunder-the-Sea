@@ -11,7 +11,8 @@ public enum ENT_ATTR
     ARMOR_MULT,     // Reduces non-tick damage taken by a multiplier, or multiplies an existing value.
     POISON,         // Deals "value" damage per second to the enemy, ignoring armor.
     TOTAL_STATS,    
-    REGEN           // Heals "value" amount of the target's max health per second.
+    REGEN,          // Heals "value" amount (ratio) of the target's max health per second.
+    INVULNERABLE    // The target is immune to damage while this effect is active. When it completes, it removes damage over time debuffs.
 };
 [System.Serializable]
 public class EntityAttribute
@@ -86,6 +87,9 @@ public class EntityAttribute
                 {
                     owner.armorMult *= value;
                 }
+                return;
+            case ENT_ATTR.INVULNERABLE:
+                owner.invulnerable = true;
                 return;
         }
 
@@ -168,6 +172,13 @@ public class EntityAttribute
                 {
                     owner.armorMult /= value;
                 }
+                return;
+            case ENT_ATTR.INVULNERABLE:
+                if (isAdditive)
+                {
+                    owner.RemoveAttributesByType(ENT_ATTR.POISON);
+                }
+                owner.invulnerable = false;
                 return;
         }
 
