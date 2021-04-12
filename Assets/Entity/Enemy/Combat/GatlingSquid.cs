@@ -13,10 +13,13 @@ public class GatlingSquid : StateCombat
     public float firingCooldown = 0.1f;
     private float firingTracker = 0;
 
+    // Max range that the Gatling Squid can fire from
+    public float maxRange = 8f;
+
     // How many shots the gatling squid can fire before reloading, and how long it takes to reload
-    public float clipSize = 40f;
+    public float clipSize = 20f;
     public float reloadTime = 1.5f;
-    private float reloadTracker = 0;
+    private float reloadTracker = 99;   // Reload at start as to not immediately target player
     private float clipCounter = 0f;
     private bool reloading = false;
 
@@ -33,11 +36,9 @@ public class GatlingSquid : StateCombat
     // Layer mask for scanning wall
     private static LayerMask mask;
 
-    private void Start()
+    public override void CombatStart()
     {
-        myBase = GetComponent<EnemyBase>();
-        myStateMovement = GetComponent<StateMovement>();
-        prevState = GetState();
+        base.CombatStart();
         mask = LayerMask.GetMask("Wall");
     }
 
@@ -71,7 +72,7 @@ public class GatlingSquid : StateCombat
                 if (OnTarget(searchTarget))
                 {
                    // Get closer to the enemy if they're hiding behind a wall
-                   if (myBase.player == null || Physics2D.Linecast(transform.position, myBase.player.transform.position, mask))
+                   if (myBase.player == null || myStateMovement.PlayerDistance() > maxRange || Physics2D.Linecast(transform.position, myBase.player.transform.position, mask))
                     {
                         SetState(approaching);
                         searchTarget = SetTarget(searchCooldown);
@@ -115,7 +116,16 @@ public class GatlingSquid : StateCombat
                 // Try to shoot if possible and the cooldown allows
                 if (OnTarget(firingTracker) && clipCounter < clipSize)
                 {
-                    Projectile bullet = Shoot(squidBullet);
+                    Projectile bullet;
+                    if (myBase.player)
+                    {
+                        Vector3 shootVector = Vector3.ClampMagnitude(myBase.player.transform.position - transform.position, 0.35f);
+                        bullet = Shoot(squidBullet, transform.position+shootVector, myBase.player.transform.position, true);
+                    } else
+                    {
+                        bullet = Shoot(squidBullet, true);
+                    }
+                    
                     Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                     rb.velocity = Quaternion.AngleAxis(Random.Range(-shotSpread,shotSpread), Vector3.forward) * rb.velocity;
                     clipCounter++;
@@ -130,8 +140,8 @@ public class GatlingSquid : StateCombat
             case approaching:
                 if (OnTarget(searchTarget))
                 {
-                    // Activate if the enemy isn't behind a wall
-                    if (myBase.player != null && !Physics2D.Linecast(transform.position, myBase.player.transform.position, mask))
+                    // Activate if the enemy isn't behind a wall and within range
+                    if (myBase.player != null && myStateMovement.PlayerDistance() <= maxRange && !Physics2D.Linecast(transform.position, myBase.player.transform.position, mask))
                     {
                         SetState(activating);
                         searchTarget = SetTarget(searchCooldown);
