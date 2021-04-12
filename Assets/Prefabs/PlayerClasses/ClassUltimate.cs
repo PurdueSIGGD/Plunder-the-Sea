@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ClassUltimate : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject PopupText;
     private PlayerStats pStats;
     private PlayerBase pBase;
     // Start is called before the first frame update
@@ -56,6 +58,10 @@ public class ClassUltimate : MonoBehaviour
                 cost = 999;
                 break;
             case 2:     //Gunner
+                if (pStats.ammo >= pStats.maxAmmo)
+                {
+                    return -1;
+                }
                 partial = true;
                 cost = pStats.maxAmmo;
                 break;
@@ -132,8 +138,19 @@ public class ClassUltimate : MonoBehaviour
         return consumed;
     }
 
+    public void SpawnPopupText(string text)
+    {
+        GameObject textObject = Instantiate(PopupText, transform.position, Quaternion.identity);
+        textObject.transform.position = new Vector3(textObject.transform.position.x, textObject.transform.position.y + 2f, -2);
+        TextMesh textMesh = textObject.GetComponent<TextMesh>();
+        textMesh.text = text;
+    }
+
     public void gunnerUlt(int amount)
     {
         pStats.replenishAmmo(amount);
+        SpawnPopupText("Sacrificial\nReload");
     }
+
+
 }
