@@ -32,7 +32,7 @@ public class StateCombat : EnemyCombat
         prevState = GetState();
         if (myBase && myBase.myStats && myBase.myStats.elite)
         {
-            MakeElite(Random.Range(1, 4));
+            MakeElite(myBase.myStats.eliteRank);
         }
         CombatStart();
     }

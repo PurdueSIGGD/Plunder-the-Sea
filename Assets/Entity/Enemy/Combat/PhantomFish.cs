@@ -56,6 +56,10 @@ public class PhantomFish : StateCombat
             fireTarget = SetTarget(fireCooldown);
             Projectile fire = Shoot(fireProjectile);
             //fire.damage = 2 * myBase.myStats.damage;
+            if (myBase.myStats.elite)
+            {
+                fire.collideWithWall = false;
+            }
         }
     }
 
@@ -103,5 +107,11 @@ public class PhantomFish : StateCombat
     {
         anim.SetInteger("State", 3);
         fadeTarget = SetTarget(fadeCooldown);
+    }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        fireCooldown *= 0.5f;
     }
 }

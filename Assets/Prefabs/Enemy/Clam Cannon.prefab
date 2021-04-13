@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1556805819
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d3e0df12dace0a94e80c1379c95a4e74, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -313,6 +313,7 @@ MonoBehaviour:
   armorMult: 0.5
   armorStatic: 0
   killRegenMult: 1.5
+  invulnerable: 0
   healthbar: {fileID: 5832764184097074823}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -327,6 +328,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
 --- !u!58 &9044130717736729009
 CircleCollider2D:
   m_ObjectHideFlags: 0
