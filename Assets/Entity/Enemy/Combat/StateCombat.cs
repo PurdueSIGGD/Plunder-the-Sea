@@ -30,7 +30,7 @@ public class StateCombat : EnemyCombat
         myBase = GetComponent<EnemyBase>();
         myStateMovement = GetComponent<StateMovement>();
         prevState = GetState();
-        if (myBase.myStats.elite)
+        if (myBase && myBase.myStats && myBase.myStats.elite)
         {
             MakeElite(Random.Range(1, 4));
         }
@@ -181,5 +181,7 @@ public class StateCombat : EnemyCombat
         {
             sprite.color = tint;
         }
+
+        myBase.myStats.displayName = "Elite " + myBase.myStats.displayName;
     }
 }
