@@ -63,7 +63,7 @@ public class PlayerStats : EntityStats
         this.killRegen = 0f;
 
         var pickupObj = Instantiate(healthPickupGameObj);
-        pickupObj.GetComponent<HealthPickup>().health = this.maxHP * 0.2f;
+        pickupObj.GetComponent<HealthPickup>().health = this.maxHP * 0.25f;
 
         pickupObj.transform.position = transform.position;
     }
@@ -74,6 +74,13 @@ public class PlayerStats : EntityStats
         pbase = GetComponent<PlayerBase>();
         weaponInv = GetComponent<WeaponInventory>();
         baitInventory = GetComponentInChildren(typeof(PlayerInventory), true) as PlayerInventory;
+        if (SceneManager.GetActiveScene().name == "Tutorial")
+        {
+            baitInventory.addBait(0, 256);
+            baitInventory.addBait(1, 256);
+            baitInventory.addBait(2, 256);
+            baitInventory.addBait(3, 256);
+        }
         appliedStats = null;
     }
 
@@ -110,8 +117,7 @@ public class PlayerStats : EntityStats
         PlayerPrefs.SetInt("BaitGot", baitInventory.baitsGot);
         PlayerPrefs.SetInt("Weapons", weaponInv.wepsGot);
 
-        int[] baits = baitInventory.baitTypes;
-        PlayerPrefs.SetInt("BaitLeft", baits[0] + baits[1] + baits[2] + baits[3]);
+        PlayerPrefs.SetInt("BaitLeft", baitInventory.getBaitTotal());
 
         //The other playerpref values are set elsewere realtime
     }
@@ -127,8 +133,8 @@ public class PlayerStats : EntityStats
         }
         PlayerClasses pClass = GetComponent<PlayerClasses>();
         pClass.initialize();
-        baitInventory.flushBait();
         setDeathStats();
+        baitInventory.flushBait();
         pbase.rigidBody.velocity = Vector2.zero;
         killRegen = 0;
         dungeonLevel = 0;
@@ -144,7 +150,7 @@ public class PlayerStats : EntityStats
             weaponInv?.OnKill(victim);
             pbase.OnKill(victim);
         }
-        increaseKillRegen(0.6f * victim.killRegenMult);
+        increaseKillRegen(0.1f * victim.killRegenMult);
     }
 
 }

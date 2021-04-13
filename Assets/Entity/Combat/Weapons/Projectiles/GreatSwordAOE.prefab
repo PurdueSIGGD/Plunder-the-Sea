@@ -154,6 +154,7 @@ MonoBehaviour:
   attrChance: 0
   speed: 0
   sourceTag: 
+  parent: {fileID: 0}
 --- !u!61 &2719860953006305366
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -167,7 +168,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1708675, y: 0.0029989928}
+  m_Offset: {x: 0.2934721, y: 0.0054274052}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -178,5 +179,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.35211164, y: 0.09323937}
+  m_Size: {x: 0.99548256, y: 0.16609341}
   m_EdgeRadius: 0

@@ -69,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1556805819
+  m_SortingLayer: -1
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 3b2e54da5bf45494fa4a69fa81c3a791, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -171,8 +171,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1556805819
+  m_SortingLayer: -1
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: eaee58fdbb2e3c74bb115edc66276f26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -319,7 +319,7 @@ MonoBehaviour:
   currentHP: 40
   armorMult: 0.5
   armorStatic: 5
-  killRegenMult: 1
+  killRegenMult: 2
   healthbar: {fileID: 1744128257473083715}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -370,7 +370,7 @@ MonoBehaviour:
   anim: {fileID: 784422238704982525}
   fireProjectile: {fileID: 440332554722693003, guid: f7fa7628e965c584c8b722e6e0b40d5d, type: 3}
   fireCooldown: 0.05
-  fireDistance: 1
+  fireDistance: 4
   fireSpread: 0.2
   deathSpread: 0.4
   deathCount: 5
@@ -521,7 +521,7 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.15
+  m_Distance: 0.3
   m_MaxDistanceOnly: 1
 --- !u!114 &5384352038267196695
 MonoBehaviour:
@@ -626,8 +626,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1556805819
+  m_SortingLayer: -1
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 7045331530ad5034196cca479841a2c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -784,7 +784,7 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.14999998
+  m_Distance: 0.29999995
   m_MaxDistanceOnly: 1
 --- !u!114 &2164769460551925693
 MonoBehaviour:
@@ -944,7 +944,7 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.15000004
+  m_Distance: 0.30000007
   m_MaxDistanceOnly: 1
 --- !u!114 &8975432209788838443
 MonoBehaviour:
@@ -1029,8 +1029,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1556805819
+  m_SortingLayer: -1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b65d6694369e80b42b68f52d820c0669, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1131,8 +1131,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1556805819
+  m_SortingLayer: -1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 949f8dc63b21e6a449c11afae84451a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1289,7 +1289,7 @@ DistanceJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 1
-  m_Distance: 0.15
+  m_Distance: 0.3
   m_MaxDistanceOnly: 1
 --- !u!114 &5327873543528425362
 MonoBehaviour:

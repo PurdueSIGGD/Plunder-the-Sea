@@ -31,6 +31,11 @@ public class debugging : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+        //quits the game
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         //goes to the menu
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -41,7 +46,9 @@ public class debugging : MonoBehaviour
         //teleports to next dungeon level
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            stats.dungeonLevel += 1;
+            stats.resetAmmo(stats.maxAmmo);
+            stats.stamina = stats.staminaMax;
+            stats.dungeonLevel++;
             SceneManager.LoadScene("Combat");
         }
         //teleports to previous dungeon level
@@ -49,7 +56,10 @@ public class debugging : MonoBehaviour
         {
             if (stats.dungeonLevel > 0)
             {
-                stats.dungeonLevel -= 1;
+                stats.dungeonLevel += 1;
+                stats.resetAmmo(stats.maxAmmo);
+                stats.stamina = stats.staminaMax;
+                stats.dungeonLevel--;
             }
             SceneManager.LoadScene("Combat");
         }

@@ -4,13 +4,15 @@ using UnityEngine;
 
 public enum ENT_ATTR
 {
-    MOVESPEED,
-    MAX_HP,
-    MAX_STAMINA,
-    ARMOR_STATIC,
-    ARMOR_MULT,
-    POISON,
-    TOTAL_STATS
+    MOVESPEED,      // Changes movespeed by a static amount or multiplier.
+    MAX_HP,         // Changes max HP by a static amount or multiplier.
+    MAX_STAMINA,    // Changes stamina by a static amount or multiplier.
+    ARMOR_STATIC,   // Reduces non-tick damage taken by a static amount, or multiplies an existing value.
+    ARMOR_MULT,     // Reduces non-tick damage taken by a multiplier, or multiplies an existing value.
+    POISON,         // Deals "value" damage per second to the enemy, ignoring armor.
+    TOTAL_STATS,    
+    REGEN,          // Heals "value" amount (ratio) of the target's max health per second.
+    INVULNERABLE    // The target is immune to damage while this effect is active. When it completes, it removes damage over time debuffs.
 };
 [System.Serializable]
 public class EntityAttribute
@@ -18,7 +20,7 @@ public class EntityAttribute
     public string name;     // Name, used for determining if effects stack (i.e an effect can only stack with a equally-named effect). Leave blank if it isn't relevant (a name of "" won't affect stackability)
     public ENT_ATTR type;   // The type of attribute
     public float value;     // The value of the attribute. What it does depends on the attribute type.
-    public float duration;  // The duration of the attibute, in seconds.
+    public float duration;  // The duration of the attibute, in seconds. Zero or less results in infinite.
     public bool stackable;  // Whether the attribute can stack with itself.
     public bool isAdditive; // true: The attribute is additive. false: the attribute is multiplicative. (this is only relevant for modifiers affecting numerical stats, and not for something like poison)
 
@@ -27,7 +29,14 @@ public class EntityAttribute
         this.name = name;
         this.type = type;
         this.value = value;
-        this.duration = duration;
+        if (duration > 0f)
+        {
+            this.duration = duration;
+        } else
+        {
+            this.duration = float.PositiveInfinity;
+        }
+        
         this.stackable = stackable;
         this.isAdditive = isAdditive;
     }
@@ -79,6 +88,9 @@ public class EntityAttribute
                     owner.armorMult *= value;
                 }
                 return;
+            case ENT_ATTR.INVULNERABLE:
+                owner.invulnerable = true;
+                return;
         }
 
         /* Player specific stats */
@@ -105,7 +117,10 @@ public class EntityAttribute
         switch(type)
         {
             case ENT_ATTR.POISON:
-                owner.TakeDamage(value * Time.deltaTime, source, true);
+                owner.TakeDamage(value * Time.deltaTime, source, true, name);
+                return;
+            case ENT_ATTR.REGEN:
+                owner.ReplenishHealth(value * Time.deltaTime * owner.maxHP);
                 return;
         }
     }
@@ -157,6 +172,13 @@ public class EntityAttribute
                 {
                     owner.armorMult /= value;
                 }
+                return;
+            case ENT_ATTR.INVULNERABLE:
+                if (isAdditive)
+                {
+                    owner.RemoveAttributesByType(ENT_ATTR.POISON);
+                }
+                owner.invulnerable = false;
                 return;
         }
 

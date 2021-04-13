@@ -54,7 +54,8 @@ public class PhantomFish : StateCombat
         if (OnTarget(fireTarget) && dist > minFireDistance && dist < maxFireDistance)
         {
             fireTarget = SetTarget(fireCooldown);
-            Shoot(fireProjectile);
+            Projectile fire = Shoot(fireProjectile);
+            //fire.damage = 2 * myBase.myStats.damage;
         }
     }
 
@@ -74,7 +75,7 @@ public class PhantomFish : StateCombat
     }
     void meleeAttack() //Executes a melee attack
     {
-        if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
+        //if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
         {
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
         }

@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 561815860341853923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4012745221455673662}
   m_Father: {fileID: 0}
@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.4226368, y: -0.0041804314}
+  m_Offset: {x: 1.3101666, y: -0.00000011920929}
   m_SpriteTilingProperty:
     border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
@@ -55,9 +55,9 @@ BoxCollider2D:
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 0.3481797, y: 0.22360767}
+  m_Size: {x: 0.9838759, y: 0.568792}
   m_EdgeRadius: 0
 --- !u!114 &5850016847284049936
 MonoBehaviour:
@@ -74,9 +74,31 @@ MonoBehaviour:
   lifeTime: 0.15
   currentLifeTime: 0
   damage: 1
-  destroyOnCollide: 1
+  ammoRefill: 0
+  mods: []
+  pierceCount: 0
   source: {fileID: 0}
-  weapon: {fileID: 0}
+  tables: {fileID: 0}
+  weaponClass: 0
+  direction: {x: 0, y: 0}
+  destroyOnCollide: 1
+  destroyOnNonEntity: 0
+  friendlyFire: 0
+  reflectMelee: 0
+  reflectRanged: 0
+  collideWithProjectile: 0
+  collideWithWall: 1
+  attrHit:
+    name: 
+    type: 0
+    value: 0
+    duration: 0
+    stackable: 0
+    isAdditive: 0
+  attrChance: 0
+  speed: 0
+  sourceTag: 
+  parent: {fileID: 0}
 --- !u!1 &3681962073418851656
 GameObject:
   m_ObjectHideFlags: 0

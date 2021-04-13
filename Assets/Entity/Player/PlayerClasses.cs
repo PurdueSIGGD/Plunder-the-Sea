@@ -100,7 +100,7 @@ public class PlayerClasses : MonoBehaviour
 
     public void Awake()
     {
-        resetDeathStats();
+        //resetDeathStats();
         if (classNumber != -1)
         {
             if (classNumber == -2)
@@ -120,16 +120,20 @@ public class PlayerClasses : MonoBehaviour
         }
     }
 
-    private void resetDeathStats()
+    public static void resetDeathStats()
     {
         PlayerPrefs.SetInt("Kills", 0);
         PlayerPrefs.SetInt("Damage", 0);
-        PlayerPrefs.SetInt("Hurt", 0);
+        PlayerPrefs.SetFloat("Hurt", 0);
         PlayerPrefs.SetString("Killer", "???");
         PlayerPrefs.SetInt("FishingBait", 0);
         PlayerPrefs.SetInt("Caught", 0);
         PlayerPrefs.SetInt("WeaponBait", 0);
         PlayerPrefs.SetInt("Chests", 0);
+        PlayerPrefs.SetInt("Level", 0);
+        PlayerPrefs.SetFloat("Time", 0);
+        PlayerPrefs.SetFloat("BaitGot", 0);
+        PlayerPrefs.SetFloat("BaitLeft", 0);
     }
 
     public void initialize()
@@ -150,6 +154,8 @@ public class PlayerClasses : MonoBehaviour
 
         inventory.meleeWeaponClass = melee;
         inventory.rangedWeaponClass = ranged;
+
+        lungeOneDirectionCooldown = inventory.getMaxWait();
     }
 
     private void Update()

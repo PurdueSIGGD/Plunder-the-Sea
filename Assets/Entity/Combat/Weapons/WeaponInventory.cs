@@ -177,4 +177,9 @@ public class WeaponInventory : MonoBehaviour
         return false;
     }
 
+    public float getMaxWait()
+    {
+        return Mathf.Max(tables.coolDown.get(rangedWeaponClass).Value, tables.projectileLifeTime.get(meleeWeaponClass).Value / 4);
+    }
+
 } 

@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classFloatPairs:
   - name: 1
-    floatValue: 0.3
+    floatValue: 0.5
   - name: 3
     floatValue: 0.3
   - name: 6
     floatValue: 0.3
   - name: 7
-    floatValue: 0.3
+    floatValue: 0.5
   - name: 8
-    floatValue: 0.3
+    floatValue: 0.2
   - name: 10
-    floatValue: 0.3
+    floatValue: 0.4
   - name: 12
-    floatValue: 0.3
+    floatValue: 0.4
   - name: 13
-    floatValue: 0.3
+    floatValue: 0.5

@@ -68,8 +68,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 496484575
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7247e826e4c0c754cb937289d79544e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -197,12 +197,12 @@ MonoBehaviour:
   attrHit:
     name: Mighty Ink
     type: 3
-    value: -2
+    value: -3
     duration: 5
     stackable: 0
     isAdditive: 1
   attrChance: 1
-  speed: 5
+  speed: 3.5
   sourceTag: 
   parent: {fileID: 0}
 --- !u!212 &8834291485653062408
