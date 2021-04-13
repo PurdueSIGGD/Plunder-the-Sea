@@ -26,14 +26,12 @@ public class Jellyfish : StateCombat
     private Vector3 stickVector = Vector3.zero;
     private EntityStats stickVictim = null;
 
-    private void Start()
+    public override void CombatStart()
     {
-        myBase = GetComponent<EnemyBase>();
-        myStateMovement = GetComponent<StateMovement>();
+        base.CombatStart();
         stickSpeed = new EntityAttribute(ENT_ATTR.MOVESPEED, 0.5f, stickTime, true, false);
         stickDamage = new EntityAttribute(ENT_ATTR.POISON, 1f, stickTime, true, true, "Jellyfish");
         anim.SetInteger("Variant", Random.Range(0, 2));
-        prevState = GetState();
     }
 
     // Update is called once per frame

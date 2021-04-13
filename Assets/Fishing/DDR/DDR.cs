@@ -12,16 +12,18 @@ public class DDR : MonoBehaviour
     private GameObject[] arrowBases = null;
     [SerializeField]
     private Text scoreText = null;
-    private List<GameObject>[] arrowTargets = new List<GameObject>[4];
+    public List<GameObject>[] arrowTargets = new List<GameObject>[4];
 
     private float targetSpeed = 1.0f;//Seconds for target to travel entire height
     private int perfectScore = 20;//Score granted for "perfect" target hit
     private float perfectDistRatio = 0.25f;//Ratio of target size that counts as perfect
     private int currentScore = 0;
-    private float targetFrequency = 0.5f;//Seconds for target to spawn
+    private float targetFrequencyStep = 0.25f; // # of second per beat
+    private int targetFrequencyMax = 3; // Max # of beats for target frequency
+    private int targetFrequencyMin = 1; // Min # of beats for target frequency
     private float nextTargetTime = 0.0f;//Time when to spawn new target
 
-    private int catchScore = 500; //score needed to "catch" the fish
+    private int catchScore = 300; //score needed to "catch" the fish
     private int releaseScore = -100; //score needed to "release" the fish
 
     public Fish fishBeingCaught;
@@ -33,23 +35,12 @@ public class DDR : MonoBehaviour
     {
         canvas = GetComponentInParent<Canvas>();
         for (int i = 0; i < arrowTargets.Length; i++) { arrowTargets[i] = new List<GameObject>(); }
-        nextTargetTime = Time.time + targetFrequency;
+        nextTargetTime = Time.time + targetFrequencyMax*targetFrequencyStep;
     }
 
     public int GetScore()
     {
         return currentScore;
-    }
-
-    public float GetFrequency()
-    {
-        return targetFrequency;
-    }
-
-    public void SetFrequency(float sec)
-    {
-        nextTargetTime += (sec - targetFrequency);
-        targetFrequency = sec;
     }
 
     public float GetTargetSpeed()
@@ -75,6 +66,11 @@ public class DDR : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetButtonDown("Cast Fishing Pole")) // F Key
+        {
+            ResetMinigame();
+        }
+
 
         bool[] input = { Input.GetKeyDown(KeyCode.LeftArrow), Input.GetKeyDown(KeyCode.UpArrow), Input.GetKeyDown(KeyCode.DownArrow), Input.GetKeyDown(KeyCode.RightArrow),
                             Input.GetKeyDown(KeyCode.A), Input.GetKeyDown(KeyCode.W), Input.GetKeyDown(KeyCode.S), Input.GetKeyDown(KeyCode.D)};
@@ -154,7 +150,7 @@ public class DDR : MonoBehaviour
         if (Time.time >= nextTargetTime)
         {
             SendArrow((int)(Random.value * arrowBases.Length));
-            nextTargetTime = Time.time + targetFrequency;
+            nextTargetTime = Time.time + Random.Range(targetFrequencyMin,targetFrequencyMax+1)*targetFrequencyStep;
         }
 
     }
@@ -164,6 +160,15 @@ public class DDR : MonoBehaviour
         currentScore = 0;
         FishingMinigame.SetActive(false);
         targetPlayer.movement.enabled = true;
+        targetPlayer.fishing.gameActive = false;
+        nextTargetTime = Time.time + targetFrequencyStep*targetFrequencyMax;
+        for (int i = 0; i < arrowTargets.Length; i++) {
+            foreach (GameObject arrow in arrowTargets[i])
+            {
+                Destroy(arrow);
+            }
+            arrowTargets[i] = new List<GameObject>();
+        }
     }
 
     private void SendArrow(int type)
