@@ -160,7 +160,7 @@ public class ClassUltimate : MonoBehaviour
 
     public void captainUlt()
     {
-        EntityAttribute capPride = new EntityAttribute(ENT_ATTR.ARMOR_MULT, 1, 5,false, true, "pride");
+        EntityAttribute capPride = new EntityAttribute(ENT_ATTR.INVULNERABLE, 1, 5,false, true, "pride");
         pStats.AddAttribute(capPride, pStats);
         aura.gameObject.SetActive(true);
         SpawnPopupText("Captain's\nPride");

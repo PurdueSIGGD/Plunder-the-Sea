@@ -179,6 +179,11 @@ public class EntityAttribute
                     owner.RemoveAttributesByType(ENT_ATTR.POISON);
                 }
                 owner.invulnerable = false;
+                ClassUltimate ults = owner.GetComponent<ClassUltimate>();
+                if (ults != null)
+                {
+                    ults.aura.gameObject.SetActive(false);
+                }
                 return;
         }
 
