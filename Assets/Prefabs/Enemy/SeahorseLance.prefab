@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 2718303086744147814}
   - component: {fileID: 818726099733396474}
   - component: {fileID: 1760924043896257557}
-  - component: {fileID: 5551326952268812665}
+  - component: {fileID: 5852983767568916369}
   m_Layer: 0
   m_Name: SeahorseLance
   m_TagString: Enemy
@@ -158,6 +158,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
 --- !u!58 &818726099733396474
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -197,10 +199,22 @@ MonoBehaviour:
   retreatDistance: 5
   actCooldownTime: 5
   enemyToSpawn: {fileID: 8010861710391754302, guid: 9587eb74143e5bf4fb2e9b15b0f265fd, type: 3}
+  eliteSpawnPool:
+  - {fileID: 6599563647011132998, guid: 47c8a4f514214274e9692b0223897e93, type: 3}
+  - {fileID: 4091676865972655606, guid: 41e65bdd2bef93349a9670a093911193, type: 3}
+  - {fileID: 5338947076325555132, guid: 6bfd232b6cc98ab4da3f8b76052d4f59, type: 3}
+  - {fileID: 7975743969792835165, guid: 5f698519e731e22418c54839683d080f, type: 3}
+  - {fileID: 2767971687338764697, guid: d2e7a01280f7bea45a2c788b3b56fa26, type: 3}
+  - {fileID: 6261335006127594840, guid: 45be8a9aef13ebb43976949e1544d82d, type: 3}
+  - {fileID: 3834199259601501135, guid: ccaa5b0361bebef48a0bc4315f572da8, type: 3}
+  - {fileID: 2364659476975283176, guid: d82d512a4bdb6654d84267b3f015b34e, type: 3}
+  - {fileID: 7035775119580984967, guid: 5da19e464c7b9da4a855932150e8e091, type: 3}
+  - {fileID: 2767971687338764697, guid: 2a106c8c9d7977b4d85246506761f08a, type: 3}
+  - {fileID: 8010861710391754302, guid: 9587eb74143e5bf4fb2e9b15b0f265fd, type: 3}
   numberOfEnemiesToSpawn: 3
   maxEnemiesToSpawn: 6
   retreatState: 0
---- !u!114 &5551326952268812665
+--- !u!114 &5852983767568916369
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -209,7 +223,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1760924043896257558}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 798f226d01f0c4e6484d9d395690a3d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 630e55d8c8932f448b837e65dd3eba61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
