@@ -5,10 +5,13 @@ using UnityEngine;
 public class ClassUltimate : MonoBehaviour
 {
     public SpriteRenderer aura;
+    [HideInInspector]
+    public int ultStacks = 0;
     [SerializeField]
     private GameObject PopupText;
     private PlayerStats pStats;
     private PlayerBase pBase;
+    private int savedClass = -1;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,7 @@ public class ClassUltimate : MonoBehaviour
     // Update is called once per frame
     public bool callUlt(int classIndex)
     {
+        savedClass = classIndex;
         int consumed = consumeBait(classIndex);
         if (consumed <= 0)
         {
@@ -29,6 +33,7 @@ public class ClassUltimate : MonoBehaviour
             case 0:     //Test
                 break;
             case 1:     //Brawler
+                brawlerUlt();
                 break;
             case 2:     //Gunner
                 gunnerUlt(consumed);
@@ -48,6 +53,7 @@ public class ClassUltimate : MonoBehaviour
 
     public int consumeBait(int classIndex)
     {
+        savedClass = classIndex;
         bool partial = false;        //Can ult be performed on partial bait cost
         bool distributed = false;    //Is cost on currently selected bait, or on all baits simultaneously
         int cost = 999;                //for distributed, cost on each bait; for not, total cost
@@ -57,7 +63,12 @@ public class ClassUltimate : MonoBehaviour
                 cost = 999;
                 break;
             case 1:     //Brawler
-                cost = 999;
+                if (ultStacks >= 5)
+                {
+                    return -1;
+                }
+                distributed = true;
+                cost = 2;
                 break;
             case 2:     //Gunner
                 if (pStats.ammo >= pStats.maxAmmo)
@@ -144,6 +155,57 @@ public class ClassUltimate : MonoBehaviour
         return consumed;
     }
 
+    public void activate()
+    {
+        aura.gameObject.SetActive(true);
+        ultStacks++;
+        switch (savedClass)
+        {
+            case 0:     //Test
+                break;
+            case 1:     //Brawler
+                pStats.weaponInv.weaponMods.meleeSizeMultiplier *= 1.5f;
+                break;
+            case 2:     //Gunner
+                break;
+            case 3:     //Captain
+                break;
+            case 4:     //First Mate
+                break;
+            case 5:     //Swash Buckler
+                break;
+            case 6:     //Warrant Officer
+                break;
+        }
+    }
+
+    public void deactivate()
+    {
+        if (!pStats.ContainsAttribute(ENT_ATTR.ULTSTATUS))
+        {
+            aura.gameObject.SetActive(false);
+        }
+        ultStacks--;
+        switch (savedClass)
+        {
+            case 0:     //Test
+                break;
+            case 1:     //Brawler
+                pStats.weaponInv.weaponMods.meleeSizeMultiplier = pStats.weaponInv.weaponMods.meleeSizeMultiplier / 1.5f;
+                break;
+            case 2:     //Gunner
+                break;
+            case 3:     //Captain
+                break;
+            case 4:     //First Mate
+                break;
+            case 5:     //Swash Buckler
+                break;
+            case 6:     //Warrant Officer
+                break;
+        }
+    }
+
     public void SpawnPopupText(string text)
     {
         GameObject textObject = Instantiate(PopupText, transform.position, Quaternion.identity);
@@ -152,17 +214,27 @@ public class ClassUltimate : MonoBehaviour
         textMesh.text = text;
     }
 
+    public void brawlerUlt()
+    {
+        EntityAttribute act = new EntityAttribute(ENT_ATTR.ULTSTATUS, 1, 3, false, true);
+        pStats.AddAttribute(act, pStats);
+        SpawnPopupText("Maximal\nExpansion");
+    }
+
     public void gunnerUlt(int amount)
     {
         pStats.replenishAmmo(amount);
+        EntityAttribute act = new EntityAttribute(ENT_ATTR.ULTSTATUS, 1, .2f, false, true);
+        pStats.AddAttribute(act, pStats);
         SpawnPopupText("Sacrificial\nReload");
     }
 
     public void captainUlt()
     {
         EntityAttribute capPride = new EntityAttribute(ENT_ATTR.INVULNERABLE, 1, 5,false, true, "pride");
+        EntityAttribute act = new EntityAttribute(ENT_ATTR.ULTSTATUS, 1, 5, false, true);
         pStats.AddAttribute(capPride, pStats);
-        aura.gameObject.SetActive(true);
+        pStats.AddAttribute(act, pStats);
         SpawnPopupText("Captain's\nPride");
     }
 

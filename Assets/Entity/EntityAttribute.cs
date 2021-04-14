@@ -12,7 +12,8 @@ public enum ENT_ATTR
     POISON,         // Deals "value" damage per second to the enemy, ignoring armor.
     TOTAL_STATS,    
     REGEN,          // Heals "value" amount (ratio) of the target's max health per second.
-    INVULNERABLE    // The target is immune to damage while this effect is active. When it completes, it removes damage over time debuffs.
+    INVULNERABLE,   // The target is immune to damage while this effect is active. When it completes, it removes damage over time debuffs.
+    ULTSTATUS       // Placed on player when ult in effect
 };
 [System.Serializable]
 public class EntityAttribute
@@ -108,6 +109,9 @@ public class EntityAttribute
                         player.staminaMax *= value;
                     }
                     return;
+                case ENT_ATTR.ULTSTATUS:
+                    player.pbase.classUlt.activate();
+                    return;
             }
         }
     }
@@ -179,11 +183,6 @@ public class EntityAttribute
                     owner.RemoveAttributesByType(ENT_ATTR.POISON);
                 }
                 owner.invulnerable = false;
-                ClassUltimate ults = owner.GetComponent<ClassUltimate>();
-                if (ults != null)
-                {
-                    ults.aura.gameObject.SetActive(false);
-                }
                 return;
         }
 
@@ -201,6 +200,9 @@ public class EntityAttribute
                     {
                         player.staminaMax /= value;
                     }
+                    return;
+                case ENT_ATTR.ULTSTATUS:
+                    player.pbase.classUlt.deactivate();
                     return;
             }
         }

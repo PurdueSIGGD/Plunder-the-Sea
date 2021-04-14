@@ -9,7 +9,8 @@ public class PlayerStats : EntityStats
     public float[] appliedStats;
     public GameObject healthPickupGameObj;
 
-    PlayerBase pbase;
+    [HideInInspector]
+    public PlayerBase pbase;
     [HideInInspector]
     public WeaponInventory weaponInv;
     public const float baseMovementSpeed = 10;
