@@ -112,6 +112,7 @@ MonoBehaviour:
   armorMult: 0.25
   armorStatic: 0
   killRegenMult: 0.5
+  invulnerable: 0
   healthbar: {fileID: 2201514445343193906}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -126,6 +127,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
 --- !u!58 &3745949659714890756
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -202,6 +205,16 @@ MonoBehaviour:
     duration: 0
     stackable: 0
     isAdditive: 0
+  eliteStick:
+    name: 
+    type: 0
+    value: 0
+    duration: 0
+    stackable: 0
+    isAdditive: 0
+  childJellyfish: {fileID: 2364659476975283176}
+  summonCount: 4
+  spreadDistance: 0.3
 --- !u!1 &7106632408545622105
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +285,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1556805819
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a1d8b39d167f348419737ee0906c2f80, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

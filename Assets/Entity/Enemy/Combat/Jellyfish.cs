@@ -11,6 +11,7 @@ public class Jellyfish : StateCombat
     // The attributes describing what happens when the jellyfish sticks to the player
     public EntityAttribute stickSpeed;
     public EntityAttribute stickDamage;
+    public EntityAttribute eliteStick;
 
     // Const values to make coding easier
     const int charging = (int)ChargeMovement.ChargeState.isCharging;
@@ -26,11 +27,20 @@ public class Jellyfish : StateCombat
     private Vector3 stickVector = Vector3.zero;
     private EntityStats stickVictim = null;
 
+    // Child jellyfish to be summoned (on elite jellyfish death), and count
+    public GameObject childJellyfish;
+    public int summonCount = 4;
+    public float spreadDistance = 0.3f;
+
     public override void CombatStart()
     {
         base.CombatStart();
-        stickSpeed = new EntityAttribute(ENT_ATTR.MOVESPEED, 0.5f, stickTime, true, false);
-        stickDamage = new EntityAttribute(ENT_ATTR.POISON, 1f, stickTime, true, true, "Jellyfish");
+        if (!myBase.myStats.elite)
+        {
+            stickSpeed = new EntityAttribute(ENT_ATTR.MOVESPEED, 0.5f, stickTime, true, false);
+            stickDamage = new EntityAttribute(ENT_ATTR.POISON, myBase.myStats.damage, stickTime, true, true, "Jellyfish");
+            eliteStick = new EntityAttribute(ENT_ATTR.INVULNERABLE, 1f, stickTime);
+        }
         anim.SetInteger("Variant", Random.Range(0, 2));
     }
 
@@ -68,6 +78,14 @@ public class Jellyfish : StateCombat
         {
             unstick(stickVictim);
         }
+        //if (myBase.myStats.elite)
+        //{
+        //    for (int i = 0; i < summonCount; i++)
+        //    {
+        //        Vector3 spreadVector = new Vector3(Random.Range(-spreadDistance, spreadDistance), Random.Range(-spreadDistance, spreadDistance), 0);
+        //        Instantiate(childJellyfish, transform.position + spreadVector, Quaternion.identity);
+        //    }
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collider) //Called when something enters the enemy's range, only activates if charging
@@ -87,6 +105,11 @@ public class Jellyfish : StateCombat
         myBase.myMovement.moving = false;
         target.AddAttribute(stickSpeed,myBase.myStats);
         target.AddAttribute(stickDamage, myBase.myStats);
+        if (myBase.myStats.elite)
+        {
+            // Become invulnerable
+            myBase.myStats.AddAttribute(eliteStick, myBase.myStats);
+        }
         stickVictim = target;
         stickVector = transform.position - target.transform.position;
         float angle = Mathf.Atan2(stickVector.y, stickVector.x) * Mathf.Rad2Deg - 90;
@@ -99,10 +122,19 @@ public class Jellyfish : StateCombat
     {
         target?.RemoveAttribute(stickSpeed);
         target?.RemoveAttribute(stickDamage);
+        myBase.myStats.RemoveAttribute(eliteStick);
         cooldownTarget = SetTarget(cooldownTime);
         sprite.transform.rotation = Quaternion.identity;
         anim.SetInteger("State", 0);
         isCooldown = true;
         isSticking = false;
+    }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        stickSpeed = new EntityAttribute(ENT_ATTR.MOVESPEED, 0.25f, stickTime, true, false);
+        stickDamage = new EntityAttribute(ENT_ATTR.POISON, myBase.myStats.damage, stickTime, true, true, "Elite Jellyfish");
+        eliteStick = new EntityAttribute(ENT_ATTR.INVULNERABLE, 1f, stickTime);
     }
 }
