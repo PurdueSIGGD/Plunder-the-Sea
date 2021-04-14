@@ -7,10 +7,6 @@ public class BoomFish : StateCombat
     // Explosion projectile
     public GameObject explosion;
 
-    // Sprite references
-    public SpriteRenderer sprite;
-    public Animator anim;
-
     private bool exploded = false;
     private float explodeTarget = 0.0f;
     public float lingerTime = 0f;

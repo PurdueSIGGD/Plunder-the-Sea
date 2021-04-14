@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: teleportGroup
   m_EditorClassIdentifier: 
   enemySet:
-  - {fileID: 8010861710391754302, guid: 9587eb74143e5bf4fb2e9b15b0f265fd, type: 3}
-  - {fileID: 8010861710391754302, guid: 9587eb74143e5bf4fb2e9b15b0f265fd, type: 3}
-  - {fileID: 8010861710391754302, guid: 9587eb74143e5bf4fb2e9b15b0f265fd, type: 3}
+  - {fileID: 1760924043896257558, guid: 72fc1f8739a5d8a44838e2fedc6648c7, type: 3}
+  - {fileID: 2767971687338764697, guid: 2a106c8c9d7977b4d85246506761f08a, type: 3}
   - {fileID: 2767971687338764697, guid: 2a106c8c9d7977b4d85246506761f08a, type: 3}
   - {fileID: 2767971687338764697, guid: 2a106c8c9d7977b4d85246506761f08a, type: 3}

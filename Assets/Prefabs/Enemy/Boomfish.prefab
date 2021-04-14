@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1115066753556564469}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4091676865972655564}
   m_RootOrder: 1
@@ -134,7 +134,7 @@ Transform:
   m_GameObject: {fileID: 4091676865972655606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 7664755608209418163}
   - {fileID: 3625083094894318066}
@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09ab1ea068274d69a030af1a1ff03d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Boomfish
   movementSpeed: 2
   maxHP: 30
   currentHP: 30
@@ -214,6 +215,7 @@ MonoBehaviour:
   armorStatic: 0
   killRegenMult: 1
   healthbar: {fileID: 474323350692742444}
+  lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 10
   damage: 25
@@ -260,7 +262,7 @@ MonoBehaviour:
   pathingRefresh: 0.25
   maxDist: 10
   targetProximity: 0
-  approachDistance: 0.5
+  approachDistance: 1
   actChargeUpTime: 1.2
   actCooldownTime: 1
   approachState: 0
@@ -280,9 +282,9 @@ MonoBehaviour:
   attackRange: 0.5
   prevState: 0
   myStateMovement: {fileID: 0}
-  explosion: {fileID: 6471832775542762957, guid: d16d986119103f54694a9e2413051197, type: 3}
   sprite: {fileID: 1529058033394793812}
   anim: {fileID: 8529725388654296327}
+  explosion: {fileID: 6471832775542762957, guid: d16d986119103f54694a9e2413051197, type: 3}
   lingerTime: 0
 --- !u!1 &7664755608209418162
 GameObject:

@@ -141,6 +141,7 @@ public class DDR : MonoBehaviour
         //logic for ending the scene
         if (currentScore >= catchScore)
         {
+            PlayerPrefs.SetInt("Caught", PlayerPrefs.GetInt("Caught") + 1);
             fishBeingCaught.BuffPlayerStats(targetPlayer);
             ResetMinigame();
         }

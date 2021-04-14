@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 4463945284487561881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 8026890519551668444}
   m_Father: {fileID: 0}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: cdb779631c597a645bb35612153c8f45, type: 3}
   m_Color: {r: 0.16169204, g: 0.1013261, b: 0.31132078, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09ab1ea068274d69a030af1a1ff03d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Venom Mine
   movementSpeed: 0
   maxHP: 15
   currentHP: 15
@@ -163,6 +164,7 @@ MonoBehaviour:
   armorStatic: 0
   killRegenMult: 1
   healthbar: {fileID: 265345590154777155}
+  lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 10
   damage: 10
@@ -205,7 +207,7 @@ MonoBehaviour:
   pathingRefresh: 0.25
   maxDist: 10
   targetProximity: 0
-  approachDistance: 0.5
+  approachDistance: 1
   actChargeUpTime: 1
   actCooldownTime: 1
   approachState: 0
@@ -225,6 +227,10 @@ MonoBehaviour:
   attackRange: 0.5
   prevState: 0
   myStateMovement: {fileID: 0}
+  sprite: {fileID: 4463945284487561890}
+  anim: {fileID: 0}
+  defaultSprite: {fileID: 21300000, guid: cdb779631c597a645bb35612153c8f45, type: 3}
+  detonateSprite: {fileID: 21300000, guid: 83d6bc9aba17c5f458b4fc8694f8cad8, type: 3}
   venomCloud: {fileID: 2808827960982064107, guid: ab93d8e0017a771428b662485382b74c, type: 3}
   lingerTime: 0.1
   duration: 10

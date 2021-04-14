@@ -6,10 +6,6 @@ using UnityEngine;
 
 public class Swordfish : StateCombat
 {
-    // Sprite references
-    public SpriteRenderer sprite;
-    public Animator anim;
-
     // Const values to make coding easier
     const int dashing = (int)ChargeMovement.ChargeState.isCharging;
     const int dizzy = (int)ChargeMovement.ChargeState.isRecharging;
@@ -65,7 +61,6 @@ public class Swordfish : StateCombat
         {
             if (OnTarget(meleeTarget))
             {
-                myBase.myMovement.moving = false;
                 myBase.myRigid.velocity = Vector2.zero;
                 meleeAttack();
                 meleeTarget = SetTarget(1.0f / myBase.myStats.attackSpeedInverse);
@@ -79,6 +74,5 @@ public class Swordfish : StateCombat
         {
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
         }
-        myBase.myMovement.moving = true;
     }
 }

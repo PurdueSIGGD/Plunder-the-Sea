@@ -102,8 +102,10 @@ public class PlayerClasses : MonoBehaviour
 
     public void Awake()
     {
+        resetDeathStats();
         if (classNumber != -1)
         {
+            classNumber = PlayerPrefs.GetInt("classNum");
             initialize();
         }
         else
@@ -111,6 +113,18 @@ public class PlayerClasses : MonoBehaviour
             //if not a player
 
         }
+    }
+
+    private void resetDeathStats()
+    {
+        PlayerPrefs.SetInt("Kills", 0);
+        PlayerPrefs.SetInt("Damage", 0);
+        PlayerPrefs.SetInt("Hurt", 0);
+        PlayerPrefs.SetString("Killer", "???");
+        PlayerPrefs.SetInt("FishingBait", 0);
+        PlayerPrefs.SetInt("Caught", 0);
+        PlayerPrefs.SetInt("WeaponBait", 0);
+        PlayerPrefs.SetInt("Chests", 0);
     }
 
     public void initialize()
@@ -153,7 +167,7 @@ public class PlayerClasses : MonoBehaviour
                 rigid.AddForce(lookDirection.normalized * meleeLungeDistance * 2, ForceMode2D.Impulse);
                 lastLungeMelee = true;
                 lungeCooldownTimer = 0;
-                Debug.Log("Lunge foreward");
+                //Debug.Log("Lunge foreward");
             } 
             else
             {
@@ -167,7 +181,7 @@ public class PlayerClasses : MonoBehaviour
                     rigid.AddForce(-lookDirection.normalized * meleeLungeDistance * 2, ForceMode2D.Impulse);
                     lastLungeMelee = false;
                     lungeCooldownTimer = 0;
-                    Debug.Log("Lunge backward");
+                    //Debug.Log("Lunge backward");
                 }
             }
         }
@@ -276,7 +290,7 @@ public class PlayerClasses : MonoBehaviour
     //call this when an enemy is hit/damaged
     public void enemyHit(EnemyStats current)
     {
-        Debug.Log("Enemy got hit");
+        //Debug.Log("Enemy got hit");
 
         if (chainLighting && !sendingLighting)
         {
@@ -285,7 +299,7 @@ public class PlayerClasses : MonoBehaviour
             //only spawn if chance is high enough
             if (Random.Range(0f, 1f) <= chainChance)
             {
-                Debug.Log("Lighting should spawn");
+                //Debug.Log("Lighting should spawn");
                 
                 //create chain lighting
                 EnemyStats next = null;

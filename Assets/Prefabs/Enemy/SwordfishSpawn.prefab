@@ -233,7 +233,7 @@ Transform:
   m_GameObject: {fileID: 4856430215809392895}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.0042504, y: 1.2438434, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 1293555084410507962}
   - {fileID: 375015644539013947}
@@ -255,7 +255,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.15
 --- !u!50 &4856430215809392890
 Rigidbody2D:
   serializedVersion: 4
@@ -306,6 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09ab1ea068274d69a030af1a1ff03d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: Swordfish Minion
   movementSpeed: 2
   maxHP: 30
   currentHP: 30
@@ -313,16 +314,13 @@ MonoBehaviour:
   armorStatic: 0
   killRegenMult: 1
   healthbar: {fileID: 9023011813981679653}
+  lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 1
-  damage: 1
+  damage: 5
   numberOfTimesToRespawn: 0
-  dropTable: 0000000000000000000000000000000000000000
+  dropTable: ffffffff
   dropOdds:
-  - 1
-  - 1
-  - 1
-  - 1
   - 1
   dropRange: 0
 --- !u!58 &5785222916557285139
@@ -340,7 +338,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.25
 --- !u!114 &1293555083172320119
 MonoBehaviour:
   m_ObjectHideFlags: 0

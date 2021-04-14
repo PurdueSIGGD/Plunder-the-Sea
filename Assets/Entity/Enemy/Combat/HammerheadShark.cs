@@ -28,6 +28,9 @@ public class HammerheadShark : StateCombat
                 {
                     // Just started moving, so add defense
                     myBase.myStats.AddAttribute(spinningDefense, myBase.myStats);
+                    anim.SetInteger("State", 1);
+                    anim.SetBool("Back", isPlayerUp());
+                    sprite.flipX = isPlayerLeft();
                 }
                 break;
             case dizzy:
@@ -35,6 +38,8 @@ public class HammerheadShark : StateCombat
                 {
                     // Just stopped moving, so remove defense
                     myBase.myStats.RemoveAttribute(spinningDefense);
+                    anim.SetInteger("State", 0);
+                    sprite.flipX = false;
                 }
                 break;
         }
