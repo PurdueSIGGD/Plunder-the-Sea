@@ -9,6 +9,7 @@ TagManager:
   - Bobber
   - Undefined
   - Wall
+  - Fish
   layers:
   - Default
   - TransparentFX
@@ -45,6 +46,15 @@ TagManager:
   m_SortingLayers:
   - name: Ground
     uniqueID: 1930420151
+    locked: 0
+  - name: Wall
+    uniqueID: 2275078287
+    locked: 0
+  - name: Enemy
+    uniqueID: 1556805819
+    locked: 0
+  - name: Projectile
+    uniqueID: 496484575
     locked: 0
   - name: Default
     uniqueID: 0

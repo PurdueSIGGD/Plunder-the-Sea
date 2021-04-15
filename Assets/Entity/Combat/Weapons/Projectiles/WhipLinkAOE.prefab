@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 4039954679365618853}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 606604312664767352}
   m_Father: {fileID: 0}
@@ -128,7 +128,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0031994656, y: 0.0004761517}
+  m_Offset: {x: 0.018428385, y: -0.000695616}
   m_SpriteTilingProperty:
     border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
     pivot: {x: 0.5, y: 0.5}
@@ -139,7 +139,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.12578689, y: 0.04891026}
+  m_Size: {x: 0.3764785, y: 0.09812462}
   m_EdgeRadius: 0
 --- !u!114 &7995115018178927190
 MonoBehaviour:
@@ -156,6 +156,28 @@ MonoBehaviour:
   lifeTime: 0
   currentLifeTime: 0
   damage: 1
-  destroyOnCollide: 0
+  ammoRefill: 0
+  mods: []
+  pierceCount: 0
   source: {fileID: 0}
-  weapon: {fileID: 0}
+  tables: {fileID: 0}
+  weaponClass: 0
+  direction: {x: 0, y: 0}
+  destroyOnCollide: 0
+  destroyOnNonEntity: 0
+  friendlyFire: 0
+  reflectMelee: 0
+  reflectRanged: 0
+  collideWithProjectile: 0
+  collideWithWall: 1
+  attrHit:
+    name: 
+    type: 0
+    value: 0
+    duration: 0
+    stackable: 0
+    isAdditive: 0
+  attrChance: 0
+  speed: 0
+  sourceTag: 
+  parent: {fileID: 0}

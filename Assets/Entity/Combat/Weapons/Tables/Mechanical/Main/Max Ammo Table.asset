@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classIntPairs:
   - weaponClass: 1
-    integer: 5
+    integer: 6
   - weaponClass: 3
-    integer: 5
+    integer: 4
   - weaponClass: 6
-    integer: 5
+    integer: 8
   - weaponClass: 7
-    integer: 5
+    integer: 4
   - weaponClass: 8
-    integer: 5
+    integer: 6
   - weaponClass: 10
     integer: 4
   - weaponClass: 12
-    integer: 5
+    integer: 4
   - weaponClass: 13
-    integer: 5
+    integer: 6

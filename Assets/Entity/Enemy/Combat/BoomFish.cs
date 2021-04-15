@@ -56,17 +56,11 @@ public class BoomFish : StateCombat
         // Explodes the frame the boom fish finishes activating
         if (!exploded && current == cooldown)
         {
-            Explode();
+            Shoot(explosion, true);
             exploded = true;
             explodeTarget = SetTarget(lingerTime);
             GetComponentInChildren<Canvas>().enabled = false;
         }
         prevState = current;
-    }
-
-    // Create an explosion projectile, then die at the end of the frame
-    void Explode()
-    {
-        Shoot(explosion);
     }
 }

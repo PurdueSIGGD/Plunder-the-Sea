@@ -18,6 +18,8 @@ public class PlayerBase : MonoBehaviour
     [HideInInspector]
     public PlayerFishing fishing;
     public Canvas playerInventory;
+    [SerializeField]
+    private bool keep = true;
 
     private UI_Camera cam;
     
@@ -37,7 +39,10 @@ public class PlayerBase : MonoBehaviour
             }
             Destroy(this.gameObject);
         }
-        DontDestroyOnLoad(this.gameObject);
+        if (keep)
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
 
     private void Start()
@@ -56,12 +61,12 @@ public class PlayerBase : MonoBehaviour
         var inv = GetComponent<WeaponInventory>();
         
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetButtonDown("Fire1"))
         {
             inv.ShootAt(cam.GetMousePosition(), false);
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.Space))
         {
             inv.ShootAt(cam.GetMousePosition(), true);
         }

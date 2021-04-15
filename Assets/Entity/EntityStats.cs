@@ -6,31 +6,43 @@ using UnityEngine.UI;
 
 public class EntityStats : MonoBehaviour
 {
+    // The name this entity displays as
     public string displayName;
+
+    // How fast this entity moves
     public float movementSpeed = 10.0f;
+
+    // Maximum and current health
     public float maxHP = 1;
     public float currentHP = 1;
+
     //Ratio of damage which armor absorbs
     public float armorMult = 0.0f;
     //Constant amount of damage armor absorbs
     public float armorStatic = 0.0f;
+
     // Float dictating how much kill regen this enemy contributes
     public float killRegenMult = 1.0f;
+
+    // Bool determining whether this enemy takes damage
+    public bool invulnerable = false;
+
     public Slider healthbar;
     public int lastHitAmmoAddition = 0;
+    
 
     /*
      * Storing endtime in attribute class does not allow for the same attribute
      * to be applied to multiple entities. Store in this struct instead.
      */
-    private struct AppliedAttribute
+    public struct AppliedAttribute
     {
         public EntityAttribute attr;
         public EntityStats source;
         public float endTime;
     };
 
-    private List<AppliedAttribute> attribList = new List<AppliedAttribute>();
+    public List<AppliedAttribute> attribList = new List<AppliedAttribute>();
 
     /* Extending classes must call this in update function */
     protected void StatUpdate()
@@ -65,24 +77,38 @@ public class EntityStats : MonoBehaviour
     }
 
     //Return true if results in death
-    public virtual bool TakeDamage(float amount, EntityStats source)
+    public virtual bool TakeDamage(float amount, EntityStats source, bool tickDamage = false, string killerNameOverride = "")
     {
+        // Invulnerability avoids damage altogether
+        if (invulnerable)
+            return false;
+
         //player damage call
         damageReturnCall();
         bool isPlayer = false;
 
         //damage scaling is not stored as it can update
-        int multiplier = 1;
-        float realDmg = Mathf.Max((amount - armorStatic), Mathf.Min(1, amount)) * Mathf.Max(1 - armorMult, 0);
+        float multiplier = 1;
+        float realDmg = amount;
+        if (!tickDamage)
+        {
+            realDmg = Mathf.Max((amount - armorStatic), Mathf.Min(1, amount)) * Mathf.Max(1 - armorMult, 0);
+        }
         if (transform.tag == "Player")
         {
-            multiplier = (int) Mathf.Min(1 + transform.GetComponent<PlayerStats>().dungeonLevel * 0.1f, 2);
+            multiplier = Mathf.Min(1 + transform.GetComponent<PlayerStats>().dungeonLevel * 0.1f, 2);
             realDmg *= multiplier;
-            PlayerPrefs.SetInt("Hurt", PlayerPrefs.GetInt("Hurt") + (int)realDmg);
+            PlayerPrefs.SetFloat("Hurt", PlayerPrefs.GetFloat("Hurt") + realDmg);
             isPlayer = true;
             //print("player hit");
         } else
         {
+            if (source is PlayerStats)
+            {
+                PlayerStats pStats = (PlayerStats)source;
+                multiplier = 1 / (1 + .3f * pStats.dungeonLevel);
+                realDmg *= multiplier;
+            }
             PlayerPrefs.SetInt("Damage", PlayerPrefs.GetInt("Damage") + (int)realDmg);
         }
         //Debug.Log("Vlaue: " + realDmg);
@@ -125,6 +151,10 @@ public class EntityStats : MonoBehaviour
                     source.GetComponent<PlayerStats>().replenishAmmo(lastHitAmmoAddition);
                 }
             }
+            if (killerNameOverride != "")
+            {
+                PlayerPrefs.SetString("Killer", killerNameOverride);
+            }
         }
         updateHealthBar();
 
@@ -163,7 +193,7 @@ public class EntityStats : MonoBehaviour
                 }
             }
         }
-        
+
         attribList.Add(app);
         attr.OnAdd(this);
     }
@@ -176,6 +206,7 @@ public class EntityStats : MonoBehaviour
             {
                 attribList.RemoveAt(i);
                 attr.OnRemove(this);
+                i--;
             }
         }
     }
@@ -187,6 +218,20 @@ public class EntityStats : MonoBehaviour
             attribList[i].attr.OnRemove(this);
         }
         attribList.Clear();
+    }
+
+    public virtual void RemoveAttributesByType(ENT_ATTR type)
+    {
+        for (int i = 0; i < attribList.Count; i++)
+        {
+            if (attribList[i].attr.type == type)
+            {
+                Debug.Log("Removed " + attribList[i].attr.name);
+                attribList.RemoveAt(i);
+                attribList[i].attr.OnRemove(this);
+                i--;
+            }
+        }
     }
     
     public virtual void Die()

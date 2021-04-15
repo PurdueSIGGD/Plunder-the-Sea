@@ -6,6 +6,13 @@ using UnityEngine;
 public class HealthPickup : MonoBehaviour
 {
     public float health = 1.0f;
+    [SerializeField]
+    private Sprite[] sprites;
+
+    private void Start()
+    {
+        GetComponent<SpriteRenderer>().sprite = sprites[UnityEngine.Random.Range(0, sprites.Length)];
+    }
 
     public void OnTriggerEnter2D(Collider2D collider)
     {

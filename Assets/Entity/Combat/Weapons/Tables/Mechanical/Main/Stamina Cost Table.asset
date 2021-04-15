@@ -18,12 +18,12 @@ MonoBehaviour:
   - name: 2
     floatValue: 5
   - name: 4
-    floatValue: 10
+    floatValue: 12
   - name: 5
-    floatValue: 5
+    floatValue: 10
   - name: 9
     floatValue: 15
   - name: 11
     floatValue: 15
   - name: 14
-    floatValue: 0.3
+    floatValue: 15

@@ -27,7 +27,7 @@ public class FishingMinigame : MonoBehaviour
 
     private void LateUpdate()
     {
-        fish.fishCenter.y = originalFishY - canvas.pixelRect.height * ddr.GetCompletionPercentage();
+        fish.fishCenter.y = originalFishY + canvas.pixelRect.height * ddr.GetCompletionPercentage() /2;
     }
 
 }

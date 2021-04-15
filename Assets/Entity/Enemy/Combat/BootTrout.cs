@@ -45,7 +45,7 @@ public class BootTrout : StateCombat
     }
     void meleeAttack() //Executes a melee attack
     {
-        if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
+        //if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
         {
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
         }

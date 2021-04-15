@@ -69,8 +69,6 @@ public class PlayerClasses : MonoBehaviour
     [Range(0, 32)]
     public float chainTime = 4;
     [Range(1, 8)]
-    public float attackSizeBoost = 2;
-    [Range(1, 8)]
     public float speedBoost = 2;
     private int kills = 0;
     private float killCountdown = 0;
@@ -102,10 +100,17 @@ public class PlayerClasses : MonoBehaviour
 
     public void Awake()
     {
-        resetDeathStats();
+        //resetDeathStats();
         if (classNumber != -1)
         {
-            classNumber = PlayerPrefs.GetInt("classNum");
+            if (classNumber == -2)
+            {
+                classNumber = 1;
+            }
+            else
+            {
+                classNumber = PlayerPrefs.GetInt("classNum");
+            }
             initialize();
         }
         else
@@ -115,16 +120,20 @@ public class PlayerClasses : MonoBehaviour
         }
     }
 
-    private void resetDeathStats()
+    public static void resetDeathStats()
     {
         PlayerPrefs.SetInt("Kills", 0);
         PlayerPrefs.SetInt("Damage", 0);
-        PlayerPrefs.SetInt("Hurt", 0);
+        PlayerPrefs.SetFloat("Hurt", 0);
         PlayerPrefs.SetString("Killer", "???");
         PlayerPrefs.SetInt("FishingBait", 0);
         PlayerPrefs.SetInt("Caught", 0);
         PlayerPrefs.SetInt("WeaponBait", 0);
         PlayerPrefs.SetInt("Chests", 0);
+        PlayerPrefs.SetInt("Level", 0);
+        PlayerPrefs.SetFloat("Time", 0);
+        PlayerPrefs.SetFloat("BaitGot", 0);
+        PlayerPrefs.SetFloat("BaitLeft", 0);
     }
 
     public void initialize()
@@ -145,6 +154,8 @@ public class PlayerClasses : MonoBehaviour
 
         inventory.meleeWeaponClass = melee;
         inventory.rangedWeaponClass = ranged;
+
+        lungeOneDirectionCooldown = inventory.getMaxWait();
     }
 
     private void Update()
@@ -157,7 +168,7 @@ public class PlayerClasses : MonoBehaviour
         
         if (lunge)
         {
-            if (Input.GetButtonDown("Fire2") && ((lastLungeMelee == false && lungeCooldownTimer >= lungeBackDirectionCooldown) || (lastLungeMelee == true && lungeCooldownTimer >= lungeOneDirectionCooldown)))
+            if ((Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.Space)) && ((lastLungeMelee == false && lungeCooldownTimer >= lungeBackDirectionCooldown) || (lastLungeMelee == true && lungeCooldownTimer >= lungeOneDirectionCooldown)))
             {
                 //forward lunge
 
@@ -178,7 +189,7 @@ public class PlayerClasses : MonoBehaviour
                     //get looking direction
                     Vector3 lookDirection = Input.mousePosition - new Vector3(Screen.width / 2, Screen.height / 2, 0);
 
-                    rigid.AddForce(-lookDirection.normalized * meleeLungeDistance * 2, ForceMode2D.Impulse);
+                    rigid.AddForce(-lookDirection.normalized * meleeLungeDistance * 4, ForceMode2D.Impulse);
                     lastLungeMelee = false;
                     lungeCooldownTimer = 0;
                     //Debug.Log("Lunge backward");
@@ -273,7 +284,6 @@ public class PlayerClasses : MonoBehaviour
         killChain = pc.killChain;
         killRequirement = pc.killRequirement;
         chainTime = pc.chainTime;
-        attackSizeBoost = pc.attackSizeBoost;
         speedBoost = pc.speedBoost;
 }
 
@@ -329,7 +339,9 @@ public class PlayerClasses : MonoBehaviour
                     {
                         //instantiate lighting and deal damage
                         GameObject g = Instantiate(lightingPrefab, current.transform.position, Quaternion.identity);
-                        g.GetComponent<LineRenderer>().SetPositions(new Vector3[] { current.transform.position, next.transform.position });
+                        LineRenderer lr = g.GetComponent<LineRenderer>();
+                        lr.SetPositions(new Vector3[] { current.transform.position, next.transform.position });
+                        lr.material.SetTextureScale("_MainTex", new Vector2(Vector3.Distance(lr.GetPosition(0), lr.GetPosition(1) / lr.widthMultiplier), 1));
                         Destroy(g, 0.5f);
                         next.TakeDamage(lightingDamage, stats);
                         current = next;

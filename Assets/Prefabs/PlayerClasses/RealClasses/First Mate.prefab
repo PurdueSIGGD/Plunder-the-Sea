@@ -49,8 +49,8 @@ MonoBehaviour:
   baseSpeed: 10
   baseArmorAddition: 0
   baseArmorDivision: 0
-  baseStamina: 45
-  baseStaminaRechargeRate: 6
+  baseStamina: 40
+  baseStaminaRechargeRate: 10
   proficiency: 1
   classSprite: {fileID: 0}
   chainLighting: 0
@@ -67,17 +67,16 @@ MonoBehaviour:
   killChain: 1
   killRequirement: 3
   chainTime: 4
-  attackSizeBoost: 2
   speedBoost: 2
   melee: 0
   ranged: 8
   meleeDamageAddition: 0
-  meleeDamageMultiplier: 0.5
+  meleeDamageMultiplier: 1
   rangedDamageAddition: 0
-  rangedDamageMultiplier: 0.5
+  rangedDamageMultiplier: 1
   meleeSizeAddition: 0.5
   meleeSizeMultiplier: 1
   rangedSpeedAddition: 0
-  rangedSpeedMultiplier: 1
+  rangedSpeedMultiplier: 1.5
   projectileLifetimeAddition: 0
   projectileLifetimeMultiplier: 1
