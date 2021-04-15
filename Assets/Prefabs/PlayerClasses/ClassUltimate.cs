@@ -12,6 +12,7 @@ public class ClassUltimate : MonoBehaviour
     private PlayerStats pStats;
     private PlayerBase pBase;
     private int savedClass = -1;
+    private float cooldown;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,7 @@ public class ClassUltimate : MonoBehaviour
                 captainUlt();
                 break;
             case 4:     //First Mate
+                mateUlt();
                 break;
             case 5:     //Swash Buckler
                 break;
@@ -86,7 +88,11 @@ public class ClassUltimate : MonoBehaviour
                 cost = 5;
                 break;
             case 4:     //First Mate
-                cost = 999;
+                if (ultStacks >= 1)
+                {
+                    return -1;
+                }
+                cost = 5;
                 break;
             case 5:     //Swash Buckler
                 cost = 999;
@@ -158,7 +164,6 @@ public class ClassUltimate : MonoBehaviour
     public void activate()
     {
         aura.gameObject.SetActive(true);
-        ultStacks++;
         switch (savedClass)
         {
             case 0:     //Test
@@ -171,6 +176,46 @@ public class ClassUltimate : MonoBehaviour
             case 3:     //Captain
                 break;
             case 4:     //First Mate
+                pStats.lockAction();
+                cooldown = 0;
+                break;
+            case 5:     //Swash Buckler
+                break;
+            case 6:     //Warrant Officer
+                break;
+        }
+
+        ultStacks++;
+    }
+
+    void Update()
+    {
+        if (ultStacks <= 0)
+        {
+            return;
+        }
+        switch (savedClass)
+        {
+            case 0:     //Test
+                break;
+            case 1:     //Brawler
+                break;
+            case 2:     //Gunner
+                break;
+            case 3:     //Captain
+                break;
+            case 4:     //First Mate
+                cooldown -= Time.deltaTime;
+                float speed = pStats.movementSpeed;
+                if (cooldown <= 0)
+                {
+                    cooldown += (.5f * 10 / speed);
+                    pStats.weaponInv.ShootAt(pBase.getCamMousePos(), true, false);
+                }
+                
+                Vector2 newVelocity = (pBase.getCamMousePos() - (Vector2)transform.position).normalized * speed * 1.5f * Time.deltaTime;
+
+                pBase.rigidBody.AddForce(newVelocity * 64);
                 break;
             case 5:     //Swash Buckler
                 break;
@@ -198,6 +243,7 @@ public class ClassUltimate : MonoBehaviour
             case 3:     //Captain
                 break;
             case 4:     //First Mate
+                pStats.unlockAction();
                 break;
             case 5:     //Swash Buckler
                 break;
@@ -238,5 +284,11 @@ public class ClassUltimate : MonoBehaviour
         SpawnPopupText("Captain's\nPride");
     }
 
+    public void mateUlt()
+    {
+        EntityAttribute act = new EntityAttribute(ENT_ATTR.ULTSTATUS, 1, 2, false, true);
+        pStats.AddAttribute(act, pStats);
+        SpawnPopupText("Berserker's\nCharge");
+    }
 
 }

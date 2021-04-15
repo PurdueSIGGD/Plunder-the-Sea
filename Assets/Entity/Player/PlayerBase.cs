@@ -25,6 +25,11 @@ public class PlayerBase : MonoBehaviour
 
     private UI_Camera cam;
     
+    public Vector2 getCamMousePos()
+    {
+        return cam.GetMousePosition();
+    }
+
     public void moveHere(Transform newPos)
     {
         this.transform.position = newPos.position;
@@ -62,16 +67,18 @@ public class PlayerBase : MonoBehaviour
     private void Update()
     {
         var inv = GetComponent<WeaponInventory>();
-        
 
-        if (Input.GetButtonDown("Fire1"))
+        if (stats.actionLock <= 0)
         {
-            inv.ShootAt(cam.GetMousePosition(), false);
-        }
+            if (Input.GetButtonDown("Fire1"))
+            {
+                inv.ShootAt(cam.GetMousePosition(), false);
+            }
 
-        if (Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.Space))
-        {
-            inv.ShootAt(cam.GetMousePosition(), true);
+            if (Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.Space))
+            {
+                inv.ShootAt(cam.GetMousePosition(), true);
+            }
         }
 
         if (Input.GetKeyDown("e"))

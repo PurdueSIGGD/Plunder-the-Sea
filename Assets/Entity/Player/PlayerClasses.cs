@@ -72,6 +72,7 @@ public class PlayerClasses : MonoBehaviour
     public float speedBoost = 2;
     private int kills = 0;
     private float killCountdown = 0;
+    private bool onChain = false;
 
     [Header("--Starting Weapons--")]
     public WeaponFactory.CLASS melee;
@@ -208,12 +209,16 @@ public class PlayerClasses : MonoBehaviour
                 killCountdown -= Time.deltaTime;
             }
             //true if on a kill chain
-            if (kills >= killRequirement)
+            if (kills >= killRequirement && !onChain)
             {
-                stats.movementSpeed = baseSpeed * speedBoost;
-            } else
+                onChain = true;
+                stats.movementSpeed *= speedBoost;
+                //stats.movementSpeed = baseSpeed * speedBoost;
+            } else if (kills < killRequirement && onChain)
             {
-                stats.movementSpeed = baseSpeed;
+                onChain = false;
+                stats.movementSpeed = stats.movementSpeed / speedBoost;
+                //stats.movementSpeed = baseSpeed;
             }
         }
     }
