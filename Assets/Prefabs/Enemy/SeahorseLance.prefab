@@ -45,8 +45,8 @@ GameObject:
   - component: {fileID: 7115942040169888260}
   - component: {fileID: 2718303086744147814}
   - component: {fileID: 818726099733396474}
-  - component: {fileID: 4553874436539418821}
   - component: {fileID: 1760924043896257557}
+  - component: {fileID: 5551326952268812665}
   m_Layer: 0
   m_Name: SeahorseLance
   m_TagString: Enemy
@@ -142,7 +142,8 @@ MonoBehaviour:
   currentHP: 10
   armorMult: 0
   armorStatic: 0
-  killRegenMult: 1
+  killRegenMult: 2
+  invulnerable: 0
   healthbar: {fileID: 2751035180489403596}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -173,20 +174,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
---- !u!114 &4553874436539418821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1760924043896257558}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6578e6fdbf2cd344083f8d8387ebfa56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myBase: {fileID: 0}
-  attackRange: 0.5
 --- !u!114 &1760924043896257557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,10 +196,28 @@ MonoBehaviour:
   anim: {fileID: 4513903146821453606}
   retreatDistance: 5
   actCooldownTime: 5
-  enemyToSpawn: {fileID: 4856430215809392895, guid: 3af6ffef36ed5a135ad8c0adb46da670, type: 3}
+  enemyToSpawn: {fileID: 8010861710391754302, guid: 9587eb74143e5bf4fb2e9b15b0f265fd, type: 3}
   numberOfEnemiesToSpawn: 3
   maxEnemiesToSpawn: 6
   retreatState: 0
+--- !u!114 &5551326952268812665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760924043896257558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 798f226d01f0c4e6484d9d395690a3d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myBase: {fileID: 0}
+  attackRange: 0.5
+  prevState: 0
+  myStateMovement: {fileID: 0}
+  sprite: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!1 &2751035179650061797
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,8 +561,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1556805819
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a7aa7b11dd6139745a1a99c7022c50dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

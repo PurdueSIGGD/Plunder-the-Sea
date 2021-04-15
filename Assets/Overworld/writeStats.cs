@@ -13,7 +13,7 @@ public class writeStats : MonoBehaviour
         if (text1)
         {
             GetComponent<Text>().text = string.Format("Dungeon Level: {0}\nTime: {1} Seconds\nKills: {2}\nTotal damage dealt: {3}\nTotal damage taken: {4}\nDied to: {5}\nClass: {6}",
-                PlayerPrefs.GetInt("Level"), ((int)(100*PlayerPrefs.GetFloat("Time")))/100f, PlayerPrefs.GetInt("Kills"), PlayerPrefs.GetInt("Damage"), PlayerPrefs.GetInt("Hurt"),
+                PlayerPrefs.GetInt("Level"), ((int)(100*PlayerPrefs.GetFloat("Time")))/100f, PlayerPrefs.GetInt("Kills"), PlayerPrefs.GetInt("Damage"), (int)PlayerPrefs.GetFloat("Hurt"),
                 PlayerPrefs.GetString("Killer"), PlayerPrefs.GetString("Class"));
         }
         else
@@ -29,6 +29,8 @@ public class writeStats : MonoBehaviour
             {
                 string tip = "Try again?";
                 string playerClass = PlayerPrefs.GetString("Class");
+                string killer = PlayerPrefs.GetString("Killer");
+                int level = PlayerPrefs.GetInt("Level");
                 if (playerClass == "Test Class")
                 {
                     tip = "The Test class is average in every way and has no special abilities, focus on dodgeing and attacking.";
@@ -53,19 +55,35 @@ public class writeStats : MonoBehaviour
                 {
                     tip = "The Warrent Officer has a chance to create chain lighting, try grouping enemies together to take them out all at once.";
                 }
-                if (PlayerPrefs.GetFloat("Time") > Mathf.Pow(PlayerPrefs.GetFloat("Level") + 1, 1.25f) * 60)
+                if (killer == "Boomfish")
                 {
-                    tip = "There is no need to do everything in a level, getting to the exit is your main goal.";
+                    tip = "The bombfish deals massive damage to the surrounding area! Get out of its range once it starts blinking.";
                 }
-                if (PlayerPrefs.GetInt("BaitLeft") > PlayerPrefs.GetInt("BaitGot")/2 && PlayerPrefs.GetInt("FishingBait") + PlayerPrefs.GetInt("WeaponBait") < PlayerPrefs.GetInt("Level")*2)
+                if (killer == "Hammerhead")
                 {
-                    tip = "Use the bait you collect from killing enemies to fish or buy new weapons.";
+                    tip = "The hammerhead cannot be damaged while spinning and reflects bullets. Quickly damage it between spins";
+                }
+                if (killer == "Swordfish Minion")
+                {
+                    tip = "Swordfish minions will keep spawning while the Seahorse Lancer is alive, make sure to take it out.";
+                }
+                if (killer == "Venom")
+                {
+                    tip = "Venom mines deal high damage over time, take them out at range or avoid them.";
                 }
                 if (playerClass == "Captain")
                 {
                     tip = "The Captain class only has one health, don't get hit and use your deadly weapons when there is an opening.";
                 }
-                if (PlayerPrefs.GetInt("Level") > 20)
+                if (PlayerPrefs.GetFloat("Time") > Mathf.Pow(level + 2, 1.25f) * 60 && level <= 10)
+                {
+                    tip = "There is no need to do everything in a level, getting to the exit is your main goal.";
+                }
+                if (PlayerPrefs.GetInt("BaitLeft") > PlayerPrefs.GetInt("BaitGot")/2 && PlayerPrefs.GetInt("FishingBait") + PlayerPrefs.GetInt("WeaponBait") < level * 2 && level > 0)
+                {
+                    tip = "Use the bait you collect from killing enemies to fish or buy new weapons.";
+                }
+                if (level > 20)
                 {
                     tip = "I have nothing left to tell you...";
                 }
