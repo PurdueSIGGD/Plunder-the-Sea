@@ -104,7 +104,7 @@ public class ClassUltimate : MonoBehaviour
                     return -1;
                 }
                 distributed = true;
-                cost = 3;
+                cost = 2;
                 break;
             default:
                 return -1;
@@ -250,9 +250,11 @@ public class ClassUltimate : MonoBehaviour
                         int saveRadius = pc.chainRadius;
                         int saveLength = pc.chainLength;
                         float saveChance = pc.chainChance;
+                        bool saveSelf = pc.selfChain;
                         pc.chainRadius = 8;
                         pc.chainLength = 8;
                         pc.chainChance = 1;
+                        pc.selfChain = true;
                         GameObject g = Instantiate(pc.lightingPrefab, transform.position, Quaternion.identity);
                         LineRenderer lr = g.GetComponent<LineRenderer>();
                         lr.SetPositions(new Vector3[] { transform.position, strike.transform.position });
@@ -262,6 +264,7 @@ public class ClassUltimate : MonoBehaviour
                         pc.chainRadius = saveRadius;
                         pc.chainLength = saveLength;
                         pc.chainChance = saveChance;
+                        pc.selfChain = saveSelf;
                     }
                 }
 
@@ -339,7 +342,7 @@ public class ClassUltimate : MonoBehaviour
 
     public void warrantUlt()
     {
-        EntityAttribute act = new EntityAttribute(ENT_ATTR.ULTSTATUS, 1, 100, false, true);
+        EntityAttribute act = new EntityAttribute(ENT_ATTR.ULTSTATUS, 1, 5, false, true);
         pStats.AddAttribute(act, pStats);
         /*
         PlayerClasses pc = GetComponent<PlayerClasses>();

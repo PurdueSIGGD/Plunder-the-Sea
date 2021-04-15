@@ -38,6 +38,7 @@ public class PlayerClasses : MonoBehaviour
 
     [Header("--Unique modifiers--")]
     public bool chainLighting = false;
+    public bool selfChain = false;
     [Range(1, 16)]
     public float lightingDamage = 4f;
     [Range(0, 1)]
@@ -303,10 +304,10 @@ public class PlayerClasses : MonoBehaviour
     }
 
     //call this when an enemy is hit/damaged
-    public void enemyHit(EnemyStats current)
+    public void enemyHit(EnemyStats curr)
     {
         //Debug.Log("Enemy got hit");
-
+        EntityStats current = curr;
         if (chainLighting && !sendingLighting)
         {
             sendingLighting = true; //stops lighting damage from spawning lighting infinitely
@@ -317,7 +318,7 @@ public class PlayerClasses : MonoBehaviour
                 //Debug.Log("Lighting should spawn");
                 
                 //create chain lighting
-                EnemyStats next = null;
+                EntityStats next = null;
                 float distance = chainRadius;
 
                 current.TakeDamage(lightingDamage, stats);
@@ -339,7 +340,21 @@ public class PlayerClasses : MonoBehaviour
                     }
                     if (next == null)
                     {
-                        break;
+                        if (selfChain)
+                        {
+                            next = stats;
+                            GameObject g = Instantiate(lightingPrefab, current.transform.position, Quaternion.identity);
+                            LineRenderer lr = g.GetComponent<LineRenderer>();
+                            lr.SetPositions(new Vector3[] { current.transform.position, next.transform.position });
+                            lr.material.SetTextureScale("_MainTex", new Vector2(Vector3.Distance(lr.GetPosition(0), lr.GetPosition(1) / lr.widthMultiplier), 1));
+                            Destroy(g, 0.5f);
+                            //next.TakeDamage(lightingDamage, stats);
+                            current = next;
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
                     else
                     {
