@@ -71,7 +71,6 @@ public class KingCrab : StateCombat
             //deal damage
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
             //debuff player
-            //do debuff
             if (playerDebuffTimer == 0.0f) {
                 PlayerStats playerStats = myBase.player.GetComponent<PlayerStats>();
                 originalPlayerSpeed = playerStats.movementSpeed;
@@ -83,6 +82,9 @@ public class KingCrab : StateCombat
         //debff enemies in range
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) {
+            if (Vector3.Distance(enemy.transform.position, transform.position) > attackRange) {
+                continue;
+            }
             //check if enemy is in debuffed enemies
             bool inDebuffedEnemies = false;
             for(int i = 0; i < debuffedEnemies.Count; i++) {
