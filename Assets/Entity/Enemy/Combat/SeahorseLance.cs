@@ -17,20 +17,4 @@ public class SeahorseLance : StateCombat
         myBase.myStats.maxHP *= 3;
         transform.localScale *= 0.75f;
     }
-
-    public override bool OnProjectileHit(Projectile hit)
-    {
-        if (myBase.myStats.elite)
-        {
-            if (hit.ProjectileType() == 2 && GetState() != (int)RetreatMovement.RetreatState.RETREATING)
-            {
-                hit.Reflect(gameObject);
-                return true;
-            }
-            return base.OnProjectileHit(hit);
-        } else
-        {
-            return base.OnProjectileHit(hit);
-        }
-    }
 }

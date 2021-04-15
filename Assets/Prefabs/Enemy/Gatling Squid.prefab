@@ -266,7 +266,7 @@ MonoBehaviour:
   maxRange: 6
   clipSize: 20
   reloadTime: 1.5
-  shotSpread: 3
+  shotSpread: 5
   searchCooldown: 0.25
   squidBullet: {fileID: 3859555663994881727, guid: af6c604faa873ae4f8de385be31b2c0a, type: 3}
 --- !u!114 &969091030422522653
