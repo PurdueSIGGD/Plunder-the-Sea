@@ -31,6 +31,10 @@ public class PlayerStats : EntityStats
     private float timeSinceLastTick = 0;
     private float timeBetweenTicks = 0.1f;
 
+    public float ammoUseChance = 1f; // 0 means no ammo usage
+    public float killRegenHealMult = 1f; // Number kill regen healing is multiplied by, capped at 2
+    public float projectileSpeedMult = 1f; // Number projectile speed is multiplied by
+
     //death stats variables
     private float levelTime;
 
@@ -63,7 +67,7 @@ public class PlayerStats : EntityStats
         this.killRegen = 0f;
 
         var pickupObj = Instantiate(healthPickupGameObj);
-        pickupObj.GetComponent<HealthPickup>().health = this.maxHP * 0.25f;
+        pickupObj.GetComponent<HealthPickup>().health = this.maxHP * 0.25f * this.killRegenHealMult;
 
         pickupObj.transform.position = transform.position;
     }

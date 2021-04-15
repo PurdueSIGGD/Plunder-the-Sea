@@ -15,11 +15,11 @@ public class Fish : MonoBehaviour
     [SerializeField]
     private float maxWaitTime;
     public int lootLevel;
-    public float[] buffs = {0f, 0f, 0f, 0f, 0f, 0f, 0f};
-    public float[] buffsMult = {0f, 0f, 0f, 0f, 0f, 0f, 0f};
+    public float[] buffs = {0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f};
+    public float[] buffsMult = {0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f};
     private float[] buffsApplied;
     public static string[] buffNames = { "Movement Speed", "HP", "Stamina", "Stamina Recharge Rate", "Melee Damage",
-        "Ranged Damage", "Armor", };
+        "Ranged Damage", "Armor", "Ammo Usage", "Regen Bar"};
     public GameObject FishingMinigame;
 
     public Sprite sprite;
@@ -49,6 +49,8 @@ public class Fish : MonoBehaviour
         player.stats.weaponInv.weaponMods.meleeDamageAddition += buffs[4];
         player.stats.weaponInv.weaponMods.rangedDamageAddition += buffs[5];
         player.stats.armorStatic += buffs[6];
+        player.stats.ammoUseChance *= buffs[7];
+        player.stats.killRegenHealMult += buffs[8];
 
         //Store temporary buffs
         buffsApplied[0] = player.stats.movementSpeed * buffsMult[0];
@@ -58,6 +60,8 @@ public class Fish : MonoBehaviour
         buffsApplied[4] = buffsMult[4];
         buffsApplied[5] = buffsMult[5];
         buffsApplied[6] = (1 - player.stats.armorMult) * buffsMult[6];
+        buffsApplied[7] = buffsMult[7];
+        buffsApplied[8] = buffsMult[8];
 
         //Apply temporary buffs
         player.stats.movementSpeed += buffsApplied[0];
@@ -69,9 +73,11 @@ public class Fish : MonoBehaviour
         player.stats.weaponInv.weaponMods.meleeDamageMultiplier += buffsApplied[4];
         player.stats.weaponInv.weaponMods.rangedDamageMultiplier += buffsApplied[5];
         player.stats.armorMult += buffsApplied[6];
+        player.stats.ammoUseChance *= buffsApplied[7];
+        player.stats.killRegenHealMult *= buffsApplied[8];
 
-        
-        for(int i = 0; i < buffs.Length; i++)
+
+        for (int i = 0; i < buffs.Length; i++)
         {
             if(buffs[i] > 0f)
             {
