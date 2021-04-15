@@ -48,6 +48,7 @@ public class ClassUltimate : MonoBehaviour
             case 5:     //Swash Buckler
                 break;
             case 6:     //Warrant Officer
+                warrantUlt();
                 break;
         }
         return true;
@@ -98,8 +99,12 @@ public class ClassUltimate : MonoBehaviour
                 cost = 999;
                 break;
             case 6:     //Warrant Officer
+                if (ultStacks >= 1)
+                {
+                    return -1;
+                }
                 distributed = true;
-                cost = 2;
+                cost = 3;
                 break;
             default:
                 return -1;
@@ -161,6 +166,7 @@ public class ClassUltimate : MonoBehaviour
         return consumed;
     }
 
+    // Gets called on adding the ULTSTATUS attribute
     public void activate()
     {
         aura.gameObject.SetActive(true);
@@ -182,12 +188,15 @@ public class ClassUltimate : MonoBehaviour
             case 5:     //Swash Buckler
                 break;
             case 6:     //Warrant Officer
+                cooldown = 0;
                 break;
         }
 
         ultStacks++;
     }
 
+    // Only does something if at least one ULTSTATUS in effect
+    // and that specific class performs specialized actions during effect
     void Update()
     {
         if (ultStacks <= 0)
@@ -220,10 +229,47 @@ public class ClassUltimate : MonoBehaviour
             case 5:     //Swash Buckler
                 break;
             case 6:     //Warrant Officer
+                cooldown -= Time.deltaTime;
+                if (cooldown <= 0)
+                {
+                    cooldown += .25f;
+                    float distance = 8;
+                    EnemyStats strike = null;
+                    foreach (EnemyStats es in FindObjectsOfType<EnemyStats>())
+                    {
+                        float distPlaceholder = Vector2.Distance(transform.position, es.transform.position);
+                        if (distPlaceholder < distance)
+                        {
+                            strike = es;
+                            distance = distPlaceholder;
+                        }
+                    }
+                    if (strike != null)
+                    {
+                        PlayerClasses pc = GetComponent<PlayerClasses>();
+                        int saveRadius = pc.chainRadius;
+                        int saveLength = pc.chainLength;
+                        float saveChance = pc.chainChance;
+                        pc.chainRadius = 8;
+                        pc.chainLength = 8;
+                        pc.chainChance = 1;
+                        GameObject g = Instantiate(pc.lightingPrefab, transform.position, Quaternion.identity);
+                        LineRenderer lr = g.GetComponent<LineRenderer>();
+                        lr.SetPositions(new Vector3[] { transform.position, strike.transform.position });
+                        lr.material.SetTextureScale("_MainTex", new Vector2(Vector3.Distance(lr.GetPosition(0), lr.GetPosition(1) / lr.widthMultiplier), 1));
+                        Destroy(g, 0.5f);
+                        pc.enemyHit(strike);
+                        pc.chainRadius = saveRadius;
+                        pc.chainLength = saveLength;
+                        pc.chainChance = saveChance;
+                    }
+                }
+
                 break;
         }
     }
 
+    // gets called on removing the ULTSTATUS attribute
     public void deactivate()
     {
         if (!pStats.ContainsAttribute(ENT_ATTR.ULTSTATUS))
@@ -289,6 +335,36 @@ public class ClassUltimate : MonoBehaviour
         EntityAttribute act = new EntityAttribute(ENT_ATTR.ULTSTATUS, 1, 2, false, true);
         pStats.AddAttribute(act, pStats);
         SpawnPopupText("Berserker's\nCharge");
+    }
+
+    public void warrantUlt()
+    {
+        EntityAttribute act = new EntityAttribute(ENT_ATTR.ULTSTATUS, 1, 100, false, true);
+        pStats.AddAttribute(act, pStats);
+        /*
+        PlayerClasses pc = GetComponent<PlayerClasses>();
+        int saveRadius = pc.chainRadius;
+        int saveLength = pc.chainLength;
+        float saveChance = pc.chainChance;
+        pStats.lockAction();
+        pc.chainRadius = 8;
+        pc.chainLength = 8;
+        pc.chainChance = 1;
+        foreach (EnemyStats es in FindObjectsOfType<EnemyStats>())
+        {
+            float distance = Vector2.Distance(transform.position, es.transform.position);
+            if (distance <= 8)
+            {
+                pc.enemyHit(es);
+            }
+        }
+
+        pc.chainRadius = saveRadius;
+        pc.chainLength = saveLength;
+        pc.chainChance = saveChance;
+        pStats.unlockAction();
+        */
+        SpawnPopupText("Lightning\nLord");
     }
 
 }

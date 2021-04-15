@@ -324,6 +324,7 @@ public class PlayerClasses : MonoBehaviour
 
                 for (int i = 0; i < chainLength; i++)
                 {
+                    distance = chainRadius;
                     foreach (EnemyStats es in FindObjectsOfType<EnemyStats>())
                     {
                         if (current != es)
