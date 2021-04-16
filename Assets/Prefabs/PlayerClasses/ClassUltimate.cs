@@ -46,6 +46,7 @@ public class ClassUltimate : MonoBehaviour
                 mateUlt();
                 break;
             case 5:     //Swash Buckler
+                swashUlt();
                 break;
             case 6:     //Warrant Officer
                 warrantUlt();
@@ -71,7 +72,7 @@ public class ClassUltimate : MonoBehaviour
                     return -1;
                 }
                 distributed = true;
-                cost = 2;
+                cost = 1;
                 break;
             case 2:     //Gunner
                 if (pStats.ammo >= pStats.maxAmmo)
@@ -96,7 +97,7 @@ public class ClassUltimate : MonoBehaviour
                 cost = 5;
                 break;
             case 5:     //Swash Buckler
-                cost = 999;
+                cost = 5;
                 break;
             case 6:     //Warrant Officer
                 if (ultStacks >= 1)
@@ -104,7 +105,7 @@ public class ClassUltimate : MonoBehaviour
                     return -1;
                 }
                 distributed = true;
-                cost = 2;
+                cost = 1;
                 break;
             default:
                 return -1;
@@ -338,6 +339,32 @@ public class ClassUltimate : MonoBehaviour
         EntityAttribute act = new EntityAttribute(ENT_ATTR.ULTSTATUS, 1, 2, false, true);
         pStats.AddAttribute(act, pStats);
         SpawnPopupText("Berserker's\nCharge");
+    }
+
+    public void swashUlt()
+    {
+        EntityAttribute act = new EntityAttribute(ENT_ATTR.ULTSTATUS, 1, .2f, false, true);
+        pStats.AddAttribute(act, pStats);
+
+        pStats.lockAction();
+        pStats.weaponInv.ShootAt(pBase.getCamMousePos(), false, false);
+        int mask = LayerMask.GetMask("Wall");
+        float maxDist = 3;
+        Vector2 playerPos = (Vector2)transform.position;
+        Vector2 dir = pBase.getCamMousePos() - playerPos;
+        RaycastHit2D hit = Physics2D.Raycast(playerPos, dir, maxDist, mask);
+        Vector2 tp = playerPos + maxDist * dir.normalized;
+        if (hit.collider != null)
+        {
+            tp = playerPos + hit.distance * dir.normalized;
+        }
+        transform.position = tp;
+        pStats.weaponInv.ShootAt(pBase.getCamMousePos(), true, false);
+        pStats.weaponInv.ShootAt(2*playerPos - pBase.getCamMousePos(), false, false);
+        pStats.unlockAction();
+
+
+        SpawnPopupText("Nothin\nPersonal");
     }
 
     public void warrantUlt()
