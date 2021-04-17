@@ -99,12 +99,26 @@ public class StateMovement : EnemyMovement
         PriorityQueue frontier = new PriorityQueue();
         Vector2 myPos = centerVector(myBase.myRigid.position);
         Vector2 playerPos = centerVector(myBase.player.transform.position);
+
+        //Adjust enemy and player position so that player/enemy not located inside 2.5D wall
+        RaycastHit2D wallStartCheck = Physics2D.Raycast(myPos + Vector2.down * .2f, Vector2.up, .4f, LayerMask.GetMask("Wall"));
+        if (wallStartCheck.collider != null)
+        {
+            myPos = myPos + Vector2.down;
+        }
+        wallStartCheck = Physics2D.Raycast(playerPos + Vector2.down * .2f, Vector2.up, .4f, LayerMask.GetMask("Wall"));
+        if (wallStartCheck.collider != null)
+        {
+            playerPos = playerPos + Vector2.down;
+        }
+
         PathAction startAct = new PathAction(new Vector2(myPos.x, myPos.y), null, new MoveAction(Vector2.zero, 0));
         pathMap.Add(myPos, startAct);
         //frontier.Enqueue(startAct);
         frontier.Push(startAct);
         ContactFilter2D filter = new ContactFilter2D();
         filter.SetLayerMask(1 << 8);
+        
         //Debug.Log("Start: " + myPos);
         MoveAction[] nextMoves = MoveSets.getDirections(moveTypes);
 
@@ -213,6 +227,11 @@ public class StateMovement : EnemyMovement
 
     public void StunState()
     {
+        if (GetState() == -1)
+        {
+            //already stunned
+            return;
+        }
         saveState = GetState();
         myBase.myRigid.velocity = Vector2.zero;
         SetState(-1);
