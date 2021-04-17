@@ -679,11 +679,13 @@ MonoBehaviour:
   armorMult: 0
   armorStatic: 0
   killRegenMult: 1
+  invulnerable: 0
   healthbar: {fileID: 2134582189148777008}
   lastHitAmmoAddition: 0
   baitInventory: {fileID: 0}
   appliedStats: []
   healthPickupGameObj: {fileID: 6062236654396820198, guid: b5c31f18ad4a0d842921ebed85f2c883, type: 3}
+  pbase: {fileID: 0}
   weaponInv: {fileID: 0}
   dungeonLevel: 0
   staminaMax: 100
@@ -693,6 +695,7 @@ MonoBehaviour:
   ammoBar: {fileID: 5162300123934723916}
   killRegen: 0
   killRegenBar: {fileID: 5179979691210981598}
+  actionLock: 0
 --- !u!50 &7045101813800168214
 Rigidbody2D:
   serializedVersion: 4
@@ -733,6 +736,7 @@ MonoBehaviour:
   castingDistance: 7
   castSound: {fileID: 8300000, guid: 245abcbdaf2751045b746e62bfbbdd4c, type: 3}
   reelSound: {fileID: 8300000, guid: f0e865632dc494d4b88bf4e94f0bdbb2, type: 3}
+  gameActive: 0
 --- !u!114 &7045101813800168173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -818,6 +822,7 @@ MonoBehaviour:
   proficiency: 1
   classSprite: {fileID: 0}
   chainLighting: 0
+  selfChain: 0
   lightingDamage: 4
   chainChance: 0.5
   chainLength: 4
@@ -901,6 +906,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aura: {fileID: 5904103875300404184}
+  smokeBomb: {fileID: 2808827960982064107, guid: 4a09629e7d99a524ca435ebcaf3f9e9f, type: 3}
+  ultStacks: 0
   PopupText: {fileID: 8301900203683361838, guid: 4076be98edaf0a34899eab518a650843, type: 3}
 --- !u!1 &7358381538591861277
 GameObject:

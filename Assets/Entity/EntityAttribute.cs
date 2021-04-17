@@ -13,7 +13,8 @@ public enum ENT_ATTR
     TOTAL_STATS,    
     REGEN,          // Heals "value" amount (ratio) of the target's max health per second.
     INVULNERABLE,   // The target is immune to damage while this effect is active. When it completes, it removes damage over time debuffs.
-    ULTSTATUS       // Placed on player when ult in effect
+    ULTSTATUS,      // Placed on player when ult in effect
+    STUN,           // Prevents actions of the affected entity
 };
 [System.Serializable]
 public class EntityAttribute
@@ -91,6 +92,20 @@ public class EntityAttribute
                 return;
             case ENT_ATTR.INVULNERABLE:
                 owner.invulnerable = true;
+                return;
+            case ENT_ATTR.STUN:
+                if (player)
+                {
+                    player.lockAction();
+                }
+                else
+                {
+                    StateMovement stateMove = owner.GetComponent<StateMovement>();
+                    if (stateMove)
+                    {
+                        stateMove.StunState();
+                    }
+                }
                 return;
         }
 
@@ -183,6 +198,20 @@ public class EntityAttribute
                     owner.RemoveAttributesByType(ENT_ATTR.POISON);
                 }
                 owner.invulnerable = false;
+                return;
+            case ENT_ATTR.STUN:
+                if (player)
+                {
+                    player.unlockAction();
+                }
+                else
+                {
+                    StateMovement stateMove = owner.GetComponent<StateMovement>();
+                    if (stateMove)
+                    {
+                        stateMove.RestoreState();
+                    }
+                }
                 return;
         }
 

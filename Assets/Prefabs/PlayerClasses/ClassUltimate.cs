@@ -5,6 +5,7 @@ using UnityEngine;
 public class ClassUltimate : MonoBehaviour
 {
     public SpriteRenderer aura;
+    public GameObject smokeBomb;
     [HideInInspector]
     public int ultStacks = 0;
     [SerializeField]
@@ -347,11 +348,13 @@ public class ClassUltimate : MonoBehaviour
         pStats.AddAttribute(act, pStats);
 
         pStats.lockAction();
-        pStats.weaponInv.ShootAt(pBase.getCamMousePos(), false, false);
+        //pStats.weaponInv.ShootAt(pBase.getCamMousePos(), false, false);
         int mask = LayerMask.GetMask("Wall");
         float maxDist = 3;
         Vector2 playerPos = (Vector2)transform.position;
         Vector2 dir = pBase.getCamMousePos() - playerPos;
+        GameObject bomb = Instantiate(smokeBomb, transform.position, Quaternion.identity);
+        bomb.GetComponent<Projectile>().SetSource(pBase.gameObject);
         RaycastHit2D hit = Physics2D.Raycast(playerPos, dir, maxDist, mask);
         Vector2 tp = playerPos + maxDist * dir.normalized;
         if (hit.collider != null)

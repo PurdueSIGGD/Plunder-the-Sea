@@ -15,6 +15,7 @@ public class StateMovement : EnemyMovement
     public float targetProximity = 0;
     private float lastRefresh = -Mathf.Infinity;
     private int actionLock = 0;
+    private int saveState;
 
     // One-liner for distance from the player
     public float PlayerDistance()
@@ -208,6 +209,18 @@ public class StateMovement : EnemyMovement
     public virtual void SetState(int newState)
     {
         return;
+    }
+
+    public void StunState()
+    {
+        saveState = GetState();
+        myBase.myRigid.velocity = Vector2.zero;
+        SetState(-1);
+    }
+
+    public void RestoreState()
+    {
+        SetState(saveState);
     }
 }
 
