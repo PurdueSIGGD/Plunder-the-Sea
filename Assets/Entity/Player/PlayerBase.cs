@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -21,11 +22,44 @@ public class PlayerBase : MonoBehaviour
     [SerializeField]
     private bool keep = true;
 
+    private bool fadeIn = true;
+    [SerializeField]
+    private Image fader;
+    [SerializeField]
+    private GameObject fadeCanvas;
+    [SerializeField]
+    private Text levelText;
+
     private UI_Camera cam;
     
     public void moveHere(Transform newPos)
     {
         this.transform.position = newPos.position;
+        StartCoroutine("loadIn");
+    }
+
+    public IEnumerator loadIn()
+    {
+        fadeIn = true;
+        fadeCanvas.SetActive(true);
+        fader.color = Color.black;
+        if (keep)
+        {
+            if (!stats)
+            {
+                stats = GetComponent<PlayerStats>();
+            }
+            if (!FindObjectOfType<yPositionLayering>()) {
+                levelText.text = string.Format("Level  {0}", stats.dungeonLevel + 1);
+            } else
+            {
+                levelText.text = string.Format("Overworld  {0}", stats.dungeonLevel + 1);
+            }
+        } else {
+            levelText.text = "Tutorial";
+        }
+        yield return new WaitForSeconds(5f);
+        fadeCanvas.SetActive(false);
     }
 
     private void Awake()
@@ -38,6 +72,9 @@ public class PlayerBase : MonoBehaviour
                 player.GetComponent<PlayerBase>().moveHere(this.transform);
             }
             Destroy(this.gameObject);
+        } else
+        {
+            StartCoroutine("loadIn");
         }
         if (keep)
         {
@@ -60,6 +97,14 @@ public class PlayerBase : MonoBehaviour
     {
         var inv = GetComponent<WeaponInventory>();
         
+        if (fadeIn)
+        {
+            fader.color = new Color(0, 0, 0, (fader.color.a-Time.deltaTime/3));
+            if (fader.color.a <= 0)
+            {
+                fadeIn = false;
+            }
+        }
 
         if (Input.GetButtonDown("Fire1"))
         {
