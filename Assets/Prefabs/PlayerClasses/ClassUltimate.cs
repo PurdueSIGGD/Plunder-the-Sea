@@ -355,11 +355,13 @@ public class ClassUltimate : MonoBehaviour
         Vector2 dir = pBase.getCamMousePos() - playerPos;
         GameObject bomb = Instantiate(smokeBomb, transform.position, Quaternion.identity);
         bomb.GetComponent<Projectile>().SetSource(pBase.gameObject);
-        RaycastHit2D hit = Physics2D.Raycast(playerPos, dir, maxDist, mask);
+        CapsuleCollider2D coll = GetComponent<CapsuleCollider2D>();
+        RaycastHit2D hit = Physics2D.CapsuleCast(playerPos + coll.offset, coll.size, CapsuleDirection2D.Vertical, 0, dir, maxDist, mask);
         Vector2 tp = playerPos + maxDist * dir.normalized;
         if (hit.collider != null)
         {
-            tp = playerPos + hit.distance * dir.normalized;
+            tp = hit.centroid;
+            //tp = playerPos + hit.distance * dir.normalized;
         }
         transform.position = tp;
         pStats.weaponInv.ShootAt(pBase.getCamMousePos(), true, false);
