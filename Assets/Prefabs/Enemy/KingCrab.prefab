@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 5551644746812117821}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2278055637480694136
+--- !u!1 &1849959512988996866
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39,44 +39,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2278055637480694082}
-  - component: {fileID: 2278055637480694083}
-  - component: {fileID: 2278055637480694140}
-  - component: {fileID: 2278055637480694141}
-  - component: {fileID: 7290675836261607274}
-  - component: {fileID: 2473622846992419336}
-  - component: {fileID: 914788804027393684}
-  - component: {fileID: 2278055637480694138}
-  - component: {fileID: 2278055637480694137}
+  - component: {fileID: 4869782706848006179}
+  - component: {fileID: 7877303461921926446}
+  - component: {fileID: 4632233198851556698}
   m_Layer: 0
-  m_Name: KingCrab
-  m_TagString: Enemy
+  m_Name: Sprite
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2278055637480694082
+--- !u!4 &4869782706848006179
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2278055637480694136}
+  m_GameObject: {fileID: 1849959512988996866}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.3, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
-  m_Children:
-  - {fileID: 5551644746812117821}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2278055637480694082}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2278055637480694083
+--- !u!212 &7877303461921926446
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2278055637480694136}
+  m_GameObject: {fileID: 1849959512988996866}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -110,17 +103,75 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0.735849, g: 0.14244057, b: 0.062477764, a: 1}
+  m_Sprite: {fileID: 21300000, guid: fb501bdd2e37bd74dadd2d1e1c1a379f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4632233198851556698
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849959512988996866}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 17fce956dd302d44c808a8c0ea6faade, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &2278055637480694136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2278055637480694082}
+  - component: {fileID: 2278055637480694140}
+  - component: {fileID: 2278055637480694141}
+  - component: {fileID: 7290675836261607274}
+  - component: {fileID: 2473622846992419336}
+  - component: {fileID: 914788804027393684}
+  - component: {fileID: 2278055637480694138}
+  - component: {fileID: 3294747347806838126}
+  m_Layer: 0
+  m_Name: KingCrab
+  m_TagString: Enemy
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2278055637480694082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2278055637480694136}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.3, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_Children:
+  - {fileID: 5551644746812117821}
+  - {fileID: 4869782706848006179}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &2278055637480694140
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -136,7 +187,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.4
 --- !u!50 &2278055637480694141
 Rigidbody2D:
   serializedVersion: 4
@@ -187,12 +238,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09ab1ea068274d69a030af1a1ff03d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  displayName: 
   movementSpeed: 1
   maxHP: 100
   currentHP: 100
   armorMult: 0
   armorStatic: 0
   killRegenMult: 1
+  invulnerable: 0
   healthbar: {fileID: 2432202686587859362}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -222,7 +275,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!114 &2278055637480694138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,11 +294,11 @@ MonoBehaviour:
   pathingRefresh: 0.25
   maxDist: 10
   targetProximity: 0
-  approachDistance: 0.5
+  approachDistance: 1.25
   actChargeUpTime: 1
   actCooldownTime: 1
   approachState: 0
---- !u!114 &2278055637480694137
+--- !u!114 &3294747347806838126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -254,13 +307,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2278055637480694136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bac2061f656cfc0c913d93f52b878eb, type: 3}
+  m_Script: {fileID: 11500000, guid: 2ba45eea8abd99f43b3c6255ec5e1931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
-  attackRange: 1
+  attackRange: 1.25
   prevState: 0
   myStateMovement: {fileID: 0}
+  sprite: {fileID: 7877303461921926446}
+  anim: {fileID: 4632233198851556698}
   playerDebuffTime: 5
   playerDebuffAmount: 5
   enemyDebuffTime: 5
@@ -567,7 +622,7 @@ RectTransform:
   m_GameObject: {fileID: 5551644746812117820}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_Children:
   - {fileID: 5346910584961420215}
   m_Father: {fileID: 2278055637480694082}
@@ -575,7 +630,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.3}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5551644746812117808

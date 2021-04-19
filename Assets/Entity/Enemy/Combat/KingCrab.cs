@@ -27,13 +27,17 @@ public class KingCrab : StateCombat
         if (current == activating && charging == false) {
             charging = true;
             Debug.Log("Charging up attack!");
+            anim.SetInteger("State", 1);
         }
         if (current == cooldown) {
             if (charging == true) {
                 charging = false;
                 smash();
             }
-
+        }
+        if (current == approaching)
+        {
+            anim.SetInteger("State", 0);
         }
         //check if playerDebuffTimer has run out
         if (playerDebuffTimer != 0 && OnTarget(playerDebuffTimer)) {
