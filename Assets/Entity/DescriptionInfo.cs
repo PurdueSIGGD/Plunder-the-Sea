@@ -5,6 +5,13 @@ using UnityEngine.EventSystems;
 
 public class DescriptionInfo : MonoBehaviour, IPointerEnterHandler
 {
+
+    [SerializeField]
+    private string name;
+
+    [SerializeField]
+    private string buff;
+
     [TextArea]
     public string description;
     private PlayerInventory pInv;
@@ -23,7 +30,13 @@ public class DescriptionInfo : MonoBehaviour, IPointerEnterHandler
         {
             return;
         }
-        pInv.Description.text = description;
+        pInv.fishName.text = name;
+        pInv.fishImage.sprite = GetComponent<SpriteRenderer>().sprite;
+        pInv.fishBait.sprite = pInv.baitImages[GetComponent<Fish>().preferredBaitType];
+        pInv.fishDescription.text = description;
+        pInv.invCounter = 12;
+        pInv.fishBuffName.text = buff;
+        pInv.fishFrame.SetActive(true);
     }
 
     // Start is called before the first frame update

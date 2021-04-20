@@ -28,7 +28,23 @@ public class PlayerInventory : MonoBehaviour
     public Text meleeDamLabel;
     public Text rangeDamLabel;
     public Text armorLabel;
-    public Text Description;
+
+    public GameObject weaponFrame;
+    public Text weaponName;
+    public Text weaponPrice;
+    public Image weaponBait;
+    public Text weaponDescription;
+
+    public GameObject fishFrame;
+    public Text fishName;
+    public Text fishBuffName;
+    public Image fishImage;
+    public Image fishBait;
+    public Text fishDescription;
+
+    public Sprite[] baitImages;
+
+    public float invCounter = 0;
 
     //death stats variables
     public int baitsGot = 0;
@@ -43,7 +59,7 @@ public class PlayerInventory : MonoBehaviour
         baitText[0].color = Color.red;
         for (int i = 0; i < baitTypes.Length; i++)
         {
-            baitText[i].text = "Bait " + (i + 1).ToString() + ": " + baitTypes[i].ToString();
+            baitText[i].text = baitTypes[i].ToString();
         }
         pBase = GetComponentInParent<PlayerBase>();
         weapInv = GetComponentInParent<WeaponInventory>();
@@ -143,6 +159,15 @@ public class PlayerInventory : MonoBehaviour
                 rangeDamLabel.color = pBase.stats.appliedStats[5] > 0 ? Color.green : Color.white;
                 armorLabel.color = pBase.stats.appliedStats[6] > 0 ? Color.green : Color.white;
             }
+
+            if (invCounter > 0)
+            {
+                invCounter -= Time.deltaTime;
+            } else
+            {
+                weaponFrame.SetActive(false);
+                fishFrame.SetActive(false);
+            }
         }
     }
 
@@ -171,14 +196,14 @@ public class PlayerInventory : MonoBehaviour
     public void addBait(int arrayIndex, int baitAmount = 1)
     {
         baitTypes[arrayIndex] = baitTypes[arrayIndex] + baitAmount;
-        baitText[arrayIndex].text = "Bait " + (arrayIndex + 1).ToString() + ": " + baitTypes[arrayIndex].ToString();
+        baitText[arrayIndex].text = baitTypes[arrayIndex].ToString();
         baitsGot += baitAmount;
     }
 
     public void removeBait(int arrayIndex, int baitAmount = 1)
     {
         baitTypes[arrayIndex] = baitTypes[arrayIndex] - baitAmount;
-        baitText[arrayIndex].text = "Bait " + (arrayIndex + 1).ToString() + ": " + baitTypes[arrayIndex].ToString();
+        baitText[arrayIndex].text = baitTypes[arrayIndex].ToString();
     }
 
     public void flushBait()
@@ -187,7 +212,7 @@ public class PlayerInventory : MonoBehaviour
         for (int i = 0; i < baitTypes.Length; i++)
         {
             baitTypes[i] = 0;
-            baitText[i].text = "Bait " + (i + 1).ToString() + ": " + 0.ToString();
+            baitText[i].text = 0.ToString();
         }
         
     }
