@@ -7,7 +7,6 @@ using UnityEngine;
 // Utility subclass for state-driven enemy movement
 public class StateMovement : EnemyMovement
 {
-
     public MoveSets.MoveTypes[] moveTypes = { MoveSets.MoveTypes.Rook, MoveSets.MoveTypes.Bishop };
     public LinkedList<MoveAction> moveActions;
     public float pathingRefresh = .25f;
@@ -16,6 +15,7 @@ public class StateMovement : EnemyMovement
     private float lastRefresh = -Mathf.Infinity;
     private int actionLock = 0;
     private int saveState;
+    private bool saveMoving;
 
     // One-liner for distance from the player
     public float PlayerDistance()
@@ -235,11 +235,14 @@ public class StateMovement : EnemyMovement
         saveState = GetState();
         myBase.myRigid.velocity = Vector2.zero;
         SetState(-1);
+        saveMoving = moving;
+        moving = false;
     }
 
-    public void RestoreState()
+    public virtual void RestoreState()
     {
         SetState(saveState);
+        moving = saveMoving;
     }
 }
 
