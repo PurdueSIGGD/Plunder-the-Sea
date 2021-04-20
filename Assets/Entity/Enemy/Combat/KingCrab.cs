@@ -17,9 +17,18 @@ public class KingCrab : StateCombat
     float playerDebuffTimer = 0.0f;
     float originalPlayerSpeed = 0.0f;
 
+    public EntityAttribute speedDebuff;
+
     List<Debuff> debuffedEnemies = new List<Debuff>();
 
     bool charging = false;
+
+    public override void CombatStart()
+    {
+        base.CombatStart();
+        speedDebuff = new EntityAttribute(ENT_ATTR.MOVESPEED, 0.5f, playerDebuffTime, false, false, "King's Slam");
+    }
+
     void Update()
     {
         int current = GetState();
@@ -39,26 +48,26 @@ public class KingCrab : StateCombat
         {
             anim.SetInteger("State", 0);
         }
-        //check if playerDebuffTimer has run out
-        if (playerDebuffTimer != 0 && OnTarget(playerDebuffTimer)) {
-            PlayerStats playerStats = myBase.player.GetComponent<PlayerStats>();
-            playerStats.movementSpeed = originalPlayerSpeed;
-            playerDebuffTimer = 0.0f;
-        }
-        //check if any debuffs have run out or if any enemies have died
-        for(int i = 0; i < debuffedEnemies.Count; i++) {
-            Debuff debuff = debuffedEnemies[i];
-            if (debuff.gameObject == null || OnTarget(debuff.time)) {
-                //if enemy is still alive then set damage back to normal
-                if (debuff.gameObject != null) {
-                    EnemyStats enemyStats = debuff.gameObject.GetComponent<EnemyStats>();
-                    enemyStats.damage = debuff.originalDamage;
-                }
-                //remove debuff 
-                debuffedEnemies.RemoveAt(i);
-                i--;
-            }
-        }
+        ////check if playerDebuffTimer has run out
+        //if (playerDebuffTimer != 0 && OnTarget(playerDebuffTimer)) {
+        //    PlayerStats playerStats = myBase.player.GetComponent<PlayerStats>();
+        //    playerStats.movementSpeed = originalPlayerSpeed;
+        //    playerDebuffTimer = 0.0f;
+        //}
+        ////check if any debuffs have run out or if any enemies have died
+        //for(int i = 0; i < debuffedEnemies.Count; i++) {
+        //    Debuff debuff = debuffedEnemies[i];
+        //    if (debuff.gameObject == null || OnTarget(debuff.time)) {
+        //        //if enemy is still alive then set damage back to normal
+        //        if (debuff.gameObject != null) {
+        //            EnemyStats enemyStats = debuff.gameObject.GetComponent<EnemyStats>();
+        //            enemyStats.damage = debuff.originalDamage;
+        //        }
+        //        //remove debuff 
+        //        debuffedEnemies.RemoveAt(i);
+        //        i--;
+        //    }
+        //}
 
         
     }
@@ -75,12 +84,13 @@ public class KingCrab : StateCombat
             //deal damage
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
             //debuff player
-            if (playerDebuffTimer == 0.0f) {
-                PlayerStats playerStats = myBase.player.GetComponent<PlayerStats>();
-                originalPlayerSpeed = playerStats.movementSpeed;
-                playerStats.movementSpeed -= playerDebuffAmount;
-                playerDebuffTimer = SetTarget(playerDebuffTime);
-            }
+            myBase.player.GetComponent<PlayerStats>().AddAttribute(speedDebuff, myBase.myStats);
+            //if (playerDebuffTimer == 0.0f) {
+            //    PlayerStats playerStats = myBase.player.GetComponent<PlayerStats>();
+            //    originalPlayerSpeed = playerStats.movementSpeed;
+            //    playerStats.movementSpeed -= playerDebuffAmount;
+            //    playerDebuffTimer = SetTarget(playerDebuffTime);
+            //}
         }
         
         //debff enemies in range
@@ -89,31 +99,32 @@ public class KingCrab : StateCombat
             if (Vector3.Distance(enemy.transform.position, transform.position) > attackRange) {
                 continue;
             }
-            //check if enemy is in debuffed enemies
-            bool inDebuffedEnemies = false;
-            for(int i = 0; i < debuffedEnemies.Count; i++) {
-                Debuff debuff = debuffedEnemies[i];
-                //if enemy is dead then remove debuff and continue
-                if (debuff.gameObject == null) {
-                    debuffedEnemies.RemoveAt(i);
-                    i--;
-                    continue;
-                }
-                //if enemy is in debuffed enemies then update debuff
-                if (debuff.gameObject.Equals(enemy)) {
-                    inDebuffedEnemies = true;
-                    debuff.time = SetTarget(enemyDebuffTime);
-                    //don't currently stack debuffs although this could change later
-                    break;
-                }
-            }
-            //if enemy is not in debuffed enemies then add it and debuff the enemy
-            if (!inDebuffedEnemies) {
-                EnemyStats enemyStats = enemy.GetComponent<EnemyStats>();
-                Debuff newDebuffedEnemy = new Debuff(SetTarget(enemyDebuffTime), enemyStats.damage, enemy);
-                enemyStats.damage -= enemyDebuffAmount;
-                debuffedEnemies.Add(newDebuffedEnemy);
-            }
+            ////check if enemy is in debuffed enemies
+            //bool inDebuffedEnemies = false;
+            //for(int i = 0; i < debuffedEnemies.Count; i++) {
+            //    Debuff debuff = debuffedEnemies[i];
+            //    //if enemy is dead then remove debuff and continue
+            //    if (debuff.gameObject == null) {
+            //        debuffedEnemies.RemoveAt(i);
+            //        i--;
+            //        continue;
+            //    }
+            //    //if enemy is in debuffed enemies then update debuff
+            //    if (debuff.gameObject.Equals(enemy)) {
+            //        inDebuffedEnemies = true;
+            //        debuff.time = SetTarget(enemyDebuffTime);
+            //        //don't currently stack debuffs although this could change later
+            //        break;
+            //    }
+            //}
+            ////if enemy is not in debuffed enemies then add it and debuff the enemy
+            //if (!inDebuffedEnemies) {
+            //    EnemyStats enemyStats = enemy.GetComponent<EnemyStats>();
+            //    Debuff newDebuffedEnemy = new Debuff(SetTarget(enemyDebuffTime), enemyStats.damage, enemy);
+            //    enemyStats.damage -= enemyDebuffAmount;
+            //    debuffedEnemies.Add(newDebuffedEnemy);
+            //}
+            enemy.GetComponent<EnemyStats>().AddAttribute(speedDebuff, myBase.myStats);
         }
         
 
