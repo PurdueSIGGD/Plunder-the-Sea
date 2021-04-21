@@ -1,5 +1,87 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &365819705700967929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7230752010853460496}
+  - component: {fileID: 5904103875300404184}
+  m_Layer: 0
+  m_Name: Aura
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7230752010853460496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365819705700967929}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.048000008, z: 0}
+  m_LocalScale: {x: 5, y: 10, z: 1}
+  m_Children: []
+  m_Father: {fileID: -4332445788766981374}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &5904103875300404184
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365819705700967929}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -1
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 0.9811321, g: 0.9638988, b: 0.02468249, a: 0.5647059}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.25, y: 0.25}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &820964081554628507
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,7 +112,7 @@ Transform:
   - {fileID: 423145108869536366}
   - {fileID: 6455462690745413404}
   m_Father: {fileID: -4332445788766981374}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1483882055083211458
 GameObject:
@@ -165,7 +247,7 @@ Transform:
   - {fileID: 7346052136493993791}
   - {fileID: 4856772016192148315}
   m_Father: {fileID: -4332445788766981374}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3785574946696609986
 GameObject:
@@ -391,6 +473,7 @@ GameObject:
   - component: {fileID: 294607765}
   - component: {fileID: 294607770}
   - component: {fileID: 8485961227986367599}
+  - component: {fileID: 4135740923892848364}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -413,6 +496,7 @@ Transform:
   - {fileID: 1229625747266313565}
   - {fileID: 1967557275858959617}
   - {fileID: 7062255694859361496}
+  - {fileID: 7230752010853460496}
   - {fileID: 186918889189370870}
   - {fileID: 2485110098029214109}
   m_Father: {fileID: 0}
@@ -443,6 +527,7 @@ MonoBehaviour:
   baitInventory: {fileID: 0}
   appliedStats: []
   healthPickupGameObj: {fileID: 6062236654396820198, guid: b5c31f18ad4a0d842921ebed85f2c883, type: 3}
+  pbase: {fileID: 0}
   weaponInv: {fileID: 0}
   dungeonLevel: 0
   staminaMax: 100
@@ -452,6 +537,7 @@ MonoBehaviour:
   ammoBar: {fileID: 5162300123934723916}
   killRegen: 0
   killRegenBar: {fileID: 5179979691210981598}
+  actionLock: 0
 --- !u!50 &7045101813800168214
 Rigidbody2D:
   serializedVersion: 4
@@ -545,6 +631,7 @@ MonoBehaviour:
   movement: {fileID: 0}
   stats: {fileID: 0}
   fishing: {fileID: 0}
+  classUlt: {fileID: 0}
   playerInventory: {fileID: 9221751412264514575}
   keep: 1
   fader: {fileID: 1603701631468041497}
@@ -580,6 +667,7 @@ MonoBehaviour:
   proficiency: 1
   classSprite: {fileID: 0}
   chainLighting: 0
+  selfChain: 0
   lightingDamage: 4
   chainChance: 0.5
   chainLength: 4
@@ -650,6 +738,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 1
+--- !u!114 &4135740923892848364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7045101813800168174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 271bad5fb402d88468638fbd7ae54c45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aura: {fileID: 5904103875300404184}
+  smokeBomb: {fileID: 2808827960982064107, guid: 4a09629e7d99a524ca435ebcaf3f9e9f, type: 3}
+  ultStacks: 0
+  PopupText: {fileID: 8301900203683361838, guid: 4076be98edaf0a34899eab518a650843, type: 3}
 --- !u!1 &7358381538591861277
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ public class PopupTextScript : MonoBehaviour
         }
         else
         {
-            transform.position = new Vector3(transform.position.x, transform.position.y + driftAmount, 0);
+            transform.position = new Vector3(transform.position.x, transform.position.y + driftAmount, transform.position.z);
         }
     }
 }

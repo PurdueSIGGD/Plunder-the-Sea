@@ -149,12 +149,12 @@ public class WeaponInventory : MonoBehaviour
         }
         return rangedWeaponSpritesTable.get(this.rangedWeaponClass);
     }
-    public bool ShootAt(Vector2 position, bool isMelee)
+    public bool ShootAt(Vector2 position, bool isMelee, bool checkCost = true)
     {
         var weaponClass = isMelee ? this.meleeWeaponClass : this.rangedWeaponClass;
         var weaponSystem = isMelee ? this.meleeSystem : this.rangedSystem;
         var stats = constructProjectileStats(weaponClass);
-        if (weaponSystem?.CanShoot(this.gameObject) == true)
+        if (!checkCost || weaponSystem?.CanShoot(this.gameObject) == true)
         {
             Projectile hitbox = Projectile.Shoot(stats.prefab, this.gameObject, position);
             hitbox.weaponSystem = weaponSystem;

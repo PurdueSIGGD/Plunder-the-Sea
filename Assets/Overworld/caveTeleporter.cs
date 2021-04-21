@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class caveTeleporter : MonoBehaviour
 {
+    [SerializeField]
+    private AudioSource backgroundMusic;
+
+    [SerializeField]
+    private AudioClip backgroundAudioclip;
+
+    [SerializeField]
+    private float musicVolume;
 
     [SerializeField]
     private Transform teleportTransform;
@@ -13,6 +21,9 @@ public class caveTeleporter : MonoBehaviour
         var teleportLocation = teleportTransform.position;
         if (collision.gameObject.CompareTag("Player"))
         {
+            backgroundMusic.clip = backgroundAudioclip;
+            backgroundMusic.volume = musicVolume;
+            backgroundMusic.Play();
             parrot p = FindObjectOfType<parrot>();
             if (p)
             {
