@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1930420151
-  m_SortingLayer: -1
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fa33e3422cfa2904f939239bfb000e82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -125,6 +125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponTables: {fileID: 11400000, guid: f23b07f02af71b44fa4d0988487b7ea5, type: 2}
   weaponClass: 0
+  rangedWeaponSpritesTable: {fileID: 11400000, guid: 7a62c654ea2c06d4f9877824a4d7780c, type: 2}
+  projectilePrefabTable: {fileID: 11400000, guid: 296673b8e7e2ad244b8dbd0bdb2d3ac0, type: 2}
 --- !u!114 &-3375942903479435616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,4 +139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
+  buff: 
+  isFish: 0
+  baitType: 0
+  baitCost: 0
+  weaponClass: 0
   description: 

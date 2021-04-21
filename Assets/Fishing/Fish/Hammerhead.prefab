@@ -191,5 +191,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hammerhead
   buff: +Melee Damage
+  isFish: 1
   description: The calmer relative of the hammerheads you might find in dungeons.
     Still wide head.

@@ -191,5 +191,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Crocodile
   buff: +Armor
+  isFish: 1
   description: Look at this dopey thing, lazing about all day. Makes you want to
     pet it.

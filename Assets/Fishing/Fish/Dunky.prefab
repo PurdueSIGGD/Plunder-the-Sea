@@ -191,4 +191,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: ' Dunky'
   buff: +Max Stamina and Recharge
+  isFish: 1
   description: A fish who never gives up. He's trying really hard you know.

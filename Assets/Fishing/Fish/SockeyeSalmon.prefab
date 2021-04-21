@@ -191,5 +191,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 'Sockeye Salmon '
   buff: +Movement Speed
+  isFish: 1
   description: He's a hard worker. Doesn't tire easily. Watch yourself, he's keeping
     an eye on you.

@@ -33,7 +33,9 @@ public class PlayerInventory : MonoBehaviour
     public Text weaponName;
     public Text weaponPrice;
     public Image weaponBait;
+    public Image weaponImage;
     public Text weaponDescription;
+    public GameObject weaponX;
 
     public GameObject fishFrame;
     public Text fishName;
