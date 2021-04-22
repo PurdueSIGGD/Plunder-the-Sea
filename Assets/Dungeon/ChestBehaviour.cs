@@ -42,10 +42,12 @@ public class ChestBehaviour : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collider)
     {
         WeaponInventory weaponInv = collider.GetComponent<WeaponInventory>();
-        if (weaponInv == null || used) {
+        PlayerStats pStats = collider.GetComponent<PlayerStats>();
+        if (weaponInv == null) {
             return;
         }
 
+        /*
         used = true;
         weaponInv.SetWeapon(weaponClass);
         transform.localScale *= 0.5f;
@@ -54,6 +56,20 @@ public class ChestBehaviour : MonoBehaviour
         Destroy(descrInfo);
 
         this.enabled = false;
+        */
+        int currAmmo = pStats.ammo;
+        weaponClass = weaponInv.SetWeapon(weaponClass);
+        SetDescription();
+        
+        if (!used)
+        {
+            transform.localScale *= 0.5f;
+            PlayerPrefs.SetInt("Chests", PlayerPrefs.GetInt("Chests") + 1);
+            used = true;
+            return;
+        }
+        pStats.safeSetAmmo(currAmmo);
+        
     }
 
 }
