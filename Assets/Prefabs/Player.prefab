@@ -632,6 +632,7 @@ GameObject:
   - component: {fileID: 294607770}
   - component: {fileID: 8485961227986367599}
   - component: {fileID: 4135740923892848364}
+  - component: {fileID: 1133278494361884374}
   m_Layer: 11
   m_Name: Player
   m_TagString: Player
@@ -909,6 +910,14 @@ MonoBehaviour:
   smokeBomb: {fileID: 2808827960982064107, guid: 4a09629e7d99a524ca435ebcaf3f9e9f, type: 3}
   ultStacks: 0
   PopupText: {fileID: 8301900203683361838, guid: 4076be98edaf0a34899eab518a650843, type: 3}
+--- !u!81 &1133278494361884374
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7045101813800168174}
+  m_Enabled: 1
 --- !u!1 &7358381538591861277
 GameObject:
   m_ObjectHideFlags: 0
