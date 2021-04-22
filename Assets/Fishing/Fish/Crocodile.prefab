@@ -101,27 +101,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   rotationSpeed: 0.25
-  preferredBaitType: 1
+  preferredBaitType: 3
   wrongBaitCatchPercent: 0.25
-  minWaitTime: 0
-  maxWaitTime: 2
+  minWaitTime: 0.5
+  maxWaitTime: 2.5
   lootLevel: 3
   buffs:
   - 0
+  - 5
   - 0
   - 0
   - 0
   - 0
   - 0
-  - 2
+  - 0
+  - 0
   buffsMult:
   - 0
+  - 0.2
   - 0
   - 0
   - 0
   - 0
   - 0
-  - 0.5
+  - 0
+  - 0
   FishingMinigame: {fileID: 0}
   sprite: {fileID: 0}
 --- !u!50 &-8485167538343993492
@@ -191,9 +195,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: 'Fish: Crocodile
 
-    Favorite: Bait 2
+    Favorite: Bait 4
 
-    Buff Type: Armor
+    Buff Type: Max HP
 
 
     Description:

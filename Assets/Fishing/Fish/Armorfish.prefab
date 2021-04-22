@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &155222579010472173
+--- !u!1 &1319930738659560040
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6143059993583252391}
-  - component: {fileID: 1614835479201000785}
-  - component: {fileID: 8718013436616829105}
-  - component: {fileID: 3129921333085929233}
-  - component: {fileID: 1373274281781304316}
-  - component: {fileID: 288724639897624243}
-  - component: {fileID: 3108273409932557153}
+  - component: {fileID: 5508470236632113973}
+  - component: {fileID: 2987065732231367441}
+  - component: {fileID: 3853164974962656934}
+  - component: {fileID: 686393050638918464}
+  - component: {fileID: 3882492541224505261}
+  - component: {fileID: 5224337966453631688}
+  - component: {fileID: 4459315778590703418}
   m_Layer: 0
-  m_Name: Hammerhead
+  m_Name: Armorfish
   m_TagString: Fish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6143059993583252391
+--- !u!4 &5508470236632113973
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155222579010472173}
+  m_GameObject: {fileID: 1319930738659560040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.7098632, y: -3.438255, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1614835479201000785
+--- !u!212 &2987065732231367441
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155222579010472173}
+  m_GameObject: {fileID: 1319930738659560040}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 78fa6988ab8e31847be8b7157b956223, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c07324d8cf93c9b45bea0ed04ab44590, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.7764706}
   m_FlipX: 1
   m_FlipY: 0
@@ -87,55 +87,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8718013436616829105
+--- !u!114 &3853164974962656934
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155222579010472173}
+  m_GameObject: {fileID: 1319930738659560040}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ac12a72e163249edb89bdf88522ec4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  rotationSpeed: 0.25
-  preferredBaitType: 3
-  wrongBaitCatchPercent: 0.25
-  minWaitTime: 1
-  maxWaitTime: 2
-  lootLevel: 2
+  speed: 1
+  rotationSpeed: 0.1
+  preferredBaitType: 1
+  wrongBaitCatchPercent: 0.5
+  minWaitTime: 0
+  maxWaitTime: 0
+  lootLevel: 3
   buffs:
   - 0
   - 0
   - 0
   - 0
-  - 10
   - 0
   - 0
   - 0
+  - 0.95
   - 0
   buffsMult:
   - 0
   - 0
   - 0
   - 0
-  - 0.5
   - 0
   - 0
   - 0
+  - 0.9
   - 0
   FishingMinigame: {fileID: 0}
   sprite: {fileID: 0}
---- !u!50 &3129921333085929233
+--- !u!50 &686393050638918464
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155222579010472173}
+  m_GameObject: {fileID: 1319930738659560040}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
@@ -149,13 +149,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!70 &1373274281781304316
+--- !u!70 &3882492541224505261
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155222579010472173}
+  m_GameObject: {fileID: 1319930738659560040}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -163,15 +163,15 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 0.4}
+  m_Size: {x: 0.8, y: 0.5}
   m_Direction: 1
---- !u!58 &288724639897624243
+--- !u!58 &5224337966453631688
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155222579010472173}
+  m_GameObject: {fileID: 1319930738659560040}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -181,26 +181,27 @@ CircleCollider2D:
   m_Offset: {x: 0.35, y: 0}
   serializedVersion: 2
   m_Radius: 0.35
---- !u!114 &3108273409932557153
+--- !u!114 &4459315778590703418
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155222579010472173}
+  m_GameObject: {fileID: 1319930738659560040}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Fish: Hammerhead
+  description: 'Fish: Tuna
 
-    Favorite: Bait 4
+    Favorite: Bait 2
 
-    Buff Type: Melee Damage
+    Buff Type: Ammo Usage
+
 
 
     Description:
 
     The
-    calmer relative of the hammerheads you might find in dungeons. Still wide head'
+    tuna is excited to be caught. What a poor, foolish creature.'

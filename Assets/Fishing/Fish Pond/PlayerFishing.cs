@@ -22,7 +22,7 @@ public class PlayerFishing : MonoBehaviour
 
     public bool gameActive = false;
 
-    private int selectedBait = 0;
+    public int selectedBait = 0;
     private const int amountOfBaitTypes = 4;
 
     private void Start()
@@ -81,7 +81,7 @@ public class PlayerFishing : MonoBehaviour
                         audioSrc.Play();
                         bobber = Bobber.Create(bobberPrefab, this, cam.GetMousePosition(), selectedBait);
                         bobberIsCast = true;
-                        player.stats.baitInventory.removeBait(selectedBait);
+                        
                         PlayerPrefs.SetInt("FishingBait", PlayerPrefs.GetInt("FishingBait") + 1);
                     }
                     else
@@ -101,6 +101,7 @@ public class PlayerFishing : MonoBehaviour
         if (fish)
         {
             //Debug.Log("Fish caught");
+            player.stats.baitInventory.removeBait(selectedBait);
             fish.FishingMinigame.SetActive(true);
             player.playerInventory.gameObject.SetActive(false);
             gameActive = true;

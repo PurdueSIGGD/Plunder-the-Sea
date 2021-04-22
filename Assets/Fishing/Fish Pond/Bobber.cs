@@ -93,6 +93,7 @@ public class Bobber : MonoBehaviour
                 } else
                 {
                     Debug.Log("No bite");
+                    source.player.stats.baitInventory.removeBait(source.selectedBait);
                     hitFish = true;
                 }
             }

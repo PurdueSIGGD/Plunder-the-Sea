@@ -114,6 +114,8 @@ MonoBehaviour:
   - 0
   - 10
   - 0
+  - 0
+  - 0
   buffsMult:
   - 0
   - 0
@@ -121,6 +123,8 @@ MonoBehaviour:
   - 0
   - 0
   - 0.5
+  - 0
+  - 0
   - 0
   FishingMinigame: {fileID: 0}
   sprite: {fileID: 0}

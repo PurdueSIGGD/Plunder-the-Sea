@@ -67,9 +67,14 @@ public class PlayerStats : EntityStats
         this.killRegen = 0f;
 
         var pickupObj = Instantiate(healthPickupGameObj);
-        pickupObj.GetComponent<HealthPickup>().health = this.maxHP * 0.25f * this.killRegenHealMult;
+        pickupObj.GetComponent<HealthPickup>().health = this.maxHP * 0.25f * killRegenMultCalc(this.killRegenHealMult);
 
         pickupObj.transform.position = transform.position;
+    }
+
+    public float killRegenMultCalc(float input)
+    {
+        return 2f * (input / (1f + input));
     }
 
 
