@@ -239,11 +239,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: 
-  movementSpeed: 1
-  maxHP: 100
-  currentHP: 100
-  armorMult: 0
-  armorStatic: 0
+  movementSpeed: 1.5
+  maxHP: 500
+  currentHP: 500
+  armorMult: 0.5
+  armorStatic: 5
   killRegenMult: 1
   invulnerable: 0
   healthbar: {fileID: 2432202686587859362}
@@ -292,7 +292,7 @@ MonoBehaviour:
   moving: 0
   moveTypes: 0000000001000000
   pathingRefresh: 0.25
-  maxDist: 10
+  maxDist: 50
   targetProximity: 0
   approachDistance: 1.25
   actChargeUpTime: 1
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBase: {fileID: 0}
-  attackRange: 1.25
+  attackRange: 2.5
   prevState: 0
   myStateMovement: {fileID: 0}
   sprite: {fileID: 7877303461921926446}
@@ -320,6 +320,13 @@ MonoBehaviour:
   playerDebuffAmount: 5
   enemyDebuffTime: 5
   enemyDebuffAmount: 5
+  speedDebuff:
+    name: 
+    type: 0
+    value: 0
+    duration: 0
+    stackable: 0
+    isAdditive: 0
 --- !u!1 &2432202686587859360
 GameObject:
   m_ObjectHideFlags: 0
