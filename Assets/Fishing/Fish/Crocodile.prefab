@@ -193,14 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Fish: Crocodile
-
-    Favorite: Bait 4
-
-    Buff Type: Max HP
-
-
-    Description:
-
-    Look
-    at this dopey thing, lazing about all day. Makes you want to pet it'
+  name: Crocodile
+  buff: +HP
+  isFish: 1
+  description: Look at this dopey thing, lazing about all day. Makes you want to
+    pet it.

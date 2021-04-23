@@ -193,15 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Sockeye Salmon
-
-    Favorite: Bait 1
-
-    Buff Type: Movement Speed
-
-
-    Description:
-
-    He''s
-    a hard worker. Doesn''t tire easily. Watch yourself, he''s keeping an eye on
-    you'
+  name: 'Sockeye Salmon '
+  buff: +Movement Speed
+  isFish: 1
+  description: He's a hard worker. Doesn't tire easily. Watch yourself, he's keeping
+    an eye on you.
