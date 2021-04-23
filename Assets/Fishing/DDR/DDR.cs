@@ -23,7 +23,7 @@ public class DDR : MonoBehaviour
     private int targetFrequencyMin = 1; // Min # of beats for target frequency
     private float nextTargetTime = 0.0f;//Time when to spawn new target
 
-    private int catchScore = 300; //score needed to "catch" the fish
+    private int catchScore = 400; //score needed to "catch" the fish
     private int releaseScore = -100; //score needed to "release" the fish
 
     public Fish fishBeingCaught;
