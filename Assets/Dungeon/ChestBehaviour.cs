@@ -30,7 +30,6 @@ public class ChestBehaviour : MonoBehaviour
         descr += weaponTables.about.getDescr(weaponClass);
         descrInfo.name = weaponTables.about.getName(weaponClass);
         descrInfo.description = descr;
-
         descrInfo.weaponClass = weaponClass;
     }
 

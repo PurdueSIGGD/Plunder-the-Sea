@@ -100,9 +100,9 @@ public class PlayerInventory : MonoBehaviour
 
     public void setDescription(WeaponFactory.CLASS weaponClass)
     {
-        string descr = tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE ? "Melee: " : "Range: ";
-        descr += tables.about.getName(weaponClass) + "\nBase Damage: ";
-        descr += tables.damage.get(weaponClass) + "\n\nDescription:\n";
+        string descr = tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE ? "Melee" : "Ranged";
+        descr += " Damage: ";
+        descr += tables.damage.get(weaponClass) + "\n";
         descr += tables.about.getDescr(weaponClass);
 
         if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE)
@@ -111,7 +111,9 @@ public class PlayerInventory : MonoBehaviour
             {
                 return;
             }
+            meleeInfo.name = tables.about.getName(weaponClass);
             meleeInfo.description = descr;
+            meleeInfo.weaponClass = weaponClass;
         }
         else
         {
@@ -119,7 +121,9 @@ public class PlayerInventory : MonoBehaviour
             {
                 return;
             }
+            rangeInfo.name = tables.about.getName(weaponClass);
             rangeInfo.description = descr;
+            rangeInfo.weaponClass = weaponClass;
         }
     }
 

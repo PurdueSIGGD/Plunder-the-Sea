@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class DescriptionInfo : MonoBehaviour, IPointerEnterHandler
@@ -60,24 +61,39 @@ public class DescriptionInfo : MonoBehaviour, IPointerEnterHandler
                 pInv.weaponBait.color = Color.white;
                 pInv.weaponImage.color = Color.clear;
                 pInv.weaponX.SetActive(true);
-            } else
+            }
+            else
             {
-                pInv.weaponPrice.text = "";
-                pInv.weaponBait.color = Color.clear;
+                if (GetComponent<ChestBehaviour>()) //is chest
+                {
+                    pInv.weaponPrice.text = "";
+                    pInv.weaponBait.color = Color.clear;
 
-                ChestBehaviour CB = GetComponent<ChestBehaviour>();
-                Sprite newSprite = null;
-                if (CB.weaponTables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE)
-                {
-                    newSprite = CB.projectilePrefabTable.get(weaponClass).GetComponentInChildren<SpriteRenderer>().sprite;
+                    ChestBehaviour CB = GetComponent<ChestBehaviour>();
+                    Sprite newSprite = null;
+                    if (CB.weaponTables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE)
+                    {
+                        newSprite = CB.projectilePrefabTable.get(weaponClass).GetComponentInChildren<SpriteRenderer>().sprite;
+                    }
+                    else
+                    {
+                        newSprite = CB.rangedWeaponSpritesTable.get(weaponClass);
+                    }
+                    pInv.weaponImage.sprite = newSprite;
+                    pInv.weaponImage.color = Color.white;
+                    pInv.weaponX.SetActive(false);
                 }
-                else
+                else //is equipped
                 {
-                    newSprite = CB.rangedWeaponSpritesTable.get(weaponClass);
+                    pInv.weaponPrice.text = "";
+                    pInv.weaponBait.color = Color.clear;
+
+                    Sprite newSprite = GetComponent<Image>().sprite;
+
+                    pInv.weaponImage.sprite = newSprite;
+                    pInv.weaponImage.color = Color.white;
+                    pInv.weaponX.SetActive(false);
                 }
-                pInv.weaponImage.sprite = newSprite;
-                pInv.weaponImage.color = Color.white;
-                pInv.weaponX.SetActive(false);
             }
             pInv.weaponFrame.SetActive(true);
             pInv.fishFrame.SetActive(false);
