@@ -220,15 +220,40 @@ public class EntityStats : MonoBehaviour
         attribList.Clear();
     }
 
+    public virtual bool ContainsAttribute(string name)
+    {
+        for (int i = 0; i < attribList.Count; i++)
+        {
+            if (attribList[i].attr.name.Equals(name))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public virtual bool ContainsAttribute(ENT_ATTR type)
+    {
+        for (int i = 0; i < attribList.Count; i++)
+        {
+            if (attribList[i].attr.type == type)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public virtual void RemoveAttributesByType(ENT_ATTR type)
     {
         for (int i = 0; i < attribList.Count; i++)
         {
             if (attribList[i].attr.type == type)
             {
-                Debug.Log("Removed " + attribList[i].attr.name);
+                EntityAttribute rem = attribList[i].attr;
+                Debug.Log("Removed " + rem.name);
                 attribList.RemoveAt(i);
-                attribList[i].attr.OnRemove(this);
+                rem.OnRemove(this);
                 i--;
             }
         }

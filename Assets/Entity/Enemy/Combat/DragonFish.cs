@@ -28,6 +28,8 @@ public class DragonFish : StateCombat
     private float meleeTarget = 0.0f;
     private float fireTarget = 0.0f;
 
+    private bool currMoving = false;
+
     // Update is called once per frame
     void Update()
     {
@@ -35,21 +37,24 @@ public class DragonFish : StateCombat
         current = GetState();
         prevState = current;
 
-        anim.SetBool("Attacking", myStateMovement.PlayerDistance() < fireDistance);
-
-        // Rotate the sprite
-        Vector3 v = myBase.myRigid.velocity;
-        float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg - 180;
-        sprite.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
-        //sprite.flipX = isPlayerLeft();
-        sprite.flipY = !isPlayerLeft();
-
-        // Place the fire if it can
-        if (OnTarget(fireTarget) && myStateMovement.PlayerDistance() < fireDistance)
+        if (current >= 0)
         {
-            fireTarget = SetTarget(fireCooldown);
-            PlaceFire(fireSpread, 0);
+            anim.SetBool("Attacking", myStateMovement.PlayerDistance() < fireDistance);
+
+            // Rotate the sprite
+            Vector3 v = myBase.myRigid.velocity;
+            float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg - 180;
+            sprite.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            //sprite.flipX = isPlayerLeft();
+            sprite.flipY = !isPlayerLeft();
+
+            // Place the fire if it can
+            if (OnTarget(fireTarget) && myStateMovement.PlayerDistance() < fireDistance)
+            {
+                fireTarget = SetTarget(fireCooldown);
+                PlaceFire(fireSpread, 0);
+            }
         }
     }
 
@@ -72,7 +77,7 @@ public class DragonFish : StateCombat
 
     private void OnTriggerStay2D(Collider2D collider) //Called when something enters the enemy's range
     {
-        if (collider.GetComponent<PlayerBase>())
+        if (collider.GetComponent<PlayerBase>() && current >= 0)
         {
             if (OnTarget(meleeTarget))
             {

@@ -189,15 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Fish: Dunky
-
-    Favorite: Bait 3
-
-    Buff Type: Stamina, Stamina
-    Recharge
-
-
-    Description:
-
-    A fish who never gives up. He''s trying really
-    hard you know'
+  name: ' Dunky'
+  buff: +Max Stamina and Recharge
+  isFish: 1
+  description: A fish who never gives up. He's trying really hard you know.
