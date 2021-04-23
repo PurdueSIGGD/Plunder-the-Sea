@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633482763a43fb942a72ef8439ab777a, type: 3}
+  m_Name: WeaponSoundTable
+  m_EditorClassIdentifier: 
+  classSounds:
+  - weaponClass: 0
+    clip: {fileID: 8300000, guid: c5dd310149de45246bc16a7a04a0a5aa, type: 3}
+    volume: 1
+    pitch: 0.5
+  - weaponClass: 1
+    clip: {fileID: 8300000, guid: e18816e9536102047aa65f39371b4fcf, type: 3}
+    volume: 1
+    pitch: 2.5
+  - weaponClass: 2
+    clip: {fileID: 8300000, guid: 10753c9c3af5f8c4e98acfa53a6bcfc7, type: 3}
+    volume: 1
+    pitch: 1
+  - weaponClass: 3
+    clip: {fileID: 8300000, guid: c5dd310149de45246bc16a7a04a0a5aa, type: 3}
+    volume: 1
+    pitch: 2
+  - weaponClass: 4
+    clip: {fileID: 8300000, guid: c5dd310149de45246bc16a7a04a0a5aa, type: 3}
+    volume: 1
+    pitch: 1.25
+  - weaponClass: 5
+    clip: {fileID: 8300000, guid: 10753c9c3af5f8c4e98acfa53a6bcfc7, type: 3}
+    volume: 1
+    pitch: 1.25
+  - weaponClass: 6
+    clip: {fileID: 8300000, guid: 19139219009f4f34398e0552c5e15cae, type: 3}
+    volume: 1
+    pitch: 18
+  - weaponClass: 7
+    clip: {fileID: 8300000, guid: e18816e9536102047aa65f39371b4fcf, type: 3}
+    volume: 1
+    pitch: 2
+  - weaponClass: 8
+    clip: {fileID: 8300000, guid: d99d5ca0654b5654b8c3102097be67fd, type: 3}
+    volume: 1
+    pitch: 1
+  - weaponClass: 9
+    clip: {fileID: 8300000, guid: c5dd310149de45246bc16a7a04a0a5aa, type: 3}
+    volume: 1
+    pitch: 0.75
+  - weaponClass: 10
+    clip: {fileID: 8300000, guid: 245abcbdaf2751045b746e62bfbbdd4c, type: 3}
+    volume: 1
+    pitch: 0.5
+  - weaponClass: 11
+    clip: {fileID: 8300000, guid: c5dd310149de45246bc16a7a04a0a5aa, type: 3}
+    volume: 1
+    pitch: 1
+  - weaponClass: 12
+    clip: {fileID: 8300000, guid: e18816e9536102047aa65f39371b4fcf, type: 3}
+    volume: 1
+    pitch: 1.5
+  - weaponClass: 13
+    clip: {fileID: 8300000, guid: 05a36c32eafda45488772c68c282a0fe, type: 3}
+    volume: 1
+    pitch: 4
+  - weaponClass: 14
+    clip: {fileID: 8300000, guid: 245abcbdaf2751045b746e62bfbbdd4c, type: 3}
+    volume: 1
+    pitch: 1

@@ -7,8 +7,12 @@ public class dupeAudio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        doDupe(GetComponent<AudioSource>());
+    }
+
+    public void doDupe(AudioSource thisAS)
+    {
         GameObject g = Instantiate(new GameObject(), transform.position, Quaternion.identity);
-        AudioSource thisAS = GetComponent<AudioSource>();
         AudioSource newAS = g.AddComponent<AudioSource>();
 
         newAS.clip = thisAS.clip;
