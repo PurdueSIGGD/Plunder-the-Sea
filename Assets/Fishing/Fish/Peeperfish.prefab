@@ -122,7 +122,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  - 0.5
+  - 0.25
   - 0
   - 0
   - 0
@@ -196,5 +196,8 @@ MonoBehaviour:
   name: Peeperfish
   buff: +Ranged Damage
   isFish: 1
+  baitType: 0
+  baitCost: 0
+  weaponClass: 0
   description: Eye wide and weary, the peeperfish is watching. He never blinks, so
     he'd get a bad case of dry eye if he weren't a marine dweller.
