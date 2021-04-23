@@ -33,8 +33,6 @@ public class SweepMovement : StateMovement
     // Update is called once per frame
     void Update()
     {
-        
-
         if (moving)
         {
             switch (sweepState)
@@ -65,5 +63,15 @@ public class SweepMovement : StateMovement
                     break;
             }
         }
+    }
+
+    public override int GetState()
+    {
+        return (int)this.sweepState;
+    }
+
+    public override void SetState(int newState)
+    {
+        this.sweepState = (SweepState)newState;
     }
 }

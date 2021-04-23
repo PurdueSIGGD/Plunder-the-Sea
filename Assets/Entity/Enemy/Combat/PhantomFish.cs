@@ -33,35 +33,39 @@ public class PhantomFish : StateCombat
         current = GetState();
         prevState = current;
 
-        // Place the fire if it can
-        float dist = myStateMovement.PlayerDistance();
-        if (dist > minFireDistance && dist < maxFireDistance)
+        if (current >= 0)
         {
-            if (OnTarget(fadeTarget))
+            // Place the fire if it can
+            float dist = myStateMovement.PlayerDistance();
+            if (dist > minFireDistance && dist < maxFireDistance)
             {
-                anim.SetInteger("State", 2);
+                if (OnTarget(fadeTarget))
+                {
+                    anim.SetInteger("State", 2);
+                }
             }
-        } else
-        {
-            if (OnTarget(fadeTarget))
+            else
             {
-                anim.SetInteger("State", 0);
+                if (OnTarget(fadeTarget))
+                {
+                    anim.SetInteger("State", 0);
+                }
             }
-        }
-        anim.SetBool("Back", isPlayerUp());
-        sprite.flipX = isPlayerLeft();
+            anim.SetBool("Back", isPlayerUp());
+            sprite.flipX = isPlayerLeft();
 
-        if (OnTarget(fireTarget) && dist > minFireDistance && dist < maxFireDistance)
-        {
-            fireTarget = SetTarget(fireCooldown);
-            Projectile fire = Shoot(fireProjectile);
-            //fire.damage = 2 * myBase.myStats.damage;
+            if (OnTarget(fireTarget) && dist > minFireDistance && dist < maxFireDistance)
+            {
+                fireTarget = SetTarget(fireCooldown);
+                Projectile fire = Shoot(fireProjectile);
+                //fire.damage = 2 * myBase.myStats.damage;
+            }
         }
     }
 
     private void OnTriggerStay2D(Collider2D collider) //Called when something enters the enemy's range
     {
-        if (collider.GetComponent<PlayerBase>())
+        if (collider.GetComponent<PlayerBase>() && current >= 0)
         {
             if (OnTarget(meleeTarget))
             {

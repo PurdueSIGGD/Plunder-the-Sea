@@ -17,12 +17,19 @@ public class PlayerBase : MonoBehaviour
     public PlayerStats stats;
     [HideInInspector]
     public PlayerFishing fishing;
+    [HideInInspector]
+    public ClassUltimate classUlt;
     public Canvas playerInventory;
     [SerializeField]
     private bool keep = true;
 
     private UI_Camera cam;
     
+    public Vector2 getCamMousePos()
+    {
+        return cam.GetMousePosition();
+    }
+
     public void moveHere(Transform newPos)
     {
         this.transform.position = newPos.position;
@@ -51,6 +58,7 @@ public class PlayerBase : MonoBehaviour
         stats = GetComponent<PlayerStats>();
         rigidBody = GetComponent<Rigidbody2D>();
         fishing = GetComponent<PlayerFishing>();
+        classUlt = GetComponent<ClassUltimate>();
 
         /* Assume one camera exists */
         cam = GameObject.FindObjectOfType<UI_Camera>();
@@ -59,16 +67,18 @@ public class PlayerBase : MonoBehaviour
     private void Update()
     {
         var inv = GetComponent<WeaponInventory>();
-        
 
-        if (Input.GetButtonDown("Fire1"))
+        if (stats.actionLock <= 0)
         {
-            inv.ShootAt(cam.GetMousePosition(), false);
-        }
+            if (Input.GetButtonDown("Fire1"))
+            {
+                inv.ShootAt(cam.GetMousePosition(), false);
+            }
 
-        if (Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.Space))
-        {
-            inv.ShootAt(cam.GetMousePosition(), true);
+            if (Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.Space))
+            {
+                inv.ShootAt(cam.GetMousePosition(), true);
+            }
         }
 
         if (Input.GetKeyDown("e"))
@@ -81,6 +91,11 @@ public class PlayerBase : MonoBehaviour
             {
                 playerInventory.gameObject.SetActive(true);
             }
+        }
+
+        if (Input.GetKeyDown("q"))
+        {
+            classUlt.callUlt(GetComponent<PlayerClasses>().classNumber);
         }
     }
 
