@@ -114,13 +114,17 @@ MonoBehaviour:
   - 0
   - 10
   - 0
+  - 0
+  - 0
   buffsMult:
   - 0
   - 0
   - 0
   - 0
   - 0
-  - 0.5
+  - 0.25
+  - 0
+  - 0
   - 0
   FishingMinigame: {fileID: 0}
   sprite: {fileID: 0}
@@ -189,15 +193,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Fish: Peeperfish
-
-    Favorite: Bait 1
-
-    Buff Type: Ranged Damage
-
-
-    Description:
-
-    Eye
-    wide and weary, the peeperfish is watching. He never blinks, so he''d get a bad
-    case of dry eye if he weren''t a marine dweller'
+  name: Peeperfish
+  buff: +Ranged Damage
+  isFish: 1
+  baitType: 0
+  baitCost: 0
+  weaponClass: 0
+  description: Eye wide and weary, the peeperfish is watching. He never blinks, so
+    he'd get a bad case of dry eye if he weren't a marine dweller.

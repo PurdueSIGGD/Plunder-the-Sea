@@ -499,6 +499,9 @@ MonoBehaviour:
   - {fileID: 9065068838090454611, guid: 63824d08617bec94da2da8c592f9bc4f, type: 3}
   - {fileID: 155222579010472173, guid: 52c03231120c0b8468ba92ffa9c62de0, type: 3}
   - {fileID: 5669315062709524256, guid: 1057ebe4015bb0e428cd67246fb1fa5e, type: 3}
+  - {fileID: 1319930738659560040, guid: 36fe46a825735be47a003e8bc1a235e2, type: 3}
+  - {fileID: 4549975096695966506, guid: 3785f33c9403d534091329cd47adc59d, type: 3}
+  - {fileID: 7417458368591164415, guid: 2e2e34a46e186d2429e2aa047e6a2180, type: 3}
   FishingMinigame: {fileID: 0}
 --- !u!1 &8362527590505196215
 GameObject:
