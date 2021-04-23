@@ -750,7 +750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 740539c14cfec744597f0d75f789d3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  equipSound: {fileID: 0}
+  equipSound: {fileID: 8300000, guid: 1563a6275dc09d64a84a8e30df2cd8c4, type: 3}
   meleeWeaponClass: 9
   rangedWeaponClass: 3
   damageTable: {fileID: 11400000, guid: 27bd03c58ebebe442baa032491ef57cb, type: 2}
