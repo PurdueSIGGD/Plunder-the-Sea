@@ -114,12 +114,16 @@ MonoBehaviour:
   - 10
   - 0
   - 0
+  - 0
+  - 0
   buffsMult:
   - 0
   - 0
   - 0
   - 0
-  - 0.5
+  - 0.25
+  - 0
+  - 0
   - 0
   - 0
   FishingMinigame: {fileID: 0}
@@ -192,5 +196,8 @@ MonoBehaviour:
   name: Hammerhead
   buff: +Melee Damage
   isFish: 1
+  baitType: 0
+  baitCost: 0
+  weaponClass: 0
   description: The calmer relative of the hammerheads you might find in dungeons.
     Still wide head.
