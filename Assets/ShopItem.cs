@@ -35,11 +35,13 @@ public class ShopItem : MonoBehaviour
         {
             return;
         }
-        string descr = tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE ? "Melee: " : "Range: ";
-        descr += tables.about.getName(weaponClass) + "\nBase Damage: ";
-        descr += tables.damage.get(weaponClass) + "\nPrice: "; 
-        descr += baitPrice + " bait " + (baitType+1) + "\n\nDescription:\n";
+        string descr = tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE ? "Melee" : "Ranged";
+        descr += " Damage: ";
+        descr += tables.damage.get(weaponClass) + "\n";
         descr += tables.about.getDescr(weaponClass);
+        descrInfo.name = tables.about.getName(weaponClass);
+        descrInfo.baitCost = baitPrice;
+        descrInfo.baitType = baitType;
         descrInfo.description = descr;
     }
 

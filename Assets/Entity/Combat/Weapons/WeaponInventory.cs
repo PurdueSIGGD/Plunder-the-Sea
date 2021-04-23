@@ -90,21 +90,25 @@ public class WeaponInventory : MonoBehaviour
         rangedSystem = wep;
     }
 
-    public void SetWeapon(WeaponFactory.CLASS weaponClass) {
+    public WeaponFactory.CLASS SetWeapon(WeaponFactory.CLASS weaponClass) {
         var weapon = new WeaponSystem(weaponClass, this.tables);
+        WeaponFactory.CLASS old;
         if (equipSound)
         {
             audioSrc.clip = equipSound;
             audioSrc.Play();
         }
-        if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE){ 
+        if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE){
+            old = this.meleeWeaponClass;
             this.meleeWeaponClass = weaponClass;
             SetMelee(weapon);
         } else {
+            old = this.rangedWeaponClass;
             this.rangedWeaponClass = weaponClass;
             SetRanged(weapon);
         }
         wepsGot++;
+        return old;
     }
 
     public ProjectileStats constructProjectileStats(WeaponFactory.CLASS weaponClass) {

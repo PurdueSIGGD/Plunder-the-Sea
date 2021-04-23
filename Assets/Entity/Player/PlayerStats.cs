@@ -54,6 +54,11 @@ public class PlayerStats : EntityStats
         this.ammo = max;
     }
 
+    public void safeSetAmmo(int amount)
+    {
+        this.ammo = Mathf.Min(amount, this.maxAmmo);
+    }
+
     public void increaseKillRegen(float amount) {
         this.killRegen = Mathf.Min(this.killRegen + amount, 1f);
         if (killRegen == 1f) {
