@@ -30,6 +30,9 @@ public class Fish : MonoBehaviour
         transform.eulerAngles = new Vector3(0, 0, Random.Range(0f, 360f));
         sprite = this.GetComponent<SpriteRenderer>().sprite;
         buffsApplied = new float[buffsMult.Length];
+        if (Random.Range(0, 2) == 1) {
+            this.GetComponent<SpriteRenderer>().flipY = true;
+        }
     }
 
     public void BuffPlayerStats(PlayerBase player)

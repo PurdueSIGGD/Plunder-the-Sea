@@ -113,8 +113,8 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 2
   - 0
-  - 0.95
   - 0
   buffsMult:
   - 0
@@ -123,8 +123,8 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  - 0.25
   - 0
-  - 0.9
   - 0
   FishingMinigame: {fileID: 0}
   sprite: {fileID: 0}
@@ -193,15 +193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Fish: Tuna
-
-    Favorite: Bait 2
-
-    Buff Type: Ammo Usage
-
-
-
-    Description:
-
-    The
-    tuna is excited to be caught. What a poor, foolish creature.'
+  name: Armorfish
+  buff: +Armor
+  isFish: 1
+  baitType: 0
+  baitCost: 0
+  weaponClass: 0
+  description: This fish is covered in plates. They aren't very tasty.

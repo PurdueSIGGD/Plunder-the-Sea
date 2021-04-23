@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ac12a72e163249edb89bdf88522ec4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3.5
   rotationSpeed: 0.2
   preferredBaitType: 1
   wrongBaitCatchPercent: 0.5
@@ -193,15 +193,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Fish: Tuna
-
-    Favorite: Bait 2
-
-    Buff Type: Ammo Usage
-
-
-
-    Description:
-
-    The
-    tuna is excited to be caught. What a poor, foolish creature.'
+  name: Tuna
+  buff: -Ammo Usage
+  isFish: 1
+  baitType: 0
+  baitCost: 0
+  weaponClass: 0
+  description: The tuna is excited to be caught. What a poor, foolish creature.

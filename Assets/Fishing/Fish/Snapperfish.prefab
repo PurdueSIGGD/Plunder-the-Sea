@@ -193,15 +193,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Snapperfish
-
-    Favorite: Bait 3
-
-    Buff Type: Pickup Healing
-
-
-
-    Description:
-
-    This
-    fish is addicted to citrus fruits, which is rather inconvenient for a pirate'
+  name: Snapperfish
+  buff: +Pickup Healing
+  isFish: 1
+  baitType: 0
+  baitCost: 0
+  weaponClass: 0
+  description: This fish is addicted to citrus fruits, which is rather inconvenient
+    for a pirate.
