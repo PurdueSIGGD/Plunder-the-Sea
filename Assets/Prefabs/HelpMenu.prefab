@@ -110,7 +110,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -1, y: 0}
-  m_SizeDelta: {x: 224, y: 48}
+  m_SizeDelta: {x: 254, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3032104785723061143
 CanvasRenderer:
@@ -147,7 +147,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 1
     m_MaxSize: 24
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -165,6 +165,7 @@ GameObject:
   - component: {fileID: 2880369821778932657}
   - component: {fileID: 5635464544617924859}
   - component: {fileID: 6367499148998506748}
+  - component: {fileID: 8790856620837038571}
   m_Layer: 5
   m_Name: class frame
   m_TagString: Untagged
@@ -230,6 +231,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8790856620837038571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2940525998547044263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feef2b7edd8884e4d9efd6ee7c7e94ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Class
+  descr1: holder
+  descr2: 
+  isFirst: 0
+  classTab: 1
 --- !u!1 &3263579294442659564
 GameObject:
   m_ObjectHideFlags: 0
@@ -265,7 +283,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1, y: 0}
-  m_SizeDelta: {x: 224, y: 48}
+  m_SizeDelta: {x: 254, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5964291599138843473
 CanvasRenderer:
@@ -302,7 +320,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 1
     m_MaxSize: 24
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -343,8 +361,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -622, y: -32}
-  m_SizeDelta: {x: 256, y: 64}
+  m_AnchoredPosition: {x: -490, y: -50}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &269459876789848585
 CanvasRenderer:
@@ -378,16 +396,16 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 78e818c075d51104f87f9281e1cf64f3, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 48
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Bait Box:'
+  m_Text: Controls
 --- !u!1 &3996559547052274909
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +418,7 @@ GameObject:
   - component: {fileID: 2584621981527251822}
   - component: {fileID: 1461224330494846532}
   - component: {fileID: 4945772091463789049}
-  - component: {fileID: 1528095601823452673}
+  - component: {fileID: 4487677955767823964}
   m_Layer: 5
   m_Name: HelpMenu
   m_TagString: Untagged
@@ -488,7 +506,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &1528095601823452673
+--- !u!114 &4487677955767823964
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -497,50 +515,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3996559547052274909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ac256712af6da64088bed223b74fc34, type: 3}
+  m_Script: {fileID: 11500000, guid: d0444faca632c374bbc9552272864fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baitTypes: 00000000000000000000000000000000
-  baitText:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  weapInv: {fileID: 0}
-  tables: {fileID: 11400000, guid: f23b07f02af71b44fa4d0988487b7ea5, type: 2}
-  pBase: {fileID: 0}
-  meleeSlot: {fileID: 0}
-  rangeSlot: {fileID: 0}
-  meleeLabel: {fileID: 0}
-  rangedLabel: {fileID: 0}
-  healthLabel: {fileID: 8639752009629156211}
-  stamLabel: {fileID: 0}
-  ammoLabel: {fileID: 0}
-  speedLabel: {fileID: 3923249514767841197}
-  stamRechLabel: {fileID: 0}
-  meleeDamLabel: {fileID: 0}
-  rangeDamLabel: {fileID: 0}
-  armorLabel: {fileID: 0}
-  weaponFrame: {fileID: 0}
-  weaponName: {fileID: 0}
-  weaponPrice: {fileID: 0}
-  weaponBait: {fileID: 0}
-  weaponImage: {fileID: 0}
-  weaponDescription: {fileID: 0}
-  weaponX: {fileID: 0}
-  fishFrame: {fileID: 0}
-  fishName: {fileID: 0}
-  fishBuffName: {fileID: 0}
-  fishImage: {fileID: 0}
-  fishBait: {fileID: 0}
-  fishDescription: {fileID: 0}
-  baitImages:
-  - {fileID: 21300000, guid: d56dcf2e010e24b4d91aa5aeaec036f6, type: 3}
-  - {fileID: 21300000, guid: 034579702c961c64caff59822b3cbd71, type: 3}
-  - {fileID: 21300000, guid: 2b14367f574a7cd45b0494fc94a97c2d, type: 3}
-  - {fileID: 21300000, guid: 1403d54fe1217694699c3ab03c58380e, type: 3}
-  invCounter: 0
-  baitsGot: 0
+  title: {fileID: 2593039933815892087}
+  descr1: {fileID: 7537047093770206144}
+  descr2: {fileID: 79766367158023297}
 --- !u!1 &4022650838749332796
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,8 +705,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -622, y: -32}
-  m_SizeDelta: {x: 256, y: 64}
+  m_AnchoredPosition: {x: 0, y: -538}
+  m_SizeDelta: {x: 1400, y: 876}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2839023490824256865
 CanvasRenderer:
@@ -763,13 +743,26 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 1
     m_MaxSize: 48
-    m_Alignment: 4
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Bait Box:'
+  m_Text: 'Movement
+
+    Ranged
+
+    Melee
+
+    Ultimate
+
+    Inventory
+
+    Fish
+    cast/reel
+
+    Description'
 --- !u!1 &5507106047782307983
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,6 +774,7 @@ GameObject:
   - component: {fileID: 2780454407675712469}
   - component: {fileID: 5095875094618581774}
   - component: {fileID: 6180541311891152965}
+  - component: {fileID: 2179946784466123027}
   m_Layer: 5
   m_Name: control frame
   m_TagString: Untagged
@@ -846,6 +840,54 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2179946784466123027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5507106047782307983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feef2b7edd8884e4d9efd6ee7c7e94ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Controls
+  descr1: 'Movement
+
+    Ranged
+
+    Melee
+
+    Ultimate
+
+    Inventory
+
+    Fish
+    cast/reel
+
+    Description
+
+
+
+    Some helpful refreshers on the controls! Or
+    a first exposure for the losers who skipped the tutorial'
+  descr2: 'WASD/Arrows
+
+    Left Click/Ctrl
+
+    Right Click/Space
+
+    Q
+
+    E
+
+    F
+
+    Mouse
+    Over'
+  isFirst: 1
+  classTab: 0
 --- !u!1 &5880343684764559122
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,6 +969,100 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7277745350803983281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4426073729316645912}
+  - component: {fileID: 6344274399037409984}
+  - component: {fileID: 79766367158023297}
+  m_Layer: 5
+  m_Name: BodyLabel2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4426073729316645912
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7277745350803983281}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6997583285045192064}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 350, y: -538}
+  m_SizeDelta: {x: 700, y: 876}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6344274399037409984
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7277745350803983281}
+  m_CullTransparentMesh: 0
+--- !u!114 &79766367158023297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7277745350803983281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 78e818c075d51104f87f9281e1cf64f3, type: 3}
+    m_FontSize: 48
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 1
+    m_MaxSize: 48
+    m_Alignment: 1
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 'WASD/Arrows
+
+    Left Click/Ctrl
+
+    Right Click/Space
+
+    Q
+
+    E
+
+    F
+
+    Mouse
+    Over
+
+'
 --- !u!1 &7355151606637345394
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +1094,7 @@ RectTransform:
   m_Children:
   - {fileID: 4576258584779153179}
   - {fileID: 4034386821965142284}
+  - {fileID: 4426073729316645912}
   m_Father: {fileID: 1991695871741113045}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

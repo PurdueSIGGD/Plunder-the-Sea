@@ -21,6 +21,7 @@ public class PlayerBase : MonoBehaviour
     [HideInInspector]
     public ClassUltimate classUlt;
     public Canvas playerInventory;
+    public Canvas helpMenu;
     [SerializeField]
     private bool keep = true;
 
@@ -125,6 +126,11 @@ public class PlayerBase : MonoBehaviour
             {
                 inv.ShootAt(cam.GetMousePosition(), true);
             }
+
+            if (Input.GetKeyDown("q"))
+            {
+                classUlt.callUlt(GetComponent<PlayerClasses>().classNumber);
+            }
         }
 
         if (Input.GetKeyDown("e"))
@@ -139,9 +145,16 @@ public class PlayerBase : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown("q"))
+        if (Input.GetKeyDown("h"))
         {
-            classUlt.callUlt(GetComponent<PlayerClasses>().classNumber);
+            if (helpMenu.gameObject.activeSelf)
+            {
+                helpMenu.gameObject.SetActive(false);
+            }
+            else
+            {
+                helpMenu.gameObject.SetActive(true);
+            }
         }
     }
 
