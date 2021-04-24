@@ -27,6 +27,7 @@ public class MapGen : MonoBehaviour
     private GameObject chestPrefab;
 
     public GameObject goal;
+    public GameObject boss;
 
     private int truePathLength;
     private int maxBranchLength;
@@ -35,6 +36,8 @@ public class MapGen : MonoBehaviour
     private Hashtable roomGrid;
     private Stack<RoomData> roomStack;
     private int weaponsCount;
+
+    public bool bossLevel = false;
 
     public class RoomData
     {
@@ -166,8 +169,20 @@ public class MapGen : MonoBehaviour
         RoomData lastRoom = roomStack.Pop();
         buildRoom(lastRoom);
         int roomScale = roomWidth + roomDist;
-        Object.Instantiate(goal, new Vector3(lastRoom.x * roomScale,
-            lastRoom.y * roomScale, 0), Quaternion.identity);
+        Vector3 goalPos = new Vector3(lastRoom.x * roomScale, lastRoom.y * roomScale, 0);
+        // Based on level, decide between boss or normal goal
+        int level = FindObjectOfType<PlayerStats>().dungeonLevel;
+        if (level >= 9 && (level-9)%5 == 0)
+        {
+            // Spawn King Crab
+            Object.Instantiate(boss, goalPos, Quaternion.identity);
+            bossLevel = true;
+        } else
+        {
+            // Spawn gate
+            Object.Instantiate(goal, goalPos, Quaternion.identity);
+        }
+        
 
         //Sets sprites
 
