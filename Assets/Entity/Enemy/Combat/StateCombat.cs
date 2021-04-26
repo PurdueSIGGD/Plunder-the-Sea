@@ -18,7 +18,7 @@ public class StateCombat : EnemyCombat
     [HideInInspector]
     private static EntityAttribute[] eliteAttributes = {
         new EntityAttribute(ENT_ATTR.ARMOR_STATIC,5f),
-        new EntityAttribute(ENT_ATTR.MOVESPEED,2f,float.PositiveInfinity,false,false),
+        new EntityAttribute(ENT_ATTR.MOVESPEED,1.5f,float.PositiveInfinity,false,false),
         new EntityAttribute(ENT_ATTR.REGEN,0.1f)
     };
 
