@@ -78,7 +78,11 @@ public class MapGen : MonoBehaviour
         roomStack = new Stack<RoomData>();
 
         //dungeon scaling
-        int level = FindObjectOfType<PlayerStats>().dungeonLevel;
+        int level = 0;
+        foreach (PlayerStats ps in FindObjectsOfType<PlayerStats>())
+        {
+            level = Mathf.Max(level, ps.dungeonLevel);
+        }
         int presetNum = level / 2;
         if (presetNum > presets.Length - 1)
         {
@@ -171,7 +175,11 @@ public class MapGen : MonoBehaviour
         int roomScale = roomWidth + roomDist;
         Vector3 goalPos = new Vector3(lastRoom.x * roomScale, lastRoom.y * roomScale, 0);
         // Based on level, decide between boss or normal goal
-        int level = FindObjectOfType<PlayerStats>().dungeonLevel;
+        int level = 0;
+        foreach (PlayerStats ps in FindObjectsOfType<PlayerStats>())
+        {
+            level = Mathf.Max(level, ps.dungeonLevel);
+        }
         if (level >= 9 && (level-9)%5 == 0)
         {
             // Spawn King Crab
