@@ -186,7 +186,6 @@ public class StateCombat : EnemyCombat
         sparkle.sparkleColor = tint;
         if (numEffects == 3)
         {
-            Debug.Log("Super Elite");
             sparkle.rainbow = true;
         }
 
