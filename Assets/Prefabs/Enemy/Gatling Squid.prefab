@@ -262,6 +262,7 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 2072593970970632041}
   anim: {fileID: 7164970246706375020}
+  eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
   firingCooldown: 0.1
   maxRange: 6
   clipSize: 20

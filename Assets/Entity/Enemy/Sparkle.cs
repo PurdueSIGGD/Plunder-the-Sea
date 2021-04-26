@@ -16,7 +16,7 @@ public class Sparkle : MonoBehaviour
     {
         if (Time.time > killtime)
         {
-            DestroyImmediate(this);
+            Destroy(gameObject);
         }
     }
 }

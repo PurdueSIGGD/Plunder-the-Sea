@@ -318,6 +318,7 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 7877303461921926446}
   anim: {fileID: 4632233198851556698}
+  eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
   playerDebuffTime: 5
   playerDebuffAmount: 5
   enemyDebuffTime: 5

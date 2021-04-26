@@ -214,6 +214,7 @@ MonoBehaviour:
   armorMult: 0.5
   armorStatic: 0
   killRegenMult: 1.5
+  invulnerable: 0
   healthbar: {fileID: 474323350692742444}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -228,6 +229,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
 --- !u!58 &3162708312217719322
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -284,6 +287,7 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 1529058033394793812}
   anim: {fileID: 8529725388654296327}
+  eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
   explosion: {fileID: 6471832775542762957, guid: d16d986119103f54694a9e2413051197, type: 3}
   lingerTime: 0
 --- !u!1 &7664755608209418162

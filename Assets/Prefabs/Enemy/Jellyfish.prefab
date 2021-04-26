@@ -189,6 +189,7 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 4316187914547411006}
   anim: {fileID: 132375475658019683}
+  eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
   stickTime: 2.5
   cooldownTime: 1
   stickSpeed:

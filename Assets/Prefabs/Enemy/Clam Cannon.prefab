@@ -383,6 +383,7 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 6112569577086481303}
   anim: {fileID: 4257575152065558771}
+  eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
   searchCooldown: 0
   shootCooldown: 1
   shootDistance: 8

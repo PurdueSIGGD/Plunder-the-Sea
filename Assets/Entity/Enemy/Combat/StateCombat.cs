@@ -14,6 +14,8 @@ public class StateCombat : EnemyCombat
     public SpriteRenderer sprite;
     public Animator anim;
 
+    public GameObject eliteSparkle;
+
     // Elite status effects
     [HideInInspector]
     private static EntityAttribute[] eliteAttributes = {
@@ -134,10 +136,10 @@ public class StateCombat : EnemyCombat
                 switch (rand)
                 {
                     case 0:
-                        tint = new Color(1f, 0.6f, 0);  // Armor is orange
+                        tint = new Color(1f, 1f, 0);  // Armor is yellow
                         break;
                     case 1:
-                        tint = new Color(0, 1f, 0);    // Speed is green
+                        tint = new Color(0, 1f, 1f);    // Speed is cyan
                         break;
                     case 2:
                         tint = new Color(1f, 0, 1f);  // Regen is magenta
@@ -154,13 +156,13 @@ public class StateCombat : EnemyCombat
                 switch (rand)
                 {
                     case 0:
-                        tint = new Color(0, 1f, 1f);  // Speed/Regen is cyan
+                        tint = new Color(0, 0, 1f);  // Speed/Regen is blue
                         break;
                     case 1:
                         tint = new Color(1f, 0, 0);    // Armor/Regen is red
                         break;
                     case 2:
-                        tint = new Color(1f, 1f, 0);  // Armor/Speed is yellow
+                        tint = new Color(0, 1f, 0);  // Armor/Speed is green
                         break;
                 }
                 break;
@@ -170,16 +172,22 @@ public class StateCombat : EnemyCombat
                 {
                     myBase.myStats.AddAttribute(attr, myBase.myStats);
                 }
-                tint = new Color(0.2f, 0.2f, 0.2f);  // All three is dark gray
+                tint = new Color(1f, 1f, 1f);  // All three is white (will be rainbow anyway)
                 break;
             default:
                 tint = new Color(1f, 1f, 1f);
                 break;
         }
-        // Tints the sprite a color based on the effects they have
-        if (sprite)
+        // Creates a SpawnSparkle component with the tint color
+        SpawnSparkle sparkle = gameObject.AddComponent<SpawnSparkle>();
+        sparkle.size = transform.localScale.x * 0.2f;
+        sparkle.sparkle = eliteSparkle;
+        sparkle.rate = 0.15f;
+        sparkle.sparkleColor = tint;
+        if (numEffects == 3)
         {
-            sprite.color = tint;
+            Debug.Log("Super Elite");
+            sparkle.rainbow = true;
         }
 
         myBase.myStats.displayName = "Elite " + myBase.myStats.displayName;
