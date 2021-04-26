@@ -16,10 +16,14 @@ public class KingCrab : StateCombat
     public float enemyDebuffTime = 5f;
     public float enemyDebuffAmount = 5f;
 
+    public GameObject waterProjectile;
+
     float playerDebuffTimer = 0.0f;
     float originalPlayerSpeed = 0.0f;
 
     public EntityAttribute speedDebuff;
+    public EntityAttribute selfSpeedBuff;
+    public float eliteBuffDistance = 4f;
 
     List<Debuff> debuffedEnemies = new List<Debuff>();
 
@@ -29,6 +33,7 @@ public class KingCrab : StateCombat
     {
         base.CombatStart();
         speedDebuff = new EntityAttribute(ENT_ATTR.MOVESPEED, 0.5f, playerDebuffTime, false, false, "King's Slam");
+        selfSpeedBuff = new EntityAttribute(ENT_ATTR.MOVESPEED, 3f, 1f, false, false, "Elite King's Advance");
         gatePos = transform.position;
     }
 
@@ -57,6 +62,13 @@ public class KingCrab : StateCombat
         if (current == approaching)
         {
             anim.SetInteger("State", 0);
+        }
+        if (myStateMovement.PlayerDistance() > eliteBuffDistance)
+        {
+            myBase.myStats.AddAttribute(selfSpeedBuff, myBase.myStats);
+        } else
+        {
+            myBase.myStats.RemoveAttribute(selfSpeedBuff);
         }
         ////check if playerDebuffTimer has run out
         //if (playerDebuffTimer != 0 && OnTarget(playerDebuffTimer)) {
@@ -101,6 +113,15 @@ public class KingCrab : StateCombat
             //    playerStats.movementSpeed -= playerDebuffAmount;
             //    playerDebuffTimer = SetTarget(playerDebuffTime);
             //}
+        } else if (myBase.myStats.elite)
+        {
+            // Fire the ring projectile
+            Debug.Log("Shoot!");
+            for (int i = 0; i < 360; i+= 90)
+            {
+                GameObject proj = Shoot(waterProjectile, transform.position, transform.position + Quaternion.AngleAxis(i, Vector3.forward) * myStateMovement.PlayerAngle()).gameObject;
+                proj.transform.rotation = Quaternion.identity;
+            }
         }
         
         //debff enemies in range
@@ -144,7 +165,34 @@ public class KingCrab : StateCombat
         
 
     }
-   
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        // Rescale King Crab since its huge already
+        transform.localScale = new Vector3(2.0f, 2.0f, 0);
+
+        // Grant projectile-shooting capabilities
+        ApproachMovement am = ((ApproachMovement)myStateMovement);
+        am.approachDistance *= 2f;
+
+        // Nerf melee range
+        attackRange *= 0.5f;
+
+        // Reduce max health (to a total of a 25% more health from base)
+        myBase.myStats.maxHP /= 2.4f;
+        myBase.myStats.currentHP /= 2.4f;
+
+        // Remove regen because its too powerful on something with so much health
+        myBase.myStats.RemoveAttributesByType(ENT_ATTR.REGEN);
+
+        // Rename
+        myBase.myStats.displayName = "Emperor Crab";
+
+        // Add teleportation
+        myStateMovement.moveTypes = new MoveSets.MoveTypes[]{ MoveSets.MoveTypes.Rook, MoveSets.MoveTypes.Bishop, MoveSets.MoveTypes.Knight };
+    }
+
 }
 
 struct Debuff {

@@ -183,7 +183,13 @@ public class MapGen : MonoBehaviour
         if (level >= 9 && (level-9)%5 == 0)
         {
             // Spawn King Crab
-            Object.Instantiate(boss, goalPos, Quaternion.identity);
+            GameObject newBoss = Object.Instantiate(boss, goalPos, Quaternion.identity);
+            if (level >= 29)
+            {
+                // Level 30 and up spawns the Emperor Crab instead
+                newBoss.GetComponent<EnemyStats>().elite = true;
+                newBoss.GetComponent<EnemyStats>().eliteRank = 3;
+            }
             bossLevel = true;
         } else
         {

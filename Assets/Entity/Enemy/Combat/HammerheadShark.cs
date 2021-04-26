@@ -21,13 +21,26 @@ public class HammerheadShark : StateCombat
     void Update()
     {
         current = GetState();
+
+        // Elite hammer sharks are always spinning
+        if (myBase.myStats.elite)
+        {
+            myStateMovement.SetState(spinning);
+            SpinningMovement sm = ((SpinningMovement)myStateMovement);
+            sm.time = 0f;
+        }
+
         switch (current)
         {
             case spinning:
                 if (prevState == dizzy)
                 {
                     // Just started moving, so add defense
-                    myBase.myStats.AddAttribute(spinningDefense, myBase.myStats);
+                    if (!myBase.myStats.elite)
+                    {
+                        myBase.myStats.AddAttribute(spinningDefense, myBase.myStats);
+                    }
+                    
                     anim.SetInteger("State", 1);
                     anim.SetBool("Back", isPlayerUp());
                     sprite.flipX = isPlayerLeft();
@@ -37,7 +50,11 @@ public class HammerheadShark : StateCombat
                 if (prevState == spinning)
                 {
                     // Just stopped moving, so remove defense
-                    myBase.myStats.RemoveAttribute(spinningDefense);
+                    if (!myBase.myStats.elite)
+                    {
+                        myBase.myStats.RemoveAttribute(spinningDefense);
+                    }
+
                     anim.SetInteger("State", 0);
                     sprite.flipX = false;
                 }
@@ -79,5 +96,12 @@ public class HammerheadShark : StateCombat
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
         }
         myBase.myMovement.moving = true;
+    }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        myBase.myStats.movementSpeed *= 0.5f;
+        transform.localScale *= 0.75f;
     }
 }

@@ -211,6 +211,7 @@ MonoBehaviour:
   armorMult: 0
   armorStatic: 5
   killRegenMult: 1
+  invulnerable: 0
   healthbar: {fileID: 8379629806533454694}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -225,6 +226,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
 --- !u!58 &6429869294199045200
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -285,6 +288,7 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 6340107299991062651}
   anim: {fileID: 2935453451513460977}
+  eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
 --- !u!1 &6500774269780998053
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,7 +359,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1556805819
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f8b7d272e5897aa49ac3f118edd1bb9b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -23,18 +23,19 @@ public class BoomFish : StateCombat
         {
             lingerTime = explosion.GetComponent<Projectile>().lifeTime;
         }
-        if (exploded)
+        if (exploded && !myBase.myStats.elite)
         {
             // Disappear after exploding
             sprite.enabled = false;
             anim.enabled = false;
         }
+
         
 
-        if (exploded && OnTarget(explodeTarget))
+        if (exploded && OnTarget(explodeTarget) && !myBase.myStats.elite)
         {
             // Die once explosion finishes
-            DestroyImmediate(gameObject);
+            DestroyImmediate(gameObject);            
         }
 
         // Variable to ensure that the state used for comparison doesn't change partway through Update()
@@ -45,22 +46,52 @@ public class BoomFish : StateCombat
         {
             sprite.flipX = isPlayerLeft();
             anim.SetInteger("State", (isPlayerUp()) ? 1 : 0);
+            if (myBase.myStats.elite)
+            {
+                exploded = false;
+                anim.speed = 1f;
+            }
         }
 
         // Handle exploding animation
         if (current == activating)
         {
             anim.SetInteger("State", 2);
+            if (myBase.myStats.elite)
+            {
+                anim.speed = 2f;
+            }
+        }
+
+        if (current == cooldown && myBase.myStats.elite)
+        {
+            anim.speed = 0;
         }
 
         // Explodes the frame the boom fish finishes activating
         if (!exploded && current == cooldown)
         {
-            Shoot(explosion, true);
+            GameObject expObj = Shoot(explosion, true).gameObject;
+            if (myBase.myStats.elite)
+            {
+                // Elite boomfish have twice the explosion size
+                expObj.GetComponent<SizeChange>().endSize *= 2f;
+            } else
+            {
+                GetComponentInChildren<Canvas>().enabled = false;
+            }
             exploded = true;
             explodeTarget = SetTarget(lingerTime);
-            GetComponentInChildren<Canvas>().enabled = false;
         }
         prevState = current;
+    }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        ApproachMovement am = ((ApproachMovement)myStateMovement);
+        am.approachDistance *= 2f;
+        am.actChargeUpTime *= 0.5f;
+        am.actCooldownTime *= 2f;
     }
 }

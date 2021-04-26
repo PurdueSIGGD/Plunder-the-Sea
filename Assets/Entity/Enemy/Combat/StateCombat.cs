@@ -14,6 +14,16 @@ public class StateCombat : EnemyCombat
     public SpriteRenderer sprite;
     public Animator anim;
 
+    public GameObject eliteSparkle;
+
+    // Elite status effects
+    [HideInInspector]
+    private static EntityAttribute[] eliteAttributes = {
+        new EntityAttribute(ENT_ATTR.ARMOR_STATIC,5f),
+        new EntityAttribute(ENT_ATTR.MOVESPEED,1.5f,float.PositiveInfinity,false,false),
+        new EntityAttribute(ENT_ATTR.REGEN,0.05f)
+    };
+
     // The distance used by isPlayerUp to determine if an enemy is truly "below" the player, used to make animations bias towards front-facing ones.
     public static float belowThreshold = 0.75f;
 
@@ -22,6 +32,10 @@ public class StateCombat : EnemyCombat
         myBase = GetComponent<EnemyBase>();
         myStateMovement = GetComponent<StateMovement>();
         prevState = GetState();
+        if (myBase && myBase.myStats && myBase.myStats.elite)
+        {
+            MakeElite(myBase.myStats.eliteRank);
+        }
         CombatStart();
     }
 
@@ -96,5 +110,85 @@ public class StateCombat : EnemyCombat
             return ((myBase.player.transform.position.y - belowThreshold) > transform.position.y);
         }
         return false;
+    }
+
+    // Makes the enemy into an elite enemy, a rare and powerful version of an enemy. Usually overridden to add some unique additional effects.
+    public virtual void MakeElite(int numEffects)
+    {
+        // Increased health, damage, and kill regen multiplier gain
+        myBase.myStats.elite = true;
+        myBase.myStats.maxHP *= 3;
+        myBase.myStats.currentHP *= 3;
+        myBase.myStats.killRegenMult *= 3;
+        myBase.myStats.damage *= 2;
+        
+        // Increased size
+        transform.localScale = new Vector3(3.0f, 3.0f, 0);
+
+        // Gets 0-3 random attributes based on numEffects (default is armor, speed, and regen)
+        int rand = Random.Range(0, eliteAttributes.Length);
+        Color tint = new Color();
+        switch (numEffects)
+        {
+            case 1:
+                // Adds 1 random effect
+                myBase.myStats.AddAttribute(eliteAttributes[rand], myBase.myStats);
+                switch (rand)
+                {
+                    case 0:
+                        tint = new Color(1f, 1f, 0);  // Armor is yellow
+                        break;
+                    case 1:
+                        tint = new Color(0, 1f, 1f);    // Speed is cyan
+                        break;
+                    case 2:
+                        tint = new Color(1f, 0, 1f);  // Regen is magenta
+                        break;
+                }
+                break;
+            case 2:
+                // Adds all but 1 random effect
+                for (int i = 0; i < eliteAttributes.Length; i++)
+                {
+                    if (i == rand) continue;
+                    myBase.myStats.AddAttribute(eliteAttributes[i], myBase.myStats);
+                }
+                switch (rand)
+                {
+                    case 0:
+                        tint = new Color(0, 0, 1f);  // Speed/Regen is blue
+                        break;
+                    case 1:
+                        tint = new Color(1f, 0, 0);    // Armor/Regen is red
+                        break;
+                    case 2:
+                        tint = new Color(0, 1f, 0);  // Armor/Speed is green
+                        break;
+                }
+                break;
+            case 3:
+                // Adds all effects
+                foreach (EntityAttribute attr in eliteAttributes)
+                {
+                    myBase.myStats.AddAttribute(attr, myBase.myStats);
+                }
+                tint = new Color(1f, 1f, 1f);  // All three is white (will be rainbow anyway)
+                break;
+            default:
+                tint = new Color(1f, 1f, 1f);
+                break;
+        }
+        // Creates a SpawnSparkle component with the tint color
+        SpawnSparkle sparkle = gameObject.AddComponent<SpawnSparkle>();
+        sparkle.size = transform.localScale.x * 0.2f;
+        sparkle.sparkle = eliteSparkle;
+        sparkle.rate = 0.15f;
+        sparkle.sparkleColor = tint;
+        if (numEffects == 3)
+        {
+            sparkle.rainbow = true;
+        }
+
+        myBase.myStats.displayName = "Elite " + myBase.myStats.displayName;
     }
 }

@@ -38,7 +38,7 @@ public class SweepMovement : StateMovement
             switch (sweepState)
             {
                 case SweepState.normal:
-                    if (PlayerDistance() <= sweepDistance && !Physics2D.Linecast(transform.position, myBase.player.transform.position, mask))
+                    if (PlayerDistance() <= sweepDistance && !CheckForWalls())
                     {
                         // Change state and initialize going the correct angle if close enough
                         sweepState = SweepState.isSweeping;
@@ -48,7 +48,7 @@ public class SweepMovement : StateMovement
                     break;
 
                 case SweepState.isSweeping:
-                    if (PlayerDistance() > sweepDistance || Physics2D.Linecast(transform.position, myBase.player.transform.position, mask))
+                    if (PlayerDistance() > sweepDistance || CheckForWalls())
                     {
                         sweepState = SweepState.normal;
                     }
@@ -63,6 +63,15 @@ public class SweepMovement : StateMovement
                     break;
             }
         }
+    }
+
+    bool CheckForWalls()
+    {
+        float scale = transform.localScale.x * 0.15f;
+        return Physics2D.Linecast(transform.position + new Vector3(scale, 0 ,0), myBase.player.transform.position, mask) ||
+            Physics2D.Linecast(transform.position + new Vector3(-scale, 0, 0), myBase.player.transform.position, mask) ||
+            Physics2D.Linecast(transform.position + new Vector3(0, scale, 0), myBase.player.transform.position, mask) ||
+            Physics2D.Linecast(transform.position + new Vector3(0, -scale, 0), myBase.player.transform.position, mask);
     }
 
     public override int GetState()
