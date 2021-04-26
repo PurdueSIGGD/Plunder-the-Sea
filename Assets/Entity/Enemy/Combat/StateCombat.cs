@@ -19,7 +19,7 @@ public class StateCombat : EnemyCombat
     private static EntityAttribute[] eliteAttributes = {
         new EntityAttribute(ENT_ATTR.ARMOR_STATIC,5f),
         new EntityAttribute(ENT_ATTR.MOVESPEED,1.5f,float.PositiveInfinity,false,false),
-        new EntityAttribute(ENT_ATTR.REGEN,0.1f)
+        new EntityAttribute(ENT_ATTR.REGEN,0.05f)
     };
 
     // The distance used by isPlayerUp to determine if an enemy is truly "below" the player, used to make animations bias towards front-facing ones.
