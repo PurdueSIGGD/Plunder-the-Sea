@@ -20,6 +20,10 @@ public class DragonFish : StateCombat
     // The number of fire particles created when killed.
     public int deathCount = 8;
     public float deathLinger = 5;
+
+    // The fire particle aim spread for elite
+    public float eliteSpread = 15f;
+    public float eliteVel = 4f;
     
     // The current state
     private int current = 0;
@@ -43,8 +47,12 @@ public class DragonFish : StateCombat
 
             // Rotate the sprite
             Vector3 v = myBase.myRigid.velocity;
-            float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg - 180;
-            sprite.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            if (v.magnitude > 0.5f)
+            {
+                float angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg - 180;
+                sprite.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            }
+            
 
             //sprite.flipX = isPlayerLeft();
             sprite.flipY = !isPlayerLeft();
@@ -53,7 +61,21 @@ public class DragonFish : StateCombat
             if (OnTarget(fireTarget) && myStateMovement.PlayerDistance() < fireDistance)
             {
                 fireTarget = SetTarget(fireCooldown);
-                PlaceFire(fireSpread, 0);
+                if (myBase.myStats.elite && current == (int)SweepMovement.SweepState.isSweeping)
+                {
+                    // Elite dragonfish shoots deadly flamethrower fire
+                    Projectile fire = Shoot(fireProjectile, transform.position + (myStateMovement.PlayerAngle() * 0.45f), myBase.player.transform.position, true);
+                    fire.damage *= 0.05f;
+                    fire.lifeTime = 1f;
+                    Vector3 fireVector = myStateMovement.PlayerAngle() * eliteVel;
+
+                    fire.GetComponent<Rigidbody2D>().velocity = Quaternion.AngleAxis(Random.Range(-eliteSpread, eliteSpread), Vector3.forward) * fireVector;
+                }
+                else
+                {
+                    PlaceFire(fireSpread, 0);
+                }
+                
             }
         }
     }
@@ -72,6 +94,7 @@ public class DragonFish : StateCombat
         Vector3 spreadVector = new Vector3(Random.Range(-distance, distance), Random.Range(-distance, distance), 0);
 
         Projectile flame = Shoot(fireProjectile, transform.position + spreadVector, transform.position + spreadVector);
+        flame.gameObject.transform.rotation = Quaternion.identity;
         if (overrideTime > 0) flame.lifeTime = overrideTime;
     }
 
@@ -101,6 +124,8 @@ public class DragonFish : StateCombat
     public override void MakeElite(int numEffects)
     {
         base.MakeElite(numEffects);
+        myBase.myStats.movementSpeed *= 0.35f;
+        fireDistance *= 2f;
         GetComponentInChildren<SpriteRenderer>().color = sprite.color;
     }
 }
