@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class KingCrab : StateCombat
 {
+    public GameObject gate;
+    public Vector3 gatePos;
 
     const int cooldown = (int)ApproachMovement.ApproachState.cooldown;
     const int activating = (int)ApproachMovement.ApproachState.activating;
@@ -27,6 +29,14 @@ public class KingCrab : StateCombat
     {
         base.CombatStart();
         speedDebuff = new EntityAttribute(ENT_ATTR.MOVESPEED, 0.5f, playerDebuffTime, false, false, "King's Slam");
+        gatePos = transform.position;
+    }
+
+    // Spawn gate on death
+    public override void OnDeath()
+    {
+        base.OnDeath();
+        Instantiate(gate, gatePos, Quaternion.identity);
     }
 
     void Update()
@@ -97,6 +107,11 @@ public class KingCrab : StateCombat
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in enemies) {
             if (Vector3.Distance(enemy.transform.position, transform.position) > attackRange) {
+                continue;
+            }
+
+            if (enemy.Equals(this.gameObject))
+            {
                 continue;
             }
             ////check if enemy is in debuffed enemies
