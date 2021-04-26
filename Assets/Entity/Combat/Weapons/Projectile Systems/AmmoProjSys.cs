@@ -19,7 +19,11 @@ public class AmmoProjSys : ProjectileSystem {
     }
     public override void OnFire(Projectile projectile)
     {
-        this.stats.decrementAmmo();
+        float rand = Random.Range(0f, 1f);
+        if (rand < this.stats.ammoUseChance)
+        {
+            this.stats.decrementAmmo();
+        }
     }
 
     // only weapons with the "max ammo" stat can use this system
