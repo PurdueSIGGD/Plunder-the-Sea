@@ -78,14 +78,6 @@ public class Jellyfish : StateCombat
         {
             unstick(stickVictim);
         }
-        //if (myBase.myStats.elite)
-        //{
-        //    for (int i = 0; i < summonCount; i++)
-        //    {
-        //        Vector3 spreadVector = new Vector3(Random.Range(-spreadDistance, spreadDistance), Random.Range(-spreadDistance, spreadDistance), 0);
-        //        Instantiate(childJellyfish, transform.position + spreadVector, Quaternion.identity);
-        //    }
-        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collider) //Called when something enters the enemy's range, only activates if charging
@@ -133,7 +125,7 @@ public class Jellyfish : StateCombat
     public override void MakeElite(int numEffects)
     {
         base.MakeElite(numEffects);
-        stickSpeed = new EntityAttribute(ENT_ATTR.MOVESPEED, 0.25f, stickTime, true, false);
+        stickSpeed = new EntityAttribute(ENT_ATTR.MOVESPEED, -0.75f, stickTime, true, false);
         stickDamage = new EntityAttribute(ENT_ATTR.POISON, myBase.myStats.damage, stickTime, true, true, "Elite Jellyfish");
         eliteStick = new EntityAttribute(ENT_ATTR.INVULNERABLE, 1f, stickTime);
     }
