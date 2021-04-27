@@ -42,6 +42,7 @@ public class KingCrab : StateCombat
     {
         base.OnDeath();
         Instantiate(gate, gatePos, Quaternion.identity);
+        playSound(1);
     }
 
     void Update()
