@@ -26,6 +26,12 @@ public class DDR : MonoBehaviour
     private int catchScore = 400; //score needed to "catch" the fish
     private int releaseScore = -100; //score needed to "release" the fish
 
+    [SerializeField]
+    private AudioClip[] songs;
+    [SerializeField]
+    private int[] bpm;
+    private AudioSource AS;
+
     public Fish fishBeingCaught;
     public PlayerBase targetPlayer;
     [SerializeField]
@@ -36,6 +42,8 @@ public class DDR : MonoBehaviour
         canvas = GetComponentInParent<Canvas>();
         for (int i = 0; i < arrowTargets.Length; i++) { arrowTargets[i] = new List<GameObject>(); }
         nextTargetTime = Time.time + targetFrequencyMax*targetFrequencyStep;
+        AS = GetComponent<AudioSource>();
+        switchAudio(true);
     }
 
     public int GetScore()
@@ -161,7 +169,7 @@ public class DDR : MonoBehaviour
         FishingMinigame.SetActive(false);
         targetPlayer.movement.enabled = true;
         targetPlayer.fishing.gameActive = false;
-        nextTargetTime = Time.time + targetFrequencyStep*targetFrequencyMax;
+        
         for (int i = 0; i < arrowTargets.Length; i++) {
             foreach (GameObject arrow in arrowTargets[i])
             {
@@ -169,6 +177,28 @@ public class DDR : MonoBehaviour
             }
             arrowTargets[i] = new List<GameObject>();
         }
+
+        nextTargetTime = Time.time + targetFrequencyStep * targetFrequencyMax;
+
+        switchAudio(true);
+    }
+
+    private void audioSetup()
+    {
+        switchAudio(false);
+
+        int songChosen = Random.Range(0, songs.Length);
+        AudioSource AS = GetComponent<AudioSource>();
+        AS.clip = songs[songChosen];
+        AS.Play();
+
+        float speedMultiplier = bpm[songChosen] / (60 * 1.5f);
+
+        targetSpeed = 1.0f * speedMultiplier;//Seconds for target to travel entire height
+        targetFrequencyStep = 0.25f * speedMultiplier; // # of second per beat
+        perfectDistRatio = 0.25f / speedMultiplier;//Ratio of target size that counts as perfect
+
+        nextTargetTime = Time.time + targetFrequencyStep * targetFrequencyMax;
     }
 
     private void SendArrow(int type)
@@ -188,6 +218,21 @@ public class DDR : MonoBehaviour
         target.transform.localPosition += new Vector3(0, canvas.pixelRect.height, 0);
         arrowTargets[type].Add(target);
 
+    }
+
+    private void switchAudio(bool on)
+    {
+        foreach (AudioSource FAS in FindObjectsOfType<AudioSource>())
+        {
+            if (on)
+            {
+                FAS.Play();
+                AS.clip = null;
+            } else
+            {
+                FAS.Stop();
+            }
+        }
     }
 
 }
