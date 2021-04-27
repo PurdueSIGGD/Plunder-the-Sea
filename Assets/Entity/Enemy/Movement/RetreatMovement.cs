@@ -22,6 +22,9 @@ public class RetreatMovement : StateMovement
     //the enemy to spawn
     public GameObject enemyToSpawn;
 
+    // set of enemies to spawn from when elite
+    public List<GameObject> eliteSpawnPool;
+
     //the number of enemies to spawn
     public int numberOfEnemiesToSpawn = 3;
 
@@ -116,7 +119,17 @@ public class RetreatMovement : StateMovement
         for (int i = 0; i < numberOfEnemiesToSpawn; i++)
         {
             //spawnLocation += dirToPlayer;
-            GameObject spawnedEnemy = Instantiate(enemyToSpawn, spawnLocation, Quaternion.identity);
+            GameObject spawnedEnemy;
+            if (!myBase.myStats.elite)
+            {
+                // Spawn enemyToSpawn
+                spawnedEnemy = Instantiate(enemyToSpawn, spawnLocation, Quaternion.identity);
+            } else
+            {
+                // Spawn eliteSpawnPool
+                spawnedEnemy = Instantiate(eliteSpawnPool[Random.Range(0,eliteSpawnPool.Count)], spawnLocation, Quaternion.identity);
+            }
+            
             spawnedEnemies.Add(spawnedEnemy);
             GetComponent<StateCombat>().playSound(0);
 

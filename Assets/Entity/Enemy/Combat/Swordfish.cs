@@ -77,4 +77,12 @@ public class Swordfish : StateCombat
             playSound(1);
         }
     }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        ChargeMovement cm = ((ChargeMovement)myStateMovement);
+        cm.chargeUpTime = 0;
+        cm.chargeCooldown *= 0.75f;
+    }
 }

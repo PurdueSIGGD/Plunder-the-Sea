@@ -20,11 +20,14 @@ public class BarrelSquid : StateCombat
     // Ink Shot projectile
     public GameObject inkShot;
 
+    private int current = 0;
+    private float meleeTarget = 0;
+
     // Update is called once per frame
     void Update()
     {
         // Variable to ensure that the state used for comparison doesn't change partway through Update()
-        int current = GetState();
+        current = GetState();
 
         anim.SetInteger("State", current);
 
@@ -85,5 +88,36 @@ public class BarrelSquid : StateCombat
                 break;
         }
         prevState = current;
+    }
+
+    private void OnTriggerStay2D(Collider2D collider) // Melee attack players while in the barrel if elite
+    {
+        if (myBase.myStats.elite && current == flanking && collider.GetComponent<PlayerBase>())
+        {
+            if (OnTarget(meleeTarget))
+            {
+                myBase.myRigid.velocity = Vector2.zero;
+                meleeAttack();
+                meleeTarget = SetTarget(1.0f / myBase.myStats.attackSpeedInverse);
+            }
+
+        }
+    }
+
+    void meleeAttack() //Executes a melee attack
+    {
+        //if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
+        {
+            myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
+        }
+    }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        FlankMovement fm = ((FlankMovement)myStateMovement);
+        fm.minDistance = 0f;
+        fm.maxDistance = 0f;
+        myBase.myStats.movementSpeed *= 1.5f;
     }
 }

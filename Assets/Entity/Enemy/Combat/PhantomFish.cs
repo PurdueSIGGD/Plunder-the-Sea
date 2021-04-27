@@ -33,39 +33,39 @@ public class PhantomFish : StateCombat
         current = GetState();
         prevState = current;
 
-        if (current >= 0)
+        // Place the fire if it can
+        float dist = myStateMovement.PlayerDistance();
+        if (dist > minFireDistance && dist < maxFireDistance)
         {
-            // Place the fire if it can
-            float dist = myStateMovement.PlayerDistance();
-            if (dist > minFireDistance && dist < maxFireDistance)
+            if (OnTarget(fadeTarget))
             {
-                if (OnTarget(fadeTarget))
-                {
-                    anim.SetInteger("State", 2);
-                }
+                anim.SetInteger("State", 2);
             }
-            else
+        } else
+        {
+            if (OnTarget(fadeTarget))
             {
-                if (OnTarget(fadeTarget))
-                {
-                    anim.SetInteger("State", 0);
-                }
+                anim.SetInteger("State", 0);
             }
-            anim.SetBool("Back", isPlayerUp());
-            sprite.flipX = isPlayerLeft();
+        }
+        anim.SetBool("Back", isPlayerUp());
+        sprite.flipX = isPlayerLeft();
 
-            if (OnTarget(fireTarget) && dist > minFireDistance && dist < maxFireDistance)
+        if (OnTarget(fireTarget) && dist > minFireDistance && dist < maxFireDistance)
+        {
+            fireTarget = SetTarget(fireCooldown);
+            Projectile fire = Shoot(fireProjectile);
+            //fire.damage = 2 * myBase.myStats.damage;
+            if (myBase.myStats.elite)
             {
-                fireTarget = SetTarget(fireCooldown);
-                Projectile fire = Shoot(fireProjectile);
-                //fire.damage = 2 * myBase.myStats.damage;
+                fire.collideWithWall = false;
             }
         }
     }
 
     private void OnTriggerStay2D(Collider2D collider) //Called when something enters the enemy's range
     {
-        if (collider.GetComponent<PlayerBase>() && current >= 0)
+        if (collider.GetComponent<PlayerBase>())
         {
             if (OnTarget(meleeTarget))
             {
@@ -95,12 +95,24 @@ public class PhantomFish : StateCombat
         Projectile fake = Shoot(fakePhantom, transform.position, destVector);
         fake.speed = vel.magnitude;
         fake.transform.rotation = Quaternion.identity;
-        fake.GetComponentInChildren<SpriteRenderer>().flipX = sprite.flipX;
+        fake.transform.localScale = transform.localScale;
+        SpriteRenderer fakeSprite = fake.GetComponentInChildren<SpriteRenderer>();
+        if (fakeSprite)
+        {
+            fakeSprite.flipX = sprite.flipX;
+            fakeSprite.color = sprite.color;
+        }
     }
 
     public override void AfterTeleport()
     {
         anim.SetInteger("State", 3);
         fadeTarget = SetTarget(fadeCooldown);
+    }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        fireCooldown *= 0.5f;
     }
 }

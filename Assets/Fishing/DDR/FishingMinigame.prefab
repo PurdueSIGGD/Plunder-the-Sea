@@ -181,7 +181,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895226491548456434}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -54.456738}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 49911198020422452}
@@ -335,7 +335,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2689431165004284553}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -54.456738}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 49911198020422452}
@@ -593,6 +593,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f02dc836932b9814384a10e66328e8e7, type: 3}
   - {fileID: 8300000, guid: fb636766affbb3c4cba1c1b156b3b721, type: 3}
   bpm: a00000006e000000
+  qualityImages:
+  - {fileID: 21300000, guid: 0d43eaa9efa532348ad4cc7279a7d1e7, type: 3}
+  - {fileID: 21300000, guid: 0129eafef474e564bb1d10be967d6831, type: 3}
+  - {fileID: 21300000, guid: 83301976686738f4f94063b0726efae5, type: 3}
+  - {fileID: 21300000, guid: 6c261315acf6eb747a9c147d77ddf809, type: 3}
+  - {fileID: 21300000, guid: b1cb9f2fdfb9fa348ab98990d041d014, type: 3}
+  - {fileID: 21300000, guid: a3f46625d9bea634c80f8180e2f257a3, type: 3}
+  - {fileID: 21300000, guid: f768f6c70cf512245bba4788fdcf1b47, type: 3}
+  - {fileID: 21300000, guid: 99360a2d8a99b29458fed9a60d066264, type: 3}
+  textPrefab: {fileID: 926252797562263537, guid: f21cfe785581e40498fa278fadf54dd6, type: 3}
   fishBeingCaught: {fileID: 0}
   targetPlayer: {fileID: 0}
   FishingMinigame: {fileID: 7448191832672795129}
@@ -718,7 +728,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7582760743510756012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -54.456738}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 49911198020422452}
@@ -793,7 +803,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9045783584049861649}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -54.456738}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 49911198020422452}

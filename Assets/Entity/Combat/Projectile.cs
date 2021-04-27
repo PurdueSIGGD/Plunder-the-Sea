@@ -49,6 +49,7 @@ public class Projectile : MonoBehaviour
 
     // Source's tag (in case the source dies)
     public string sourceTag;
+    public string sourceName;
 
     public Transform parent;
 
@@ -157,7 +158,8 @@ public class Projectile : MonoBehaviour
                 ent.setLastHit(ammoRefill);
             }
             EntityStats attacker = (source) ? source.GetComponent<EntityStats>() : null;
-            ent.TakeDamage(damage, attacker);
+            ent.TakeDamage(damage, attacker, false, sourceName);
+            
 
             // Inflict attribute if relevant
             if ((attrHit != null) && (Random.value <= attrChance))
@@ -250,6 +252,13 @@ public class Projectile : MonoBehaviour
     {
         this.source = s;
         this.sourceTag = s.tag;
+        if (s.GetComponent<EntityStats>())
+        {
+            this.sourceName = s.GetComponent<EntityStats>().displayName;
+        } else
+        {
+            this.sourceName = "";
+        }
     }
 
     public static Projectile Shoot(GameObject prefab, GameObject source, Vector2 target)

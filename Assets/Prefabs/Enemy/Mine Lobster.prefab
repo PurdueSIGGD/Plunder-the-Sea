@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Mine Lobster
-  movementSpeed: 2
+  movementSpeed: 0
   maxHP: 50
   currentHP: 50
   armorMult: 0
@@ -330,6 +330,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
 --- !u!58 &8253026825575706987
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -386,6 +388,7 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 2231436463299911394}
   anim: {fileID: 3524570180372150318}
+  eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
   venomMine: {fileID: 4463945284487561881, guid: 88df9679589340b47a28af735633ddef, type: 3}
   venomCloudProjectile: {fileID: 2808827960982064107, guid: ab93d8e0017a771428b662485382b74c, type: 3}
   mineCooldown: 2

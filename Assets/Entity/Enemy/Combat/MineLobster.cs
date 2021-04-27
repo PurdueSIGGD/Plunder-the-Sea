@@ -55,9 +55,17 @@ public class MineLobster : StateCombat
     {
         Vector3 spreadVector = new Vector3(Random.Range(-distance, distance), Random.Range(-distance, distance), 0);
 
-        Instantiate(venomMine, transform.position + spreadVector, Quaternion.identity).GetComponent<Projectile>();
-
         playSound(1);
+
+        if (myBase.myStats.elite)
+        {
+            Shoot(venomCloudProjectile);
+        } else
+        {
+            Instantiate(venomMine, transform.position + spreadVector, Quaternion.identity).GetComponent<Projectile>();
+        }
+        
+
     }
 
     // Places some mines on death.
@@ -90,5 +98,13 @@ public class MineLobster : StateCombat
             playSound(0);
         }
         myBase.myMovement.moving = true;
+    }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        transform.localScale *= 0.75f;
+        mineCooldown *= 0.25f;
+        mineDistance *= 2f;
     }
 }

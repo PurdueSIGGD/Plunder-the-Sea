@@ -51,4 +51,13 @@ public class BootTrout : StateCombat
             playSound(0);
         }
     }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        ChargeMovement cm = ((ChargeMovement)myStateMovement);
+        cm.chargeDistance = 6f;
+        cm.chargeDuration *= 0.1f;
+        cm.chargeSpeed *= 10f;
+    }
 }

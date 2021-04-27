@@ -231,6 +231,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
 --- !u!58 &2745352938939399203
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -265,6 +267,7 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 1761633211425917743}
   anim: {fileID: 4808642535328036748}
+  eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
   spinningDefense:
     name: Spinning
     type: 4
