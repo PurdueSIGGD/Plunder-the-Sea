@@ -31,6 +31,7 @@ public class HammerheadShark : StateCombat
                     anim.SetInteger("State", 1);
                     anim.SetBool("Back", isPlayerUp());
                     sprite.flipX = isPlayerLeft();
+                    playSound(1);
                 }
                 break;
             case dizzy:
@@ -77,6 +78,7 @@ public class HammerheadShark : StateCombat
         //if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
         {
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
+            playSound(0);
         }
         myBase.myMovement.moving = true;
     }

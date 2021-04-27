@@ -79,6 +79,7 @@ public class KingCrab : StateCombat
         //do smash animation (TODO)
         //deal damage to player if in range
         Debug.Log("SMASH!");
+        playSound(0);
         if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
         {
             //deal damage
@@ -91,6 +92,7 @@ public class KingCrab : StateCombat
             //    playerStats.movementSpeed -= playerDebuffAmount;
             //    playerDebuffTimer = SetTarget(playerDebuffTime);
             //}
+            
         }
         
         //debff enemies in range

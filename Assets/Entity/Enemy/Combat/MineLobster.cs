@@ -56,12 +56,16 @@ public class MineLobster : StateCombat
         Vector3 spreadVector = new Vector3(Random.Range(-distance, distance), Random.Range(-distance, distance), 0);
 
         Instantiate(venomMine, transform.position + spreadVector, Quaternion.identity).GetComponent<Projectile>();
+
+        playSound(1);
     }
 
     // Places some mines on death.
     public override void OnDeath()
     {
         Shoot(venomCloudProjectile);
+
+        playSound(1);
     }
 
     private void OnTriggerStay2D(Collider2D collider) //Called when something enters the enemy's range
@@ -83,6 +87,7 @@ public class MineLobster : StateCombat
         //if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
         {
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
+            playSound(0);
         }
         myBase.myMovement.moving = true;
     }

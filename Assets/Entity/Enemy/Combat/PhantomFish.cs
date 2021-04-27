@@ -82,6 +82,7 @@ public class PhantomFish : StateCombat
         //if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
         {
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
+            playSound(0);
         }
         myBase.myMovement.moving = true;
     }

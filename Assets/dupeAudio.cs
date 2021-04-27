@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class dupeAudio : MonoBehaviour
 {
+    [SerializeField]
+    private bool onStart = false;
+    
     // Start is called before the first frame update
     void Start()
     {
-        doDupe(GetComponent<AudioSource>());
+        if (onStart)
+        {
+            doDupe(GetComponent<AudioSource>());
+        }
     }
 
     public void doDupe(AudioSource thisAS)
@@ -23,7 +29,7 @@ public class dupeAudio : MonoBehaviour
         newAS.minDistance = thisAS.minDistance;
         newAS.maxDistance = thisAS.maxDistance;
 
-        Destroy(thisAS);
+        //Destroy(thisAS);
         newAS.Play();
         Destroy(g, newAS.clip.length + 0.1f);
     }

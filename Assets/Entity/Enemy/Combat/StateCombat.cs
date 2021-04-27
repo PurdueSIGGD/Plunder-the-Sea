@@ -97,4 +97,10 @@ public class StateCombat : EnemyCombat
         }
         return false;
     }
+
+    public void playSound(int i)
+    {
+        dupeAudio DA = gameObject.AddComponent<dupeAudio>();
+        DA.doDupe(GetComponents<AudioSource>()[i]);
+    }
 }
