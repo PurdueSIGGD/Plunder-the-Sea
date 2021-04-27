@@ -320,7 +320,7 @@ MonoBehaviour:
   sprite: {fileID: 7877303461921926446}
   anim: {fileID: 4632233198851556698}
   eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
-  gate: {fileID: 0}
+  gate: {fileID: 1000606575011608496, guid: 9e75e4764de434c4e8debc917d1148d2, type: 3}
   gatePos: {x: 0, y: 0, z: 0}
   playerDebuffTime: 5
   playerDebuffAmount: 5

@@ -163,7 +163,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 0.4}
+  m_Size: {x: 0.7, y: 0.3}
   m_Direction: 1
 --- !u!58 &-5731511110211377871
 CircleCollider2D:
@@ -196,4 +196,7 @@ MonoBehaviour:
   name: ' Dunky'
   buff: +Max Stamina and Recharge
   isFish: 1
+  baitType: 0
+  baitCost: 0
+  weaponClass: 0
   description: A fish who never gives up. He's trying really hard you know.
