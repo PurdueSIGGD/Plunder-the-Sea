@@ -227,6 +227,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
 --- !u!58 &6429869294199045200
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -287,6 +289,7 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 6340107299991062651}
   anim: {fileID: 2935453451513460977}
+  eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
 --- !u!82 &190400140528135684
 AudioSource:
   m_ObjectHideFlags: 0

@@ -128,6 +128,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
 --- !u!58 &3745949659714890756
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -188,6 +190,7 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 4316187914547411006}
   anim: {fileID: 132375475658019683}
+  eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
   stickTime: 2.5
   cooldownTime: 1
   stickSpeed:
@@ -204,6 +207,16 @@ MonoBehaviour:
     duration: 0
     stackable: 0
     isAdditive: 0
+  eliteStick:
+    name: 
+    type: 0
+    value: 0
+    duration: 0
+    stackable: 0
+    isAdditive: 0
+  childJellyfish: {fileID: 0}
+  summonCount: 4
+  spreadDistance: 0.3
 --- !u!82 &-1400190422105928625
 AudioSource:
   m_ObjectHideFlags: 0
