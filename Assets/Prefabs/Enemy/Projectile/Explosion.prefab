@@ -98,6 +98,7 @@ MonoBehaviour:
   attrChance: 0
   speed: 0
   sourceTag: 
+  sourceName: 
   parent: {fileID: 0}
 --- !u!114 &-4025637819014591233
 MonoBehaviour:

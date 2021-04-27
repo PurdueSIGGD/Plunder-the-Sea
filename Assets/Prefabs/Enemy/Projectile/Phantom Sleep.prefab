@@ -224,6 +224,7 @@ MonoBehaviour:
   attrChance: 0
   speed: 0
   sourceTag: 
+  sourceName: 
   parent: {fileID: 0}
 --- !u!82 &2731092676461399274
 AudioSource:

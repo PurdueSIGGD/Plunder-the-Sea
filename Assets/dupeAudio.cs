@@ -28,6 +28,7 @@ public class dupeAudio : MonoBehaviour
         newAS.rolloffMode = thisAS.rolloffMode;
         newAS.minDistance = thisAS.minDistance;
         newAS.maxDistance = thisAS.maxDistance;
+        newAS.outputAudioMixerGroup = thisAS.outputAudioMixerGroup;
 
         //Destroy(thisAS);
         newAS.Play();
