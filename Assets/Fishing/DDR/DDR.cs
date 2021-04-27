@@ -13,6 +13,10 @@ public class DDR : MonoBehaviour
     [SerializeField]
     private Text scoreText = null;
     public List<GameObject>[] arrowTargets = new List<GameObject>[4];
+    [SerializeField]
+    private Sprite[] qualityImages;
+    [SerializeField]
+    private GameObject textPrefab;
 
     private float targetSpeed = 1.0f;//Seconds for target to travel entire height
     private int perfectScore = 20;//Score granted for "perfect" target hit
@@ -105,6 +109,8 @@ public class DDR : MonoBehaviour
                         score = perfectScore / 4;
                     }
 
+                    createWord((int) (dist/perfectDistRatio));
+
                     Destroy(target);
                     arrowTargets[i].RemoveAt(0);
 
@@ -188,6 +194,14 @@ public class DDR : MonoBehaviour
         target.transform.localPosition += new Vector3(0, canvas.pixelRect.height, 0);
         arrowTargets[type].Add(target);
 
+    }
+
+    private void createWord(int i)
+    {
+        GameObject g = Instantiate(textPrefab, transform.parent);
+        g.GetComponent<RectTransform>().localPosition = new Vector3(Random.Range(-Screen.width/3, Screen.width/3), Random.Range(-Screen.height/3, Screen.height/3), 0);
+        g.GetComponent<Image>().sprite = qualityImages[Mathf.Min(Mathf.Max(i, 0), 7)];
+        Destroy(g, 8f);
     }
 
 }

@@ -211,6 +211,7 @@ MonoBehaviour:
   armorMult: 0
   armorStatic: 0
   killRegenMult: 2
+  invulnerable: 0
   healthbar: {fileID: 7546089033592016258}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -225,6 +226,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
 --- !u!58 &5028276791369161396
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -259,11 +262,12 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 2072593970970632041}
   anim: {fileID: 7164970246706375020}
+  eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
   firingCooldown: 0.1
   maxRange: 6
   clipSize: 20
   reloadTime: 1.5
-  shotSpread: 3
+  shotSpread: 5
   searchCooldown: 0.25
   squidBullet: {fileID: 3859555663994881727, guid: af6c604faa873ae4f8de385be31b2c0a, type: 3}
 --- !u!114 &969091030422522653

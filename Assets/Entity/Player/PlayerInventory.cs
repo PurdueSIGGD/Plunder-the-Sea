@@ -28,6 +28,8 @@ public class PlayerInventory : MonoBehaviour
     public Text meleeDamLabel;
     public Text rangeDamLabel;
     public Text armorLabel;
+    public Text ammoUseChanceLabel;
+    public Text regenMultLabel;
 
     public GameObject weaponFrame;
     public Text weaponName;
@@ -140,12 +142,15 @@ public class PlayerInventory : MonoBehaviour
             healthLabel.text = "HP: " + Mathf.Round(pBase.stats.currentHP) + "/" + Mathf.Round(pBase.stats.maxHP);
             stamLabel.text = "Stamina: " + Mathf.Round(pBase.stats.stamina) + "/" + Mathf.Round(pBase.stats.staminaMax);
             ammoLabel.text = "Ammo: " + pBase.stats.ammo + "/" + pBase.stats.maxAmmo;
-            armorLabel.text = "Armor: " + pBase.stats.armorStatic + "(x" +pBase.stats.armorMult+ ")";
+            armorLabel.text = "Armor: " + pBase.stats.armorStatic + "(x" + pBase.stats.armorMult + ")";
 
             speedLabel.text = "Speed: " + pBase.stats.movementSpeed;
             stamRechLabel.text = "Recharge: " + pBase.stats.staminaRechargeRate;
             meleeDamLabel.text = "Melee: " + weapInv.projectileDamage(weapInv.getMeleeWeaponClass());
             rangeDamLabel.text = "Range: " + weapInv.projectileDamage(weapInv.getRangedWeaponClass());
+
+            ammoUseChanceLabel.text = "Ammo use: " + (pBase.stats.ammoUseChance*100).ToString() + "%";
+            regenMultLabel.text = "Regen fill: " + pBase.stats.killRegenMult + " (x" + pBase.stats.killRegenHealMult + ") health";
 
             speedLabel.color = Color.white;
             healthLabel.color = Color.white;
@@ -154,6 +159,8 @@ public class PlayerInventory : MonoBehaviour
             meleeDamLabel.color = Color.white;
             rangeDamLabel.color = Color.white;
             armorLabel.color = Color.white;
+            ammoUseChanceLabel.color = Color.white;
+            regenMultLabel.color = Color.white;
 
             if (pBase.stats.appliedStats != null && pBase.stats.appliedStats.Length >= Fish.buffNames.Length)
             {
@@ -164,6 +171,8 @@ public class PlayerInventory : MonoBehaviour
                 meleeDamLabel.color = pBase.stats.appliedStats[4] > 0 ? Color.green : Color.white;
                 rangeDamLabel.color = pBase.stats.appliedStats[5] > 0 ? Color.green : Color.white;
                 armorLabel.color = pBase.stats.appliedStats[6] > 0 ? Color.green : Color.white;
+                ammoUseChanceLabel.color = pBase.stats.appliedStats[7] > 0 ? Color.green : Color.white;
+                regenMultLabel.color = pBase.stats.appliedStats[8] < 1 ? Color.green : Color.white;
             }
 
             if (invCounter > 0)

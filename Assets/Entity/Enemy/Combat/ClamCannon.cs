@@ -47,6 +47,18 @@ public class ClamCannon : StateCombat
             anim.SetInteger("State", 1);
             sprite.flipX = isPlayerLeft();
             Projectile p = Shoot(pearlShot, transform.position, transform.position + playerAngle, true);
+            
+            if (myBase.myStats.elite)
+            {
+                p.speed *= 0.75f;
+                // Elite clams shoot a ring of pearls
+                for (int i = 20; i <= 360; i+= 20)
+                {
+                    Projectile p2 = Shoot(pearlShot, transform.position, transform.position + Quaternion.AngleAxis(i, Vector3.forward) * playerAngle, true);
+                    p2.speed *= 0.75f;
+                }
+                
+            }
             shootTarget = SetTarget(shootCooldown);
         }
 
@@ -54,5 +66,12 @@ public class ClamCannon : StateCombat
         {
             anim.SetInteger("State", 0);
         }
+    }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        shootCooldown *= 0.75f;
+        anim.speed *= 1.5f;
     }
 }

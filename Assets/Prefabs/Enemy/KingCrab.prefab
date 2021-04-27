@@ -260,6 +260,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
 --- !u!58 &914788804027393684
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -294,7 +296,7 @@ MonoBehaviour:
   pathingRefresh: 0.25
   maxDist: 50
   targetProximity: 0
-  approachDistance: 1.25
+  approachDistance: 2
   actChargeUpTime: 1
   actCooldownTime: 1
   approachState: 0
@@ -316,10 +318,14 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 7877303461921926446}
   anim: {fileID: 4632233198851556698}
+  eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
+  gate: {fileID: 1000606575011608496, guid: 9e75e4764de434c4e8debc917d1148d2, type: 3}
+  gatePos: {x: 0, y: 0, z: 0}
   playerDebuffTime: 5
   playerDebuffAmount: 5
   enemyDebuffTime: 5
   enemyDebuffAmount: 5
+  waterProjectile: {fileID: 0}
   speedDebuff:
     name: 
     type: 0
@@ -327,6 +333,14 @@ MonoBehaviour:
     duration: 0
     stackable: 0
     isAdditive: 0
+  selfSpeedBuff:
+    name: 
+    type: 0
+    value: 0
+    duration: 0
+    stackable: 0
+    isAdditive: 0
+  eliteBuffDistance: 4
 --- !u!1 &2432202686587859360
 GameObject:
   m_ObjectHideFlags: 0

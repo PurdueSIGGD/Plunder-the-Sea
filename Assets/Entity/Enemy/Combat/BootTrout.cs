@@ -50,4 +50,13 @@ public class BootTrout : StateCombat
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
         }
     }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        ChargeMovement cm = ((ChargeMovement)myStateMovement);
+        cm.chargeDistance = 6f;
+        cm.chargeDuration *= 0.1f;
+        cm.chargeSpeed *= 10f;
+    }
 }
