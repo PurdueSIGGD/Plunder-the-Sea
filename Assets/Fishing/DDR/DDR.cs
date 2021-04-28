@@ -46,7 +46,7 @@ public class DDR : MonoBehaviour
     {
         canvas = GetComponentInParent<Canvas>();
         for (int i = 0; i < arrowTargets.Length; i++) { arrowTargets[i] = new List<GameObject>(); }
-        nextTargetTime = Time.time + targetFrequencyMax*targetFrequencyStep;
+        nextTargetTime = Time.time + targetFrequencyMax*targetFrequencyStep - targetSpeed;
         AS = GetComponent<AudioSource>();
     }
 
@@ -194,7 +194,7 @@ public class DDR : MonoBehaviour
             Destroy(WM.gameObject);
         }
 
-        nextTargetTime = Time.time + targetFrequencyStep * targetFrequencyMax;
+        nextTargetTime = Time.time + targetFrequencyStep * targetFrequencyMax - targetSpeed;
 
         switchAudio(true);
     }
@@ -225,7 +225,7 @@ public class DDR : MonoBehaviour
         targetFrequencyStep = speedMultiplier / targetFrequencyMax; // # of second per beat
         perfectDistRatio = 0.25f / speedMultiplier;//Ratio of target size that counts as perfect
 
-        nextTargetTime = Time.time + targetFrequencyStep * targetFrequencyMax;
+        nextTargetTime = Time.time + targetFrequencyStep * targetFrequencyMax - targetSpeed;
     }
 
     private void SendArrow(int type)
