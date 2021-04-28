@@ -162,8 +162,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 0.4}
+  m_Offset: {x: 0, y: -0.025}
+  m_Size: {x: 0.7, y: 0.25}
   m_Direction: 1
 --- !u!58 &-3803082695354116380
 CircleCollider2D:
@@ -196,5 +196,8 @@ MonoBehaviour:
   name: Crocodile
   buff: +HP
   isFish: 1
+  baitType: 0
+  baitCost: 0
+  weaponClass: 0
   description: Look at this dopey thing, lazing about all day. Makes you want to
     pet it.

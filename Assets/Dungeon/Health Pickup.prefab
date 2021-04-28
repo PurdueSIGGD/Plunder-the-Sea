@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1930420151
-  m_SortingLayer: -1
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c96dd380c8474b84cb71a14a3ca13b80, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -100,6 +100,8 @@ MonoBehaviour:
   sprites:
   - {fileID: 21300000, guid: c96dd380c8474b84cb71a14a3ca13b80, type: 3}
   - {fileID: 21300000, guid: 1792e0497da04b64eb69a7182e62a5c6, type: 3}
+  audioPlayer: {fileID: 5840386439622241404, guid: 1b8aa18bb0f687a479a443c5e96ae47f, type: 3}
+  audio: {fileID: 8300000, guid: 09fbf4878aeab3849b8bff238b3d6263, type: 3}
 --- !u!58 &9181424445373026222
 CircleCollider2D:
   m_ObjectHideFlags: 0
