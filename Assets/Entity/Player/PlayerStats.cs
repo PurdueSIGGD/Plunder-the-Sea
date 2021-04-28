@@ -9,7 +9,8 @@ public class PlayerStats : EntityStats
     public float[] appliedStats;
     public GameObject healthPickupGameObj;
 
-    PlayerBase pbase;
+    [HideInInspector]
+    public PlayerBase pbase;
     [HideInInspector]
     public WeaponInventory weaponInv;
     public const float baseMovementSpeed = 10;
@@ -28,14 +29,23 @@ public class PlayerStats : EntityStats
     public Slider killRegenBar;
     public int ammo {get; private set;}
     public int maxAmmo {get; private set;}
+    [HideInInspector]
+    public int actionLock = 0;
     private float timeSinceLastTick = 0;
     private float timeBetweenTicks = 0.1f;
+
+    public float ammoUseChance = 1f; // 0 means no ammo usage
+    public float killRegenHealMult = 1f; // Number kill regen healing is multiplied by, capped at 2
+    public float projectileSpeedMult = 1f; // Number projectile speed is multiplied by
 
     //death stats variables
     private float levelTime;
 
     public void decrementAmmo() {
-        this.ammo = Mathf.Max(ammo - 1, 0);
+        if (actionLock <= 0)
+        {
+            this.ammo = Mathf.Max(ammo - 1, 0);
+        }
     }
 
     public void replenishAmmo(int amount) {
@@ -46,6 +56,11 @@ public class PlayerStats : EntityStats
     public void resetAmmo(int max) {
         this.maxAmmo = max;
         this.ammo = max;
+    }
+
+    public void safeSetAmmo(int amount)
+    {
+        this.ammo = Mathf.Min(amount, this.maxAmmo);
     }
 
     public void increaseKillRegen(float amount) {
@@ -63,9 +78,14 @@ public class PlayerStats : EntityStats
         this.killRegen = 0f;
 
         var pickupObj = Instantiate(healthPickupGameObj);
-        pickupObj.GetComponent<HealthPickup>().health = this.maxHP * 0.25f;
+        pickupObj.GetComponent<HealthPickup>().health = this.maxHP * 0.25f * killRegenMultCalc(this.killRegenHealMult);
 
         pickupObj.transform.position = transform.position;
+    }
+
+    public float killRegenMultCalc(float input)
+    {
+        return 2f * (input / (1f + input));
     }
 
 
@@ -103,7 +123,10 @@ public class PlayerStats : EntityStats
 
     public void UseStamina(float staminaCost)
     {
-        stamina = Mathf.Max(stamina - staminaCost, 0);
+        if (actionLock <= 0)
+        {
+            stamina = Mathf.Max(stamina - staminaCost, 0);
+        }
     }
 
     private void setDeathStats()
@@ -151,6 +174,18 @@ public class PlayerStats : EntityStats
             pbase.OnKill(victim);
         }
         increaseKillRegen(0.1f * victim.killRegenMult);
+    }
+
+    public int lockAction()
+    {
+        actionLock++;
+        return actionLock;
+    }
+
+    public int unlockAction()
+    {
+        actionLock--;
+        return actionLock;
     }
 
 }

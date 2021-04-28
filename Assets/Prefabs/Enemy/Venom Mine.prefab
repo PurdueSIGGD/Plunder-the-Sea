@@ -77,10 +77,10 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1556805819
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cdb779631c597a645bb35612153c8f45, type: 3}
-  m_Color: {r: 0.16169204, g: 0.1013261, b: 0.31132078, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 98038b6c45ac2c540b7863c4e1891716, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -163,6 +163,7 @@ MonoBehaviour:
   armorMult: 0.5
   armorStatic: 0
   killRegenMult: 0
+  invulnerable: 0
   healthbar: {fileID: 265345590154777155}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -173,6 +174,8 @@ MonoBehaviour:
   dropOdds:
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
 --- !u!58 &3377596982842033525
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -229,8 +232,9 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 4463945284487561890}
   anim: {fileID: 0}
-  defaultSprite: {fileID: 21300000, guid: cdb779631c597a645bb35612153c8f45, type: 3}
-  detonateSprite: {fileID: 21300000, guid: 83d6bc9aba17c5f458b4fc8694f8cad8, type: 3}
+  eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
+  defaultSprite: {fileID: 21300000, guid: 98038b6c45ac2c540b7863c4e1891716, type: 3}
+  detonateSprite: {fileID: 21300000, guid: 98038b6c45ac2c540b7863c4e1891716, type: 3}
   venomCloud: {fileID: 2808827960982064107, guid: ab93d8e0017a771428b662485382b74c, type: 3}
   lingerTime: 0.1
   duration: 10

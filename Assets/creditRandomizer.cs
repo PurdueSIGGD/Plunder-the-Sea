@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class creditRandomizer : MonoBehaviour
 {
     private string[] names = {"Tom Yarrow", "Andrew Choi", "Phoebus Yang", "Andy Sharpe", "Michael Forte", "Clayton Detke", "Landon Ellis",
-        "Alex Plump", "Michael Beshear", "Sam Schafer", "Chase Fretch", "Nicole Tomaszewski", "Sean Thomas", "Paolo"};
+        "Alex Plump", "Michael Beshear", "Sam Schafer", "Chase Fretch", "Nicole Tomaszewski", "Sean Thomas", "Paolo Ayos"};
     private List<string> nameList = new List<string>();
     [SerializeField]
     private Text[] nameSlots;

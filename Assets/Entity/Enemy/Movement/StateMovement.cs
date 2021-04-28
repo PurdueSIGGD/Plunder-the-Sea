@@ -7,7 +7,6 @@ using UnityEngine;
 // Utility subclass for state-driven enemy movement
 public class StateMovement : EnemyMovement
 {
-
     public MoveSets.MoveTypes[] moveTypes = { MoveSets.MoveTypes.Rook, MoveSets.MoveTypes.Bishop };
     public LinkedList<MoveAction> moveActions;
     public float pathingRefresh = .25f;
@@ -15,6 +14,8 @@ public class StateMovement : EnemyMovement
     public float targetProximity = 0;
     private float lastRefresh = -Mathf.Infinity;
     private int actionLock = 0;
+    private int saveState;
+    private bool saveMoving;
 
     // One-liner for distance from the player
     public float PlayerDistance()
@@ -98,12 +99,26 @@ public class StateMovement : EnemyMovement
         PriorityQueue frontier = new PriorityQueue();
         Vector2 myPos = centerVector(myBase.myRigid.position);
         Vector2 playerPos = centerVector(myBase.player.transform.position);
+
+        //Adjust enemy and player position so that player/enemy not located inside 2.5D wall
+        RaycastHit2D wallStartCheck = Physics2D.Raycast(myPos + Vector2.down * .2f, Vector2.up, .4f, LayerMask.GetMask("Wall"));
+        if (wallStartCheck.collider != null)
+        {
+            myPos = myPos + Vector2.down;
+        }
+        wallStartCheck = Physics2D.Raycast(playerPos + Vector2.down * .2f, Vector2.up, .4f, LayerMask.GetMask("Wall"));
+        if (wallStartCheck.collider != null)
+        {
+            playerPos = playerPos + Vector2.down;
+        }
+
         PathAction startAct = new PathAction(new Vector2(myPos.x, myPos.y), null, new MoveAction(Vector2.zero, 0));
         pathMap.Add(myPos, startAct);
         //frontier.Enqueue(startAct);
         frontier.Push(startAct);
         ContactFilter2D filter = new ContactFilter2D();
         filter.SetLayerMask(1 << 8);
+        
         //Debug.Log("Start: " + myPos);
         MoveAction[] nextMoves = MoveSets.getDirections(moveTypes);
 
@@ -208,6 +223,26 @@ public class StateMovement : EnemyMovement
     public virtual void SetState(int newState)
     {
         return;
+    }
+
+    public void StunState()
+    {
+        if (GetState() == -1)
+        {
+            //already stunned
+            return;
+        }
+        saveState = GetState();
+        myBase.myRigid.velocity = Vector2.zero;
+        SetState(-1);
+        saveMoving = moving;
+        moving = false;
+    }
+
+    public virtual void RestoreState()
+    {
+        SetState(saveState);
+        moving = saveMoving;
     }
 }
 

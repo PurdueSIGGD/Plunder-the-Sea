@@ -56,6 +56,10 @@ public class PhantomFish : StateCombat
             fireTarget = SetTarget(fireCooldown);
             Projectile fire = Shoot(fireProjectile);
             //fire.damage = 2 * myBase.myStats.damage;
+            if (myBase.myStats.elite)
+            {
+                fire.collideWithWall = false;
+            }
         }
     }
 
@@ -90,12 +94,24 @@ public class PhantomFish : StateCombat
         Projectile fake = Shoot(fakePhantom, transform.position, destVector);
         fake.speed = vel.magnitude;
         fake.transform.rotation = Quaternion.identity;
-        fake.GetComponentInChildren<SpriteRenderer>().flipX = sprite.flipX;
+        fake.transform.localScale = transform.localScale;
+        SpriteRenderer fakeSprite = fake.GetComponentInChildren<SpriteRenderer>();
+        if (fakeSprite)
+        {
+            fakeSprite.flipX = sprite.flipX;
+            fakeSprite.color = sprite.color;
+        }
     }
 
     public override void AfterTeleport()
     {
         anim.SetInteger("State", 3);
         fadeTarget = SetTarget(fadeCooldown);
+    }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        fireCooldown *= 0.5f;
     }
 }

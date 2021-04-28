@@ -75,4 +75,12 @@ public class Swordfish : StateCombat
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
         }
     }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        ChargeMovement cm = ((ChargeMovement)myStateMovement);
+        cm.chargeUpTime = 0;
+        cm.chargeCooldown *= 0.75f;
+    }
 }

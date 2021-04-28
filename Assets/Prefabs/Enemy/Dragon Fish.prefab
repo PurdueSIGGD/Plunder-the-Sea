@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1556805819
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 3b2e54da5bf45494fa4a69fa81c3a791, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -172,7 +172,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1556805819
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: eaee58fdbb2e3c74bb115edc66276f26, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -320,6 +320,7 @@ MonoBehaviour:
   armorMult: 0.5
   armorStatic: 5
   killRegenMult: 2
+  invulnerable: 0
   healthbar: {fileID: 1744128257473083715}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -334,6 +335,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
 --- !u!58 &3838601318679195253
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -368,6 +371,7 @@ MonoBehaviour:
   myStateMovement: {fileID: 0}
   sprite: {fileID: 8968116145013957098}
   anim: {fileID: 784422238704982525}
+  eliteSparkle: {fileID: 171689904426606538, guid: 5eb4c6260f4779e4aa37b710354c26eb, type: 3}
   fireProjectile: {fileID: 440332554722693003, guid: f7fa7628e965c584c8b722e6e0b40d5d, type: 3}
   fireCooldown: 0.05
   fireDistance: 4
@@ -375,6 +379,8 @@ MonoBehaviour:
   deathSpread: 0.4
   deathCount: 5
   deathLinger: 5
+  eliteSpread: 15
+  eliteVel: 4
 --- !u!114 &2739941548566315107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,6 +458,7 @@ MonoBehaviour:
   armorMult: 0
   armorStatic: 0
   killRegenMult: 1
+  invulnerable: 0
   healthbar: {fileID: 0}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -466,6 +473,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
   parent: {fileID: 1990761194686808809}
 --- !u!58 &8447986856954482319
 CircleCollider2D:
@@ -557,6 +566,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 354291501852963987}
   myRigid: {fileID: 0}
+  minMagnitude: 0.5
 --- !u!1 &4183514129273869714
 GameObject:
   m_ObjectHideFlags: 0
@@ -627,7 +637,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1556805819
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 7045331530ad5034196cca479841a2c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -715,6 +725,7 @@ MonoBehaviour:
   armorMult: 0
   armorStatic: 0
   killRegenMult: 1
+  invulnerable: 0
   healthbar: {fileID: 0}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -729,6 +740,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
   parent: {fileID: 1990761194686808809}
 --- !u!58 &8387900853991859502
 CircleCollider2D:
@@ -820,6 +833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 8527790378283998866}
   myRigid: {fileID: 0}
+  minMagnitude: 0.5
 --- !u!1 &5875464161166937178
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,6 +889,7 @@ MonoBehaviour:
   armorMult: 0
   armorStatic: 0
   killRegenMult: 1
+  invulnerable: 0
   healthbar: {fileID: 0}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -889,6 +904,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
   parent: {fileID: 1990761194686808809}
 --- !u!58 &3884040136634730514
 CircleCollider2D:
@@ -960,6 +977,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 2349392775841230325}
   myRigid: {fileID: 0}
+  minMagnitude: 0.5
 --- !u!1 &6016134916036352070
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,7 +1048,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1556805819
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b65d6694369e80b42b68f52d820c0669, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1132,7 +1150,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1556805819
-  m_SortingLayer: -1
+  m_SortingLayer: -2
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 949f8dc63b21e6a449c11afae84451a8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1220,6 +1238,7 @@ MonoBehaviour:
   armorMult: 0
   armorStatic: 0
   killRegenMult: 1
+  invulnerable: 0
   healthbar: {fileID: 0}
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
@@ -1234,6 +1253,8 @@ MonoBehaviour:
   - 1
   - 1
   dropRange: 0
+  elite: 0
+  eliteRank: 0
   parent: {fileID: 1990761194686808809}
 --- !u!58 &6370679091670806710
 CircleCollider2D:
@@ -1325,6 +1346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 7803390449501302939}
   myRigid: {fileID: 0}
+  minMagnitude: 0.5
 --- !u!1 &8430720250744462301
 GameObject:
   m_ObjectHideFlags: 0

@@ -114,12 +114,16 @@ MonoBehaviour:
   - 10
   - 0
   - 0
+  - 0
+  - 0
   buffsMult:
   - 0
   - 0
   - 0
   - 0
-  - 0.5
+  - 0.25
+  - 0
+  - 0
   - 0
   - 0
   FishingMinigame: {fileID: 0}
@@ -189,14 +193,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Fish: Hammerhead
-
-    Favorite: Bait 4
-
-    Buff Type: Melee Damage
-
-
-    Description:
-
-    The
-    calmer relative of the hammerheads you might find in dungeons. Still wide head'
+  name: Hammerhead
+  buff: +Melee Damage
+  isFish: 1
+  baitType: 0
+  baitCost: 0
+  weaponClass: 0
+  description: The calmer relative of the hammerheads you might find in dungeons.
+    Still wide head.

@@ -7,6 +7,8 @@ public class ChestBehaviour : MonoBehaviour
     public WeaponTables weaponTables;
     [SerializeField]
     private WeaponFactory.CLASS weaponClass;
+    public SpritesWeaponClassTable rangedWeaponSpritesTable;
+    public PrefabWeaponClassTable projectilePrefabTable;
     private bool used = false;
     private DescriptionInfo descrInfo;
 
@@ -22,11 +24,13 @@ public class ChestBehaviour : MonoBehaviour
         {
             return;
         }
-        string descr = weaponTables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE ? "Melee: " : "Range: ";
-        descr += weaponTables.about.getName(weaponClass) + "\nBase Damage: ";
-        descr += weaponTables.damage.get(weaponClass) + "\n\nDescription:\n";
+        string descr = weaponTables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE ? "Melee" : "Ranged";
+        descr += " Damage: ";
+        descr += weaponTables.damage.get(weaponClass) + "\n";
         descr += weaponTables.about.getDescr(weaponClass);
+        descrInfo.name = weaponTables.about.getName(weaponClass);
         descrInfo.description = descr;
+        descrInfo.weaponClass = weaponClass;
     }
 
     public void SetWeaponClass(WeaponFactory.CLASS weaponClass) {
@@ -37,17 +41,34 @@ public class ChestBehaviour : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collider)
     {
         WeaponInventory weaponInv = collider.GetComponent<WeaponInventory>();
-        if (weaponInv == null || used) {
+        PlayerStats pStats = collider.GetComponent<PlayerStats>();
+        if (weaponInv == null) {
             return;
         }
 
+        /*
         used = true;
         weaponInv.SetWeapon(weaponClass);
         transform.localScale *= 0.5f;
 
         PlayerPrefs.SetInt("Chests", PlayerPrefs.GetInt("Chests") + 1);
+        Destroy(descrInfo);
 
         this.enabled = false;
+        */
+        int currAmmo = pStats.ammo;
+        weaponClass = weaponInv.SetWeapon(weaponClass);
+        SetDescription();
+        
+        if (!used)
+        {
+            transform.localScale *= 0.5f;
+            PlayerPrefs.SetInt("Chests", PlayerPrefs.GetInt("Chests") + 1);
+            used = true;
+            return;
+        }
+        pStats.safeSetAmmo(currAmmo);
+        
     }
 
 }

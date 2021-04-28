@@ -28,7 +28,27 @@ public class PlayerInventory : MonoBehaviour
     public Text meleeDamLabel;
     public Text rangeDamLabel;
     public Text armorLabel;
-    public Text Description;
+    public Text ammoUseChanceLabel;
+    public Text regenMultLabel;
+
+    public GameObject weaponFrame;
+    public Text weaponName;
+    public Text weaponPrice;
+    public Image weaponBait;
+    public Image weaponImage;
+    public Text weaponDescription;
+    public GameObject weaponX;
+
+    public GameObject fishFrame;
+    public Text fishName;
+    public Text fishBuffName;
+    public Image fishImage;
+    public Image fishBait;
+    public Text fishDescription;
+
+    public Sprite[] baitImages;
+
+    public float invCounter = 0;
 
     //death stats variables
     public int baitsGot = 0;
@@ -43,7 +63,7 @@ public class PlayerInventory : MonoBehaviour
         baitText[0].color = Color.red;
         for (int i = 0; i < baitTypes.Length; i++)
         {
-            baitText[i].text = "Bait " + (i + 1).ToString() + ": " + baitTypes[i].ToString();
+            baitText[i].text = baitTypes[i].ToString();
         }
         pBase = GetComponentInParent<PlayerBase>();
         weapInv = GetComponentInParent<WeaponInventory>();
@@ -82,9 +102,9 @@ public class PlayerInventory : MonoBehaviour
 
     public void setDescription(WeaponFactory.CLASS weaponClass)
     {
-        string descr = tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE ? "Melee: " : "Range: ";
-        descr += tables.about.getName(weaponClass) + "\nBase Damage: ";
-        descr += tables.damage.get(weaponClass) + "\n\nDescription:\n";
+        string descr = tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE ? "Melee" : "Ranged";
+        descr += " Damage: ";
+        descr += tables.damage.get(weaponClass) + "\n";
         descr += tables.about.getDescr(weaponClass);
 
         if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE)
@@ -93,7 +113,9 @@ public class PlayerInventory : MonoBehaviour
             {
                 return;
             }
+            meleeInfo.name = tables.about.getName(weaponClass);
             meleeInfo.description = descr;
+            meleeInfo.weaponClass = weaponClass;
         }
         else
         {
@@ -101,7 +123,9 @@ public class PlayerInventory : MonoBehaviour
             {
                 return;
             }
+            rangeInfo.name = tables.about.getName(weaponClass);
             rangeInfo.description = descr;
+            rangeInfo.weaponClass = weaponClass;
         }
     }
 
@@ -118,12 +142,15 @@ public class PlayerInventory : MonoBehaviour
             healthLabel.text = "HP: " + Mathf.Round(pBase.stats.currentHP) + "/" + Mathf.Round(pBase.stats.maxHP);
             stamLabel.text = "Stamina: " + Mathf.Round(pBase.stats.stamina) + "/" + Mathf.Round(pBase.stats.staminaMax);
             ammoLabel.text = "Ammo: " + pBase.stats.ammo + "/" + pBase.stats.maxAmmo;
-            armorLabel.text = "Armor: " + pBase.stats.armorStatic + "(x" +pBase.stats.armorMult+ ")";
+            armorLabel.text = "Armor: " + pBase.stats.armorStatic + "(x" + pBase.stats.armorMult + ")";
 
             speedLabel.text = "Speed: " + pBase.stats.movementSpeed;
             stamRechLabel.text = "Recharge: " + pBase.stats.staminaRechargeRate;
             meleeDamLabel.text = "Melee: " + weapInv.projectileDamage(weapInv.getMeleeWeaponClass());
             rangeDamLabel.text = "Range: " + weapInv.projectileDamage(weapInv.getRangedWeaponClass());
+
+            ammoUseChanceLabel.text = "Ammo use: " + (pBase.stats.ammoUseChance*100).ToString() + "%";
+            regenMultLabel.text = "Regen fill: " + pBase.stats.killRegenMult + " (x" + pBase.stats.killRegenHealMult + ") health";
 
             speedLabel.color = Color.white;
             healthLabel.color = Color.white;
@@ -132,6 +159,8 @@ public class PlayerInventory : MonoBehaviour
             meleeDamLabel.color = Color.white;
             rangeDamLabel.color = Color.white;
             armorLabel.color = Color.white;
+            ammoUseChanceLabel.color = Color.white;
+            regenMultLabel.color = Color.white;
 
             if (pBase.stats.appliedStats != null && pBase.stats.appliedStats.Length >= Fish.buffNames.Length)
             {
@@ -142,6 +171,17 @@ public class PlayerInventory : MonoBehaviour
                 meleeDamLabel.color = pBase.stats.appliedStats[4] > 0 ? Color.green : Color.white;
                 rangeDamLabel.color = pBase.stats.appliedStats[5] > 0 ? Color.green : Color.white;
                 armorLabel.color = pBase.stats.appliedStats[6] > 0 ? Color.green : Color.white;
+                ammoUseChanceLabel.color = pBase.stats.appliedStats[7] > 0 ? Color.green : Color.white;
+                regenMultLabel.color = pBase.stats.appliedStats[8] < 1 ? Color.green : Color.white;
+            }
+
+            if (invCounter > 0)
+            {
+                invCounter -= Time.deltaTime;
+            } else
+            {
+                weaponFrame.SetActive(false);
+                fishFrame.SetActive(false);
             }
         }
     }
@@ -171,14 +211,14 @@ public class PlayerInventory : MonoBehaviour
     public void addBait(int arrayIndex, int baitAmount = 1)
     {
         baitTypes[arrayIndex] = baitTypes[arrayIndex] + baitAmount;
-        baitText[arrayIndex].text = "Bait " + (arrayIndex + 1).ToString() + ": " + baitTypes[arrayIndex].ToString();
+        baitText[arrayIndex].text = baitTypes[arrayIndex].ToString();
         baitsGot += baitAmount;
     }
 
     public void removeBait(int arrayIndex, int baitAmount = 1)
     {
         baitTypes[arrayIndex] = baitTypes[arrayIndex] - baitAmount;
-        baitText[arrayIndex].text = "Bait " + (arrayIndex + 1).ToString() + ": " + baitTypes[arrayIndex].ToString();
+        baitText[arrayIndex].text = baitTypes[arrayIndex].ToString();
     }
 
     public void flushBait()
@@ -187,7 +227,7 @@ public class PlayerInventory : MonoBehaviour
         for (int i = 0; i < baitTypes.Length; i++)
         {
             baitTypes[i] = 0;
-            baitText[i].text = "Bait " + (i + 1).ToString() + ": " + 0.ToString();
+            baitText[i].text = 0.ToString();
         }
         
     }

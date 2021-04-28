@@ -47,12 +47,14 @@ public class VenomMine : StateCombat
 
         if (current == activating)
         {
-            sprite.sprite = detonateSprite;
-            sprite.flipX = sprite.flipY = false;
+            //sprite.sprite = detonateSprite;
+            //sprite.flipX = sprite.flipY = false;
+            sprite.color = Color.red;
         } else
         {
-            sprite.sprite = defaultSprite;
-            sprite.flipX = sprite.flipY = true;
+            //sprite.sprite = defaultSprite;
+            //sprite.flipX = sprite.flipY = true;
+            sprite.color = Color.white;
         }
 
         // Explodes the frame the venom mine finishes activating, or when the duration runs out

@@ -101,27 +101,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   rotationSpeed: 0.25
-  preferredBaitType: 1
+  preferredBaitType: 3
   wrongBaitCatchPercent: 0.25
-  minWaitTime: 0
-  maxWaitTime: 2
+  minWaitTime: 0.5
+  maxWaitTime: 2.5
   lootLevel: 3
   buffs:
   - 0
+  - 5
   - 0
   - 0
   - 0
   - 0
   - 0
-  - 2
+  - 0
+  - 0
   buffsMult:
   - 0
+  - 0.2
   - 0
   - 0
   - 0
   - 0
   - 0
-  - 0.5
+  - 0
+  - 0
   FishingMinigame: {fileID: 0}
   sprite: {fileID: 0}
 --- !u!50 &-8485167538343993492
@@ -189,14 +193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac825394ab74bc242a413c3442159686, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: 'Fish: Crocodile
-
-    Favorite: Bait 2
-
-    Buff Type: Armor
-
-
-    Description:
-
-    Look
-    at this dopey thing, lazing about all day. Makes you want to pet it'
+  name: Crocodile
+  buff: +HP
+  isFish: 1
+  description: Look at this dopey thing, lazing about all day. Makes you want to
+    pet it.

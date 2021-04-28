@@ -90,21 +90,25 @@ public class WeaponInventory : MonoBehaviour
         rangedSystem = wep;
     }
 
-    public void SetWeapon(WeaponFactory.CLASS weaponClass) {
+    public WeaponFactory.CLASS SetWeapon(WeaponFactory.CLASS weaponClass) {
         var weapon = new WeaponSystem(weaponClass, this.tables);
+        WeaponFactory.CLASS old;
         if (equipSound)
         {
             audioSrc.clip = equipSound;
             audioSrc.Play();
         }
-        if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE){ 
+        if (tables.tagWeapon.get(weaponClass) == WeaponFactory.TAG.MELEE){
+            old = this.meleeWeaponClass;
             this.meleeWeaponClass = weaponClass;
             SetMelee(weapon);
         } else {
+            old = this.rangedWeaponClass;
             this.rangedWeaponClass = weaponClass;
             SetRanged(weapon);
         }
         wepsGot++;
+        return old;
     }
 
     public ProjectileStats constructProjectileStats(WeaponFactory.CLASS weaponClass) {
@@ -149,12 +153,12 @@ public class WeaponInventory : MonoBehaviour
         }
         return rangedWeaponSpritesTable.get(this.rangedWeaponClass);
     }
-    public bool ShootAt(Vector2 position, bool isMelee)
+    public bool ShootAt(Vector2 position, bool isMelee, bool checkCost = true)
     {
         var weaponClass = isMelee ? this.meleeWeaponClass : this.rangedWeaponClass;
         var weaponSystem = isMelee ? this.meleeSystem : this.rangedSystem;
         var stats = constructProjectileStats(weaponClass);
-        if (weaponSystem?.CanShoot(this.gameObject) == true)
+        if (!checkCost || weaponSystem?.CanShoot(this.gameObject) == true)
         {
             Projectile hitbox = Projectile.Shoot(stats.prefab, this.gameObject, position);
             hitbox.weaponSystem = weaponSystem;

@@ -127,6 +127,12 @@ public class GatlingSquid : StateCombat
                     }
                     
                     Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+                    if (myBase.myStats.elite)
+                    {
+                        rb.velocity *= 2;
+                        bullet.transform.localScale *= 2;
+                        bullet.damage *= 3f;
+                    }
                     rb.velocity = Quaternion.AngleAxis(Random.Range(-shotSpread,shotSpread), Vector3.forward) * rb.velocity;
                     clipCounter++;
                     firingTracker = SetTarget(firingCooldown);
@@ -164,5 +170,14 @@ public class GatlingSquid : StateCombat
         }
 
         prevState = current;
+    }
+
+    public override void MakeElite(int numEffects)
+    {
+        base.MakeElite(numEffects);
+        clipSize = 2;
+        reloadTime *= 0.5f;
+        firingCooldown = 0.25f;
+        anim.speed /= 2.5f;
     }
 }
