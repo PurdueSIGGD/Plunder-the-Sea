@@ -108,6 +108,7 @@ public class Jellyfish : StateCombat
         sprite.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         anim.SetInteger("State", 1);
         isSticking = true;
+        playSound(0);
     }
 
     void unstick(EntityStats target)

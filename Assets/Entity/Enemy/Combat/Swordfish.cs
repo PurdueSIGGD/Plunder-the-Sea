@@ -43,6 +43,7 @@ public class Swordfish : StateCombat
                 angle += 180;
             }
             sprite.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            playSound(0);
         }
 
         // De-rotate the swordfish once exits its charge
@@ -73,6 +74,7 @@ public class Swordfish : StateCombat
         //if (Vector3.Distance(transform.position, myBase.player.transform.position) <= attackRange)
         {
             myBase.player.GetComponent<PlayerBase>().stats.TakeDamage(myBase.myStats.damage, myBase.myStats);
+            playSound(1);
         }
     }
 

@@ -169,7 +169,17 @@ public class WeaponInventory : MonoBehaviour
             hitbox.ammoRefill = stats.ammoRefill;
             hitbox.parent = this.meleeParent;
             hitbox.GetComponentInChildren<SpriteRenderer>().sortingOrder = 1;
-        
+
+            //Sound stuff
+            GameObject g = Instantiate(new GameObject(), transform.position, Quaternion.identity);
+            AudioSource newAS = g.AddComponent<AudioSource>();
+            newAS.clip = tables.sounds.getSound(weaponClass);
+            newAS.volume = tables.sounds.getVolume (weaponClass);
+            newAS.pitch = tables.sounds.getPitch(weaponClass);
+
+            newAS.Play();
+            Destroy(g, newAS.clip.length + 0.1f);
+
             if (!isMelee) {
                 var direction = (position - (Vector2)transform.position).normalized;
                 hitbox.GetComponent<Rigidbody2D>().velocity =

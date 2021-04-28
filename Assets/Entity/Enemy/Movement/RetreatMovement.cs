@@ -131,6 +131,7 @@ public class RetreatMovement : StateMovement
             }
             
             spawnedEnemies.Add(spawnedEnemy);
+            GetComponent<StateCombat>().playSound(0);
 
             // Manually remove the enemy's drop table chance and kill regen contribution
             EnemyStats eStats = spawnedEnemy.GetComponent<EnemyStats>();
