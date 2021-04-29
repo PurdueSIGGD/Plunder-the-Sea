@@ -61,6 +61,9 @@ public class BoomFish : StateCombat
             {
                 anim.speed = 2f;
             }
+            if (prevState == approaching) {
+                playSound(0);
+            }
         }
 
         if (current == cooldown && myBase.myStats.elite)

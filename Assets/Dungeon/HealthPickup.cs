@@ -8,6 +8,10 @@ public class HealthPickup : MonoBehaviour
     public float health = 1.0f;
     [SerializeField]
     private Sprite[] sprites;
+    [SerializeField]
+    private GameObject audioPlayer;
+    [SerializeField]
+    private AudioClip audio;
 
     private void Start()
     {
@@ -30,6 +34,8 @@ public class HealthPickup : MonoBehaviour
 
         //Update player health
         player.ReplenishHealth(health);
+
+        Instantiate(audioPlayer, transform.position, Quaternion.identity).GetComponent<startAudio>().setup(audio);
 
         //Destory health pickup
         GameObject.Destroy(transform.gameObject);

@@ -152,7 +152,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c2c04b37583f7914b91c6acf6c87bec0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.06
+  m_Volume: 0.08
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -260,7 +260,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1545560702}
   - component: {fileID: 1545560701}
-  - component: {fileID: 1545560700}
   - component: {fileID: 1545560703}
   - component: {fileID: 1545560704}
   - component: {fileID: 1545560705}
@@ -271,14 +270,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1545560700
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1545560699}
-  m_Enabled: 1
 --- !u!20 &1545560701
 Camera:
   m_ObjectHideFlags: 0

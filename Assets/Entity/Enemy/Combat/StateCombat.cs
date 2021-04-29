@@ -112,6 +112,12 @@ public class StateCombat : EnemyCombat
         return false;
     }
 
+    public void playSound(int i)
+    {
+        dupeAudio DA = gameObject.AddComponent<dupeAudio>();
+        DA.doDupe(GetComponents<AudioSource>()[i]);
+    }
+
     // Makes the enemy into an elite enemy, a rare and powerful version of an enemy. Usually overridden to add some unique additional effects.
     public virtual void MakeElite(int numEffects)
     {

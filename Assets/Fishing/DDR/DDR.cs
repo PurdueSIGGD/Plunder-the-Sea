@@ -23,12 +23,19 @@ public class DDR : MonoBehaviour
     private float perfectDistRatio = 0.25f;//Ratio of target size that counts as perfect
     private int currentScore = 0;
     private float targetFrequencyStep = 0.25f; // # of second per beat
-    private int targetFrequencyMax = 3; // Max # of beats for target frequency
+    private int targetFrequencyMax = 4; // Max # of beats for target frequency
     private int targetFrequencyMin = 1; // Min # of beats for target frequency
     private float nextTargetTime = 0.0f;//Time when to spawn new target
 
     private int catchScore = 400; //score needed to "catch" the fish
     private int releaseScore = -100; //score needed to "release" the fish
+
+    [SerializeField]
+    private AudioClip[] songs;
+    [SerializeField]
+    private int[] bpm;
+    private AudioSource AS;
+    private int songNum = -1;
 
     public Fish fishBeingCaught;
     public PlayerBase targetPlayer;
@@ -39,7 +46,13 @@ public class DDR : MonoBehaviour
     {
         canvas = GetComponentInParent<Canvas>();
         for (int i = 0; i < arrowTargets.Length; i++) { arrowTargets[i] = new List<GameObject>(); }
-        nextTargetTime = Time.time + targetFrequencyMax*targetFrequencyStep;
+        nextTargetTime = Time.time + targetFrequencyMax*targetFrequencyStep - targetSpeed;
+        AS = GetComponent<AudioSource>();
+    }
+
+    private void OnEnable()
+    {
+        audioSetup();
     }
 
     public int GetScore()
@@ -125,7 +138,7 @@ public class DDR : MonoBehaviour
             for (int j = 0; j < arrowTargets[i].Count; j++)
             {
                 GameObject target = arrowTargets[i][j];
-                target.transform.position -= new Vector3(0, canvas.pixelRect.height * targetSpeed * Time.deltaTime, 0);
+                target.transform.position -= new Vector3(0, canvas.pixelRect.height * Time.deltaTime / targetSpeed, 0);
                 if (target.transform.position.y <= 0)
                 {
                     //Target hit bottom, complete miss
@@ -167,7 +180,7 @@ public class DDR : MonoBehaviour
         FishingMinigame.SetActive(false);
         targetPlayer.movement.enabled = true;
         targetPlayer.fishing.gameActive = false;
-        nextTargetTime = Time.time + targetFrequencyStep*targetFrequencyMax;
+        
         for (int i = 0; i < arrowTargets.Length; i++) {
             foreach (GameObject arrow in arrowTargets[i])
             {
@@ -175,6 +188,44 @@ public class DDR : MonoBehaviour
             }
             arrowTargets[i] = new List<GameObject>();
         }
+
+        foreach (wordMove WM in FindObjectsOfType<wordMove>())
+        {
+            Destroy(WM.gameObject);
+        }
+
+        nextTargetTime = Time.time + targetFrequencyStep * targetFrequencyMax - targetSpeed;
+
+        switchAudio(true);
+    }
+
+    private void audioSetup()
+    {
+        if (songNum == -1)
+        {
+            songNum = Random.Range(0, songs.Length);
+        } else
+        {
+            songNum++;
+            if (songNum >= songs.Length)
+            {
+                songNum = 0;
+            }
+        }
+
+        AudioSource AS = GetComponent<AudioSource>();
+        AS.clip = songs[songNum];
+        switchAudio(false);
+        AS.Play();
+
+        float speedMultiplier = bpm[songNum] / (60); //bps
+
+        //make float multiplier below smaller to increase difficulty
+        targetSpeed = 0.75f / speedMultiplier;//Seconds for target to travel entire height
+        targetFrequencyStep = speedMultiplier / targetFrequencyMax; // # of second per beat
+        perfectDistRatio = 0.25f / speedMultiplier;//Ratio of target size that counts as perfect
+
+        nextTargetTime = Time.time + targetFrequencyStep * targetFrequencyMax - targetSpeed;
     }
 
     private void SendArrow(int type)
@@ -194,6 +245,21 @@ public class DDR : MonoBehaviour
         target.transform.localPosition += new Vector3(0, canvas.pixelRect.height, 0);
         arrowTargets[type].Add(target);
 
+    }
+
+    private void switchAudio(bool on)
+    {
+        foreach (AudioSource FAS in FindObjectsOfType<AudioSource>())
+        {
+            if (on)
+            {
+                FAS.Play();
+                AS.clip = null;
+            } else
+            {
+                FAS.Pause();
+            }
+        }
     }
 
     private void createWord(int i)
