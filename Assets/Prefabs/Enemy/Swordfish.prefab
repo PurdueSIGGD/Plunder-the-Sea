@@ -318,7 +318,7 @@ MonoBehaviour:
   lastHitAmmoAddition: 0
   spawnPoint: {x: 0, y: 0, z: 0}
   attackSpeedInverse: 1
-  damage: 5
+  damage: 15
   numberOfTimesToRespawn: 0
   dropTable: ffffffff00000000010000000200000003000000
   dropOdds:
