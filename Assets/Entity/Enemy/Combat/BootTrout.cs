@@ -56,7 +56,7 @@ public class BootTrout : StateCombat
         base.MakeElite(numEffects);
         ChargeMovement cm = ((ChargeMovement)myStateMovement);
         cm.chargeDistance = 6f;
-        cm.chargeDuration *= 0.1f;
-        cm.chargeSpeed *= 10f;
+        cm.chargeDuration *= 0.33f;
+        cm.chargeSpeed *= 3f;
     }
 }
