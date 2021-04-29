@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerMenu : MonoBehaviour
 {
+    public GameObject frame;
+    public GameObject tip;
     public Text title;
     public Text descr1;
     public Text descr2;

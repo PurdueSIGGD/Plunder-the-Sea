@@ -638,7 +638,7 @@ MonoBehaviour:
   fishing: {fileID: 0}
   classUlt: {fileID: 0}
   playerInventory: {fileID: 9221751412264514575}
-  helpMenu: {fileID: 4658297601267066728}
+  helpMenu: {fileID: 0}
   keep: 1
   fader: {fileID: 1603701631468041497}
   fadeCanvas: {fileID: 6993066267186363360}
@@ -756,6 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 271bad5fb402d88468638fbd7ae54c45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  descrTable: {fileID: 11400000, guid: 14fe098c235a93f49a5f00060de91868, type: 2}
   aura: {fileID: 5904103875300404184}
   smokeBomb: {fileID: 2808827960982064107, guid: 4a09629e7d99a524ca435ebcaf3f9e9f, type: 3}
   ultStacks: 0
@@ -1469,7 +1470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3996559547052274909, guid: b61372edc753dae429fefcf84cb24e25, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5563308836797362748, guid: b61372edc753dae429fefcf84cb24e25, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1557,11 +1558,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b61372edc753dae429fefcf84cb24e25, type: 3}
---- !u!223 &4658297601267066728 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 2584621981527251822, guid: b61372edc753dae429fefcf84cb24e25, type: 3}
-  m_PrefabInstance: {fileID: 7168590427611397126}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3336926436531621434 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5563308836797362748, guid: b61372edc753dae429fefcf84cb24e25, type: 3}

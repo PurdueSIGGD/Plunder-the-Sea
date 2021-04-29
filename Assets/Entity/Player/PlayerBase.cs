@@ -21,7 +21,8 @@ public class PlayerBase : MonoBehaviour
     [HideInInspector]
     public ClassUltimate classUlt;
     public Canvas playerInventory;
-    public Canvas helpMenu;
+    [HideInInspector]
+    public PlayerMenu helpMenu;
     [SerializeField]
     private bool keep = true;
 
@@ -97,6 +98,8 @@ public class PlayerBase : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         fishing = GetComponent<PlayerFishing>();
         classUlt = GetComponent<ClassUltimate>();
+        helpMenu = GetComponentInChildren<PlayerMenu>();
+        helpMenu.frame.SetActive(false);
 
         /* Assume one camera exists */
         cam = GameObject.FindObjectOfType<UI_Camera>();
@@ -147,13 +150,24 @@ public class PlayerBase : MonoBehaviour
 
         if (Input.GetKeyDown("h"))
         {
-            if (helpMenu.gameObject.activeSelf)
+            if (helpMenu.frame.activeSelf)
             {
-                helpMenu.gameObject.SetActive(false);
+                helpMenu.frame.SetActive(false);
             }
             else
             {
-                helpMenu.gameObject.SetActive(true);
+                helpMenu.frame.SetActive(true);
+            }
+        }
+        if (Input.GetKeyDown("p"))
+        {
+            if (helpMenu.tip.activeSelf)
+            {
+                helpMenu.tip.SetActive(false);
+            }
+            else
+            {
+                helpMenu.tip.SetActive(true);
             }
         }
     }

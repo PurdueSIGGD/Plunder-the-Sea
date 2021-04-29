@@ -31,7 +31,9 @@ public class MenuTab : MonoBehaviour, IPointerEnterHandler
     public void classDescr()
     {
         PlayerClasses pclass = GetComponentInParent<PlayerClasses>();
-        title = pclass.classes[pclass.classNumber].gameObject.name;
+        ClassUltimate cUlt = GetComponentInParent<ClassUltimate>();
+        title = cUlt.descrTable.getName(pclass.classNumber);
+        descr1 = cUlt.descrTable.getText(pclass.classNumber) + "\n\nUltimate\n" + cUlt.descrTable.getText2(pclass.classNumber);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
