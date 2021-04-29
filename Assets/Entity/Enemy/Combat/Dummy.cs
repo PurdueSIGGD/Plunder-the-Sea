@@ -14,20 +14,25 @@ public class Dummy : StateCombat
     public float dps;
 
     // Variable for how long after the last damage instance
-    public float totalInterval = 1.5f;
+    public float totalInterval = 3f;
 
     // Sprites for hurt/unhurt states
     public Sprite unhurt;
     public Sprite hurt;
 
     // Description String
-
+    public DescriptionInfo desc;
 
     // Stats used for damage calculation
     private float endTimer = 0f;
     private float prevTime = 0f;
     private float firstDamage = 0;
     private bool isHurt;
+
+    private void Start()
+    {
+        UpdateDesc();
+    }
 
     private void Update()
     {
@@ -42,6 +47,14 @@ public class Dummy : StateCombat
         {
             sprite.sprite = hurt;
         }
+    }
+
+    public void UpdateDesc()
+    {
+        //desc.description =
+        //    "Prev. Damage: " + Mathf.Round(prevDamage) + "\n" +
+        //    "Total Damage: " + Mathf.Round(totalDamage) + "\n" +
+        //    "DPS: " + Mathf.Round(dps);
     }
 
     // The target does nothing by default, but records the most recent projectiles hitting it
@@ -69,6 +82,7 @@ public class Dummy : StateCombat
             if (totalTime != 0)
             {
                 dps = Mathf.Round((totalDamage - firstDamage) / totalTime);
+                UpdateDesc();
             }
         } else
         {
