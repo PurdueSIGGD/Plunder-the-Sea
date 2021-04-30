@@ -188,7 +188,7 @@ public class PlayerBase : MonoBehaviour
             mainMenuTimer = 0;
         }
         //goes to the menu
-        if (Input.GetKey(KeyCode.M))
+        if (GetComponent<debugging>().debug && Input.GetKey(KeyCode.M))
         {
             quitTimer += Time.deltaTime;
             if (quitTimer >= 2)
