@@ -603,6 +603,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f02dc836932b9814384a10e66328e8e7, type: 3}
   - {fileID: 8300000, guid: fb636766affbb3c4cba1c1b156b3b721, type: 3}
   bpm: 500000006e000000
+  maxStep: 0800000006000000
   fishBeingCaught: {fileID: 0}
   targetPlayer: {fileID: 0}
   FishingMinigame: {fileID: 7448191832672795129}

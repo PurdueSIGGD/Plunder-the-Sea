@@ -24,7 +24,7 @@ public class DDR : MonoBehaviour
     private int currentScore = 0;
     private float targetFrequencyStep = 0.25f; // # of second per beat
     private int targetFrequencyMax = 4; // Max # of beats for target frequency
-    private int targetFrequencyMin = 1; // Min # of beats for target frequency
+    private int targetFrequencyMin = 2; // Min # of beats for target frequency
     private float nextTargetTime = 0.0f;//Time when to spawn new target
 
     private int catchScore = 400; //score needed to "catch" the fish
@@ -35,6 +35,8 @@ public class DDR : MonoBehaviour
     [SerializeField]
     private int[] bpm;
     private AudioSource AS;
+    [SerializeField]
+    private int[] maxStep;
     private int songNum = -1;
 
     public Fish fishBeingCaught;
@@ -169,7 +171,7 @@ public class DDR : MonoBehaviour
         if (Time.time >= nextTargetTime)
         {
             SendArrow((int)(Random.value * arrowBases.Length));
-            nextTargetTime = Time.time + Random.Range(targetFrequencyMin,targetFrequencyMax+1)*targetFrequencyStep;
+            nextTargetTime = Time.time + Random.Range(targetFrequencyMin, targetFrequencyMax + 1) * targetFrequencyStep;
         }
 
     }
@@ -217,6 +219,8 @@ public class DDR : MonoBehaviour
         AS.clip = songs[songNum];
         switchAudio(false);
         AS.Play();
+
+        targetFrequencyMax = maxStep[songNum];
 
         float speedMultiplier = bpm[songNum] / (60); //bps
 
