@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ClassUltimate : MonoBehaviour
 {
+    public StringIntTable descrTable;
     public SpriteRenderer aura;
     public GameObject smokeBomb;
     [HideInInspector]
@@ -68,7 +69,7 @@ public class ClassUltimate : MonoBehaviour
                 cost = 999;
                 break;
             case 1:     //Brawler
-                if (ultStacks >= 5)
+                if (ultStacks >= 3)
                 {
                     return -1;
                 }
@@ -177,7 +178,7 @@ public class ClassUltimate : MonoBehaviour
             case 0:     //Test
                 break;
             case 1:     //Brawler
-                pStats.weaponInv.weaponMods.meleeSizeMultiplier *= 1.5f;
+                pStats.weaponInv.weaponMods.meleeSizeMultiplier *= 2;
                 break;
             case 2:     //Gunner
                 break;
@@ -287,7 +288,7 @@ public class ClassUltimate : MonoBehaviour
             case 0:     //Test
                 break;
             case 1:     //Brawler
-                pStats.weaponInv.weaponMods.meleeSizeMultiplier = pStats.weaponInv.weaponMods.meleeSizeMultiplier / 1.5f;
+                pStats.weaponInv.weaponMods.meleeSizeMultiplier = pStats.weaponInv.weaponMods.meleeSizeMultiplier / 2;
                 break;
             case 2:     //Gunner
                 break;

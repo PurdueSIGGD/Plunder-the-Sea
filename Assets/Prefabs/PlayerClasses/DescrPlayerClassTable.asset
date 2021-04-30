@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f2cb99688705304695c4dfe02f2f371, type: 3}
+  m_Name: DescrPlayerClassTable
+  m_EditorClassIdentifier: 
+  textSingles:
+  - name: Test Class
+    text: Hailing from the origins of development, this class was never meant to
+      see the light of day. If you got this to appear, good job I guess?
+    text2: 'Ultimate
+
+      Nothing really. We''d moved on from this guy by the time
+      ultimates got implemented'
+  - name: Brawler
+    text: Rough and tough, up and personal. The brawler is known for high base melee
+      damage and the strength to wield larger weapons
+    text2: 'Costs 1 of each bait
+
+      Temporarily double the size of your weapon
+      and swing large! This ability is stackable up to 3 times. Each stack has an
+      independent timer.'
+  - name: Gunner
+    text: Fire away from a safe distance! The gunner has unparalleled ranged power.
+    text2: 'Costs max ammo of the current bait
+
+      Refill your ammo in exchange
+      for bait! Can be activated  at partial cost for a partial refill.'
+  - name: Captain
+    text: Both the strongest and the weakest, the captain boasts incredible fire
+      power, but will die from almost anything.
+    text2: 'Costs 5 of the current bait
+
+      Puffing his chest out in pride, the
+      captain fears nothing. Temporarily becomes invulnerable to all damage'
+  - name: First Mate
+    text: A taste for blood realy gets the first mate going. Kill 3 enemies in succession
+      to increase your movement speed for as long as the streak lasts.
+    text2: 'Costs 5 of the current bait
+
+      Charge forward while swinging your
+      weapon in a blind rage. The rate of melee attacks scales with your movment
+      speed.'
+  - name: Swash Buckler
+    text: In and out, the swash buckler is one of the most mobile classes. Lunge
+      forward with melee attacks and retreat with ranged attacks
+    text2: 'Costs 5 of the current bait
+
+      Use a smoke bomb to escape a sticky
+      situation. Teleports you forward and then executes a melee attack and a ranged
+      shot backwards. The smoke bomb also stuns enemies.'
+  - name: Warrant Officer
+    text: A bit of unique fighter, the warrant officer spawns lightning whenever
+      he hits an enemy. This lightning jumps between enemies for additional damage.
+      Damage scales on average of melee and ranged damage.
+    text2: 'Costs 1 of each bait
+
+      Temporarily imbue yourself with the power
+      of lightning. Augments your lightning powers and automatically strikes nearby
+      enemies.'

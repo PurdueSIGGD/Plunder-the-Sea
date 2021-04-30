@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -21,6 +22,8 @@ public class PlayerBase : MonoBehaviour
     [HideInInspector]
     public ClassUltimate classUlt;
     public Canvas playerInventory;
+    [HideInInspector]
+    public PlayerMenu helpMenu;
     [SerializeField]
     private bool keep = true;
 
@@ -31,6 +34,8 @@ public class PlayerBase : MonoBehaviour
     private GameObject fadeCanvas;
     [SerializeField]
     private Text levelText;
+    private float mainMenuTimer = 0;
+    private float quitTimer = 0;
 
     private UI_Camera cam;
     
@@ -96,6 +101,8 @@ public class PlayerBase : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         fishing = GetComponent<PlayerFishing>();
         classUlt = GetComponent<ClassUltimate>();
+        helpMenu = GetComponentInChildren<PlayerMenu>();
+        helpMenu.frame.SetActive(false);
 
         /* Assume one camera exists */
         cam = GameObject.FindObjectOfType<UI_Camera>();
@@ -125,6 +132,11 @@ public class PlayerBase : MonoBehaviour
             {
                 inv.ShootAt(cam.GetMousePosition(), true);
             }
+
+            if (Input.GetKeyDown("q"))
+            {
+                classUlt.callUlt(GetComponent<PlayerClasses>().classNumber);
+            }
         }
 
         if (Input.GetKeyDown("e"))
@@ -139,9 +151,56 @@ public class PlayerBase : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown("q"))
+        if (Input.GetKeyDown("h"))
         {
-            classUlt.callUlt(GetComponent<PlayerClasses>().classNumber);
+            if (helpMenu.frame.activeSelf)
+            {
+                helpMenu.frame.SetActive(false);
+            }
+            else
+            {
+                helpMenu.frame.SetActive(true);
+            }
+        }
+        if (Input.GetKeyDown("p"))
+        {
+            if (helpMenu.tip.activeSelf)
+            {
+                helpMenu.tip.SetActive(false);
+            }
+            else
+            {
+                helpMenu.tip.SetActive(true);
+            }
+        }
+
+        //quits the game
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            mainMenuTimer += Time.deltaTime;
+            if (mainMenuTimer >= 2)
+            {
+                Application.Quit();
+            }
+        }
+        else
+        {
+            mainMenuTimer = 0;
+        }
+        //goes to the menu
+        if (Input.GetKey(KeyCode.M))
+        {
+            quitTimer += Time.deltaTime;
+            if (quitTimer >= 2)
+            {
+                Destroy(gameObject, 0.1f);
+                Destroy(Camera.main.gameObject, 0.1f);
+                SceneManager.LoadScene("MainMenu");
+            }
+        }
+        else
+        {
+            quitTimer = 0;
         }
     }
 
