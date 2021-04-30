@@ -43,6 +43,7 @@ public class Dummy : StateCombat
             totalTime = 0f;
             dps = 0f;
             isHurt = false;
+            UpdateDesc();
         } else
         {
             sprite.sprite = hurt;
@@ -51,10 +52,11 @@ public class Dummy : StateCombat
 
     public void UpdateDesc()
     {
-        //desc.description =
-        //    "Prev. Damage: " + Mathf.Round(prevDamage) + "\n" +
-        //    "Total Damage: " + Mathf.Round(totalDamage) + "\n" +
-        //    "DPS: " + Mathf.Round(dps);
+        desc.description =
+            "Prev. Damage: " + Mathf.Round(prevDamage) + "\n" +
+            "Total Damage: " + Mathf.Round(totalDamage) + "\n" +
+            "DPS: " + Mathf.Round(dps);
+        desc.updateInventoryDescription();
     }
 
     // The target does nothing by default, but records the most recent projectiles hitting it
@@ -72,7 +74,7 @@ public class Dummy : StateCombat
         multiplier = 1 / (1 + .3f * level);
         realDmg *= multiplier;
 
-        prevDamage += realDmg;
+        prevDamage = realDmg;
         totalDamage += realDmg;
         
         // Update DPS if already hurt
