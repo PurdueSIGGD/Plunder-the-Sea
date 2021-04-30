@@ -5,9 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class debugging : MonoBehaviour
 {
-
-    [SerializeField]
-    private bool debug = false;
+    public bool debug = false;
     private PlayerStats stats;
 
     private void Start()
