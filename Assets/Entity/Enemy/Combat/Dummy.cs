@@ -45,7 +45,6 @@ public class Dummy : StateCombat
             totalTime = 0f;
             dps = 0f;
             isHurt = false;
-            UpdateDesc();
         } else
         {
             sprite.sprite = hurt;
