@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 8161092618706017957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 1670929204730862735}
   m_Father: {fileID: 0}
@@ -154,6 +154,7 @@ MonoBehaviour:
   attrChance: 0
   speed: 0
   sourceTag: 
+  sourceName: 
   parent: {fileID: 0}
 --- !u!61 &2719860953006305366
 BoxCollider2D:
