@@ -17,6 +17,7 @@ public class KingCrab : StateCombat
     public float enemyDebuffAmount = 5f;
 
     public GameObject waterProjectile;
+    public GameObject eliteSmoke;
 
     float playerDebuffTimer = 0.0f;
     float originalPlayerSpeed = 0.0f;
@@ -193,6 +194,18 @@ public class KingCrab : StateCombat
 
         // Add teleportation
         myStateMovement.moveTypes = new MoveSets.MoveTypes[]{ MoveSets.MoveTypes.Rook, MoveSets.MoveTypes.Bishop, MoveSets.MoveTypes.Knight };
+    }
+
+
+    public override void BeforeTeleport()
+    {
+        base.BeforeTeleport();
+        Shoot(eliteSmoke);
+    }
+
+    public override void AfterTeleport()
+    {
+        base.AfterTeleport();
     }
 
 }

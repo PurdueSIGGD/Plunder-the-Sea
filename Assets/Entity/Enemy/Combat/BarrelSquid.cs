@@ -17,6 +17,8 @@ public class BarrelSquid : StateCombat
     public float firingCooldown = 0.4f;
     private float firingTracker = 0;
 
+    public float firingDistance = 6f;
+
     // Ink Shot projectile
     public GameObject inkShot;
 
@@ -80,7 +82,7 @@ public class BarrelSquid : StateCombat
                     firingTracker = SetTarget(firingCooldown);
                 }
                 // Try to shoot if possible and the cooldown allows
-                if (OnTarget(firingTracker))
+                if (OnTarget(firingTracker) && myStateMovement.PlayerDistance() <= firingDistance)
                 {
                     Shoot(inkShot, true);
                     firingTracker = SetTarget(firingCooldown);

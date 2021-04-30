@@ -35,7 +35,7 @@ public class Jellyfish : StateCombat
     public override void CombatStart()
     {
         base.CombatStart();
-        if (!myBase.myStats.elite)
+        if ((myBase && myBase.myStats) && !myBase.myStats.elite)
         {
             stickSpeed = new EntityAttribute(ENT_ATTR.MOVESPEED, 0.5f, stickTime, true, false);
             stickDamage = new EntityAttribute(ENT_ATTR.POISON, myBase.myStats.damage, stickTime, true, true, "Jellyfish");
