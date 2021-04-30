@@ -31,18 +31,6 @@ public class debugging : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        //quits the game
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-        //goes to the menu
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            Destroy(gameObject, 0.1f);
-            Destroy(Camera.main.gameObject, 0.1f);
-            SceneManager.LoadScene("MainMenu");
-        }
         //teleports to next dungeon level
         if (Input.GetKeyDown(KeyCode.Return))
         {

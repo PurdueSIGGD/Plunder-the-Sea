@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -33,6 +34,8 @@ public class PlayerBase : MonoBehaviour
     private GameObject fadeCanvas;
     [SerializeField]
     private Text levelText;
+    private float mainMenuTimer = 0;
+    private float quitTimer = 0;
 
     private UI_Camera cam;
     
@@ -169,6 +172,35 @@ public class PlayerBase : MonoBehaviour
             {
                 helpMenu.tip.SetActive(true);
             }
+        }
+
+        //quits the game
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            mainMenuTimer += Time.deltaTime;
+            if (mainMenuTimer >= 2)
+            {
+                Application.Quit();
+            }
+        }
+        else
+        {
+            mainMenuTimer = 0;
+        }
+        //goes to the menu
+        if (Input.GetKey(KeyCode.M))
+        {
+            quitTimer += Time.deltaTime;
+            if (quitTimer >= 2)
+            {
+                Destroy(gameObject, 0.1f);
+                Destroy(Camera.main.gameObject, 0.1f);
+                SceneManager.LoadScene("MainMenu");
+            }
+        }
+        else
+        {
+            quitTimer = 0;
         }
     }
 

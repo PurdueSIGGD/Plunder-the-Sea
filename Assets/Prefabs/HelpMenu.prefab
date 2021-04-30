@@ -875,9 +875,13 @@ MonoBehaviour:
 
     Hide menu prompt
 
+    Main menu
 
-    More details
-    in tutorial'
+    Exit
+    game
+
+
+    More details in tutorial'
   descr2: 'WASD/Arrows
 
     Left Click/Ctrl
@@ -895,7 +899,11 @@ MonoBehaviour:
     Mouse
     Over
 
-    P'
+    P
+
+    Hold M
+
+    Hold Esc'
   isFirst: 1
   classTab: 0
 --- !u!1 &5866921408488527160
