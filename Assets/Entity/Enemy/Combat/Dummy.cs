@@ -6,7 +6,7 @@ public class Dummy : StateCombat
 {
     // Stats about the most recent and overall projectile damage (including melee)
     public float prevDamage = 0f;
-    public int prevType = 1;
+    public int prevType = 0;
     public float totalDamage = 0f;
     public float totalTime = 0f;
 
@@ -23,15 +23,22 @@ public class Dummy : StateCombat
     // Description String
     public DescriptionInfo desc;
 
+    private string[] types = { "N/A", "Melee", "Ranged" };
+
     // Stats used for damage calculation
     private float endTimer = 0f;
     private float prevTime = 0f;
     private float firstDamage = 0;
     private bool isHurt;
 
-    private void Start()
+    public override void CombatStart()
     {
-        UpdateDesc();
+        desc.description =
+            "DPS: " + Mathf.Round(dps) + "\n" +
+            "Prev. Hit: " + types[prevType] + "\n" +
+            "Prev. Damage: " + Mathf.Round(prevDamage) + "\n" +
+            "Total Damage: " + Mathf.Round(totalDamage) + "\n" +
+            "A kind fish that describes how hard your attacks hit in exchange for free bait.";
     }
 
     private void Update()
@@ -51,10 +58,13 @@ public class Dummy : StateCombat
 
     public void UpdateDesc()
     {
-        //desc.description =
-        //    "Prev. Damage: " + Mathf.Round(prevDamage) + "\n" +
-        //    "Total Damage: " + Mathf.Round(totalDamage) + "\n" +
-        //    "DPS: " + Mathf.Round(dps);
+        desc.description =
+            "DPS: " + Mathf.Round(dps) + "\n" +
+            "Prev. Hit: " + types[prevType] + "\n" +
+            "Prev. Damage: " + Mathf.Round(prevDamage) + "\n" +
+            "Total Damage: " + Mathf.Round(totalDamage) + "\n" +
+            "A kind fish that describes how hard your attacks hit in exchange for free bait.";
+        desc.updateInventoryDescription();
     }
 
     // The target does nothing by default, but records the most recent projectiles hitting it
@@ -72,7 +82,7 @@ public class Dummy : StateCombat
         multiplier = 1 / (1 + .3f * level);
         realDmg *= multiplier;
 
-        prevDamage += realDmg;
+        prevDamage = realDmg;
         totalDamage += realDmg;
         
         // Update DPS if already hurt
@@ -93,6 +103,12 @@ public class Dummy : StateCombat
 
         prevTime = Time.time;
         endTimer = Time.time + totalInterval;
+
+        if (myBase.myStats.invulnerable && hit.ProjectileType() == 1)
+        {
+            // Refill ammo on hit for overworld dummy
+            myBase.player.stats.replenishAmmo(1000);
+        }
 
         return false;
     }
