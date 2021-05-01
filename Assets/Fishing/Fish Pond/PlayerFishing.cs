@@ -108,7 +108,7 @@ public class PlayerFishing : MonoBehaviour
             //Debug.Log("Fish caught");
             player.stats.baitInventory.removeBait(selectedBait);
             fish.FishingMinigame.SetActive(true);
-            player.playerInventory.gameObject.SetActive(false);
+            player.playerInventory.gameObject.SetActive(true);
             gameActive = true;
             fishCaught.Invoke();
         }

@@ -21,7 +21,7 @@ public class PlayerBase : MonoBehaviour
     public PlayerFishing fishing;
     [HideInInspector]
     public ClassUltimate classUlt;
-    public Canvas playerInventory;
+    public PlayerInventory playerInventory;
     [HideInInspector]
     public PlayerMenu helpMenu;
     [SerializeField]
@@ -103,6 +103,7 @@ public class PlayerBase : MonoBehaviour
         classUlt = GetComponent<ClassUltimate>();
         helpMenu = GetComponentInChildren<PlayerMenu>();
         helpMenu.frame.SetActive(false);
+        playerInventory.gameObject.SetActive(true);
 
         /* Assume one camera exists */
         cam = GameObject.FindObjectOfType<UI_Camera>();
@@ -141,13 +142,13 @@ public class PlayerBase : MonoBehaviour
 
         if (Input.GetKeyDown("e"))
         {
-            if (playerInventory.gameObject.activeSelf)
+            if (playerInventory.invenFrame.activeSelf)
             {
-                playerInventory.gameObject.SetActive(false);
+                playerInventory.invenFrame.SetActive(false);
             }
             else
             {
-                playerInventory.gameObject.SetActive(true);
+                playerInventory.invenFrame.SetActive(true);
             }
         }
 
@@ -178,7 +179,7 @@ public class PlayerBase : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
         {
             mainMenuTimer += Time.deltaTime;
-            if (mainMenuTimer >= 2)
+            if (mainMenuTimer >= 1)
             {
                 Application.Quit();
             }
@@ -191,7 +192,7 @@ public class PlayerBase : MonoBehaviour
         if (GetComponent<debugging>().debug && Input.GetKey(KeyCode.M))
         {
             quitTimer += Time.deltaTime;
-            if (quitTimer >= 2)
+            if (quitTimer >= 1)
             {
                 Destroy(gameObject, 0.1f);
                 Destroy(Camera.main.gameObject, 0.1f);
