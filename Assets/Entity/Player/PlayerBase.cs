@@ -142,15 +142,12 @@ public class PlayerBase : MonoBehaviour
 
         if (Input.GetKeyDown("e"))
         {
-            Debug.Log("hello");
             if (playerInventory.invenFrame.activeSelf)
             {
-                Debug.Log("de");
                 playerInventory.invenFrame.SetActive(false);
             }
             else
             {
-                Debug.Log("Reac");
                 playerInventory.invenFrame.SetActive(true);
             }
         }
@@ -182,7 +179,7 @@ public class PlayerBase : MonoBehaviour
         if (Input.GetKey(KeyCode.Escape))
         {
             mainMenuTimer += Time.deltaTime;
-            if (mainMenuTimer >= 2)
+            if (mainMenuTimer >= 1)
             {
                 Application.Quit();
             }
@@ -195,7 +192,7 @@ public class PlayerBase : MonoBehaviour
         if (Input.GetKey(KeyCode.M))
         {
             quitTimer += Time.deltaTime;
-            if (quitTimer >= 2)
+            if (quitTimer >= 1)
             {
                 Destroy(gameObject, 0.1f);
                 Destroy(Camera.main.gameObject, 0.1f);
