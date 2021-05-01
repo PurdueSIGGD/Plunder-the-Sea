@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DeathScreen.unity
     guid: 3531eb54fd8095545bcb3b7c021e8d2e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FishingMinigame.unity
     guid: 92a9cd57cdcb1404e90bb0ff79e9bf87
   - enabled: 1
@@ -29,7 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial_revision_one.unity
     guid: 2b02e60dfe7cc3749b59a188430d1fd4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tutorial.unity
     guid: 63170e22b26c9e44bb4fd285cd7f6dc2
   m_configObjects: {}
