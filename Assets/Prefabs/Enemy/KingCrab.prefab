@@ -327,7 +327,8 @@ MonoBehaviour:
   playerDebuffAmount: 5
   enemyDebuffTime: 5
   enemyDebuffAmount: 5
-  waterProjectile: {fileID: 0}
+  waterProjectile: {fileID: 5815176105320333706, guid: c463fe7bed143b846a498b475b751c36, type: 3}
+  eliteSmoke: {fileID: 2808827960982064107, guid: 4a09629e7d99a524ca435ebcaf3f9e9f, type: 3}
   speedDebuff:
     name: 
     type: 0
