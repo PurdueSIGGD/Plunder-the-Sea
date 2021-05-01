@@ -33,7 +33,12 @@ public class Dummy : StateCombat
 
     public override void CombatStart()
     {
-        UpdateDesc();
+        desc.description =
+            "DPS: " + Mathf.Round(dps) + "\n" +
+            "Prev. Hit: " + types[prevType] + "\n" +
+            "Prev. Damage: " + Mathf.Round(prevDamage) + "\n" +
+            "Total Damage: " + Mathf.Round(totalDamage) + "\n" +
+            "A kind fish that describes how hard your attacks hit in exchange for free bait.";
     }
 
     private void Update()
