@@ -50,10 +50,7 @@ public class PlayerFishing : MonoBehaviour
             player.stats.baitInventory.changeRedText(selectedBait);
         }
 
-        
-        
-        // NEED TO REMOVE THIS AT SOME POINT!!!
-        if (Input.GetKeyDown(KeyCode.Alpha1))//1 button
+        if (GetComponent<debugging>().debug && Input.GetKeyDown(KeyCode.Alpha1))//1 button
         {
             //player.stats.baitInventory.addBait(selectedBait); //just for testing bait
             player.stats.baitInventory.addBait(0);

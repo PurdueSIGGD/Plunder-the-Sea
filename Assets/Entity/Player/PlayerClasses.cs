@@ -311,6 +311,13 @@ public class PlayerClasses : MonoBehaviour
         if (chainLighting && !sendingLighting)
         {
             sendingLighting = true; //stops lighting damage from spawning lighting infinitely
+            WeaponInventory weapInv = GetComponent<WeaponInventory>();
+            if (weapInv != null)
+            {
+                lightingDamage = Mathf.Min(
+                    (weapInv.projectileDamage(weapInv.getMeleeWeaponClass())+ weapInv.projectileDamage(weapInv.getMeleeWeaponClass()))/6.0f
+                    , 16);
+            }
 
             //only spawn if chance is high enough
             if (Random.Range(0f, 1f) <= chainChance)
