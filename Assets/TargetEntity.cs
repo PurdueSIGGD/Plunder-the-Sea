@@ -26,7 +26,9 @@ public class TargetEntity : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider) {
         if (idle) return;
 
-        if (collider.GetComponent<Projectile>() != null) {
+        var proj = collider.GetComponent<Projectile>();
+
+        if (proj?.ProjectileType() == 2) {
             hitCount += 1;
         }
 

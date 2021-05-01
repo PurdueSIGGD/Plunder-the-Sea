@@ -98,6 +98,9 @@ public class PlayerFishing : MonoBehaviour
         return selectedBait;
     }
 
+    [SerializeField]
+    private UnityEngine.Events.UnityEvent fishCaught;
+
     //Called when bobber returns or catches fish
     public void OnReelFinish(Fish fish)
     {
@@ -110,6 +113,7 @@ public class PlayerFishing : MonoBehaviour
             fish.FishingMinigame.SetActive(true);
             player.playerInventory.gameObject.SetActive(false);
             gameActive = true;
+            fishCaught.Invoke();
         }
         else
         {

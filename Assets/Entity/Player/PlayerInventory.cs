@@ -215,6 +215,13 @@ public class PlayerInventory : MonoBehaviour
         baitsGot += baitAmount;
     }
 
+    // use tutorial only
+    public void setAllBaits(int amount) {
+        for (int i = 0; i < 4; i++) {
+            baitTypes[i] = amount;
+        }
+    }
+
     public void removeBait(int arrayIndex, int baitAmount = 1)
     {
         baitTypes[arrayIndex] = baitTypes[arrayIndex] - baitAmount;
