@@ -21,7 +21,7 @@ public class PlayerBase : MonoBehaviour
     public PlayerFishing fishing;
     [HideInInspector]
     public ClassUltimate classUlt;
-    public Canvas playerInventory;
+    public PlayerInventory playerInventory;
     [HideInInspector]
     public PlayerMenu helpMenu;
     [SerializeField]
@@ -103,6 +103,7 @@ public class PlayerBase : MonoBehaviour
         classUlt = GetComponent<ClassUltimate>();
         helpMenu = GetComponentInChildren<PlayerMenu>();
         helpMenu.frame.SetActive(false);
+        playerInventory.gameObject.SetActive(true);
 
         /* Assume one camera exists */
         cam = GameObject.FindObjectOfType<UI_Camera>();
@@ -141,13 +142,16 @@ public class PlayerBase : MonoBehaviour
 
         if (Input.GetKeyDown("e"))
         {
-            if (playerInventory.gameObject.activeSelf)
+            Debug.Log("hello");
+            if (playerInventory.invenFrame.activeSelf)
             {
-                playerInventory.gameObject.SetActive(false);
+                Debug.Log("de");
+                playerInventory.invenFrame.SetActive(false);
             }
             else
             {
-                playerInventory.gameObject.SetActive(true);
+                Debug.Log("Reac");
+                playerInventory.invenFrame.SetActive(true);
             }
         }
 

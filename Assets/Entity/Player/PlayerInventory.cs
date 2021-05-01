@@ -31,6 +31,8 @@ public class PlayerInventory : MonoBehaviour
     public Text ammoUseChanceLabel;
     public Text regenMultLabel;
 
+    public GameObject invenFrame;
+
     public GameObject weaponFrame;
     public Text weaponName;
     public Text weaponPrice;
