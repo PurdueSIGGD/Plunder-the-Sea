@@ -79,6 +79,7 @@ public class Bobber : MonoBehaviour
             //Fish wrangled!
             if (fish && !hitFish)
             {
+                hitFish = true;
                 if (fish.preferredBaitType == baitType || Random.Range(0f,1f) <= fish.wrongBaitCatchPercent) {
                     FishingMinigame fm = fish.FishingMinigame.GetComponent<FishingMinigame>();
                     fm.ddr.fishBeingCaught = fish;
@@ -94,7 +95,6 @@ public class Bobber : MonoBehaviour
                 {
                     Debug.Log("No bite");
                     source.player.stats.baitInventory.removeBait(source.selectedBait);
-                    hitFish = true;
                 }
             }
 
