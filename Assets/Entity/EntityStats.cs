@@ -96,7 +96,7 @@ public class EntityStats : MonoBehaviour
         }
         if (transform.tag == "Player")
         {
-            multiplier = Mathf.Min(1 + transform.GetComponent<PlayerStats>().dungeonLevel * 0.1f, 2);
+            multiplier = 1 + transform.GetComponent<PlayerStats>().dungeonLevel * 0.1f;
             realDmg *= multiplier;
             PlayerPrefs.SetFloat("Hurt", PlayerPrefs.GetFloat("Hurt") + realDmg);
             isPlayer = true;
