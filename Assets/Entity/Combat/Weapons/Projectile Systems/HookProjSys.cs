@@ -25,6 +25,8 @@ public class HookProjSys : ProjectileSystem {
         if (!target)
         {
             target = victim;
+            EntityAttribute hookStun = new EntityAttribute(ENT_ATTR.STUN, 1, currentHook.currentLifeTime + .5f);
+            victim.AddAttribute(hookStun, proj.source.GetComponent<EntityStats>());
             Retract();
         }
     }
