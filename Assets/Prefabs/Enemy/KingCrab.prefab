@@ -296,8 +296,9 @@ MonoBehaviour:
   moving: 0
   moveTypes: 0000000001000000
   pathingRefresh: 0.25
-  maxDist: 50
+  maxDist: 10
   targetProximity: 0
+  activeMaxDist: 50
   approachDistance: 1.25
   actChargeUpTime: 1
   actCooldownTime: 1

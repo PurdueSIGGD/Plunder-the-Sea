@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayName: Mine Lobster
-  movementSpeed: 0
+  movementSpeed: 2
   maxHP: 50
   currentHP: 50
   armorMult: 0

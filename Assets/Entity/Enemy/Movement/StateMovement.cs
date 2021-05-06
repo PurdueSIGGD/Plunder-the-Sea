@@ -12,6 +12,7 @@ public class StateMovement : EnemyMovement
     public float pathingRefresh = .25f;
     public float maxDist = 10;
     public float targetProximity = 0;
+    public float activeMaxDist = -1; // max dist changes to this after first sighting player; set to -1 to disable this feature
     private float lastRefresh = -Mathf.Infinity;
     private int actionLock = 0;
     private int saveState;
@@ -51,6 +52,10 @@ public class StateMovement : EnemyMovement
             lastRefresh = nowSecs;
             if (calcPath())
             {
+                if (activeMaxDist > 0)
+                {
+                    maxDist = activeMaxDist;
+                }
                 actionLock = 1;
             }
         }
